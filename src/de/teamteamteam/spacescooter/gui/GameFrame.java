@@ -1,36 +1,25 @@
 package de.teamteamteam.spacescooter.gui;
 
 import java.awt.Graphics;
-import java.util.ArrayList;
+import java.awt.image.BufferStrategy;
 import java.util.Iterator;
 
 import javax.swing.JFrame;
 
 import de.teamteamteam.spacescooter.controls.Keyboard;
 import de.teamteamteam.spacescooter.entities.Entity;
-import de.teamteamteam.spacescooter.entities.Player;
-import de.teamteamteam.spacescooter.entities.TestEntity;
 
 /**
  * The game will take place in this beautiful window.
  */
 public class GameFrame extends JFrame {
 
-	private ArrayList<Entity> entities;
-	
+	private static final long serialVersionUID = 1L;
+
 	public GameFrame() {
 		super();
-		this.entities = new ArrayList<Entity>();
-		
-		//TODO: Remove this!
-		this.entities.add(new TestEntity());
-		this.entities.add(new Player());
 	}
-	
-	public ArrayList<Entity> getEntityList() {
-		return this.entities;
-	}
-	
+
 	/**
 	 * Set up the GameFrame before showing it to the world.
 	 */
@@ -39,25 +28,40 @@ public class GameFrame extends JFrame {
 		this.setSize(800, 600);
 		this.setUndecorated(false);
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-		
-		//Make sure we get the keyboard events. Use Keyboard.isKeyDown() to ask about keys status.
+
+		// Make sure we get the keyboard events. Use Keyboard.isKeyDown() to ask
+		// about keys status.
 		this.addKeyListener(new Keyboard());
-		
+
 		this.setVisible(true);
 	}
-	
+
 	/**
-	 * Have the GameFrame repaint all the visible entities.
+	 * The pain, do not underestimate it!
+	 * @see http://content.gpwiki.org/index.php/Java:Tutorials:Double_Buffering for details.
 	 */
-	@Override
-	public void paint(Graphics g) {
-		Iterator<Entity> i = this.entities.iterator();
-		while(i.hasNext()) {
-			Entity e = i.next();
-			e.paint(g);
+	public void drawEntities() {
+		this.createBufferStrategy(2);
+		Graphics bufferedGraphics = null;
+		BufferStrategy bufferStrategy = this.getBufferStrategy();
+		if (bufferStrategy == null) {
+			System.out.println("Mist");
 		}
+		try {
+			bufferedGraphics = bufferStrategy.getDrawGraphics();
+
+			//Now we can use bufferedGraphics to actually draw stuff ...
+			Iterator<Entity> i = Entity.entities.iterator();
+			while (i.hasNext()) {
+				Entity e = i.next();
+				e.paint(bufferedGraphics);
+			}
+		} finally {
+			//We are done, dispose the pen and celebrate the result!
+			if (bufferedGraphics != null) bufferedGraphics.dispose();
+		}
+
+		bufferStrategy.show();
 	}
-	
-	
-	
+
 }

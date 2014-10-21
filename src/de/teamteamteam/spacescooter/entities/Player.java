@@ -4,7 +4,6 @@ import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.io.InputStream;
 
 import javax.imageio.ImageIO;
 
@@ -19,11 +18,7 @@ public class Player extends Entity {
 	
 	static {
 		try {
-			InputStream res = Player.class.getClassLoader().getResourceAsStream("images/nyancat.png");
-			if(res == null) {
-				System.out.println("Kein res :/");
-			}
-			img = ImageIO.read(res);
+			img = ImageIO.read(Player.class.getClassLoader().getResourceAsStream("images/nyancat.png"));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -31,6 +26,7 @@ public class Player extends Entity {
 	}
 	
 	public Player() {
+		super();
 		this.x = 200;
 		this.y = 300;
 	}
@@ -38,16 +34,16 @@ public class Player extends Entity {
 	@Override
 	public void update() {
 		if(Keyboard.isKeyDown(KeyEvent.VK_UP)) {
-			this.y--;
+			this.y -= 3;
 		}
 		if(Keyboard.isKeyDown(KeyEvent.VK_DOWN)) {
-			this.y++;
+			this.y += 3;
 		}
 		if(Keyboard.isKeyDown(KeyEvent.VK_LEFT)) {
-			this.x--;
+			this.x -= 3;
 		}
 		if(Keyboard.isKeyDown(KeyEvent.VK_RIGHT)) {
-			this.x++;
+			this.x += 3;
 		}
 
 	}

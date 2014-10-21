@@ -1,8 +1,6 @@
 package de.teamteamteam.spacescooter.threads;
 
-import java.util.ArrayList;
 import java.util.Iterator;
-
 
 import de.teamteamteam.spacescooter.entities.Entity;
 import de.teamteamteam.spacescooter.gui.GameFrame;
@@ -31,8 +29,7 @@ public class EntityUpdateThread extends Thread {
 	}
 	
 	private void updateEntities() {
-		ArrayList<Entity> entityList = this.gf.getEntityList();
-		Iterator<Entity> i = entityList.iterator();
+		Iterator<Entity> i = Entity.entities.iterator();
 		while(i.hasNext()) {
 			Entity e = i.next();
 			e.update();

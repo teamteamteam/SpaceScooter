@@ -2,6 +2,8 @@ package de.teamteamteam.spacescooter;
 
 import java.awt.EventQueue;
 
+import de.teamteamteam.spacescooter.entities.Player;
+import de.teamteamteam.spacescooter.entities.TestEntity;
 import de.teamteamteam.spacescooter.gui.GameFrame;
 import de.teamteamteam.spacescooter.threads.PaintThread;
 import de.teamteamteam.spacescooter.threads.EntityUpdateThread;
@@ -26,6 +28,10 @@ public class Main {
 				gf.init();
 			}
 		});
+		
+		//Whatever.
+		new TestEntity();
+		new Player();
 		
 		//Initialize PaintThread
 		PaintThread pt = new PaintThread(gf);
