@@ -2,6 +2,7 @@ package de.teamteamteam.spacescooter;
 
 import java.awt.EventQueue;
 
+import de.teamteamteam.spacescooter.background.StarBackground;
 import de.teamteamteam.spacescooter.entities.Player;
 import de.teamteamteam.spacescooter.entities.TestEntity;
 import de.teamteamteam.spacescooter.gui.GameFrame;
@@ -23,14 +24,14 @@ public class Main {
 		final GameFrame gf = new GameFrame();
 		
 		//Whatever.
-		new TestEntity();
+		new StarBackground();
 		new Player();
 		
 		//Initialize the GameFrame properly within the AWT EventQueue
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				gf.init();
-				gf.drawEntities(); //Draw nothing for the first time.
+				gf.draw(); //Draw nothing for the first time.
 			}
 		});
 		

@@ -1,6 +1,8 @@
 package de.teamteamteam.spacescooter.entities;
 
 import java.awt.Graphics;
+import java.awt.Rectangle;
+import java.awt.Shape;
 import java.util.ArrayList;
 
 public abstract class Entity {
@@ -15,15 +17,26 @@ public abstract class Entity {
 	}
 
 	/**
+	 * Default hitbox for every entity
+	 */
+	protected Shape HitBox;
+	
+	/**
 	 * Constructor.
 	 * All entities are within a static array list for our convenience.
 	 */
 	public Entity() {
 		Entity.entities.add(this);
+		
+		//
 	}
 	
-	public abstract void update();
+	public void update() {
+		
+	}
 
-	public abstract void paint(Graphics g);
+	public void paint(Graphics g) {
+		
+	}
 	
 }

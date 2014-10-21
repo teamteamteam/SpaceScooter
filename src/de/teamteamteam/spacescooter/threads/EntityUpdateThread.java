@@ -2,6 +2,7 @@ package de.teamteamteam.spacescooter.threads;
 
 import java.util.Iterator;
 
+import de.teamteamteam.spacescooter.background.Background;
 import de.teamteamteam.spacescooter.entities.Entity;
 import de.teamteamteam.spacescooter.gui.GameFrame;
 
@@ -24,7 +25,16 @@ public class EntityUpdateThread extends Thread {
 			} catch (InterruptedException e) {
 				System.err.println(e);
 			}
+			this.updateBackgrounds();
 			this.updateEntities();
+		}
+	}
+	
+	private void updateBackgrounds() {
+		Iterator<Background> i = Background.backgrounds.iterator();
+		while(i.hasNext()) {
+			Background b = i.next();
+			b.update();
 		}
 	}
 	

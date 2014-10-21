@@ -7,6 +7,7 @@ import java.util.Iterator;
 
 import javax.swing.JFrame;
 
+import de.teamteamteam.spacescooter.background.Background;
 import de.teamteamteam.spacescooter.controls.Keyboard;
 import de.teamteamteam.spacescooter.entities.Entity;
 
@@ -41,7 +42,7 @@ public class GameFrame extends JFrame {
 	 * The pain, do not underestimate it!
 	 * @see http://content.gpwiki.org/index.php/Java:Tutorials:Double_Buffering for details.
 	 */
-	public void drawEntities() {
+	public void draw() {
 		this.createBufferStrategy(2);
 		Graphics bufferedGraphics = null;
 		BufferStrategy bufferStrategy = this.getBufferStrategy();
@@ -52,12 +53,9 @@ public class GameFrame extends JFrame {
 					bufferedGraphics = bufferStrategy.getDrawGraphics();
 
 					// Now we can use bufferedGraphics to actually draw stuff
-					// ...
-					Iterator<Entity> i = Entity.entities.iterator();
-					while (i.hasNext()) {
-						Entity e = i.next();
-						e.paint(bufferedGraphics);
-					}
+					this.drawBackgrounds(bufferedGraphics);
+					this.drawEntities(bufferedGraphics);
+
 				} catch(Exception e) {
 					System.out.println("Hier geht was schief");
 					System.out.println(e);
@@ -73,4 +71,22 @@ public class GameFrame extends JFrame {
 
 	}
 
+	public void drawBackgrounds(Graphics g) {
+		Iterator<Background> i = Background.backgrounds.iterator();
+		while (i.hasNext()) {
+			Background b = i.next();
+			b.paint(g);
+		}
+	}
+	
+	public void drawEntities(Graphics g) {
+		Iterator<Entity> i = Entity.entities.iterator();
+		while (i.hasNext()) {
+			Entity e = i.next();
+			e.paint(g);
+		}
+	}
+	
+
+	
 }

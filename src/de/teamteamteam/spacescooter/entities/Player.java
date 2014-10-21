@@ -33,17 +33,18 @@ public class Player extends Entity {
 	
 	@Override
 	public void update() {
+		int off = 3;
 		if(Keyboard.isKeyDown(KeyEvent.VK_UP)) {
-			this.y -= 3;
+			this.y -= off;
 		}
 		if(Keyboard.isKeyDown(KeyEvent.VK_DOWN)) {
-			this.y += 3;
+			this.y += off;
 		}
 		if(Keyboard.isKeyDown(KeyEvent.VK_LEFT)) {
-			this.x -= 3;
+			this.x -= off;
 		}
 		if(Keyboard.isKeyDown(KeyEvent.VK_RIGHT)) {
-			this.x += 3;
+			this.x += off;
 		}
 
 	}

@@ -26,7 +26,7 @@ public class PaintThread extends Thread {
 			//Trigger redrawing the things. Important: AWT-Context needed here!
 			EventQueue.invokeLater(new Runnable() {
 				public void run() {
-					gf.drawEntities();
+					gf.draw();
 				}
 			});
 		}
