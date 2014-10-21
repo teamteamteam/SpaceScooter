@@ -2,7 +2,10 @@ package de.teamteamteam.spacescooter.entities;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.event.KeyEvent;
 import java.util.Random;
+
+import de.teamteamteam.spacescooter.controls.Keyboard;
 
 public class TestEntity extends Entity {
 
@@ -21,7 +24,9 @@ public class TestEntity extends Entity {
 	}
 
 	public void update() {
-		System.out.println("TestEntity.update()!");
+		if(Keyboard.isKeyDown(KeyEvent.VK_SPACE)) {
+			System.out.println("Hallo Welt!");
+		}
 		this.color = new Color(this.random.nextInt(255),this.random.nextInt(255),this.random.nextInt(255));
 	}
 

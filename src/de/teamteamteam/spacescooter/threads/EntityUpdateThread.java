@@ -7,11 +7,15 @@ import java.util.Iterator;
 import de.teamteamteam.spacescooter.entities.Entity;
 import de.teamteamteam.spacescooter.gui.GameFrame;
 
-public class UpdateThread extends Thread {
+/**
+ * This thread is responsible for updating all the entities.
+ * It runs about 60 times per second.
+ */
+public class EntityUpdateThread extends Thread {
 
 	private GameFrame gf;
 
-	public UpdateThread(GameFrame gf) {
+	public EntityUpdateThread(GameFrame gf) {
 		this.gf = gf;
 	}
 
@@ -26,7 +30,7 @@ public class UpdateThread extends Thread {
 		}
 	}
 	
-	public void updateEntities() {
+	private void updateEntities() {
 		ArrayList<Entity> entityList = this.gf.getEntityList();
 		Iterator<Entity> i = entityList.iterator();
 		while(i.hasNext()) {

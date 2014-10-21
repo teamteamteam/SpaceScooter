@@ -3,13 +3,9 @@ package de.teamteamteam.spacescooter.entities;
 import java.awt.Graphics;
 
 public abstract class Entity {
-	
-	public void update() {
 		
-	}
+	public abstract void update();
 
-	public void paint(Graphics g) {
-		
-	}
+	public abstract void paint(Graphics g);
 	
 }
