@@ -1,6 +1,7 @@
 package de.teamteamteam.spacescooter.gui;
 
 import java.awt.Graphics;
+import java.awt.Toolkit;
 import java.awt.image.BufferStrategy;
 import java.util.Iterator;
 
@@ -44,24 +45,32 @@ public class GameFrame extends JFrame {
 		this.createBufferStrategy(2);
 		Graphics bufferedGraphics = null;
 		BufferStrategy bufferStrategy = this.getBufferStrategy();
-		if (bufferStrategy == null) {
-			System.out.println("Mist");
-		}
-		try {
-			bufferedGraphics = bufferStrategy.getDrawGraphics();
 
-			//Now we can use bufferedGraphics to actually draw stuff ...
-			Iterator<Entity> i = Entity.entities.iterator();
-			while (i.hasNext()) {
-				Entity e = i.next();
-				e.paint(bufferedGraphics);
-			}
-		} finally {
-			//We are done, dispose the pen and celebrate the result!
-			if (bufferedGraphics != null) bufferedGraphics.dispose();
-		}
+		do { //while bufferStrategy.contentsLost()
+			do { //bufferStrategy.contentsRestored()
+				try {
+					bufferedGraphics = bufferStrategy.getDrawGraphics();
 
-		bufferStrategy.show();
+					// Now we can use bufferedGraphics to actually draw stuff
+					// ...
+					Iterator<Entity> i = Entity.entities.iterator();
+					while (i.hasNext()) {
+						Entity e = i.next();
+						e.paint(bufferedGraphics);
+					}
+				} catch(Exception e) {
+					System.out.println("Hier geht was schief");
+					System.out.println(e);
+				} finally {
+					// We are done, dispose the pen and celebrate the result!
+					if (bufferedGraphics != null)
+						bufferedGraphics.dispose();
+				}
+			} while (bufferStrategy.contentsRestored());
+			bufferStrategy.show();
+		} while (bufferStrategy.contentsLost());
+		Toolkit.getDefaultToolkit().sync();
+
 	}
 
 }

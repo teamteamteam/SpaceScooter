@@ -22,16 +22,17 @@ public class Main {
 	public static void main(String[] args) {
 		final GameFrame gf = new GameFrame();
 		
+		//Whatever.
+		new TestEntity();
+		new Player();
+		
 		//Initialize the GameFrame properly within the AWT EventQueue
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				gf.init();
+				gf.drawEntities(); //Draw nothing for the first time.
 			}
 		});
-		
-		//Whatever.
-		new TestEntity();
-		new Player();
 		
 		//Initialize PaintThread
 		PaintThread pt = new PaintThread(gf);
@@ -39,6 +40,6 @@ public class Main {
 
 		//Initialize EntityUpdateThread
 		EntityUpdateThread ut = new EntityUpdateThread(gf);
-		ut.start();	
+		ut.start();
 	}
 }
