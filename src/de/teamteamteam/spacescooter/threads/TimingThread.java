@@ -40,7 +40,11 @@ public abstract class TimingThread extends Thread {
 			
 			//wait manually for the rest of the interval
 			long sleepUntil = workStart + this.workInterval;
-			while ((sleepUntil- System.nanoTime()) > 100);
+			while ((sleepUntil- System.nanoTime()) > 0) {
+				if((sleepUntil- System.nanoTime()) > 5000) {
+					Thread.yield(); //Give other threads a chance.
+				}
+			}
 		}
 	}
 
