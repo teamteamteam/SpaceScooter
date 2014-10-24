@@ -4,6 +4,7 @@ import java.awt.EventQueue;
 
 import de.teamteamteam.spacescooter.background.StarBackground;
 import de.teamteamteam.spacescooter.entities.Player;
+import de.teamteamteam.spacescooter.entities.TestEntity;
 import de.teamteamteam.spacescooter.gui.GameFrame;
 import de.teamteamteam.spacescooter.threads.GameThread;
 
@@ -24,6 +25,7 @@ public class Main {
 		//Whatever.
 		new StarBackground();
 		new Player();
+		new TestEntity();
 		
 		//Initialize the GameFrame properly within the AWT EventQueue
 		EventQueue.invokeLater(new Runnable() {

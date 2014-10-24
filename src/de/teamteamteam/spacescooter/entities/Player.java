@@ -32,20 +32,20 @@ public class Player extends Entity {
 	}
 	
 	public void update(long millisecondsSinceLastCall) {
-		int offset = (int) ((3.0F/16.0F) * millisecondsSinceLastCall);
-		if(Keyboard.isKeyDown(KeyEvent.VK_UP)) {
-			this.y -= offset;
+		int off = 3;
+		if(Keyboard.isKeyDown(KeyEvent.VK_UP) && this.y > 0) {
+			this.y -= off;
 		}
-		if(Keyboard.isKeyDown(KeyEvent.VK_DOWN)) {
-			this.y += offset;
+		if(Keyboard.isKeyDown(KeyEvent.VK_DOWN) && this.y < (600 - Player.img.getHeight())) {
+			this.y += off;
 		}
-		if(Keyboard.isKeyDown(KeyEvent.VK_LEFT)) {
-			this.x -= offset;
+		if(Keyboard.isKeyDown(KeyEvent.VK_LEFT) && this.x > 0) {
+			this.x -= off;
 		}
-		if(Keyboard.isKeyDown(KeyEvent.VK_RIGHT)) {
-			this.x += offset;
+		if(Keyboard.isKeyDown(KeyEvent.VK_RIGHT) && this.x < (800 - Player.img.getWidth())) {
+			this.x += off;
 		}
-
+		
 	}
 
 	public void paint(Graphics g) {
