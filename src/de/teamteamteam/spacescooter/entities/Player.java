@@ -32,7 +32,6 @@ public class Player extends Entity {
 	}
 	
 	public void update(long millisecondsSinceLastCall) {
-		System.out.println(millisecondsSinceLastCall / (1000.0/60.0));
 		int offset = (int) ((3.0F/16.0F) * millisecondsSinceLastCall);
 		if(Keyboard.isKeyDown(KeyEvent.VK_UP)) {
 			this.y -= offset;

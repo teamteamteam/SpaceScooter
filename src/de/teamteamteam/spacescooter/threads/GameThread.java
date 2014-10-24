@@ -16,6 +16,11 @@ public class GameThread extends Thread {
 
 	private long lastFrame;
 	
+	/**
+	 * 60FPS => 1/60 in nanoseconds.
+	 */
+	private long frameTime = 16666666L;
+	
 	public GameThread(GameFrame gf) {
 		this.setName("GameThread");
 		this.gf = gf;
@@ -23,18 +28,22 @@ public class GameThread extends Thread {
 
 	public void run() {
 		final GameFrame gf = this.gf; // :'-(
-		this.lastFrame = System.currentTimeMillis();
+		this.lastFrame = System.nanoTime();
 		while (true) {
-			//If it is not time yet, sleep and continue the loop.
-			if((System.currentTimeMillis() - this.lastFrame) <= 15) {
+			//If we have to wait for more than 1.5ms, sleep 1ms
+			if((System.nanoTime() - this.lastFrame) > 1500000) {
 				try {
-					Thread.sleep(1);
+					Thread.sleep(1); //wait 1 ms
 				} catch(InterruptedException e) {
 					System.err.println(e.getStackTrace());
 				}
 				continue;
 			}
+
+			//If we have to wait for less than 1.5ms, wait manually
+			while((this.frameTime - (System.nanoTime() - this.lastFrame)) > 100);
 			
+			//Update all the entities
 			this.updateBackgrounds();
 			this.updateEntities();
 			
@@ -45,7 +54,7 @@ public class GameThread extends Thread {
 				}
 			});
 			//Update time for the last frame
-			this.lastFrame = System.currentTimeMillis();
+			this.lastFrame = System.nanoTime();
 		}
 	}
 	
@@ -53,7 +62,7 @@ public class GameThread extends Thread {
 		Iterator<Background> i = Background.backgrounds.iterator();
 		while(i.hasNext()) {
 			Background b = i.next();
-			b.update(System.currentTimeMillis() - this.lastFrame);
+			b.update(System.nanoTime() - this.lastFrame);
 		}
 	}
 	
@@ -61,7 +70,7 @@ public class GameThread extends Thread {
 		Iterator<Entity> i = Entity.entities.iterator();
 		while(i.hasNext()) {
 			Entity e = i.next();
-			e.update(System.currentTimeMillis() - this.lastFrame);
+			e.update(System.nanoTime() - this.lastFrame);
 		}
 	}
 }

@@ -24,7 +24,7 @@ public class StarBackground extends Background {
 	private int offset = 0;
 	
 	public void update(long millisecondsSinceLastCall) {
-		this.offset -= 15;
+		this.offset -= 5;
 		if(Math.abs(this.offset) > StarBackground.img.getWidth()) {
 			this.offset += StarBackground.img.getWidth();
 		}
