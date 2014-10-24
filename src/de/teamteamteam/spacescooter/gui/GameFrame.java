@@ -39,9 +39,12 @@ public class GameFrame extends JFrame {
 
 		this.setVisible(true);
 
+		//ignore the OS telling us to repaint - it's wasting our time.
+		this.setIgnoreRepaint(true);
+		
+		//prepare the buffered strategy
 		this.createBufferStrategy(2);
 		this.bufferStrategy = this.getBufferStrategy();
-
 	}
 
 	/**
@@ -71,7 +74,7 @@ public class GameFrame extends JFrame {
 			} while (this.bufferStrategy.contentsRestored());
 			this.bufferStrategy.show();
 		} while (this.bufferStrategy.contentsLost());
-		Toolkit.getDefaultToolkit().sync();
+		Toolkit.getDefaultToolkit().sync(); //Tell the OS to update its graphics of the window.
 	}
 
 	public void drawBackgrounds(Graphics g) {

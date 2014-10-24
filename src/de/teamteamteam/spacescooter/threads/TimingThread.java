@@ -19,11 +19,10 @@ public abstract class TimingThread extends Thread {
 	public void run() {
 		while (true) {
 			long workStart = System.nanoTime();
-
 			// do the actual work
 			this.work();
-
 			long workDone = System.nanoTime();
+			//calculate time of work
 			long workTime = (workDone - workStart);
 
 			long timeToWait = this.workInterval - workTime;
@@ -32,14 +31,16 @@ public abstract class TimingThread extends Thread {
 			// wait using sleep for bigger intervals
 			if (msToWait > 1) {
 				try {
-					Thread.sleep(msToWait);
+					//make sure there is a little buffer for manual waiting loop left
+					Thread.sleep(Math.max(0,(msToWait - 1)));
 				} catch (InterruptedException e) {
 					System.err.println("[" + this.getName() + "]" + e.getStackTrace());
 				}
 			}
-
-			while (this.workInterval - (System.nanoTime() - workStart) > 100);
-			//System.out.println("[" + this.getName() + "]: "+ (System.nanoTime() - workStart));
+			
+			//wait manually for the rest of the interval
+			long sleepUntil = workStart + this.workInterval;
+			while ((sleepUntil- System.nanoTime()) > 100);
 		}
 	}
 

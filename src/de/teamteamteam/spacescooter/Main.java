@@ -35,7 +35,7 @@ public class Main {
 				gf.draw(); //Draw nothing for the first time.
 			}
 		});
-		
+	
 		//Initialize GameThread
 		PaintThread paintThread = new PaintThread(gf);
 		paintThread.start();

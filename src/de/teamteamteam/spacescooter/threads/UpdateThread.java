@@ -9,13 +9,13 @@ public class UpdateThread extends TimingThread {
 		
 	public UpdateThread() {
 		this.setName("UpdateThread");
-		this.setHz(100);
+		this.setHz(60);
 	}
 	
 	public void work() {
-			// Update all the entities
-			this.updateBackgrounds();
-			this.updateEntities();
+		// Update all the entities
+		this.updateBackgrounds();
+		this.updateEntities();
 	}
 
 	private void updateBackgrounds() {

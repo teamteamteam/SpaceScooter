@@ -13,7 +13,7 @@ public class PaintThread extends TimingThread {
 
 	public PaintThread(GameFrame gf) {
 		this.gf = gf;
-		this.setName("GameThread");
+		this.setName("PaintThread");
 		this.setHz(60);
 	}
 
