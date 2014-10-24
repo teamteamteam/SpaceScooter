@@ -17,31 +17,20 @@ public class GameThread extends Thread {
 	private long lastFrame;
 	
 	/**
-	 * 60FPS => 1/60 in nanoseconds.
+	 * 60FPS => 1/60s in nanoseconds (10^-9).
 	 */
-	private long frameTime = 16666666L;
+	private long frameTime = (1000L*1000L*1000L) / 60L;
 	
 	public GameThread(GameFrame gf) {
 		this.setName("GameThread");
 		this.gf = gf;
+//		this.setPriority(Thread.MAX_PRIORITY);
 	}
 
 	public void run() {
 		final GameFrame gf = this.gf; // :'-(
-		this.lastFrame = System.nanoTime();
 		while (true) {
-			//If we have to wait for more than 1.5ms, sleep 1ms
-			if((System.nanoTime() - this.lastFrame) > 1500000) {
-				try {
-					Thread.sleep(1); //wait 1 ms
-				} catch(InterruptedException e) {
-					System.err.println(e.getStackTrace());
-				}
-				continue;
-			}
-
-			//If we have to wait for less than 1.5ms, wait manually
-			while((this.frameTime - (System.nanoTime() - this.lastFrame)) > 100);
+			long frameStart = System.nanoTime();
 			
 			//Update all the entities
 			this.updateBackgrounds();
@@ -53,8 +42,27 @@ public class GameThread extends Thread {
 					gf.draw();
 				}
 			});
-			//Update time for the last frame
-			this.lastFrame = System.nanoTime();
+			
+			long frameDone = System.nanoTime();			
+			long workTime = (frameDone - frameStart);
+			//System.out.println("Arbeitszeit: " + (workTime) + "ns");
+
+			long timeToWait = this.frameTime - workTime;
+			long msToWait = timeToWait / 1000000;
+
+			//wait using sleep for bigger intervals
+			if(msToWait > 1) {
+				try {
+					Thread.sleep(msToWait);
+				} catch(InterruptedException e) {
+					System.err.println(e.getStackTrace());
+				}
+			}
+			System.out.println("1: " + (System.nanoTime() - frameStart));
+			System.out.println("2: " + (System.nanoTime() - frameStart));
+			System.out.println("3: " + (System.nanoTime() - frameStart));
+			System.out.println("4: " + (System.nanoTime() - frameStart));
+			System.out.println("5: " + (System.nanoTime() - frameStart));
 		}
 	}
 	
