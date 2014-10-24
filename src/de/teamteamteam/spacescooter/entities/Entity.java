@@ -8,6 +8,7 @@ import java.util.ArrayList;
 public abstract class Entity {
 	
 	public static ArrayList<Entity> entities = null;
+	private static boolean isEnemy = false;
 	
 	/**
 	 * We need to initialize the ArrayList, so the EntityUpdateThread won't beat us.
@@ -20,6 +21,14 @@ public abstract class Entity {
 	 * Default hitbox for every entity
 	 */
 	protected Shape HitBox;
+	
+	public static boolean isEnemy() {
+		return isEnemy;
+	}
+
+	protected void setEnemy(boolean isEnemy) {
+		this.isEnemy = isEnemy;
+	}
 	
 	/**
 	 * Constructor.

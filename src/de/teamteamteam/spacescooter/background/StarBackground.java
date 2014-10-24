@@ -14,7 +14,7 @@ public class StarBackground extends Background {
 	private static BufferedImage img;
 	static {
 		try {
-			img = ImageIO.read(Player.class.getClassLoader().getResourceAsStream("images/starbackground.png"));
+			img = ImageIO.read(Player.class.getClassLoader().getResourceAsStream("images/testbackground.png"));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -24,7 +24,7 @@ public class StarBackground extends Background {
 	private int offset = 0;
 	
 	public void update() {
-		this.offset -= 15;
+		this.offset -= 5;
 		if(Math.abs(this.offset) > this.img.getWidth()) {
 			this.offset += this.img.getWidth();
 		}

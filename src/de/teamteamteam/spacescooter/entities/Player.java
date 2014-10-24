@@ -34,17 +34,21 @@ public class Player extends Entity {
 	@Override
 	public void update() {
 		int off = 3;
-		if(Keyboard.isKeyDown(KeyEvent.VK_UP)) {
+		if(Keyboard.isKeyDown(KeyEvent.VK_UP) && this.y > 0) {
 			this.y -= off;
 		}
-		if(Keyboard.isKeyDown(KeyEvent.VK_DOWN)) {
+		if(Keyboard.isKeyDown(KeyEvent.VK_DOWN) && this.y < (600 - this.img.getHeight())) {
 			this.y += off;
 		}
-		if(Keyboard.isKeyDown(KeyEvent.VK_LEFT)) {
+		if(Keyboard.isKeyDown(KeyEvent.VK_LEFT) && this.x > 0) {
 			this.x -= off;
 		}
-		if(Keyboard.isKeyDown(KeyEvent.VK_RIGHT)) {
+		if(Keyboard.isKeyDown(KeyEvent.VK_RIGHT) && this.x < (800 - this.img.getWidth())) {
 			this.x += off;
+		}
+		
+		if (Entity.isEnemy()) {
+			System.out.print("hit");
 		}
 
 	}

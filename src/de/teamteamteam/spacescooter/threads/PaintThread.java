@@ -10,6 +10,7 @@ import de.teamteamteam.spacescooter.gui.GameFrame;
 public class PaintThread extends Thread {
 
 	private GameFrame gf;
+	BasicTimer timer = new BasicTimer(120);
 
 	public PaintThread(GameFrame gf) {
 		this.gf = gf;
@@ -18,11 +19,7 @@ public class PaintThread extends Thread {
 	public void run() {
 		final GameFrame gf = this.gf; // :'-(
 		while (true) {
-			try {
-				Thread.sleep(16);
-			} catch (InterruptedException e) {
-				System.err.println(e);
-			}
+			timer.sync();
 			//Trigger redrawing the things. Important: AWT-Context needed here!
 			EventQueue.invokeLater(new Runnable() {
 				public void run() {

@@ -13,6 +13,7 @@ import de.teamteamteam.spacescooter.gui.GameFrame;
 public class EntityUpdateThread extends Thread {
 
 	private GameFrame gf;
+	BasicTimer timer = new BasicTimer(60);
 
 	public EntityUpdateThread(GameFrame gf) {
 		this.gf = gf;
@@ -20,11 +21,7 @@ public class EntityUpdateThread extends Thread {
 
 	public void run() {
 		while (true) {
-			try {
-				Thread.sleep(16);
-			} catch (InterruptedException e) {
-				System.err.println(e);
-			}
+			timer.sync();
 			this.updateBackgrounds();
 			this.updateEntities();
 		}

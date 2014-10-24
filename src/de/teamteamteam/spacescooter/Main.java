@@ -6,6 +6,7 @@ import de.teamteamteam.spacescooter.background.StarBackground;
 import de.teamteamteam.spacescooter.entities.Player;
 import de.teamteamteam.spacescooter.entities.TestEntity;
 import de.teamteamteam.spacescooter.gui.GameFrame;
+import de.teamteamteam.spacescooter.threads.BasicTimer;
 import de.teamteamteam.spacescooter.threads.PaintThread;
 import de.teamteamteam.spacescooter.threads.EntityUpdateThread;
 
@@ -26,6 +27,7 @@ public class Main {
 		//Whatever.
 		new StarBackground();
 		new Player();
+		new TestEntity();
 		
 		//Initialize the GameFrame properly within the AWT EventQueue
 		EventQueue.invokeLater(new Runnable() {
@@ -42,5 +44,6 @@ public class Main {
 		//Initialize EntityUpdateThread
 		EntityUpdateThread ut = new EntityUpdateThread(gf);
 		ut.start();
+	
 	}
 }
