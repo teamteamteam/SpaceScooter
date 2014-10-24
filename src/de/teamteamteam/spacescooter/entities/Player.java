@@ -31,7 +31,7 @@ public class Player extends Entity {
 		this.y = 300;
 	}
 	
-	public void update(long millisecondsSinceLastCall) {
+	public void update() {
 		int off = 3;
 		if(Keyboard.isKeyDown(KeyEvent.VK_UP) && this.y > 0) {
 			this.y -= off;

@@ -21,7 +21,7 @@ public class TestEntity extends Entity {
 		g.fillRect(300, 300, 100, 100);
 	}
 
-	public void update(long millisecondsSinceLastCall) {
+	public void update() {
 		if(Keyboard.isKeyDown(KeyEvent.VK_SPACE)) {
 			System.out.println("Hallo Welt!");
 		}

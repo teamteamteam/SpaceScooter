@@ -6,7 +6,8 @@ import de.teamteamteam.spacescooter.background.StarBackground;
 import de.teamteamteam.spacescooter.entities.Player;
 import de.teamteamteam.spacescooter.entities.TestEntity;
 import de.teamteamteam.spacescooter.gui.GameFrame;
-import de.teamteamteam.spacescooter.threads.GameThread;
+import de.teamteamteam.spacescooter.threads.PaintThread;
+import de.teamteamteam.spacescooter.threads.UpdateThread;
 
 /**
  * Nothing but a class containing the main method.
@@ -36,8 +37,12 @@ public class Main {
 		});
 		
 		//Initialize GameThread
-		GameThread gameThread = new GameThread(gf);
-		gameThread.start();
+		PaintThread paintThread = new PaintThread(gf);
+		paintThread.start();
+		
+		//Initialize UpdateThread
+		UpdateThread updateThread = new UpdateThread();
+		updateThread.start();
 
 	}
 }

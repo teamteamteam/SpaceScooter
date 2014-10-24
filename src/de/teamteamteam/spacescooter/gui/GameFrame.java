@@ -18,6 +18,8 @@ public class GameFrame extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 
+	private BufferStrategy bufferStrategy;
+
 	public GameFrame() {
 		super();
 	}
@@ -36,27 +38,29 @@ public class GameFrame extends JFrame {
 		this.addKeyListener(new Keyboard());
 
 		this.setVisible(true);
+
+		this.createBufferStrategy(2);
+		this.bufferStrategy = this.getBufferStrategy();
+
 	}
 
 	/**
 	 * The pain, do not underestimate it!
+	 * 
 	 * @see http://content.gpwiki.org/index.php/Java:Tutorials:Double_Buffering for details.
 	 */
 	public void draw() {
-		this.createBufferStrategy(2);
 		Graphics bufferedGraphics = null;
-		BufferStrategy bufferStrategy = this.getBufferStrategy();
-
-		do { //while bufferStrategy.contentsLost()
-			do { //bufferStrategy.contentsRestored()
+		do { // while bufferStrategy.contentsLost()
+			do { // bufferStrategy.contentsRestored()
 				try {
-					bufferedGraphics = bufferStrategy.getDrawGraphics();
+					bufferedGraphics = this.bufferStrategy.getDrawGraphics();
 
 					// Now we can use bufferedGraphics to actually draw stuff
 					this.drawBackgrounds(bufferedGraphics);
 					this.drawEntities(bufferedGraphics);
 
-				} catch(Exception e) {
+				} catch (Exception e) {
 					System.out.println("Hier geht was schief");
 					System.out.println(e);
 				} finally {
@@ -64,11 +68,10 @@ public class GameFrame extends JFrame {
 					if (bufferedGraphics != null)
 						bufferedGraphics.dispose();
 				}
-			} while (bufferStrategy.contentsRestored());
-			bufferStrategy.show();
-		} while (bufferStrategy.contentsLost());
+			} while (this.bufferStrategy.contentsRestored());
+			this.bufferStrategy.show();
+		} while (this.bufferStrategy.contentsLost());
 		Toolkit.getDefaultToolkit().sync();
-
 	}
 
 	public void drawBackgrounds(Graphics g) {
@@ -78,7 +81,7 @@ public class GameFrame extends JFrame {
 			b.paint(g);
 		}
 	}
-	
+
 	public void drawEntities(Graphics g) {
 		Iterator<Entity> i = Entity.entities.iterator();
 		while (i.hasNext()) {
@@ -86,7 +89,4 @@ public class GameFrame extends JFrame {
 			e.paint(g);
 		}
 	}
-	
-
-	
 }
