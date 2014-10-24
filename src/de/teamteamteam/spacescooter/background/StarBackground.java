@@ -23,16 +23,16 @@ public class StarBackground extends Background {
 
 	private int offset = 0;
 	
-	public void update() {
+	public void update(long millisecondsSinceLastCall) {
 		this.offset -= 15;
-		if(Math.abs(this.offset) > this.img.getWidth()) {
-			this.offset += this.img.getWidth();
+		if(Math.abs(this.offset) > StarBackground.img.getWidth()) {
+			this.offset += StarBackground.img.getWidth();
 		}
 	}
 	
 	public void paint(Graphics g) {
-		g.drawImage(this.img, 0+this.offset, 0, this.img.getWidth(), this.img.getHeight(), null);
-		g.drawImage(this.img, this.img.getWidth()+this.offset, 0, this.img.getWidth(), this.img.getHeight(), null);
+		g.drawImage(StarBackground.img, 0+this.offset, 0, StarBackground.img.getWidth(), StarBackground.img.getHeight(), null);
+		g.drawImage(StarBackground.img, StarBackground.img.getWidth()+this.offset, 0, StarBackground.img.getWidth(), StarBackground.img.getHeight(), null);
 	}
 	
 }

@@ -1,11 +1,8 @@
 package de.teamteamteam.spacescooter.entities;
 
-import java.awt.Graphics;
-import java.awt.Rectangle;
-import java.awt.Shape;
 import java.util.ArrayList;
 
-public abstract class Entity {
+public abstract class Entity implements Updateable, Paintable {
 	
 	public static ArrayList<Entity> entities = null;
 	
@@ -16,10 +13,6 @@ public abstract class Entity {
 		Entity.entities = new ArrayList<Entity>();
 	}
 
-	/**
-	 * Default hitbox for every entity
-	 */
-	protected Shape HitBox;
 	
 	/**
 	 * Constructor.
@@ -27,16 +20,6 @@ public abstract class Entity {
 	 */
 	public Entity() {
 		Entity.entities.add(this);
-		
-		//
-	}
-	
-	public void update() {
-		
-	}
-
-	public void paint(Graphics g) {
-		
 	}
 	
 }

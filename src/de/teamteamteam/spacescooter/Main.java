@@ -4,10 +4,8 @@ import java.awt.EventQueue;
 
 import de.teamteamteam.spacescooter.background.StarBackground;
 import de.teamteamteam.spacescooter.entities.Player;
-import de.teamteamteam.spacescooter.entities.TestEntity;
 import de.teamteamteam.spacescooter.gui.GameFrame;
-import de.teamteamteam.spacescooter.threads.PaintThread;
-import de.teamteamteam.spacescooter.threads.EntityUpdateThread;
+import de.teamteamteam.spacescooter.threads.GameThread;
 
 /**
  * Nothing but a class containing the main method.
@@ -35,12 +33,9 @@ public class Main {
 			}
 		});
 		
-		//Initialize PaintThread
-		PaintThread pt = new PaintThread(gf);
-		pt.start();
+		//Initialize GameThread
+		GameThread gameThread = new GameThread(gf);
+		gameThread.start();
 
-		//Initialize EntityUpdateThread
-		EntityUpdateThread ut = new EntityUpdateThread(gf);
-		ut.start();
 	}
 }

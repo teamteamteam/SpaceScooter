@@ -1,9 +1,10 @@
 package de.teamteamteam.spacescooter.background;
 
-import java.awt.Graphics;
 import java.util.ArrayList;
 
-public abstract class Background {
+import de.teamteamteam.spacescooter.entities.Entity;
+
+public abstract class Background extends Entity {
 
 	public static ArrayList<Background> backgrounds = null;
 	
@@ -16,14 +17,6 @@ public abstract class Background {
 	
 	public Background() {
 		Background.backgrounds.add(this);
-	}
-	
-	public void paint(Graphics g) {
-		
-	}
-	
-	public void update() {
-		//scroll shit
 	}
 	
 }

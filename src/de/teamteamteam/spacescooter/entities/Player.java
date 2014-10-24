@@ -31,25 +31,24 @@ public class Player extends Entity {
 		this.y = 300;
 	}
 	
-	@Override
-	public void update() {
-		int off = 3;
+	public void update(long millisecondsSinceLastCall) {
+		System.out.println(millisecondsSinceLastCall / (1000.0/60.0));
+		int offset = (int) ((3.0F/16.0F) * millisecondsSinceLastCall);
 		if(Keyboard.isKeyDown(KeyEvent.VK_UP)) {
-			this.y -= off;
+			this.y -= offset;
 		}
 		if(Keyboard.isKeyDown(KeyEvent.VK_DOWN)) {
-			this.y += off;
+			this.y += offset;
 		}
 		if(Keyboard.isKeyDown(KeyEvent.VK_LEFT)) {
-			this.x -= off;
+			this.x -= offset;
 		}
 		if(Keyboard.isKeyDown(KeyEvent.VK_RIGHT)) {
-			this.x += off;
+			this.x += offset;
 		}
 
 	}
 
-	@Override
 	public void paint(Graphics g) {
 		g.drawImage(img, this.x, this.y, null);
 	}
