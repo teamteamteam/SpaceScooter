@@ -1,6 +1,6 @@
 package de.teamteamteam.spacescooter.threads;
 
-public abstract class TimingThread extends Thread {
+public abstract class TimedThread extends Thread {
 
 	private long workInterval;
 

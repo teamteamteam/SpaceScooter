@@ -7,7 +7,7 @@ import de.teamteamteam.spacescooter.gui.GameFrame;
 /**
  * This thread triggers about 60 redraws per second.
  */
-public class PaintThread extends TimingThread {
+public class PaintThread extends TimedThread {
 
 	private GameFrame gf;
 

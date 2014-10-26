@@ -5,7 +5,7 @@ import java.util.Iterator;
 import de.teamteamteam.spacescooter.background.Background;
 import de.teamteamteam.spacescooter.entities.Entity;
 
-public class UpdateThread extends TimingThread {
+public class UpdateThread extends TimedThread {
 		
 	public UpdateThread() {
 		this.setName("UpdateThread");
