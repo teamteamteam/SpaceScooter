@@ -9,7 +9,6 @@ public class UpdateThread extends TimedThread {
 		
 	public UpdateThread() {
 		this.setName("UpdateThread");
-		this.setHz(60);
 	}
 	
 	public void work() {

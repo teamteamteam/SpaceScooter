@@ -38,10 +38,12 @@ public class Main {
 	
 		//Initialize GameThread
 		PaintThread paintThread = new PaintThread(gf);
+		paintThread.setHz(60); //This may be set depending on the system graphic settings.
 		paintThread.start();
 		
 		//Initialize UpdateThread
 		UpdateThread updateThread = new UpdateThread();
+		updateThread.setHz(100); //This shall remain constant across all systems.
 		updateThread.start();
 
 	}

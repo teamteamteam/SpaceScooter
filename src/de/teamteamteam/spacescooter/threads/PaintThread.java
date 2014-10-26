@@ -14,7 +14,6 @@ public class PaintThread extends TimedThread {
 	public PaintThread(GameFrame gf) {
 		this.gf = gf;
 		this.setName("PaintThread");
-		this.setHz(60);
 	}
 
 	public void work() {
