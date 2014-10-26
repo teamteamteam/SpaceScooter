@@ -8,6 +8,7 @@ import de.teamteamteam.spacescooter.entities.TestEntity;
 import de.teamteamteam.spacescooter.gui.GameFrame;
 import de.teamteamteam.spacescooter.threads.PaintThread;
 import de.teamteamteam.spacescooter.threads.UpdateThread;
+import de.teamteamteam.spacescooter.utilities.GraphicsSettings;
 
 /**
  * Nothing but a class containing the main method.
@@ -21,6 +22,8 @@ public class Main {
 	 * @param args Command line arguments.
 	 */
 	public static void main(String[] args) {
+		GraphicsSettings gs = new GraphicsSettings(); //Get settings
+		
 		final GameFrame gf = new GameFrame();
 		
 		//Whatever.
@@ -38,7 +41,7 @@ public class Main {
 	
 		//Initialize GameThread
 		PaintThread paintThread = new PaintThread(gf);
-		paintThread.setHz(60); //This may be set depending on the system graphic settings.
+		paintThread.setHz(gs.getRefreshRate()); //This may be set depending on the system graphic settings.
 		paintThread.start();
 		
 		//Initialize UpdateThread
