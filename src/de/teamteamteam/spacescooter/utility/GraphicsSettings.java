@@ -34,7 +34,7 @@ public class GraphicsSettings {
 			this.height = dm.getHeight();
 			this.width = dm.getWidth();
 			
-			System.out.println("Display Mode " + i + ": " + this.width + "x" + this.height+ "@" + this.refreshRate + "Hz, " + this.bitDepth + " bit");
+			if(GameConfig.DEBUG) System.out.println("Display Mode " + i + ": " + this.width + "x" + this.height+ "@" + this.refreshRate + "Hz, " + this.bitDepth + " bit");
 		}
 	}
 	

@@ -4,6 +4,7 @@ import java.awt.Rectangle;
 import java.util.LinkedList;
 
 import de.teamteamteam.spacescooter.screen.Screen;
+import de.teamteamteam.spacescooter.utility.GameConfig;
 
 public abstract class LivingEntity extends Entity implements Collidable {
 
@@ -72,12 +73,12 @@ public abstract class LivingEntity extends Entity implements Collidable {
 
 	public void takeDamage(int damage) {
 		if(this instanceof Shot) {
-			System.out.println("Shot took damage: " + damage + "left: "+this.getHealthPoints()+" (" + this + ")");
+			if(GameConfig.DEBUG) System.out.println("Shot took damage: " + damage + "left: "+this.getHealthPoints()+" (" + this + ")");
 		}
 		// TODO: shield and health logic
 		this.healthPoints -= damage;
 		if (this.isAlive() == false) {
-			System.out.println(this + " ist gestorben. RIP");
+			if(GameConfig.DEBUG) System.out.println(this + " ist gestorben. RIP");
 			Screen.currentScreen.removeEntity(this);
 		}
 	}

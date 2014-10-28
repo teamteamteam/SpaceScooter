@@ -33,6 +33,7 @@ public class GameFrame extends JFrame {
 	public void init() {
 		this.setTitle("Unser schöner Titel");
 		this.setSize(GameConfig.windowWidth, GameConfig.windowHeight);
+		this.setResizable(false);
 		this.setUndecorated(false);
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 

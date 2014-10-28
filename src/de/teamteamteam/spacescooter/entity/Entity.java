@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
+import de.teamteamteam.spacescooter.utility.GameConfig;
+
 public abstract class Entity implements Updateable, Paintable {
 	
 	/**
@@ -53,8 +55,10 @@ public abstract class Entity implements Updateable, Paintable {
 	
 	public void paint(Graphics g) {
 		//DEBUG ONLY
-		g.setColor(new Color(255,0,0));
-		g.drawRect(this.x, this.y, this.getWidth(), this.getHeight());
+		if(GameConfig.DEBUG) {
+			g.setColor(new Color(255,0,0));
+			g.drawRect(this.x, this.y, this.getWidth(), this.getHeight());
+		}
 		
 		g.drawImage(this.img, this.x, this.y, null);
 	}
