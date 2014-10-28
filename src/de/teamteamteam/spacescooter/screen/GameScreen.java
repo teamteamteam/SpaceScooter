@@ -1,6 +1,6 @@
 package de.teamteamteam.spacescooter.screen;
 
-import java.awt.Graphics;
+import java.awt.Graphics2D;
 
 import java.awt.event.KeyEvent;
 import java.util.Iterator;
@@ -25,7 +25,7 @@ public class GameScreen extends Screen {
 	}
 
 	@Override
-	protected void paint(Graphics g) {
+	protected void paint(Graphics2D g) {
 		LinkedList<Entity> list = this.getEntities();
 		Iterator<Entity> i = list.iterator();
 		while (i.hasNext()) {

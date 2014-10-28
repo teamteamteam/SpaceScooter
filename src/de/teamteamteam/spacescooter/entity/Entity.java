@@ -1,7 +1,7 @@
 package de.teamteamteam.spacescooter.entity;
 
 import java.awt.Color;
-import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
 import de.teamteamteam.spacescooter.utility.GameConfig;
@@ -53,7 +53,7 @@ public abstract class Entity implements Updateable, Paintable {
 		this.img = img;
 	}
 	
-	public void paint(Graphics g) {
+	public void paint(Graphics2D g) {
 		//DEBUG ONLY
 		if(GameConfig.DEBUG) {
 			g.setColor(new Color(255,0,0));

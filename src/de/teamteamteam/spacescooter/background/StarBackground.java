@@ -1,6 +1,6 @@
 package de.teamteamteam.spacescooter.background;
 
-import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
@@ -35,7 +35,7 @@ public class StarBackground extends Background {
 		}
 	}
 	
-	public void paint(Graphics g) {
+	public void paint(Graphics2D g) {
 		g.drawImage(StarBackground.img, (0+this.offset), 0, null);
 		g.drawImage(StarBackground.img, (StarBackground.img.getWidth()+this.offset), 0, null);
 	}

@@ -1,6 +1,6 @@
 package de.teamteamteam.spacescooter.screen;
 
-import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.util.LinkedList;
 
 import de.teamteamteam.spacescooter.entity.Entity;
@@ -32,10 +32,10 @@ public abstract class Screen {
 		return new LinkedList<Entity>(this.entities);
 	}
 	
-	protected abstract void paint(Graphics g);
+	protected abstract void paint(Graphics2D g);
 	protected abstract void update();
 	
-	public void doPaint(Graphics g) {
+	public void doPaint(Graphics2D g) {
 		this.paint(g);
 		if(this.overlay != null) this.overlay.doPaint(g);
 	}

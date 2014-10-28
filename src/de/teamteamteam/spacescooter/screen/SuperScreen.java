@@ -1,6 +1,6 @@
 package de.teamteamteam.spacescooter.screen;
 
-import java.awt.Graphics;
+import java.awt.Graphics2D;
 
 public class SuperScreen extends Screen {
 
@@ -10,7 +10,7 @@ public class SuperScreen extends Screen {
 	}
 
 	@Override
-	public void paint(Graphics g) {
+	public void paint(Graphics2D g) {
 		//nothing to paint, we're so meta meta.
 	}
 

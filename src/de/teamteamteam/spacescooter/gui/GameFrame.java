@@ -1,6 +1,6 @@
 package de.teamteamteam.spacescooter.gui;
 
-import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Toolkit;
 import java.awt.image.BufferStrategy;
 import javax.swing.JFrame;
@@ -65,11 +65,11 @@ public class GameFrame extends JFrame {
 	 * @see http://content.gpwiki.org/index.php/Java:Tutorials:Double_Buffering for details.
 	 */
 	public void draw() {
-		Graphics bufferedGraphics = null;
+		Graphics2D bufferedGraphics = null;
 		do { // while bufferStrategy.contentsLost()
 			do { // bufferStrategy.contentsRestored()
 				try {
-					bufferedGraphics = this.bufferStrategy.getDrawGraphics();
+					bufferedGraphics = (Graphics2D) this.bufferStrategy.getDrawGraphics();
 
 					this.superScreen.doPaint(bufferedGraphics);
 
