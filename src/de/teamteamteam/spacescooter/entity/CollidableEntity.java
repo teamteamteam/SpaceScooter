@@ -14,6 +14,16 @@ public abstract class CollidableEntity extends Entity {
 	 */
 	protected int width;
 	protected int height;
+
+    /**
+     * Health Points of the Object
+     */
+	protected int heakthPoints;
+
+    /**
+     * Shieldpoints of the Object
+     */
+	protected int shieldPoints;
 	
 	
 	public int getX() {
