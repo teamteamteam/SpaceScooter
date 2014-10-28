@@ -1,6 +1,5 @@
 package de.teamteamteam.spacescooter.entity;
 
-import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
@@ -21,16 +20,12 @@ public class SingleShot extends Shot {
 	
 
 	public SingleShot(int x, int y) {
-		super(x, y, SingleShot.img);
+		super(x, y);
+		this.setImage(img);
 	}
 	
 	public void update() {
 		this.x += 2;
 	}
-
-	public void paint(Graphics g) {
-		g.drawImage(SingleShot.img, this.x, this.y, SingleShot.img.getWidth(), SingleShot.img.getHeight(), null);
-	}
-
 
 }

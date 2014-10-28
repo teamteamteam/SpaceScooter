@@ -1,6 +1,5 @@
 package de.teamteamteam.spacescooter.entity;
 
-import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -25,11 +24,9 @@ public class Player extends ShootingEntity {
 	
 	public Player(int x, int y) {
 		super(x, y);
-		this.x = 200;
-		this.y = 300;
-		this.shootDelay = 40;
-		this.shootSpawnX = 32;
-		this.shootSpawnY = 16;
+		this.setImage(Player.img);
+		this.setShootDelay(40);
+		this.setShootSpawn(32, 16);
 	}
 	
 	public void update() {
@@ -50,10 +47,6 @@ public class Player extends ShootingEntity {
 		if(Keyboard.isKeyDown(KeyEvent.VK_SPACE)) {
 			this.shoot();
 		}
-	}
-
-	public void paint(Graphics g) {
-		g.drawImage(img, this.x, this.y, null);
 	}
 
 	public void collideWith(Collidable entity) {

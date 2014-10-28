@@ -1,6 +1,5 @@
 package de.teamteamteam.spacescooter.entity;
 
-
 public abstract class CollidableEntity extends Entity implements Collidable{
 
 	public CollidableEntity(int x, int y) {
