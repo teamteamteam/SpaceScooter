@@ -3,13 +3,11 @@ package de.teamteamteam.spacescooter.gui;
 import java.awt.Graphics;
 import java.awt.Toolkit;
 import java.awt.image.BufferStrategy;
-import java.util.Iterator;
-
 import javax.swing.JFrame;
 
-import de.teamteamteam.spacescooter.background.Background;
 import de.teamteamteam.spacescooter.control.Keyboard;
-import de.teamteamteam.spacescooter.entity.Entity;
+import de.teamteamteam.spacescooter.screen.Screen;
+import de.teamteamteam.spacescooter.utility.GameConfig;
 
 /**
  * The game will take place in this beautiful window.
@@ -20,6 +18,11 @@ public class GameFrame extends JFrame {
 
 	private BufferStrategy bufferStrategy;
 
+	private Screen superScreen;
+
+	/**
+	 * Default constructor.
+	 */
 	public GameFrame() {
 		super();
 	}
@@ -29,7 +32,7 @@ public class GameFrame extends JFrame {
 	 */
 	public void init() {
 		this.setTitle("Unser schöner Titel");
-		this.setSize(800, 600);
+		this.setSize(GameConfig.windowWidth, GameConfig.windowHeight);
 		this.setUndecorated(false);
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 
@@ -48,6 +51,14 @@ public class GameFrame extends JFrame {
 	}
 
 	/**
+	 * Set the superScreen to trigger doPaint() on.
+	 * @param superScreen
+	 */
+	public void setSuperScreen(Screen superScreen) {
+		this.superScreen = superScreen;
+	}
+	
+	/**
 	 * The pain, do not underestimate it!
 	 * 
 	 * @see http://content.gpwiki.org/index.php/Java:Tutorials:Double_Buffering for details.
@@ -59,13 +70,11 @@ public class GameFrame extends JFrame {
 				try {
 					bufferedGraphics = this.bufferStrategy.getDrawGraphics();
 
-					// Now we can use bufferedGraphics to actually draw stuff
-					this.drawBackgrounds(bufferedGraphics);
-					this.drawEntities(bufferedGraphics);
+					this.superScreen.doPaint(bufferedGraphics);
 
 				} catch (Exception e) {
 					System.out.println("Hier geht was schief");
-					System.out.println(e);
+					e.printStackTrace();
 				} finally {
 					// We are done, dispose the pen and celebrate the result!
 					if (bufferedGraphics != null)
@@ -77,19 +86,4 @@ public class GameFrame extends JFrame {
 		Toolkit.getDefaultToolkit().sync(); //Tell the OS to update its graphics of the window.
 	}
 
-	public void drawBackgrounds(Graphics g) {
-		Iterator<Background> i = Background.backgrounds.iterator();
-		while (i.hasNext()) {
-			Background b = i.next();
-			b.paint(g);
-		}
-	}
-
-	public void drawEntities(Graphics g) {
-		Iterator<Entity> i = Entity.entities.iterator();
-		while (i.hasNext()) {
-			Entity e = i.next();
-			e.paint(g);
-		}
-	}
 }

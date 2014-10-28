@@ -1,35 +1,21 @@
 package de.teamteamteam.spacescooter.thread;
 
-import java.util.Iterator;
-
-import de.teamteamteam.spacescooter.background.Background;
-import de.teamteamteam.spacescooter.entity.Entity;
+import de.teamteamteam.spacescooter.screen.Screen;
 
 public class UpdateThread extends TimedThread {
 		
+	private Screen superScreen;
+
 	public UpdateThread() {
 		this.setName("UpdateThread");
 	}
 	
+	public void setSuperScreen(Screen superScreen) {
+		this.superScreen = superScreen;
+	}
+	
 	public void work() {
-		// Update all the entities
-		this.updateBackgrounds();
-		this.updateEntities();
+		this.superScreen.doUpdate();
 	}
 
-	private void updateBackgrounds() {
-		Iterator<Background> i = Background.backgrounds.iterator();
-		while (i.hasNext()) {
-			Background b = i.next();
-			b.update();
-		}
-	}
-
-	private void updateEntities() {
-		Iterator<Entity> i = Entity.entities.iterator();
-		while (i.hasNext()) {
-			Entity e = i.next();
-			e.update();
-		}
-	}
 }

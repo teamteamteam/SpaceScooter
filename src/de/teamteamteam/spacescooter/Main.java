@@ -2,12 +2,11 @@ package de.teamteamteam.spacescooter;
 
 import java.awt.EventQueue;
 
-import de.teamteamteam.spacescooter.background.StarBackground;
-import de.teamteamteam.spacescooter.entity.Player;
-import de.teamteamteam.spacescooter.entity.TestEntity;
 import de.teamteamteam.spacescooter.gui.GameFrame;
+import de.teamteamteam.spacescooter.screen.SuperScreen;
 import de.teamteamteam.spacescooter.thread.PaintThread;
 import de.teamteamteam.spacescooter.thread.UpdateThread;
+import de.teamteamteam.spacescooter.utility.GameConfig;
 import de.teamteamteam.spacescooter.utility.GraphicsSettings;
 
 /**
@@ -24,28 +23,31 @@ public class Main {
 	public static void main(String[] args) {
 		GraphicsSettings gs = new GraphicsSettings(); //Get settings
 		
-		final GameFrame gf = new GameFrame();
+		GameConfig.windowWidth = 800;
+		GameConfig.windowHeight = 600;
 		
-		//Whatever.
-		new StarBackground();
-		new Player();
-		new TestEntity();
+		final GameFrame gameFrame = new GameFrame();
+		
+		//Initialize SuperScreen and add to GameFrame, so we can call doPaint() on it.
+		SuperScreen superScreen = new SuperScreen(null);
+		gameFrame.setSuperScreen(superScreen);
 		
 		//Initialize the GameFrame properly within the AWT EventQueue
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
-				gf.init();
-				gf.draw(); //Draw nothing for the first time.
+				gameFrame.init();
+				gameFrame.draw(); //Draw nothing for the first time.
 			}
 		});
 	
 		//Initialize GameThread
-		PaintThread paintThread = new PaintThread(gf);
+		PaintThread paintThread = new PaintThread(gameFrame);
 		paintThread.setHz(gs.getRefreshRate()); //This may be set depending on the system graphic settings.
 		paintThread.start();
 		
 		//Initialize UpdateThread
 		UpdateThread updateThread = new UpdateThread();
+		updateThread.setSuperScreen(superScreen);
 		updateThread.setHz(100); //This shall remain constant across all systems.
 		updateThread.start();
 

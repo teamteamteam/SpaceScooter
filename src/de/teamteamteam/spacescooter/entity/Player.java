@@ -8,6 +8,7 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 import de.teamteamteam.spacescooter.control.Keyboard;
+import de.teamteamteam.spacescooter.utility.GameConfig;
 
 public class Player extends Entity {
 
@@ -36,13 +37,13 @@ public class Player extends Entity {
 		if(Keyboard.isKeyDown(KeyEvent.VK_UP) && this.y > 0) {
 			this.y -= off;
 		}
-		if(Keyboard.isKeyDown(KeyEvent.VK_DOWN) && this.y < (600 - Player.img.getHeight())) {
+		if(Keyboard.isKeyDown(KeyEvent.VK_DOWN) && this.y < (GameConfig.windowHeight - Player.img.getHeight())) {
 			this.y += off;
 		}
 		if(Keyboard.isKeyDown(KeyEvent.VK_LEFT) && this.x > 0) {
 			this.x -= off;
 		}
-		if(Keyboard.isKeyDown(KeyEvent.VK_RIGHT) && this.x < (800 - Player.img.getWidth())) {
+		if(Keyboard.isKeyDown(KeyEvent.VK_RIGHT) && this.x < (GameConfig.windowWidth - Player.img.getWidth())) {
 			this.x += off;
 		}
 		
