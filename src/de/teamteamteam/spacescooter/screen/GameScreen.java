@@ -41,7 +41,7 @@ public class GameScreen extends Screen {
 			i.next().update();
 		}
 		if (Keyboard.isKeyDown(KeyEvent.VK_ESCAPE)) {
-			this.parent.setOverlay(new MainMenuScreen(this.parent));
+			this.setOverlay(new GamePausedScreen(this));
 		}
 	}
 

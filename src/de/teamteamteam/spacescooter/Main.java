@@ -29,12 +29,12 @@ public class Main {
 		final GameFrame gameFrame = new GameFrame();
 		
 		//Initialize SuperScreen and add to GameFrame, so we can call doPaint() on it.
-		SuperScreen superScreen = new SuperScreen(null);
-		gameFrame.setSuperScreen(superScreen);
+		final SuperScreen superScreen = new SuperScreen(null);
 		
 		//Initialize the GameFrame properly within the AWT EventQueue
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
+				gameFrame.setSuperScreen(superScreen);
 				gameFrame.init();
 				gameFrame.draw(); //Draw nothing for the first time.
 			}
