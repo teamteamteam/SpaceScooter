@@ -2,25 +2,26 @@ package de.teamteamteam.spacescooter.control;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.ArrayList;
 
 
 public class Keyboard implements KeyListener {
 
-	private static boolean[] keys = new boolean[150]; //TODO: This might kill the game in case there are keycodes > 150
+	private static ArrayList<Integer> activeKeys = new ArrayList<Integer>();
 	
 	public static boolean isKeyDown(int keyCode) {
-		if (keyCode >= 0 && keyCode < keys.length) {
-			return keys[keyCode];
-		}
-		return false;
+		return Keyboard.activeKeys.contains((Integer) keyCode);
 	}
 
 	public void keyPressed(KeyEvent e) {
-		keys[e.getKeyCode()] = true;
+		if(Keyboard.activeKeys.contains((Integer) e.getKeyCode())) return;
+		Keyboard.activeKeys.add((Integer) e.getKeyCode());
 	}
 
 	public void keyReleased(KeyEvent e) {
-		keys[e.getKeyCode()] = false;
+		if(Keyboard.activeKeys.contains((Integer) e.getKeyCode())) {
+			Keyboard.activeKeys.remove((Integer) e.getKeyCode());
+		}
 	}
 	
 	public void keyTyped(KeyEvent e) {
