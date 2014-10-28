@@ -19,13 +19,9 @@ public class SingleShot extends Shot {
 	}
 	
 
-	public SingleShot(int x, int y) {
-		super(x, y);
+	public SingleShot(int x, int y, int shootDirection, int shootSpeed) {
+		super(x, y, shootDirection, shootSpeed);
 		this.setImage(img);
-	}
-	
-	public void update() {
-		this.x += 2;
 	}
 
 }

@@ -27,8 +27,10 @@ public class Player extends ShootingEntity {
 		this.setImage(Player.img);
 		this.setShootDelay(40);
 		this.setShootSpawn(32, 16);
+		this.setShootDirection(Shot.RIGHT);
+		this.setShootSpeed(2);
 	}
-	
+
 	public void update() {
 		super.update();
 		int off = 3;
