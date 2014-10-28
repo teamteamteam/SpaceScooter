@@ -1,33 +1,76 @@
 package de.teamteamteam.spacescooter.entity;
 
+import java.awt.Rectangle;
+import java.util.LinkedList;
+
 import de.teamteamteam.spacescooter.screen.Screen;
 
-public abstract class LivingEntity extends Entity {
+public abstract class LivingEntity extends Entity implements Collidable {
 
 	public LivingEntity(int x, int y) {
 		super(x, y);
 	}
 
+	private int collisionDamage;
+
+	public Rectangle getCollisionBox() {
+		return new Rectangle(this.getX(), this.getY(), this.getWidth(),
+				this.getHeight());
+	}
+
+	public void update() {
+		if(!(this instanceof ShootingEntity)) return; //Only check collisions for ShootingEntity.
+		LinkedList<Entity> entities = Screen.currentScreen.getEntities();
+		for (Entity e : entities) {
+			if (e.equals(this)) //Do not collide with myself!
+				continue;
+			if(!(e instanceof Collidable)) //Do not collide with non-collidable!
+				continue;
+			Collidable ce = (Collidable) e;
+			if (ce.getCollisionBox().intersects(this.getCollisionBox())) {
+				this.collideWith(ce);
+			}
+		}
+	}
+
+	/**
+	 * Handle collisions based on what we collide with.
+	 */
+	public void collideWith(Collidable entity) {
+		
+	}
+
+	public void setCollisionDamage(int d) {
+		this.collisionDamage = d;
+	}
+
+	public int getCollisionDamage() {
+		return this.collisionDamage;
+	}
+
 	private int healthPoints;
 	private int shieldPoints;
-	
+
 	public boolean isAlive() {
 		return healthPoints > 0;
 	}
-	
+
 	public void takeDamage(int damage) {
-		//TODO: shield and health logic
+		if(this instanceof Shot) {
+			System.out.println("Shot took damage: " + damage + "left: "+this.getHealthPoints()+" (" + this + ")");
+		}
+		// TODO: shield and health logic
 		this.healthPoints -= damage;
-		if(this.isAlive() == false) {
+		if (this.isAlive() == false) {
 			System.out.println(this + " ist gestorben. RIP");
 			Screen.currentScreen.removeEntity(this);
 		}
 	}
-	
+
 	public void setHealthPoints(int hp) {
 		this.healthPoints = hp;
 	}
-	
+
 	public int getHealthPoints() {
 		return this.healthPoints;
 	}
@@ -35,7 +78,7 @@ public abstract class LivingEntity extends Entity {
 	public void setShieldPoints(int sp) {
 		this.shieldPoints = sp;
 	}
-	
+
 	public int getShieldPoints() {
 		return this.shieldPoints;
 	}

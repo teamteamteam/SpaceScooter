@@ -2,12 +2,12 @@ package de.teamteamteam.spacescooter.entity;
 
 import java.awt.image.BufferedImage;
 
-public abstract class Shot extends CollidableEntity {
+public abstract class Shot extends LivingEntity {
 
 	public static final int RIGHT = 1;
 	public static final int LEFT= -1;
 	
-	protected int damageValue;
+	private int damageValue;
 	protected int collisionCount;
 	
 	private int speed;
@@ -25,15 +25,12 @@ public abstract class Shot extends CollidableEntity {
 		this.setPosition(this.x - this.getImage().getWidth() / 2, this.y - this.getImage().getHeight() / 2);
 	}
 	
-	public void collideWith(Collidable entity) {
-		this.collisionCount--;
-		if(this.collisionCount == 0) {
-			//TODO: scoot is over
-		}
-	}
-	
 	public int getDamageValue() {
 		return this.damageValue;
+	}
+	
+	public void setDamageValue(int dmg) {
+		this.damageValue = dmg;
 	}
 	
 	public void update() {

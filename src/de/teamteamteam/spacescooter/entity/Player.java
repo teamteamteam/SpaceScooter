@@ -28,6 +28,7 @@ public class Player extends ShootingEntity {
 		this.setShootSpawn(50, 16);
 		this.setShootDirection(Shot.RIGHT);
 		this.setShootSpeed(2);
+		this.setHealthPoints(100);
 	}
 
 	public void update() {

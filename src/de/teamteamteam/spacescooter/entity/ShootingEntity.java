@@ -2,7 +2,7 @@ package de.teamteamteam.spacescooter.entity;
 
 import de.teamteamteam.spacescooter.screen.Screen;
 
-public abstract class ShootingEntity extends CollidableEntity {
+public abstract class ShootingEntity extends LivingEntity {
 
 	private int shootDelay;
 	private int currentShootDelay;

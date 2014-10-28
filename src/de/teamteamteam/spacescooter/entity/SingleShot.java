@@ -22,6 +22,7 @@ public class SingleShot extends Shot {
 	public SingleShot(int x, int y, int shootDirection, int shootSpeed) {
 		super(x, y, shootDirection, shootSpeed);
 		this.setImage(img);
+		this.setDamageValue(5);
 	}
 
 }
