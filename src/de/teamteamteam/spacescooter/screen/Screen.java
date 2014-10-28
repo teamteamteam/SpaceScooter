@@ -28,6 +28,10 @@ public abstract class Screen {
 		this.entities.remove(e);
 	}
 	
+	public LinkedList<Entity> getEntities() {
+		return this.entities;
+	}
+	
 	protected abstract void paint(Graphics g);
 	protected abstract void update();
 	

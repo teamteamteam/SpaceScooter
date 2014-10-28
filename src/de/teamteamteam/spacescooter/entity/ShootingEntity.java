@@ -17,6 +17,7 @@ public abstract class ShootingEntity extends LivingEntity {
 	}
 
 	public void update() {
+		super.update();
 		if(this.currentShootDelay > 0) this.currentShootDelay--;
 	}
 	

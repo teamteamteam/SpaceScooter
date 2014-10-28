@@ -3,7 +3,6 @@ package de.teamteamteam.spacescooter.entity;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-
 import javax.imageio.ImageIO;
 
 import de.teamteamteam.spacescooter.control.Keyboard;
@@ -52,7 +51,12 @@ public class Player extends ShootingEntity {
 	}
 
 	public void collideWith(Collidable entity) {
-		// TODO Auto-generated method stub
+		if(entity instanceof Shot) {
+			System.out.println("Player Kollision mit Schuss!");
+		}
+		if(entity instanceof Enemy) {
+			System.out.println("Player Kollision mit Feind!");
+		}
 		
 	}
 
