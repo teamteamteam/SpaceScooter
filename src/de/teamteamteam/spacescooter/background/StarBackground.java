@@ -11,6 +11,10 @@ import de.teamteamteam.spacescooter.entity.Player;
 
 public class StarBackground extends Background {
 
+	public StarBackground(int x, int y) {
+		super(x, y);
+	}
+
 	private static BufferedImage img;
 	static {
 		try {

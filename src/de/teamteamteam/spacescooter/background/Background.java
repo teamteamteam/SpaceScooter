@@ -15,7 +15,8 @@ public abstract class Background extends Entity {
 		Background.backgrounds = new ArrayList<Background>();
 	}
 	
-	public Background() {
+	public Background(int x, int y) {
+		super(x, y);
 		Background.backgrounds.add(this);
 	}
 	

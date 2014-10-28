@@ -1,24 +1,29 @@
 package de.teamteamteam.spacescooter.entity;
 
-import java.util.ArrayList;
-
 public abstract class Entity implements Updateable, Paintable {
 	
-	public static ArrayList<Entity> entities = null;
-	
 	/**
-	 * We need to initialize the ArrayList, so the EntityUpdateThread won't beat us.
+	 * Entity position
 	 */
-	static {
-		Entity.entities = new ArrayList<Entity>();
-	}
-
+	protected int x;
+	protected int y;
+	
 	/**
 	 * Constructor.
 	 * All entities are within a static array list for our convenience.
 	 */
-	public Entity() {
-		Entity.entities.add(this);
+	public Entity(int x, int y) {
+		this.x = x;
+		this.y = y;
 	}
+	
+	public int getX() {
+		return this.x;
+	}
+
+	public int getY() {
+		return this.y;
+	}
+	
 	
 }

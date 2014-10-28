@@ -1,39 +1,18 @@
 package de.teamteamteam.spacescooter.entity;
 
 
-public abstract class CollidableEntity extends Entity {
+public abstract class CollidableEntity extends Entity implements Collidable{
 
-	/**
-	 * Position of the Entity
-	 */
-	protected int x;
-	protected int y;
-	
+	public CollidableEntity(int x, int y) {
+		super(x, y);
+	}
+
 	/**
 	 * Dimensions of the Entity
 	 */
 	protected int width;
 	protected int height;
 
-    /**
-     * Health Points of the Object
-     */
-	protected int heakthPoints;
-
-    /**
-     * Shieldpoints of the Object
-     */
-	protected int shieldPoints;
-	
-	
-	public int getX() {
-		return this.x;
-	}
-
-	public int getY() {
-		return this.y;
-	}
-	
 	public int getWidth() {
 		return this.width;
 	}

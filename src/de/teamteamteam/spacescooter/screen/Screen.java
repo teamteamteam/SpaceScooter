@@ -1,24 +1,26 @@
 package de.teamteamteam.spacescooter.screen;
 
 import java.awt.Graphics;
-import java.util.ArrayList;
+import java.util.LinkedList;
 
 import de.teamteamteam.spacescooter.entity.Entity;
 
 public abstract class Screen {
 
+	public static Screen currentScreen;
+	
 	protected Screen overlay;
 	protected Screen parent;
 	
-	protected ArrayList<Entity> entities;
+	protected LinkedList<Entity> entities;
 	
 	public Screen(Screen parent) {
 		this.overlay = null;
 		this.parent = parent;
-		this.entities = new ArrayList<Entity>();
+		this.entities = new LinkedList<Entity>();
 	}
 	
-	protected void addEntity(Entity e) {
+	public void addEntity(Entity e) {
 		this.entities.add(e);
 	}
 	
@@ -44,5 +46,6 @@ public abstract class Screen {
 
 	public void setOverlay(Screen screen) {
 		this.overlay = screen;
+		Screen.currentScreen = screen;
 	}
 }
