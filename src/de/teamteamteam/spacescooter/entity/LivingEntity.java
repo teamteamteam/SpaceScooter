@@ -37,7 +37,22 @@ public abstract class LivingEntity extends Entity implements Collidable {
 	 * Handle collisions based on what we collide with.
 	 */
 	public void collideWith(Collidable entity) {
-		
+		//this instanceof ShootingEntity
+		if(entity instanceof Shot) {
+			Shot s = (Shot) entity;
+			this.takeDamage(s.getDamageValue());
+			s.takeDamage(this.getCollisionDamage());
+		}
+		if(entity instanceof Player && (!(this instanceof Player))) {
+			Player player = (Player) entity;
+			player.takeDamage(this.getCollisionDamage());
+			this.takeDamage(player.getCollisionDamage());
+		}
+		if(entity instanceof Enemy && (!(this instanceof Enemy))) {
+			Enemy enemy = (Enemy) entity;
+			enemy.takeDamage(this.getCollisionDamage());
+			this.takeDamage(enemy.getCollisionDamage());
+		}
 	}
 
 	public void setCollisionDamage(int d) {
