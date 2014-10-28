@@ -1,4 +1,4 @@
-package de.teamteamteam.spacescooter.threads;
+package de.teamteamteam.spacescooter.thread;
 
 import java.awt.EventQueue;
 

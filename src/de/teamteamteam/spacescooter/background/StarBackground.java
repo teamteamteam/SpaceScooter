@@ -6,7 +6,7 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-import de.teamteamteam.spacescooter.entities.Player;
+import de.teamteamteam.spacescooter.entity.Player;
 
 
 public class StarBackground extends Background {

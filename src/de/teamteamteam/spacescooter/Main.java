@@ -3,12 +3,12 @@ package de.teamteamteam.spacescooter;
 import java.awt.EventQueue;
 
 import de.teamteamteam.spacescooter.background.StarBackground;
-import de.teamteamteam.spacescooter.entities.Player;
-import de.teamteamteam.spacescooter.entities.TestEntity;
+import de.teamteamteam.spacescooter.entity.Player;
+import de.teamteamteam.spacescooter.entity.TestEntity;
 import de.teamteamteam.spacescooter.gui.GameFrame;
-import de.teamteamteam.spacescooter.threads.PaintThread;
-import de.teamteamteam.spacescooter.threads.UpdateThread;
-import de.teamteamteam.spacescooter.utilities.GraphicsSettings;
+import de.teamteamteam.spacescooter.thread.PaintThread;
+import de.teamteamteam.spacescooter.thread.UpdateThread;
+import de.teamteamteam.spacescooter.utility.GraphicsSettings;
 
 /**
  * Nothing but a class containing the main method.

@@ -1,4 +1,4 @@
-package de.teamteamteam.spacescooter.entities;
+package de.teamteamteam.spacescooter.entity;
 
 public interface Updateable {
 

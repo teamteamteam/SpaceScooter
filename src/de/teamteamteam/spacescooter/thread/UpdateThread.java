@@ -1,9 +1,9 @@
-package de.teamteamteam.spacescooter.threads;
+package de.teamteamteam.spacescooter.thread;
 
 import java.util.Iterator;
 
 import de.teamteamteam.spacescooter.background.Background;
-import de.teamteamteam.spacescooter.entities.Entity;
+import de.teamteamteam.spacescooter.entity.Entity;
 
 public class UpdateThread extends TimedThread {
 		

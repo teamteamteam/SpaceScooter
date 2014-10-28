@@ -8,8 +8,8 @@ import java.util.Iterator;
 import javax.swing.JFrame;
 
 import de.teamteamteam.spacescooter.background.Background;
-import de.teamteamteam.spacescooter.controls.Keyboard;
-import de.teamteamteam.spacescooter.entities.Entity;
+import de.teamteamteam.spacescooter.control.Keyboard;
+import de.teamteamteam.spacescooter.entity.Entity;
 
 /**
  * The game will take place in this beautiful window.

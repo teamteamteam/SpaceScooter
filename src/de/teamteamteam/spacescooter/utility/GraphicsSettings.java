@@ -1,4 +1,4 @@
-package de.teamteamteam.spacescooter.utilities;
+package de.teamteamteam.spacescooter.utility;
 
 import java.awt.DisplayMode;
 import java.awt.GraphicsDevice;

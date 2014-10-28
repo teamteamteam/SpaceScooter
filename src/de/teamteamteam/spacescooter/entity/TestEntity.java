@@ -1,10 +1,10 @@
-package de.teamteamteam.spacescooter.entities;
+package de.teamteamteam.spacescooter.entity;
 
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 
-import de.teamteamteam.spacescooter.controls.Keyboard;
+import de.teamteamteam.spacescooter.control.Keyboard;
 
 public class TestEntity extends Entity {
 
