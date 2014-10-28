@@ -24,12 +24,12 @@ public abstract class Screen {
 		this.entities.add(e);
 	}
 	
-	protected void removeEntity(Entity e) {
+	public void removeEntity(Entity e) {
 		this.entities.remove(e);
 	}
 	
 	public LinkedList<Entity> getEntities() {
-		return this.entities;
+		return new LinkedList<Entity>(this.entities);
 	}
 	
 	protected abstract void paint(Graphics g);

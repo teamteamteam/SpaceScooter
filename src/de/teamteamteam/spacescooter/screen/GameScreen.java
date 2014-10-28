@@ -26,7 +26,7 @@ public class GameScreen extends Screen {
 
 	@Override
 	protected void paint(Graphics g) {
-		LinkedList<Entity> list = new LinkedList<Entity>(this.entities);
+		LinkedList<Entity> list = this.getEntities();
 		Iterator<Entity> i = list.iterator();
 		while (i.hasNext()) {
 			i.next().paint(g);
@@ -35,7 +35,7 @@ public class GameScreen extends Screen {
 
 	@Override
 	protected void update() {
-		LinkedList<Entity> list = new LinkedList<Entity>(this.entities);
+		LinkedList<Entity> list = this.getEntities();
 		Iterator<Entity> i = list.iterator();
 		while (i.hasNext()) {
 			i.next().update();

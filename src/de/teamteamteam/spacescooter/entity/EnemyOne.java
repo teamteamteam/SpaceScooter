@@ -22,7 +22,7 @@ public class EnemyOne extends Enemy {
 		this.setImage(EnemyOne.img);
 		this.setShootSpeed(2);
 		this.setShootDelay(42);
-		this.setShootSpawn(0, 32);
+		this.setShootSpawn(-17, 32);
 	}
 
 	@Override

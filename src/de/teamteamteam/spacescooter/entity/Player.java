@@ -25,7 +25,7 @@ public class Player extends ShootingEntity {
 		super(x, y);
 		this.setImage(Player.img);
 		this.setShootDelay(40);
-		this.setShootSpawn(32, 16);
+		this.setShootSpawn(50, 16);
 		this.setShootDirection(Shot.RIGHT);
 		this.setShootSpeed(2);
 	}
@@ -48,16 +48,6 @@ public class Player extends ShootingEntity {
 		if(Keyboard.isKeyDown(KeyEvent.VK_SPACE)) {
 			this.shoot();
 		}
-	}
-
-	public void collideWith(Collidable entity) {
-		if(entity instanceof Shot) {
-			System.out.println("Player Kollision mit Schuss!");
-		}
-		if(entity instanceof Enemy) {
-			System.out.println("Player Kollision mit Feind!");
-		}
-		
 	}
 
 }

@@ -20,14 +20,6 @@ public abstract class Enemy extends ShootingEntity {
 		if(willShoot == true)
 			this.shoot();
 	}
-	
-	public void collideWith(Collidable e) {
-		if(e instanceof Shot) {
-			Shot s = (Shot) e;
-			//TODO: Expand with shield logic and stuff.
-			this.healthPoints -= s.getDamageValue();
-		}
-	}
 
 }
 
