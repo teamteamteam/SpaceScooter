@@ -7,7 +7,7 @@ public class EnemyOne extends Enemy {
 		this.setImage("images/nyancat.png");
 		this.setShootSpeed(2);
 		this.setShootDelay(42);
-		this.setShootSpawn(-17, 32);
+		this.setShootSpawn(-8, 10);
 		this.setHealthPoints(5);
 	}
 
