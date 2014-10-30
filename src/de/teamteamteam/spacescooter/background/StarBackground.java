@@ -23,6 +23,7 @@ public class StarBackground extends Background {
 	public void paint(Graphics2D g) {
 		g.drawImage(this.getImage(), (0+this.offset), 0, null);
 		g.drawImage(this.getImage(), (this.getImage().getWidth()+this.offset), 0, null);
+		g.drawImage(this.getImage(), (2*this.getImage().getWidth()+this.offset), 0, null);
 	}
 	
 }
