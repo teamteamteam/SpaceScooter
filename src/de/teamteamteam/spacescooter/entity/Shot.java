@@ -1,5 +1,7 @@
 package de.teamteamteam.spacescooter.entity;
 
+import de.teamteamteam.spacescooter.utility.GameConfig;
+
 public abstract class Shot extends LivingEntity {
 
 	public static final int RIGHT = 1;
@@ -33,6 +35,12 @@ public abstract class Shot extends LivingEntity {
 	
 	public void update() {
 		this.x += this.direction * this.speed;
+		//remove the shot in case it is out of the game window.
+		if ((this.x + this.getWidth()) < 0 || this.x > GameConfig.windowWidth
+				|| (this.y + this.getHeight()) < 0
+				|| this.y > GameConfig.windowHeight) {
+			this.remove();
+		}
 	}
 	
 }

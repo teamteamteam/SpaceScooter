@@ -1,7 +1,6 @@
 package de.teamteamteam.spacescooter.screen;
 
 import java.awt.Graphics2D;
-
 import java.awt.event.KeyEvent;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -46,3 +45,4 @@ public class GameScreen extends Screen {
 	}
 
 }
+

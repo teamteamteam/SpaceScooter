@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
+import de.teamteamteam.spacescooter.screen.Screen;
 import de.teamteamteam.spacescooter.utility.GameConfig;
 import de.teamteamteam.spacescooter.utility.Loader;
 
@@ -62,5 +63,12 @@ public abstract class Entity implements Updateable, Paintable {
 		}
 		
 		g.drawImage(this.img, this.x, this.y, null);
+	}
+	
+	/**
+	 * Removes entity from the game
+	 */
+	public void remove() {
+		Screen.currentScreen.removeEntity(this);
 	}
 }

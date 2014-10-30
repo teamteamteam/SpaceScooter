@@ -79,7 +79,7 @@ public abstract class LivingEntity extends Entity implements Collidable {
 		this.healthPoints -= damage;
 		if (this.isAlive() == false) {
 			if(GameConfig.DEBUG) System.out.println(this + " ist gestorben. RIP");
-			Screen.currentScreen.removeEntity(this);
+			this.remove();
 		}
 	}
 
