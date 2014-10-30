@@ -1,7 +1,5 @@
 package de.teamteamteam.spacescooter.entity;
 
-import java.awt.image.BufferedImage;
-
 public abstract class Shot extends LivingEntity {
 
 	public static final int RIGHT = 1;
@@ -20,8 +18,8 @@ public abstract class Shot extends LivingEntity {
 		this.collisionCount = 1;
 	}
 	
-	public void setImage(BufferedImage img) {
-		super.setImage(img);
+	public void setImage(String filename) {
+		super.setImage(filename);
 		this.setPosition(this.x - this.getImage().getWidth() / 2, this.y - this.getImage().getHeight() / 2);
 	}
 	

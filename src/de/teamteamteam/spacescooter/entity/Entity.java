@@ -5,6 +5,7 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
 import de.teamteamteam.spacescooter.utility.GameConfig;
+import de.teamteamteam.spacescooter.utility.Loader;
 
 public abstract class Entity implements Updateable, Paintable {
 	
@@ -49,8 +50,8 @@ public abstract class Entity implements Updateable, Paintable {
 		return this.img;
 	}
 
-	public void setImage(BufferedImage img) {
-		this.img = img;
+	public void setImage(String filename) {
+		this.img = Loader.getBufferedImageByFilename(filename);
 	}
 	
 	public void paint(Graphics2D g) {

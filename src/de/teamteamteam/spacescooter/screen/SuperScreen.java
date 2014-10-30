@@ -6,7 +6,6 @@ public class SuperScreen extends Screen {
 
 	public SuperScreen(Screen parent) {
 		super(null);
-		this.overlay = new MainMenuScreen(this);
 	}
 
 	@Override
