@@ -42,6 +42,12 @@ public class GameScreen extends Screen {
 		if (Keyboard.isKeyDown(KeyEvent.VK_ESCAPE)) {
 			this.setOverlay(new GamePausedScreen(this));
 		}
+		if (list.get(1) instanceof Player) {
+			Player player = (Player) list.get(1);
+			if (!player.isAlive()) {
+				this.parent.setOverlay(new GameOverScreen(this.parent));
+			}
+		}
 	}
 
 }
