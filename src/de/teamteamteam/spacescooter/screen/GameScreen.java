@@ -9,6 +9,7 @@ import de.teamteamteam.spacescooter.background.StarBackground;
 import de.teamteamteam.spacescooter.control.Keyboard;
 import de.teamteamteam.spacescooter.entity.EnemyOne;
 import de.teamteamteam.spacescooter.entity.Entity;
+import de.teamteamteam.spacescooter.entity.Explosion;
 import de.teamteamteam.spacescooter.entity.Player;
 
 public class GameScreen extends Screen {
@@ -21,6 +22,7 @@ public class GameScreen extends Screen {
 		this.entities.add(new EnemyOne(450, 100));
 		this.entities.add(new EnemyOne(750, 550));
 		this.entities.add(new EnemyOne(150, 250));
+		this.entities.add(new Explosion(200, 200));
 	}
 
 	@Override
