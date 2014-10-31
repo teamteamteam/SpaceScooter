@@ -5,13 +5,14 @@ import de.teamteamteam.spacescooter.control.Keyboard;
 import de.teamteamteam.spacescooter.utility.GameConfig;
 
 public class Player extends ShootingEntity {
-
+	
+	protected boolean shoot = false;
 	private boolean canMove = true;
 
 	public Player(int x, int y) {
 		super(x, y);
 		this.setImage("images/ship.png");
-		this.setShootDelay(40);
+		this.setShootDelay(5);
 		this.setShootSpawn(50, 16);
 		this.setShootDirection(Shot.RIGHT);
 		this.setShootSpeed(4);
@@ -19,7 +20,7 @@ public class Player extends ShootingEntity {
 	}
 
 	public void update() {
-		if(this.canMove){	
+		if(this.canMove) {
 			super.update();
 			int off = 3;
 			if(Keyboard.isKeyDown(KeyEvent.VK_UP) && this.y > 0) {
@@ -34,10 +35,16 @@ public class Player extends ShootingEntity {
 			if(Keyboard.isKeyDown(KeyEvent.VK_RIGHT) && this.x < (GameConfig.windowWidth - this.getImage().getWidth())) {
 				this.x += off;
 			}
-			if(Keyboard.isKeyDown(KeyEvent.VK_SPACE)) {
+			if(Keyboard.isKeyDown(KeyEvent.VK_SPACE) && shoot==false) {
+				shoot = true;
 				this.shoot();
 			}
+			if(!Keyboard.isKeyDown(KeyEvent.VK_SPACE) && shoot==true) {
+				shoot = false;
+			}
 		}
+		
+		
 	}
 
 	public void setCanMove(boolean canMove){

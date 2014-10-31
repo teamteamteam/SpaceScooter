@@ -9,6 +9,7 @@ public class EnemyOne extends Enemy {
 		this.setShootDelay(42);
 		this.setShootSpawn(-8, 10);
 		this.setHealthPoints(5);
+		this.setCollisionDamage(100);
 	}
 
 	@Override
