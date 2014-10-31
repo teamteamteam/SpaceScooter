@@ -5,21 +5,19 @@ import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
-import java.io.IOException;
 import java.util.Iterator;
 import java.util.LinkedList;
-
-import javax.imageio.ImageIO;
 
 import de.teamteamteam.spacescooter.control.Keyboard;
 import de.teamteamteam.spacescooter.entity.Entity;
 import de.teamteamteam.spacescooter.entity.Player;
 import de.teamteamteam.spacescooter.gui.Button;
 import de.teamteamteam.spacescooter.utility.GameConfig;
+import de.teamteamteam.spacescooter.utility.Loader;
 
 public class GamePausedScreen extends Screen {
 
-	private static BufferedImage img;
+	private BufferedImage img;
 	private Player player;
 	private float playerMoveSpeed = 0;
 	private int colorValue = 0;
@@ -27,16 +25,9 @@ public class GamePausedScreen extends Screen {
 	private int menuPoint = 0;
 	private int animationStatus = 0; //0 = Noch nicht gestartet, 1 = Animation läuft, 2 = Animation beendet
 	
-	static{
-		try {
-			img = ImageIO.read(Player.class.getClassLoader().getResourceAsStream("images/pausebackground.png"));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-	
 	public GamePausedScreen(Screen parent) {
 		super(parent);
+		this.img = Loader.getBufferedImageByFilename("images/pausebackground.png");
 		this.entities.add(new Button(GameConfig.windowWidth/2-125, 300));
 		this.entities.add(new Button(GameConfig.windowWidth/2-125, 400));
 		player = new Player(GameConfig.windowWidth/2-170, 309);
@@ -46,7 +37,7 @@ public class GamePausedScreen extends Screen {
 
 	@Override
 	protected void paint(Graphics2D g) {
-		g.drawImage(img, 0, 0, null);
+		g.drawImage(this.img, 0, 0, null);
 		LinkedList<Entity> list = this.getEntities();
 		Iterator<Entity> i = list.iterator();
 		while (i.hasNext()) {
