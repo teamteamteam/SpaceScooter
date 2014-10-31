@@ -28,7 +28,7 @@ public class StarBackground extends Background {
 	private int offset = 0;
 	
 	public void update() {
-		this.offset -= 3;
+		this.offset -= 2;
 		//System.out.println(this.offset);
 		if(Math.abs(this.offset) > StarBackground.img.getWidth()) {
 			this.offset += StarBackground.img.getWidth();

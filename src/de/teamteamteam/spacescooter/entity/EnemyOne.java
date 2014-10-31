@@ -6,7 +6,7 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 public class EnemyOne extends Enemy {
-
+ 
 	private static BufferedImage img;
 	
 	static {
