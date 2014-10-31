@@ -35,13 +35,15 @@ public class Player extends ShootingEntity {
 			if(Keyboard.isKeyDown(KeyEvent.VK_RIGHT) && this.x < (GameConfig.windowWidth - this.getImage().getWidth())) {
 				this.x += off;
 			}
-			if(Keyboard.isKeyDown(KeyEvent.VK_SPACE)) {
+			if(Keyboard.isKeyDown(KeyEvent.VK_SPACE) && shoot==false) {
+				shoot = true;
 				this.shoot();
 			}
+			if(!Keyboard.isKeyDown(KeyEvent.VK_SPACE) && shoot==true) {
+				shoot = false;
+			}
 		}
-		if(!Keyboard.isKeyDown(KeyEvent.VK_SPACE) && shoot==true) {
-			shoot = false;
-		}
+		
 		
 	}
 
