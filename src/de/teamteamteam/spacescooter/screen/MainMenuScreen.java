@@ -23,7 +23,7 @@ public class MainMenuScreen extends Screen {
 	private boolean colorValueIncrease = true;
 	private int menuPoint = 0;
 	private boolean keyPressed = false;
-	private int animationStatus = 0; //0 = Animation noch nicht gestartet, 1 = Animation läuft, 2 = Animation beendet
+	private int animationStatus = 0; //0 = Animation noch nicht gestartet, 1 = Animation laeuft, 2 = Animation beendet
 	
 	public MainMenuScreen(Screen parent) {
 		super(parent);
