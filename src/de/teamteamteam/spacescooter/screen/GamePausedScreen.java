@@ -25,7 +25,7 @@ public class GamePausedScreen extends Screen {
 	private int colorValue = 0;
 	private boolean colorValueIncrease = true;
 	private int menuPoint = 0;
-	private int animationStatus = 0; //0 = Noch nicht gestartet, 1 = Animation läuft, 2 = Animation beendet
+	private int animationStatus = 0; //0 = Noch nicht gestartet, 1 = Animation lÃ¤uft, 2 = Animation beendet
 	
 	static{
 		try {
@@ -58,7 +58,7 @@ public class GamePausedScreen extends Screen {
 		g.setFont(new Font("Monospace", 0, 20));
 		g.setColor(new Color(0, 0, 0));
 		g.drawString("Weiter", GameConfig.windowWidth/2-30, 332);
-		g.drawString("Hauptmenü", GameConfig.windowWidth/2-50, 432);
+		g.drawString("HauptmenÃ¼", GameConfig.windowWidth/2-50, 432);
 	}
 
 	@Override
@@ -69,33 +69,33 @@ public class GamePausedScreen extends Screen {
 			i.next().update();
 		}
 		
-		if(colorValueIncrease){
-			colorValue += 2;
-			if(colorValue > 70) colorValueIncrease = false;
+		if(this.colorValueIncrease){
+			this.colorValue += 2;
+			if(this.colorValue > 70) this.colorValueIncrease = false;
 		}else{
-			colorValue -= 2;
-			if(colorValue < -70) colorValueIncrease = true;
+			this.colorValue -= 2;
+			if(this.colorValue < -70) this.colorValueIncrease = true;
 		}
 				
 		if(Keyboard.isKeyDown(KeyEvent.VK_DOWN)){
-			menuPoint = 1;
+			this.menuPoint = 1;
 			player.setPosition(player.getX(), 409);
 		}
 		if(Keyboard.isKeyDown(KeyEvent.VK_UP)){
-			menuPoint = 0;
+			this.menuPoint = 0;
 			player.setPosition(player.getX(), 309);
 		}
 		
 		if(Keyboard.isKeyDown(KeyEvent.VK_SPACE)) {
-			animationStatus = 1;
+			this.animationStatus = 1;
 		}
-		if(animationStatus == 1){
+		if(this.animationStatus == 1){
 			if(player.getX() <= GameConfig.windowWidth){
 				player.setPosition(player.getX() + (int)playerMoveSpeed, player.getY());
 				playerMoveSpeed += 0.1;
-			}else animationStatus = 2;
-		}else if(animationStatus == 2){
-			switch (menuPoint) {
+			}else this.animationStatus = 2;
+		}else if(this.animationStatus == 2){
+			switch (this.menuPoint) {
 			case 0:
 				this.parent.setOverlay(null);
 				break;
