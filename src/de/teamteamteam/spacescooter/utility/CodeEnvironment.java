@@ -48,7 +48,11 @@ public class CodeEnvironment {
 			if(f.isDirectory()) {
 				String[] filesInDirectory = CodeEnvironment.getFileListFromFolder(f);
 				for(String entry : filesInDirectory) {
-					fileList.add(entry.replace(rootPath, ""));
+					if(entry.contains(rootPath)) {
+						fileList.add(entry.substring(rootPath.length()));
+					} else {
+						fileList.add(entry);
+					}
 				}
 			} else {
 				fileList.add(f.toString());
