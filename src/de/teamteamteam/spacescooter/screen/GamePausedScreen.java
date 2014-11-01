@@ -60,32 +60,32 @@ public class GamePausedScreen extends Screen {
 			i.next().update();
 		}
 		
-		if(this.colorValueIncrease){
+		if(this.colorValueIncrease) {
 			this.colorValue += 2;
 			if(this.colorValue > 70) this.colorValueIncrease = false;
-		}else{
+		} else {
 			this.colorValue -= 2;
 			if(this.colorValue < -70) this.colorValueIncrease = true;
 		}
 				
-		if(Keyboard.isKeyDown(KeyEvent.VK_DOWN)){
+		if(Keyboard.isKeyDown(KeyEvent.VK_DOWN) && this.animationStatus == 0) {
 			this.menuPoint = 1;
 			player.setPosition(player.getX(), 409);
 		}
-		if(Keyboard.isKeyDown(KeyEvent.VK_UP)){
+		if(Keyboard.isKeyDown(KeyEvent.VK_UP) && this.animationStatus == 0) {
 			this.menuPoint = 0;
 			player.setPosition(player.getX(), 309);
 		}
 		
-		if(Keyboard.isKeyDown(KeyEvent.VK_SPACE)) {
+		if(Keyboard.isKeyDown(KeyEvent.VK_ENTER)) {
 			this.animationStatus = 1;
 		}
-		if(this.animationStatus == 1){
-			if(player.getX() <= GameConfig.windowWidth){
+		if(this.animationStatus == 1) {
+			if(player.getX() <= GameConfig.windowWidth) {
 				player.setPosition(player.getX() + (int)playerMoveSpeed, player.getY());
 				playerMoveSpeed += 0.1;
-			}else this.animationStatus = 2;
-		}else if(this.animationStatus == 2){
+			} else this.animationStatus = 2;
+		} else if(this.animationStatus == 2) {
 			switch (this.menuPoint) {
 			case 0:
 				this.parent.setOverlay(null);

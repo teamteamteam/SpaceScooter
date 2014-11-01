@@ -65,40 +65,40 @@ public class MainMenuScreen extends Screen {
 			i.next().update();
 		}
 		
-		if(colorValueIncrease){
+		if(colorValueIncrease) {
 			colorValue += 2; 
 			if(colorValue > 70) colorValueIncrease = false;
-		}else{
+		} else {
 			colorValue -= 2;
 			if(colorValue < -70) colorValueIncrease = true;
 		}
 				
-		if(Keyboard.isKeyDown(KeyEvent.VK_DOWN) && !keyPressed && animationStatus == 0){
+		if(Keyboard.isKeyDown(KeyEvent.VK_DOWN) && !keyPressed && animationStatus == 0) {
 			keyPressed = true;
 			if(menuPoint<4){
 				menuPoint++;
 				player.setPosition(player.getX(), 209+(menuPoint*75));
 			}
-		}else if(Keyboard.isKeyDown(KeyEvent.VK_UP) && !keyPressed && animationStatus == 0){
+		} else if(Keyboard.isKeyDown(KeyEvent.VK_UP) && !keyPressed && animationStatus == 0) {
 			keyPressed = true;
-			if(menuPoint>0){
+			if(menuPoint>0) {
 				menuPoint--;
 				player.setPosition(player.getX(), 209+(menuPoint*75));
 			}
-		}else if(!Keyboard.isKeyDown(KeyEvent.VK_DOWN) && !Keyboard.isKeyDown(KeyEvent.VK_UP)){
+		} else if(!Keyboard.isKeyDown(KeyEvent.VK_DOWN) && !Keyboard.isKeyDown(KeyEvent.VK_UP)) {
 			keyPressed = false;
 		}
 		
-		if(Keyboard.isKeyDown(KeyEvent.VK_SPACE)) {
+		if(Keyboard.isKeyDown(KeyEvent.VK_ENTER)) {
 			animationStatus = 1;
 		}
 		
-		if(animationStatus == 1){
-			if(player.getX() <= GameConfig.windowWidth){
-				player.setPosition(player.getX() + (int)playerMoveSpeed, player.getY());
+		if(animationStatus == 1) {
+			if(player.getX() <= GameConfig.windowWidth) {
+				player.setPosition(player.getX() + (int) playerMoveSpeed, player.getY());
 				playerMoveSpeed += 0.1;
-			}else animationStatus = 2;
-		}else if(animationStatus == 2){
+			} else animationStatus = 2;
+		} else if(animationStatus == 2) {
 			switch (menuPoint) {
 			case 0:
 				this.parent.setOverlay(new GameScreen(this.parent));
