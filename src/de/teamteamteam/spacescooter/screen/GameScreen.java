@@ -10,7 +10,6 @@ import de.teamteamteam.spacescooter.control.Keyboard;
 import de.teamteamteam.spacescooter.entity.EnemyThree;
 import de.teamteamteam.spacescooter.entity.EnemyTwo;
 import de.teamteamteam.spacescooter.entity.Entity;
-import de.teamteamteam.spacescooter.entity.Explosion;
 import de.teamteamteam.spacescooter.entity.Player;
 
 public class GameScreen extends Screen {
@@ -23,7 +22,6 @@ public class GameScreen extends Screen {
 		this.entities.add(new EnemyThree(450, 100));
 		this.entities.add(new EnemyTwo(750, 550));
 		this.entities.add(new EnemyTwo(150, 250));
-		this.entities.add(new Explosion(200, 200));
 	}
 
 	@Override
