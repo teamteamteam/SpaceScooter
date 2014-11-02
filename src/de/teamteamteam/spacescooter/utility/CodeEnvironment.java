@@ -42,17 +42,13 @@ public class CodeEnvironment {
 	 */
 	private static String[] getFileListFromFolder(File folder) {
 		ArrayList<String> fileList = new ArrayList<String>();
-		String rootPath = folder.getAbsolutePath() + "/";
+		String rootPath = folder.getAbsolutePath() + File.separator;
 		File[] folderContents = folder.listFiles();
 		for(File f : folderContents) {
 			if(f.isDirectory()) {
 				String[] filesInDirectory = CodeEnvironment.getFileListFromFolder(f);
 				for(String entry : filesInDirectory) {
-					if(entry.contains(rootPath)) {
-						fileList.add(entry.substring(rootPath.length()));
-					} else {
-						fileList.add(entry);
-					}
+					fileList.add(entry.replace(rootPath, ""));
 				}
 			} else {
 				fileList.add(f.toString());
