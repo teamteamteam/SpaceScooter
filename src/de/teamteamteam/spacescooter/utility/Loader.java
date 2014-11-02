@@ -1,8 +1,10 @@
 package de.teamteamteam.spacescooter.utility;
 
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 import java.util.Hashtable;
+
 import javax.imageio.ImageIO;
 
 import de.teamteamteam.spacescooter.screen.LoadingScreen;
@@ -20,7 +22,7 @@ public class Loader {
 	 * Return the loaded BufferedImage by its filename.
 	 */
 	public static BufferedImage getBufferedImageByFilename(String filename) {
-		return Loader.images.get(filename);
+		return Loader.images.get(filename.replace("/", File.separator));
 	}
 	
 	/**
