@@ -22,7 +22,11 @@ public class Loader {
 	 * Return the loaded BufferedImage by its filename.
 	 */
 	public static BufferedImage getBufferedImageByFilename(String filename) {
-		return Loader.images.get(filename.replace("/", File.separator));
+		if(CodeEnvironment.isJar()) {
+			return Loader.images.get(filename);
+		} else {
+			return Loader.images.get(filename.replace("/", File.separator));
+		}
 	}
 	
 	/**
