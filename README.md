@@ -7,7 +7,7 @@ Requirements
 ------------
 
 You will need to have the following things installed:
-* JDK (Java Development Kit) (javac and jar are required to build)
+* Java Development Kit ***OpenJDK version 1.8.0_25 or higher is recommended!***
 * make
 
 
@@ -24,6 +24,14 @@ Building with eclipse
 
 There are some minor things you need to set up to your project in eclipse:
 
-* Tell eclipse to use a version of java >=1.7.
+* Tell eclipse to use a version of java >=1.8.
 * Add the folder res/ to your *build path*!
 * You're now set up to develop and test!
+
+Troubleshooting
+---------------
+
+*The game becomes unresponsable at some point and i have to kill the process?*
+
+There are known issues with Java versions <8 concerning translucency.
+Try upgrading to Java 8 or higher.
