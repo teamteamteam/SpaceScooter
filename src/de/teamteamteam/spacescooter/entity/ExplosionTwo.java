@@ -1,6 +1,6 @@
 package de.teamteamteam.spacescooter.entity;
 
-public class ExplosionTwo extends LivingEntity {
+public class ExplosionTwo extends Entity {
 
 	private int count = 141;
 	
