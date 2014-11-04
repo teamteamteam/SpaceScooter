@@ -36,10 +36,12 @@ public abstract class Entity implements Updateable, Paintable {
 	}
 	
 	public int getWidth() {
+		if(this.img == null) return 0; //no image -> nothing visible -> no width
 		return this.img.getWidth();
 	}
 
 	public int getHeight() {
+		if(this.img == null) return 0; //no image -> nothing visible -> no height
 		return this.img.getHeight();
 	}
 	
