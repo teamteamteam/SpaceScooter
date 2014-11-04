@@ -95,6 +95,10 @@ public abstract class Screen {
 	 */
 	public void cleanup() {
 		if(this.overlay != null) this.overlay.cleanup();
+		//tell all entities to cleanup themselves.
+		for(Entity e : this.getEntities()) {
+			e.remove();
+		}
 		this.entities.removeAll(this.entities);
 	}
 
