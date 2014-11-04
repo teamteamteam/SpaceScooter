@@ -39,7 +39,7 @@ public class GameFrame extends JFrame {
 
 		// Make sure we get the keyboard events. Use Keyboard.isKeyDown() to ask
 		// about keys status.
-		this.addKeyListener(new Keyboard());
+		this.addKeyListener(Keyboard.getInstance());
 
 		this.setVisible(true);
 

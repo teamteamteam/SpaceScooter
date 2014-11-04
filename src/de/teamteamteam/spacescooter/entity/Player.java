@@ -1,24 +1,31 @@
 package de.teamteamteam.spacescooter.entity;
 
 import java.awt.event.KeyEvent;
+
 import de.teamteamteam.spacescooter.control.Keyboard;
+import de.teamteamteam.spacescooter.control.KeyboardListener;
 import de.teamteamteam.spacescooter.utility.GameConfig;
 
-public class Player extends ShootingEntity {
+public class Player extends ShootingEntity implements KeyboardListener {
 	
-	private boolean shoot = false;
 	private boolean canMove = true;
 
-
+	private Keyboard keyboard = null;
+	
 	public Player(int x, int y) {
 		super(x, y);
 		this.setImage("images/ship.png");
-		this.setShootDelay(5);
+		this.setShootDelay(20);
 		this.setShootSpawn(50, 16);
 		this.setShootDirection(Shot.RIGHT);
 		this.setShootSpeed(10);
 		this.setHealthPoints(100);
-		inputThread.start();
+		this.registerOnKeyboard(Keyboard.getInstance());
+	}
+
+	private void registerOnKeyboard(Keyboard keyboard) {
+		this.keyboard = keyboard;
+		this.keyboard.addListener(this);
 	}
 
 	public void update() {
@@ -37,32 +44,45 @@ public class Player extends ShootingEntity {
 			if(Keyboard.isKeyDown(KeyEvent.VK_RIGHT) && this.x < (GameConfig.windowWidth - this.getImage().getWidth())) {
 				this.x += off;
 			}
-			if(shoot == true) {
+			//continuous fire takes place here
+			if(Keyboard.isKeyDown(KeyEvent.VK_SPACE)) {
 				this.shoot();
-				setShootDelay(20);
 			}
 		}
-			
 	}
 
 	public void setCanMove(boolean canMove){
 		this.canMove = canMove;
 	}
 	
-	public void setShoot(boolean shoot){
-		this.shoot = shoot;
+	
+	/**
+	 * On cleanup, unregister from the keyboard.
+	 */
+	@Override
+	public void remove() {
+		super.remove();
+		this.keyboard.removeListener(this);
+		this.keyboard = null;
 	}
-	
-	Thread inputThread = new Thread(new Runnable() {
-        public void run() {
-            while (true) {
-            	setShootDelay(5);
-            	setShoot(false);
-            	while(Keyboard.isKeyDown(KeyEvent.VK_SPACE)) {
-            			setShoot(true);
-            	}
-            }
-        }
-    });
-	
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+		//spontaneous fire happens here
+		if(e.getKeyCode() == KeyEvent.VK_SPACE) {
+			this.shoot();
+		}
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+		//space up -> reset shot cooldown
+		if(e.getKeyCode() == KeyEvent.VK_SPACE) {
+			this.resetShootDelay();
+		}
+	}
+
+	@Override
+	public void keyTyped(KeyEvent e) {}
+
 }

@@ -41,6 +41,10 @@ public abstract class ShootingEntity extends LivingEntity {
 		this.shootDelay = shootDelay;
 	}
 	
+	public void resetShootDelay() {
+		this.currentShootDelay = 0;
+	}
+	
 	public void setShootSpawn(int x, int y) {
 		this.shootSpawnX = x;
 		this.shootSpawnY = y;
