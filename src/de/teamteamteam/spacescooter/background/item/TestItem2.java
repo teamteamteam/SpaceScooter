@@ -1,4 +1,6 @@
-package de.teamteamteam.spacescooter.entity;
+package de.teamteamteam.spacescooter.background.item;
+
+import de.teamteamteam.spacescooter.entity.Player;
 
 public class TestItem2 extends Items{
 	

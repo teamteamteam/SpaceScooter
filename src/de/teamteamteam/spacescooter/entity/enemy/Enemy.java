@@ -1,5 +1,8 @@
-package de.teamteamteam.spacescooter.entity;
+package de.teamteamteam.spacescooter.entity.enemy;
 import java.util.Random;
+
+import de.teamteamteam.spacescooter.entity.ShootingEntity;
+import de.teamteamteam.spacescooter.entity.shot.Shot;
 
 public abstract class Enemy extends ShootingEntity {
 

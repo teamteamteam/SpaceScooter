@@ -3,6 +3,10 @@ package de.teamteamteam.spacescooter.entity;
 import java.awt.Rectangle;
 import java.util.LinkedList;
 
+import de.teamteamteam.spacescooter.background.item.Items;
+import de.teamteamteam.spacescooter.entity.enemy.Enemy;
+import de.teamteamteam.spacescooter.entity.explosion.Explosion;
+import de.teamteamteam.spacescooter.entity.shot.Shot;
 import de.teamteamteam.spacescooter.screen.Screen;
 import de.teamteamteam.spacescooter.utility.GameConfig;
 

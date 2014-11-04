@@ -1,6 +1,10 @@
-package de.teamteamteam.spacescooter.entity;
+package de.teamteamteam.spacescooter.background.item;
 
 import java.util.LinkedList;
+
+import de.teamteamteam.spacescooter.entity.Entity;
+import de.teamteamteam.spacescooter.entity.LivingEntity;
+import de.teamteamteam.spacescooter.entity.Player;
 import de.teamteamteam.spacescooter.screen.Screen;
 
 public abstract class Items extends LivingEntity{

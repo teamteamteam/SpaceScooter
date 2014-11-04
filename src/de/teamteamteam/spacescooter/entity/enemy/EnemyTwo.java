@@ -1,4 +1,4 @@
-package de.teamteamteam.spacescooter.entity;
+package de.teamteamteam.spacescooter.entity.enemy;
 
 import java.util.Random;
 

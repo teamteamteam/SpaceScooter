@@ -8,13 +8,13 @@ import java.util.Iterator;
 import java.util.LinkedList;
 
 import de.teamteamteam.spacescooter.background.StarBackground;
+import de.teamteamteam.spacescooter.background.item.ItemChance;
 import de.teamteamteam.spacescooter.control.Keyboard;
-import de.teamteamteam.spacescooter.entity.EnemyFour;
-import de.teamteamteam.spacescooter.entity.EnemyThree;
 import de.teamteamteam.spacescooter.entity.Entity;
 import de.teamteamteam.spacescooter.entity.HealthBar;
-import de.teamteamteam.spacescooter.entity.ItemChance;
 import de.teamteamteam.spacescooter.entity.Player;
+import de.teamteamteam.spacescooter.entity.enemy.EnemyFour;
+import de.teamteamteam.spacescooter.entity.enemy.EnemyThree;
 
 public class GameScreen extends Screen {
 

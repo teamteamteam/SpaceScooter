@@ -4,6 +4,7 @@ import java.awt.event.KeyEvent;
 
 import de.teamteamteam.spacescooter.control.Keyboard;
 import de.teamteamteam.spacescooter.control.KeyboardListener;
+import de.teamteamteam.spacescooter.entity.shot.Shot;
 import de.teamteamteam.spacescooter.utility.GameConfig;
 
 public class Player extends ShootingEntity implements KeyboardListener {

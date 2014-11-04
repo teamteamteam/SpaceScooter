@@ -1,9 +1,12 @@
-package de.teamteamteam.spacescooter.entity;
+package de.teamteamteam.spacescooter.entity.enemy;
 
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Random;
 
+import de.teamteamteam.spacescooter.background.item.Items;
+import de.teamteamteam.spacescooter.entity.Entity;
+import de.teamteamteam.spacescooter.entity.Player;
 import de.teamteamteam.spacescooter.screen.Screen;
 import de.teamteamteam.spacescooter.utility.GameConfig;
 

@@ -1,7 +1,8 @@
-package de.teamteamteam.spacescooter.entity;
+package de.teamteamteam.spacescooter.entity.explosion;
 
 import java.util.Random;
 
+import de.teamteamteam.spacescooter.entity.Entity;
 import de.teamteamteam.spacescooter.screen.Screen;
 
 

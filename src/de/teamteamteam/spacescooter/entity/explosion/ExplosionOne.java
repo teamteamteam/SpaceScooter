@@ -1,4 +1,6 @@
-package de.teamteamteam.spacescooter.entity;
+package de.teamteamteam.spacescooter.entity.explosion;
+
+import de.teamteamteam.spacescooter.entity.Entity;
 
 public class ExplosionOne extends Entity {
 

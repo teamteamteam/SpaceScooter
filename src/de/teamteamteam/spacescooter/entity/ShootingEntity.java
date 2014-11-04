@@ -1,5 +1,6 @@
 package de.teamteamteam.spacescooter.entity;
 
+import de.teamteamteam.spacescooter.entity.shot.SingleBlueShot;
 import de.teamteamteam.spacescooter.screen.Screen;
 
 public abstract class ShootingEntity extends LivingEntity {

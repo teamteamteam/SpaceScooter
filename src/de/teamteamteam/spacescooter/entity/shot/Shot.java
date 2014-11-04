@@ -1,5 +1,6 @@
-package de.teamteamteam.spacescooter.entity;
+package de.teamteamteam.spacescooter.entity.shot;
 
+import de.teamteamteam.spacescooter.entity.LivingEntity;
 import de.teamteamteam.spacescooter.utility.GameConfig;
 
 public abstract class Shot extends LivingEntity {
