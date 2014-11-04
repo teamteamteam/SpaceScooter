@@ -4,13 +4,13 @@ import de.teamteamteam.spacescooter.screen.Screen;
 
 public abstract class ShootingEntity extends LivingEntity {
 
-	private int shootDelay;
-	private int currentShootDelay;
-	private int shootSpawnX;
-	private int shootSpawnY;
-	private int shootDirection;
-	private int damageValue = 5;
-	private int shootSpeed;
+	protected int shootDelay;
+	protected int currentShootDelay;
+	protected int shootSpawnX;
+	protected int shootSpawnY;
+	protected int shootDirection;
+	protected int damageValue = 5;
+	protected int shootSpeed;
 	
 	public ShootingEntity(int x, int y) {
 		super(x, y);

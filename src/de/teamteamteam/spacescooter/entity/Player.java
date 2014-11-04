@@ -3,6 +3,7 @@ package de.teamteamteam.spacescooter.entity;
 import java.awt.event.KeyEvent;
 import de.teamteamteam.spacescooter.control.Keyboard;
 import de.teamteamteam.spacescooter.utility.GameConfig;
+import de.teamteamteam.spacescooter.screen.Screen;
 
 public class Player extends ShootingEntity {
 	
@@ -46,6 +47,14 @@ public class Player extends ShootingEntity {
 		}
 		
 		
+	}
+
+	@Override
+	protected void shoot() {
+		if(this.currentShootDelay == 0) {
+			Screen.currentScreen.addEntity(new SingleBlueShot(this.x + this.shootSpawnX, this.y + this.shootSpawnY, this.shootDirection, this.shootSpeed, this.damageValue));
+			this.currentShootDelay = this.shootDelay;
+		}
 	}
 
 	public void setCanMove(boolean canMove){
