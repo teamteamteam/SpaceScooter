@@ -2,6 +2,9 @@ package de.teamteamteam.spacescooter.entity;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.util.LinkedList;
+
+import de.teamteamteam.spacescooter.screen.Screen;
 
 public class HealthBar extends Entity {
 
@@ -15,13 +18,19 @@ public class HealthBar extends Entity {
 	}
 
 	public void paint(Graphics2D g) {
-		this.g = g;
+		LinkedList<Entity> entities = Screen.currentScreen.getEntities();
+		for (Entity e : entities) {
+			if(e instanceof Player){
+				this.width = ((Player) e).getHealthPoints();
+			}
+		}
+		Graphics2D grpahic = (Graphics2D) g;
+		this.g = grpahic;
 		this.g.setColor(new Color(0,255,0));
 		this.g.fillRect(this.x, this.y, this.width, this.height);
 	}
 	
 	public void update() {
-		//this.g.setColor(new Color(0,0,255));
 	}
 	
 	public int getWidth() {

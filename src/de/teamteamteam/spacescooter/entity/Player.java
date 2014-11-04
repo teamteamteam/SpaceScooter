@@ -9,14 +9,15 @@ public class Player extends ShootingEntity {
 	private boolean shoot = false;
 	private boolean canMove = true;
 
+
 	public Player(int x, int y) {
 		super(x, y);
 		this.setImage("images/ship.png");
 		this.setShootDelay(5);
 		this.setShootSpawn(50, 16);
 		this.setShootDirection(Shot.RIGHT);
-		this.setShootSpeed(4);
-		this.setHealthPoints(10000);
+		this.setShootSpeed(10);
+		this.setHealthPoints(100);
 		inputThread.start();
 	}
 
@@ -38,6 +39,7 @@ public class Player extends ShootingEntity {
 			}
 			if(shoot == true) {
 				this.shoot();
+				setShootDelay(20);
 			}
 		}
 			
@@ -53,22 +55,11 @@ public class Player extends ShootingEntity {
 	
 	Thread inputThread = new Thread(new Runnable() {
         public void run() {
-        	int down = 0;
             while (true) {
             	setShootDelay(5);
-            	
-            	
-            	if(Keyboard.isKeyDown(KeyEvent.VK_SPACE)) {
-            		do {
-            			if (Keyboard.isKeyUp(KeyEvent.VK_SPACE)) 
-            				System.out.print("lol");
+            	setShoot(false);
+            	while(Keyboard.isKeyDown(KeyEvent.VK_SPACE)) {
             			setShoot(true);
-            			
-            			setShootDelay(20);
-            		} while(Keyboard.isKeyDown(KeyEvent.VK_SPACE));
-            	} else {
-            		setShootDelay(5);
-            		setShoot(false);
             	}
             }
         }
