@@ -9,13 +9,14 @@ public class Player extends ShootingEntity {
 	protected boolean shoot = false;
 	private boolean canMove = true;
 
+
 	public Player(int x, int y) {
 		super(x, y);
 		this.setImage("images/ship.png");
 		this.setShootDelay(5);
 		this.setShootSpawn(50, 16);
 		this.setShootDirection(Shot.RIGHT);
-		this.setShootSpeed(4);
+		this.setShootSpeed(10);
 		this.setHealthPoints(100);
 	}
 
