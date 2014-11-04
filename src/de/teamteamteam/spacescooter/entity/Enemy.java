@@ -1,6 +1,4 @@
 package de.teamteamteam.spacescooter.entity;
-
-import de.teamteamteam.spacescooter.screen.Screen;
 import java.util.Random;
 
 public abstract class Enemy extends ShootingEntity {
@@ -20,14 +18,6 @@ public abstract class Enemy extends ShootingEntity {
 		super.update();
 		if(willShoot == true)
 			this.shoot();
-	}
-
-	@Override
-	protected void shoot() {
-		if(this.currentShootDelay == 0) {
-			Screen.currentScreen.addEntity(new SingleRedShot(this.x + this.shootSpawnX, this.y + this.shootSpawnY, this.shootDirection, this.shootSpeed, this.damageValue));
-			this.currentShootDelay = this.shootDelay;
-		}
 	}
 
 }
