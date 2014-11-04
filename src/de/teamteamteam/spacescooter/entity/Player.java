@@ -30,6 +30,7 @@ public class Player extends ShootingEntity implements KeyboardListener {
 	}
 
 	public void update() {
+		super.update();
 		if(this.canMove) {
 			super.update();
 			int off = 3;
@@ -62,8 +63,10 @@ public class Player extends ShootingEntity implements KeyboardListener {
 	 */
 	@Override
 	public void remove() {
-		this.keyboard.removeListener(this);
-		this.keyboard = null;
+		if(this.keyboard != null) {
+			this.keyboard.removeListener(this);
+			this.keyboard = null;
+		}
 		super.remove();
 	}
 
