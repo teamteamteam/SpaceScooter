@@ -86,14 +86,13 @@ public abstract class LivingEntity extends Entity implements Collidable {
 		if (this.isAlive() == false) {
 			if(GameConfig.DEBUG) System.out.println(this + " ist gestorben. RIP");
 			this.explode();
-			//Screen.currentScreen.addEntity(new Explosion(this.x, this.y));
 			this.remove();
 		}
 	}
 
 	private void explode() {
 		Random rnd = new Random();
-		if (rnd.nextInt(10) < 7) {
+		if (rnd.nextInt(99) < 70) {
 			Screen.currentScreen.addEntity(new Explosion(this.x, this.y));
 		} else {
 			Screen.currentScreen.addEntity(new ExplosionBig(this.x, this.y));
