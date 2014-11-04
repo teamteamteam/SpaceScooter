@@ -5,10 +5,27 @@ import java.util.Random;
 import de.teamteamteam.spacescooter.screen.Screen;
 
 
-public class Explosion extends LivingEntity {
+public class Explosion extends Entity {
 	
-	private boolean isActive = true;
+	/**
+	 * Time to 'live' in update ticks. Will be decreased with each update()-call.
+	 */
+	private int timeToLive;
 	
+	/**
+	 * Attributes for the 'spawn more' constructor.
+	 */
+	private int count;
+	private int height;
+	private int width;
+	/**
+	 * Instance of Random, so we get good random numbers.
+	 */
+	private Random random;
+	
+	/**
+	 * Just be a single explosion.
+	 */
 	public Explosion(int x, int y) {
 		super(x, y);
 		this.setImage("images/explosion_proto.png");
@@ -21,33 +38,30 @@ public class Explosion extends LivingEntity {
 		}
 	}
 	
-	public Explosion(final int x, final int y, final int count, final int height, final int width) {
+	/**
+	 * Be an explosion that spawns even more explosions! :O
+	 */
+	public Explosion(int x, int y, int count, int width, int height) {
 		super(x, y);
+		System.out.println("Explosion with: " + count);
 		this.setImage("images/explosion_proto.png");
 		this.setPosition(x, y);
-		Thread explosionThread = new Thread(new Runnable() {	//not yet compatible
-			public void run() {
-				Random rnd = new Random();
-				for (int i = 0; i <= count; i++) {
-					new Explosion(x + (int) (width*rnd.nextDouble()), y + (int) (height*rnd.nextDouble()));
-					try {
-						Thread.sleep(5);
-					} catch (InterruptedException e) {
-						e.printStackTrace();
-					}
-					if (i == count - 1) {
-						isActive = false;
-					}
-				}
-			}
-		});
-		explosionThread.start();
-		if(!this.isActive) {
-			this.remove();
-		}
+		this.random = new Random();
+		this.count = 10;
+		this.width = width;
+		this.height = height;
+		this.timeToLive = 100 * this.count; //Just a random value of ticks the explosion will take to spawn more explosions.
 	}
 
+	/**
+	 * Here, a countdown is happening. Every X ticks, a new Explosion is born.
+	 */
 	public void update() {
-		
+		this.timeToLive--;
+		if(this.timeToLive == 0) this.remove();
+		if(this.count > 0 && this.timeToLive % this.count == 0) {
+			new Explosion(this.getX() + (int) (this.width * this.random.nextDouble()), this.getY() + (int) (this.height * this.random.nextDouble()));
+			this.count--;
+		}
 	}
 }
