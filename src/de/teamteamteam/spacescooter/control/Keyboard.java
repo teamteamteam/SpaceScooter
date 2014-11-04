@@ -70,7 +70,13 @@ public class Keyboard implements KeyListener {
 		Keyboard.listener.remove(listener);
 	}
 	
-	
+	/**
+	 * Make sure we only iterate over copies due to possible concurrent modification.
+	 * This method returns a copy of the listener list.
+	 */
+	public ArrayList<KeyboardListener> getListener() {
+		return new ArrayList<KeyboardListener>(Keyboard.listener);
+	}
 	/**
 	 * KeyListener method.
 	 * Registers the pressed key and passes the event on to registered listeners.
