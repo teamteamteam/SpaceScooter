@@ -60,6 +60,9 @@ public class ExplosionBig extends Explosion {
 		case 10: 
 			this.setImage("images/explosion2_15.png");
 			break;
+		case 1:
+			this.setImage("images/explosion2_16.png");
+			break;
 		}
 	}
 
