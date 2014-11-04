@@ -13,6 +13,7 @@ import de.teamteamteam.spacescooter.entity.EnemyFour;
 import de.teamteamteam.spacescooter.entity.EnemyThree;
 import de.teamteamteam.spacescooter.entity.Entity;
 import de.teamteamteam.spacescooter.entity.HealthBar;
+import de.teamteamteam.spacescooter.entity.Explosion;
 import de.teamteamteam.spacescooter.entity.ItemChance;
 import de.teamteamteam.spacescooter.entity.Player;
 

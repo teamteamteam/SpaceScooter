@@ -2,7 +2,6 @@ package de.teamteamteam.spacescooter.entity;
 
 import java.awt.Rectangle;
 import java.util.LinkedList;
-import java.util.Random;
 
 import de.teamteamteam.spacescooter.screen.Screen;
 import de.teamteamteam.spacescooter.utility.GameConfig;
@@ -91,12 +90,7 @@ public abstract class LivingEntity extends Entity implements Collidable {
 	}
 
 	private void explode() {
-		Random rnd = new Random();
-		if (rnd.nextInt(99) < 70) {
-			Screen.currentScreen.addEntity(new Explosion(this.x, this.y));
-		} else {
-			Screen.currentScreen.addEntity(new ExplosionBig(this.x, this.y));
-		}
+		Screen.currentScreen.addEntity(new Explosion(this.x, this.y));
 	}
 
 	public void setHealthPoints(int hp) {

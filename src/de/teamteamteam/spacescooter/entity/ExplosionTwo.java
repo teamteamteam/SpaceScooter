@@ -1,11 +1,13 @@
 package de.teamteamteam.spacescooter.entity;
 
-public class ExplosionBig extends Explosion {
+public class ExplosionTwo extends LivingEntity {
 
 	private int count = 141;
 	
-	public ExplosionBig(int x, int y) {
+	public ExplosionTwo(int x, int y) {
 		super(x, y);
+		this.setImage("images/explosion_proto.png");
+		this.setPosition(x - (this.getWidth()/2), y - (this.getHeight()/2));
 	}
 	
 	public void update() {
