@@ -4,6 +4,8 @@ import de.teamteamteam.spacescooter.entity.shot.SingleBlueShot;
 
 public abstract class ShootingEntity extends LivingEntity {
 
+	private boolean canShoot = true;
+	
 	private int shootDelay;
 	private int currentShootDelay;
 	private int shootSpawnX;
@@ -23,10 +25,20 @@ public abstract class ShootingEntity extends LivingEntity {
 	}
 	
 	protected void shoot() {
-		if(this.currentShootDelay == 0) {
-			new SingleBlueShot(this.x + this.shootSpawnX, this.y + this.shootSpawnY, this.shootDirection, this.shootSpeed, this.damageValue);
-			this.currentShootDelay = this.shootDelay;
+		if(this.canShoot == true) {
+			if(this.currentShootDelay == 0) {
+				new SingleBlueShot(this.x + this.shootSpawnX, this.y + this.shootSpawnY, this.shootDirection, this.shootSpeed, this.damageValue);
+				this.currentShootDelay = this.shootDelay;
+			}
 		}
+	}
+	
+	public void setCanShoot(boolean canShoot) {
+		this.canShoot = canShoot;
+	}
+	
+	public boolean canShoot() {
+		return this.canShoot;
 	}
 	
 	public void setShootDirection(int direction) {

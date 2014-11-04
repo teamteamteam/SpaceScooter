@@ -35,6 +35,7 @@ public class MainMenuScreen extends Screen {
 		new Button(GameConfig.windowWidth/2-125, 500);
 		player = new Player(GameConfig.windowWidth/2-170, 209);
 		player.setCanMove(false);
+		player.setCanShoot(false);
 	}
 
 	@Override
