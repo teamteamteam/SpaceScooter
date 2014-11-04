@@ -4,13 +4,13 @@ import de.teamteamteam.spacescooter.screen.Screen;
 
 public abstract class ShootingEntity extends LivingEntity {
 
-	protected int shootDelay;
-	protected int currentShootDelay;
-	protected int shootSpawnX;
-	protected int shootSpawnY;
-	protected int shootDirection;
-	protected int damageValue = 5;
-	protected int shootSpeed;
+	private int shootDelay;
+	private int currentShootDelay;
+	private int shootSpawnX;
+	private int shootSpawnY;
+	private int shootDirection;
+	private int damageValue = 5;
+	private int shootSpeed;
 	
 	public ShootingEntity(int x, int y) {
 		super(x, y);
@@ -24,7 +24,7 @@ public abstract class ShootingEntity extends LivingEntity {
 	
 	protected void shoot() {
 		if(this.currentShootDelay == 0) {
-			Screen.currentScreen.addEntity(new SingleShot(this.x + this.shootSpawnX, this.y + this.shootSpawnY, this.shootDirection, this.shootSpeed, this.damageValue));
+			Screen.currentScreen.addEntity(new SingleBlueShot(this.x + this.shootSpawnX, this.y + this.shootSpawnY, this.shootDirection, this.shootSpeed, this.damageValue));
 			this.currentShootDelay = this.shootDelay;
 		}
 	}
