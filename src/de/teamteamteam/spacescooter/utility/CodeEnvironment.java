@@ -30,7 +30,7 @@ public class CodeEnvironment {
 			try {
 				codeFolder = new File(codeLocation.toURI());
 			} catch (URISyntaxException e) {
-				System.err.println("Could not convert codeLocation ÚRL to File!");
+				System.err.println("Could not convert codeLocation URL to File!");
 				e.printStackTrace();
 			}
 			return CodeEnvironment.getFileListFromFolder(codeFolder);
