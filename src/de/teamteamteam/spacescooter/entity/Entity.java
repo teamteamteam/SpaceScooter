@@ -24,6 +24,7 @@ public abstract class Entity implements Updateable, Paintable {
 	public Entity(int x, int y) {
 		this.x = x;
 		this.y = y;
+		Screen.currentScreen.addEntity(this);
 	}
 	
 	public int getX() {

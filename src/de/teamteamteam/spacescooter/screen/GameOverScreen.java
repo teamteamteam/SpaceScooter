@@ -28,11 +28,10 @@ public class GameOverScreen extends Screen {
 	public GameOverScreen(Screen parent) {
 		super(parent);
 		this.img = Loader.getBufferedImageByFilename("images/pausebackground.png");
-		this.entities.add(new Button(GameConfig.windowWidth/2-125, 300));
-		this.entities.add(new Button(GameConfig.windowWidth/2-125, 400));
+		new Button(GameConfig.windowWidth/2-125, 300);
+		new Button(GameConfig.windowWidth/2-125, 400);
 		player = new Player(GameConfig.windowWidth/2-170, 309);
 		player.setCanMove(false);
-		this.entities.add(player);
 	}
 
 	@Override

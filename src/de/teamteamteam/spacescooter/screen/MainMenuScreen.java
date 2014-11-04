@@ -27,15 +27,14 @@ public class MainMenuScreen extends Screen {
 	
 	public MainMenuScreen(Screen parent) {
 		super(parent);
-		this.entities.add(new StarBackground(0, 0));
-		this.entities.add(new Button(GameConfig.windowWidth/2-125, 200));
-		this.entities.add(new Button(GameConfig.windowWidth/2-125, 275));
-		this.entities.add(new Button(GameConfig.windowWidth/2-125, 350));
-		this.entities.add(new Button(GameConfig.windowWidth/2-125, 425));
-		this.entities.add(new Button(GameConfig.windowWidth/2-125, 500));
+		new StarBackground(0, 0);
+		new Button(GameConfig.windowWidth/2-125, 200);
+		new Button(GameConfig.windowWidth/2-125, 275);
+		new Button(GameConfig.windowWidth/2-125, 350);
+		new Button(GameConfig.windowWidth/2-125, 425);
+		new Button(GameConfig.windowWidth/2-125, 500);
 		player = new Player(GameConfig.windowWidth/2-170, 209);
 		player.setCanMove(false);
-		this.entities.add(player);
 	}
 
 	@Override

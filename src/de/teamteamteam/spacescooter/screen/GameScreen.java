@@ -26,12 +26,12 @@ public class GameScreen extends Screen {
 		points.add(new Point(300,300));
 		points.add(new Point(600,100));
 		points.add(new Point(0,500));
-		this.entities.add(new StarBackground(0, 0));
-		this.entities.add(new Player(200, 300));
-		this.entities.add(new HealthBar(10, 10));
-		this.entities.add(new EnemyFour(800, 400, points));
-		this.entities.add(new EnemyThree(650, 300));
-		this.entities.add(new EnemyThree(450, 100));
+		new StarBackground(0, 0);
+		new Player(200, 300);
+		new HealthBar(10, 10);
+		new EnemyFour(800, 400, points);
+		new EnemyThree(650, 300);
+		new EnemyThree(450, 100);
 	}
 
 	@Override
