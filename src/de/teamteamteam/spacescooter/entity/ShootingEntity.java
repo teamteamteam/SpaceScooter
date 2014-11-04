@@ -1,7 +1,6 @@
 package de.teamteamteam.spacescooter.entity;
 
 import de.teamteamteam.spacescooter.entity.shot.SingleBlueShot;
-import de.teamteamteam.spacescooter.screen.Screen;
 
 public abstract class ShootingEntity extends LivingEntity {
 
@@ -25,7 +24,7 @@ public abstract class ShootingEntity extends LivingEntity {
 	
 	protected void shoot() {
 		if(this.currentShootDelay == 0) {
-			Screen.currentScreen.addEntity(new SingleBlueShot(this.x + this.shootSpawnX, this.y + this.shootSpawnY, this.shootDirection, this.shootSpeed, this.damageValue));
+			new SingleBlueShot(this.x + this.shootSpawnX, this.y + this.shootSpawnY, this.shootDirection, this.shootSpeed, this.damageValue);
 			this.currentShootDelay = this.shootDelay;
 		}
 	}

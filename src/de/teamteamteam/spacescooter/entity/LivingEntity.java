@@ -94,7 +94,7 @@ public abstract class LivingEntity extends Entity implements Collidable {
 	}
 
 	public void explode() {
-		Screen.currentScreen.addEntity(new Explosion(this.x, this.y));
+		new Explosion(this.x, this.y);
 	}
 
 	public void setHealthPoints(int hp) {

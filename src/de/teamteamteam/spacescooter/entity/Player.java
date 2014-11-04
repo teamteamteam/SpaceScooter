@@ -62,9 +62,9 @@ public class Player extends ShootingEntity implements KeyboardListener {
 	 */
 	@Override
 	public void remove() {
-		super.remove();
 		this.keyboard.removeListener(this);
 		this.keyboard = null;
+		super.remove();
 	}
 
 	@Override

@@ -35,16 +35,16 @@ public abstract class Items extends LivingEntity{
 		int auswahl = ItemChance.choose();
 		switch (auswahl) {
 		case 0:
-			Screen.currentScreen.addEntity(new TestItem1(x, y));
+			new TestItem1(x, y);
 			break;
 		case 1:
-			Screen.currentScreen.addEntity(new TestItem2(x, y));
+			new TestItem2(x, y);
 			break;
 		case 2:
-			Screen.currentScreen.addEntity(new TestItem3(x, y));
+			new TestItem3(x, y);
 			break;
 		case 3:
-			Screen.currentScreen.addEntity(new TestItem4(x, y));;
+			new TestItem4(x, y);;
 			break;
 		}
 	}

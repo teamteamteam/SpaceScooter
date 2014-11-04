@@ -35,11 +35,11 @@ public class EnemyThree extends Enemy{
 		this.setPosition(this.getX()-1, this.getY());
 		if(this.getX() < 0-getWidth()){
 			this.remove();
-			Screen.currentScreen.addEntity(new EnemyThree(0, 0));
+			new EnemyThree(0, 0);
 		}
 		if(!this.isAlive()){
 			if(random.nextInt(10) < 5) Items.create(getX(), getY());
-			Screen.currentScreen.addEntity(new EnemyThree(0, 0));
+			new EnemyThree(0, 0);
 		}
 		LinkedList<Entity> list = Screen.currentScreen.getEntities();
 		Iterator<Entity> i = list.iterator();

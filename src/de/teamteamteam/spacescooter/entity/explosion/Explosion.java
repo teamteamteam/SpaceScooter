@@ -3,7 +3,6 @@ package de.teamteamteam.spacescooter.entity.explosion;
 import java.util.Random;
 
 import de.teamteamteam.spacescooter.entity.Entity;
-import de.teamteamteam.spacescooter.screen.Screen;
 
 
 public class Explosion extends Entity {
@@ -33,9 +32,9 @@ public class Explosion extends Entity {
 		this.setPosition(x - (this.getWidth()/2), y - (this.getHeight()/2));
 		Random rand = new Random();	
 		if (rand.nextInt(99) <= 70) {
-			Screen.currentScreen.addEntity(new ExplosionOne(x, y));
+			new ExplosionOne(x, y);
 		} else {
-			Screen.currentScreen.addEntity(new ExplosionTwo(x, y));
+			new ExplosionTwo(x, y);
 		}
 	}
 	
