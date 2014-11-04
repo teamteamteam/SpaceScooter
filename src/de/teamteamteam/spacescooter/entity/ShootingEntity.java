@@ -9,6 +9,7 @@ public abstract class ShootingEntity extends LivingEntity {
 	private int shootSpawnX;
 	private int shootSpawnY;
 	private int shootDirection;
+	private int damageValue = 5;
 	private int shootSpeed;
 	
 	public ShootingEntity(int x, int y) {
@@ -23,7 +24,7 @@ public abstract class ShootingEntity extends LivingEntity {
 	
 	protected void shoot() {
 		if(this.currentShootDelay == 0) {
-			Screen.currentScreen.addEntity(new SingleShot(this.x + this.shootSpawnX, this.y + this.shootSpawnY, this.shootDirection, this.shootSpeed));
+			Screen.currentScreen.addEntity(new SingleShot(this.x + this.shootSpawnX, this.y + this.shootSpawnY, this.shootDirection, this.shootSpeed, this.damageValue));
 			this.currentShootDelay = this.shootDelay;
 		}
 	}
@@ -43,5 +44,13 @@ public abstract class ShootingEntity extends LivingEntity {
 	public void setShootSpawn(int x, int y) {
 		this.shootSpawnX = x;
 		this.shootSpawnY = y;
+	}
+	
+	public void setDamageValue(int damageValue){
+		this.damageValue = damageValue;
+	}
+	
+	public int getDamageValue(){
+		return this.damageValue;
 	}
 }

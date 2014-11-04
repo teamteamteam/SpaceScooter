@@ -11,9 +11,9 @@ import de.teamteamteam.spacescooter.background.StarBackground;
 import de.teamteamteam.spacescooter.control.Keyboard;
 import de.teamteamteam.spacescooter.entity.EnemyFour;
 import de.teamteamteam.spacescooter.entity.EnemyThree;
-import de.teamteamteam.spacescooter.entity.EnemyTwo;
 import de.teamteamteam.spacescooter.entity.Entity;
 import de.teamteamteam.spacescooter.entity.Explosion;
+import de.teamteamteam.spacescooter.entity.ItemChance;
 import de.teamteamteam.spacescooter.entity.Player;
 
 public class GameScreen extends Screen {
@@ -22,6 +22,7 @@ public class GameScreen extends Screen {
 	
 	public GameScreen(Screen parent) {
 		super(parent);
+		new ItemChance();
 		points.add(new Point(300,300));
 		points.add(new Point(600,100));
 		points.add(new Point(0,500));
@@ -30,9 +31,6 @@ public class GameScreen extends Screen {
 		this.entities.add(new EnemyFour(800, 400, points));
 		this.entities.add(new EnemyThree(650, 300));
 		this.entities.add(new EnemyThree(450, 100));
-		this.entities.add(new EnemyTwo(750, 550));
-		this.entities.add(new EnemyTwo(150, 250));
-		this.entities.add(new Explosion(200, 200, 50, 120, 120));
 	}
 
 	@Override

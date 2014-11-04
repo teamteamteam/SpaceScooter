@@ -54,6 +54,11 @@ public abstract class LivingEntity extends Entity implements Collidable {
 			enemy.takeDamage(this.getCollisionDamage());
 			this.takeDamage(enemy.getCollisionDamage());
 		}
+		if(this instanceof Player && entity instanceof Items){
+			Items item = (Items) entity;
+			item.setHealthPoints(0);
+			item.remove();
+		}
 	}
 
 	public void setCollisionDamage(int d) {

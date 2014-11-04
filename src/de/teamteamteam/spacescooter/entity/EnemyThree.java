@@ -11,15 +11,16 @@ public class EnemyThree extends Enemy{
 
 	private double newY;
 	private double ySpeed = 0.4;
+	private Random random;
 	
 	public EnemyThree(int x, int y) {
 		super(x, y);
-		Random random = new Random();
+		random = new Random();
 		this.setImage("images/nyancat.png");
 		this.setShootSpeed(4);
 		this.setShootDelay(42);
 		this.setShootSpawn(-10, 10);
-		this.setHealthPoints(5);
+		this.setHealthPoints(15);
 		this.setPosition(GameConfig.windowWidth, random.nextInt(GameConfig.windowHeight - this.getHeight()));
 		this.newY = this.getY();
 	}
@@ -33,6 +34,7 @@ public class EnemyThree extends Enemy{
 			Screen.currentScreen.addEntity(new EnemyThree(0, 0));
 		}
 		if(!this.isAlive()){
+			if(random.nextInt(10) < 5) Items.create(getX(), getY());
 			Screen.currentScreen.addEntity(new EnemyThree(0, 0));
 		}
 		LinkedList<Entity> list = Screen.currentScreen.getEntities();

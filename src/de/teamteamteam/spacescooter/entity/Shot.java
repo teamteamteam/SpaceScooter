@@ -13,11 +13,12 @@ public abstract class Shot extends LivingEntity {
 	private int speed;
 	private int direction;
 	
-	public Shot(int x, int y, int shootDirection, int shootSpeed) {
+	public Shot(int x, int y, int shootDirection, int shootSpeed, int damageValue) {
 		super(x, y);
 		this.direction = shootDirection;
 		this.speed = shootSpeed;
 		this.collisionCount = 1;
+		this.damageValue = damageValue;
 	}
 	
 	public void setImage(String filename) {
