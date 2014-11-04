@@ -1,3 +1,5 @@
+package de.teamteamteam.spacescooter.sound;
+
 import java.io.BufferedInputStream;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
@@ -99,6 +101,6 @@ public class SoundSystem {
 		FloatControl fc = (FloatControl) subC[0];
 		fc.setValue(volume);
 		BooleanControl bc = (BooleanControl) subC[1];
-
+		bc.setValue(false);
 	}
 }
