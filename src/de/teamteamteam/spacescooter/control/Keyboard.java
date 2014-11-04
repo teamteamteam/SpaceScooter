@@ -12,7 +12,11 @@ public class Keyboard implements KeyListener {
 	public static boolean isKeyDown(int keyCode) {
 		return Keyboard.activeKeys.contains((Integer) keyCode);
 	}
-
+	
+	public static boolean isKeyUp(int keyCode) {
+		return !Keyboard.activeKeys.contains((Integer) keyCode);
+	}
+	
 	public void keyPressed(KeyEvent e) {
 		if(Keyboard.activeKeys.contains((Integer) e.getKeyCode())) return;
 		Keyboard.activeKeys.add((Integer) e.getKeyCode());
