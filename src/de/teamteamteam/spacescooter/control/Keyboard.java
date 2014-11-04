@@ -67,7 +67,7 @@ public class Keyboard implements KeyListener {
 	 * Remove the given listener from the event notifications.
 	 */
 	public void removeListener(KeyboardListener listener) {
-		Keyboard.listener.remove(Keyboard.listener);
+		Keyboard.listener.remove(listener);
 	}
 	
 	
