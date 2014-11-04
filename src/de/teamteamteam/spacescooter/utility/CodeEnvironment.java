@@ -12,6 +12,12 @@ import java.util.zip.ZipInputStream;
 public class CodeEnvironment {
 
 	/**
+	 * Private constructor, this class will never be instantiated.
+	 */
+	private CodeEnvironment() {}
+	
+	
+	/**
 	 * Returns true if the program is run out of a jar.
 	 */
 	public static boolean isJar() {

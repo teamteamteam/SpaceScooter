@@ -17,6 +17,12 @@ public class Loader {
 		Loader.images = new Hashtable<String, BufferedImage>();
 	}
 
+
+	/**
+	 * Private constructor, this class will never be instantiated.
+	 */
+	private Loader() {}
+	
 	
 	/**
 	 * Return the loaded BufferedImage by its filename.

@@ -22,6 +22,12 @@ public class SoundSystem {
 
 
 	/**
+	 * Private constructor, this class will never be instantiated.
+	 */
+	private SoundSystem() {}
+	
+	
+	/**
 	 * Get mixer info and return available sound cards.
 	 */
 	public static Mixer.Info[] getAvailableDevices() {

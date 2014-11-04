@@ -7,4 +7,10 @@ public class GameConfig {
 	public static int windowWidth;
 	public static int windowHeight;
 	
+	
+	/**
+	 * Private constructor, this class will never be instantiated.
+	 */
+	private GameConfig() {}
+	
 }
