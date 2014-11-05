@@ -27,12 +27,19 @@ public abstract class ShootingEntity extends LivingEntity {
 	protected void shoot() {
 		if(this.canShoot == true) {
 			if(this.currentShootDelay == 0) {
-				new SingleBlueShot(this.x + this.shootSpawnX, this.y + this.shootSpawnY, this.shootDirection, this.shootSpeed, this.damageValue);
+				this.createShot();
 				this.currentShootDelay = this.shootDelay;
 			}
 		}
 	}
-	
+
+	/**
+	 * Override this method in the actual enemy class to change the type of shot the entity creates.
+	 */
+	public void createShot() {
+		new SingleBlueShot(this.x + this.shootSpawnX, this.y + this.shootSpawnY, this.shootDirection, this.shootSpeed, this.damageValue);
+	}
+
 	public void setCanShoot(boolean canShoot) {
 		this.canShoot = canShoot;
 	}
