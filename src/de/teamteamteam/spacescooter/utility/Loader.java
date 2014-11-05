@@ -1,17 +1,17 @@
 package de.teamteamteam.spacescooter.utility;
 
 import java.awt.image.BufferedImage;
-import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 import java.util.Hashtable;
 
 import javax.imageio.ImageIO;
 import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
 import de.teamteamteam.spacescooter.screen.LoadingScreen;
+import de.teamteamteam.spacescooter.sound.SoundSystem;
 
 /**
  * This Loader prefetches all required resources for the Game, such as images or
@@ -25,13 +25,13 @@ public class Loader {
 	private static Hashtable<String, BufferedImage> images;
 
 	/**
-	 * HashTable containing loaded AudioInputStreams
+	 * HashTable containing the loaded sounds URLs
 	 */
-	private static Hashtable<String, AudioInputStream> sounds;
+	private static Hashtable<String, URL> sounds;
 
 	static {
 		Loader.images = new Hashtable<String, BufferedImage>();
-		Loader.sounds = new Hashtable<String, AudioInputStream>();
+		Loader.sounds = new Hashtable<String, URL>();
 	}
 
 	
@@ -55,7 +55,7 @@ public class Loader {
 	/**
 	 * Return the loaded AudioInputStream by its relative filename.
 	 */
-	public static AudioInputStream getAudioInputStreamByFilename(String filename) {
+	public static URL getAudioInputStreamByFilename(String filename) {
 		if(CodeEnvironment.isJar()) {
 			return Loader.sounds.get(filename);
 		} else {
@@ -107,8 +107,11 @@ public class Loader {
 	 */
 	private static void addAudioInputStreamByFilename(String filename) {
 		try {
-			AudioInputStream sound = AudioSystem.getAudioInputStream(new BufferedInputStream(Loader.class.getClassLoader().getResourceAsStream(filename)));
-			Loader.sounds.put(filename, sound);
+			URL soundURL = Loader.class.getClassLoader().getResource(filename);
+			//make sure the sound is in a valid AudioFormat
+			AudioInputStream sound = SoundSystem.getAudioInputStreamByURL(soundURL);
+			sound.close();
+			Loader.sounds.put(filename, soundURL);
 		} catch (IOException e) {
 			System.err.println("Unable to load AudioInputStream: " + filename);
 			e.printStackTrace();
@@ -116,7 +119,6 @@ public class Loader {
 			System.err.println("Unsupported AudioFormat in file: " + filename);
 			e.printStackTrace();
 		}
-
 	}
 
 }

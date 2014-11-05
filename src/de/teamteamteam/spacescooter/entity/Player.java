@@ -5,6 +5,7 @@ import java.awt.event.KeyEvent;
 import de.teamteamteam.spacescooter.control.Keyboard;
 import de.teamteamteam.spacescooter.control.KeyboardListener;
 import de.teamteamteam.spacescooter.entity.shot.Shot;
+import de.teamteamteam.spacescooter.sound.SoundSystem;
 import de.teamteamteam.spacescooter.utility.GameConfig;
 
 public class Player extends ShootingEntity implements KeyboardListener {
@@ -56,6 +57,11 @@ public class Player extends ShootingEntity implements KeyboardListener {
 		this.canMove = canMove;
 	}
 	
+	@Override
+	public void explode() {
+		super.explode();
+		SoundSystem.playSound("sounds/abgang.wav");
+	}
 	
 	/**
 	 * On cleanup, unregister from the keyboard.

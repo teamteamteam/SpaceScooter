@@ -1,6 +1,9 @@
 package de.teamteamteam.spacescooter.sound;
 
 import java.io.BufferedInputStream;
+import java.io.IOException;
+import java.net.URL;
+
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.BooleanControl;
@@ -11,6 +14,9 @@ import javax.sound.sampled.Line;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.Mixer;
 import javax.sound.sampled.SourceDataLine;
+import javax.sound.sampled.UnsupportedAudioFileException;
+
+import de.teamteamteam.spacescooter.utility.Loader;
 
 
 public class SoundSystem {
@@ -75,22 +81,32 @@ public class SoundSystem {
 	/**
 	 * Create a SourceDataLine and play the BufferedInputStream into it.
 	 */
-	public static void playFromInputStream(BufferedInputStream inputStream) {
-		try {
-			AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(inputStream);
-			SoundSystem.sourceDataLine = AudioSystem.getSourceDataLine(audioInputStream.getFormat());
-			SoundSystem.sourceDataLine.open(audioInputStream.getFormat());
-			SoundSystem.sourceDataLine.start();
-			inputStream.reset();
-			byte[] b = new byte[512];
-			while (inputStream.available() > 0) {
-				inputStream.read(b, 0, 512);
-				SoundSystem.sourceDataLine.write(b, 0, 512);
+	public static void playFromAudioInputStream(URL soundURL) {
+		final URL fSoundURL = soundURL;
+		Thread soundThread = new Thread(new Runnable() {
+			public void run() {
+				try {
+					AudioInputStream sound = SoundSystem.getAudioInputStreamByURL(fSoundURL);
+					sound.reset();
+					SoundSystem.sourceDataLine = AudioSystem.getSourceDataLine(sound.getFormat());
+					SoundSystem.sourceDataLine.open(sound.getFormat());
+					SoundSystem.sourceDataLine.start();
+					sound.reset();
+					byte[] b = new byte[512];
+					while (sound.available() > 0) {
+						sound.read(b, 0, 512);
+						SoundSystem.sourceDataLine.write(b, 0, 512);
+					}
+					SoundSystem.sourceDataLine.drain();
+					SoundSystem.sourceDataLine.close();
+					sound.close();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 			}
-			SoundSystem.sourceDataLine.close();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		});
+		soundThread.setName("Sound: " + soundURL.toString());
+		soundThread.start();
 	}
 	
 	public static void setVolume(float volume) {
@@ -108,5 +124,15 @@ public class SoundSystem {
 		fc.setValue(volume);
 		BooleanControl bc = (BooleanControl) subC[1];
 		bc.setValue(false);
+	}
+
+
+	public static void playSound(String filename) {
+		SoundSystem.playFromAudioInputStream(Loader.getAudioInputStreamByFilename(filename));
+	}
+
+
+	public static AudioInputStream getAudioInputStreamByURL(URL soundURL) throws UnsupportedAudioFileException, IOException {
+		return AudioSystem.getAudioInputStream(new BufferedInputStream(soundURL.openStream()));
 	}
 }
