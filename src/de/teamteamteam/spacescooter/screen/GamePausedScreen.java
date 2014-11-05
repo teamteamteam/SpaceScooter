@@ -91,7 +91,8 @@ public class GamePausedScreen extends Screen {
 				this.parent.setOverlay(null);
 				break;
 			case 1:
-				this.parent.setOverlay(new MainMenuScreen(this.parent));
+				//Replace our parents (the game) parent (the SuperScreen) overlay.
+				this.parent.parent.setOverlay(new MainMenuScreen(this.parent.parent));
 				break;
 			}
 		}

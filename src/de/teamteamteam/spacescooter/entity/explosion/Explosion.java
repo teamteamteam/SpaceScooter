@@ -58,7 +58,7 @@ public class Explosion extends Entity {
 	 */
 	public void update() {
 		this.timeToLive--;
-		if(this.timeToLive == 0) this.remove();
+		if(this.timeToLive <= 0) this.remove();
 		if(this.count > 0 && this.timeToLive % this.count == 0) {
 			new Explosion(this.getX() + (int) (this.width * this.random.nextDouble()), this.getY() + (int) (this.height * this.random.nextDouble()));
 			this.count--;
