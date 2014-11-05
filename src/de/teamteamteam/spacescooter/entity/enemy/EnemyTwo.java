@@ -9,7 +9,7 @@ public class EnemyTwo extends Enemy{
 	public EnemyTwo(int x, int y) {
 		super(x, y);
 		Random random = new Random();
-		this.setImage("images/nyancat.png");
+		this.setImage("images/enemy02.png");
 		this.setShootSpeed(4);
 		this.setShootDelay(42);
 		this.setShootSpawn(-10, 10);

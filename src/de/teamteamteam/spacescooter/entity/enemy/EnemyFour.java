@@ -15,7 +15,7 @@ public class EnemyFour extends Enemy{
 
 	public EnemyFour(int x, int y, ArrayList<Point> points) {
 		super(x, y);
-		this.setImage("images/nyancat.png");
+		this.setImage("images/enemy01.png");
 		this.setShootSpeed(4);
 		this.setShootDelay(42);
 		this.setShootSpawn(-10, 10);

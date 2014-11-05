@@ -19,7 +19,7 @@ public class EnemyThree extends Enemy{
 	public EnemyThree(int x, int y) {
 		super(x, y);
 		random = new Random();
-		this.setImage("images/nyancat.png");
+		this.setImage("images/enemy02.png");
 		this.setShootSpeed(4);
 		this.setShootDelay(42);
 		this.setShootSpawn(-10, 10);
