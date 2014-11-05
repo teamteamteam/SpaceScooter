@@ -29,6 +29,7 @@ public class Main {
 		GameConfig.windowWidth = 800;
 		GameConfig.windowHeight = 600;
 		
+		//Instantiate the GameFrame
 		final GameFrame gameFrame = new GameFrame();
 		
 		//Initialize SuperScreen and add to GameFrame, so we can call doPaint() on it.
