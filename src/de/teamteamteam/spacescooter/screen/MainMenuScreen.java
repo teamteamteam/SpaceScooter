@@ -15,6 +15,9 @@ import de.teamteamteam.spacescooter.entity.Player;
 import de.teamteamteam.spacescooter.gui.Button;
 import de.teamteamteam.spacescooter.utility.GameConfig;
 
+/**
+ * This Screen show the games main menu.
+ */
 public class MainMenuScreen extends Screen {
 
 	private Player player;

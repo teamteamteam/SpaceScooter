@@ -16,6 +16,12 @@ import de.teamteamteam.spacescooter.entity.Player;
 import de.teamteamteam.spacescooter.entity.enemy.EnemyFour;
 import de.teamteamteam.spacescooter.entity.enemy.EnemyThree;
 
+/**
+ * In this GameScreen, the actual gameplay takes place.
+ * All Entities are updated and painted by it.
+ * Also, it offers the GamePausedScreen when the user presses VK_ESCAPE.
+ * When the Player died in the game, the GameOverScreen replaces this Screen.
+ */
 public class GameScreen extends Screen {
 
 	private ArrayList<Point> points = new ArrayList<Point>();

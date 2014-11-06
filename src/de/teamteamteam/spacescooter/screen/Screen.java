@@ -54,14 +54,23 @@ public abstract class Screen {
 	 */
 	protected abstract void update();
 
+	/**
+	 * Add an Entity to this Screen, so it will be updated and drawn.
+	 */
 	public void addEntity(Entity e) {
 		this.entities.add(e);
 	}
 
+	/**
+	 * Remove an Entity from this Screen.
+	 */
 	public void removeEntity(Entity e) {
 		this.entities.remove(e);
 	}
 
+	/**
+	 * Get a copy of the List of the Entities this Screen takes care of.
+	 */
 	public List<Entity> getEntities() {
 		return new LinkedList<Entity>(this.entities);
 	}

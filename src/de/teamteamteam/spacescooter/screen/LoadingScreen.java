@@ -5,6 +5,11 @@ import java.awt.Font;
 import java.awt.Graphics2D;
 import de.teamteamteam.spacescooter.utility.GameConfig;
 
+/**
+ * This is the LoadingScreen, which is displayed when the game is started.
+ * It vanishes when all available resources have been processed by the loader,
+ * showing the MainMenuScreen.
+ */
 public class LoadingScreen extends Screen {
 
 	private int currentProcessed;

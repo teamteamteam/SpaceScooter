@@ -15,6 +15,11 @@ import de.teamteamteam.spacescooter.gui.Button;
 import de.teamteamteam.spacescooter.utility.GameConfig;
 import de.teamteamteam.spacescooter.utility.Loader;
 
+/**
+ * This is the GameOverScreen, which is displayed once the player
+ * died and the game is over.
+ * It allows to start a new game or going to the MainMenuScreen.
+ */
 public class GameOverScreen extends Screen {
 
 	private BufferedImage img;

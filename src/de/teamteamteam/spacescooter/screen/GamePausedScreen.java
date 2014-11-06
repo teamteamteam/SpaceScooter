@@ -15,6 +15,11 @@ import de.teamteamteam.spacescooter.gui.Button;
 import de.teamteamteam.spacescooter.utility.GameConfig;
 import de.teamteamteam.spacescooter.utility.Loader;
 
+/**
+ * This GamePausedScreen shows up when the user pressed VK_ESCAPE ingame.
+ * It allows to return back into the game or going back to the MainMenuScreen,
+ * discarding the current GameScreen completely.
+ */
 public class GamePausedScreen extends Screen {
 
 	private BufferedImage img;
@@ -88,10 +93,11 @@ public class GamePausedScreen extends Screen {
 		} else if(this.animationStatus == 2) {
 			switch (this.menuPoint) {
 			case 0:
+				//Removes itself from the GameScreen, so the player can continue playing.
 				this.parent.setOverlay(null);
 				break;
 			case 1:
-				//Replace our parents (the game) parent (the SuperScreen) overlay.
+				//Replaces its parents (the GameScreen) parent (the SuperScreen) overlay.
 				this.parent.parent.setOverlay(new MainMenuScreen(this.parent.parent));
 				break;
 			}
