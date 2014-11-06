@@ -8,7 +8,7 @@ public class TestItem3 extends Items{
 	
 	public TestItem3(int x, int y) {
 		super(x, y);
-		this.setImage("images/Item3.png");
+		this.setImage("images/items/item3.png");
 	}
 
 	@Override

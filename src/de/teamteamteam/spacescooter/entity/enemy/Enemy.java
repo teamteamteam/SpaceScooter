@@ -12,7 +12,6 @@ public abstract class Enemy extends ShootingEntity {
 		this.name = "EnemyOne";
 		this.willShoot = r.nextBoolean();
 		this.setShootDirection(Shot.LEFT);
-		this.setPrimaryShotImage("images/shot03.png");
 	}
 
 	protected String name;

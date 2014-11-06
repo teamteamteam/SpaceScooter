@@ -45,11 +45,17 @@ public class Loader {
 	 * Return the loaded BufferedImage by its relative filename.
 	 */
 	public static BufferedImage getBufferedImageByFilename(String filename) {
+		BufferedImage image = null;
 		if(CodeEnvironment.isJar()) {
-			return Loader.images.get(filename);
+			image = Loader.images.get(filename);
 		} else {
-			return Loader.images.get(filename.replace("/", File.separator));
+			image = Loader.images.get(filename.replace("/", File.separator));
 		}
+		
+		if(image == null) {
+			System.err.println("Could not get BufferedImage by filename: '" + filename + "'");
+		}
+		return image;
 	}
 
 	/**
@@ -95,7 +101,7 @@ public class Loader {
 		try {
 			BufferedImage image = ImageIO.read(Loader.class.getClassLoader().getResourceAsStream(filename));
 			Loader.images.put(filename, image);
-		} catch (IOException e) {
+		} catch (Exception e) {
 			System.err.println("Unable to load BufferedImage: " + filename);
 			e.printStackTrace();
 		}

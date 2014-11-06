@@ -17,6 +17,7 @@ public class Player extends ShootingEntity implements KeyboardListener {
 	public Player(int x, int y) {
 		super(x, y);
 		this.setImage("images/ship.png");
+		this.setPrimaryShotImage("images/shots/laser_blue.png");
 		this.setShootDelay(20);
 		this.setShootSpawn(50, 16);
 		this.setShootDirection(Shot.RIGHT);

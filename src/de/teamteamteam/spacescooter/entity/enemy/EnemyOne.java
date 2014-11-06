@@ -5,6 +5,7 @@ public class EnemyOne extends Enemy {
 	public EnemyOne(int x, int y) {
 		super(x, y);
 		this.setImage("images/nyancat.png");
+		this.setPrimaryShotImage("images/shots/laser_red.png");
 		this.setShootSpeed(2);
 		this.setShootDelay(42);
 		this.setShootSpawn(-8, 10);

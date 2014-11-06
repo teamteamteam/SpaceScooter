@@ -10,6 +10,7 @@ public class EnemyTwo extends Enemy{
 		super(x, y);
 		Random random = new Random();
 		this.setImage("images/enemy02.png");
+		this.setPrimaryShotImage("images/shots/laser_green.png");
 		this.setShootSpeed(4);
 		this.setShootDelay(42);
 		this.setShootSpawn(-10, 10);

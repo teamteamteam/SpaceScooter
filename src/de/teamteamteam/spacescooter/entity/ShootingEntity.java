@@ -13,7 +13,7 @@ public abstract class ShootingEntity extends LivingEntity {
 	private int shootDirection;
 	private int damageValue = 5;
 	private int shootSpeed;
-	private String primaryShotImage = "images/shot02.png";
+	private String primaryShotImage;
 	
 	public ShootingEntity(int x, int y) {
 		super(x, y);
@@ -34,18 +34,15 @@ public abstract class ShootingEntity extends LivingEntity {
 		}
 	}
 
-	/**
-	 * Override this method in the actual enemy class to change the type of shot the entity creates.
-	 */
 	public void createShot() {
 		new Shot(
-		        this.x + this.shootSpawnX,
-		        this.y + this.shootSpawnY,
-		        this.shootDirection,
-		        this.shootSpeed,
-		        this.damageValue,
-		        this.primaryShotImage
-        );
+				this.x + this.shootSpawnX,
+				this.y + this.shootSpawnY,
+				this.shootDirection,
+				this.shootSpeed,
+				this.damageValue,
+				this.primaryShotImage
+				);
 	}
 
 	public void setCanShoot(boolean canShoot) {

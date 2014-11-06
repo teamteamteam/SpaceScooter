@@ -44,17 +44,29 @@ public class CodeEnvironment {
 	}
 	
 	/**
-	 * Return a list of files based on a given folder.
+	 * Return a relative path list of files based on a given folder.
 	 */
 	private static String[] getFileListFromFolder(File folder) {
 		ArrayList<String> fileList = new ArrayList<String>();
 		String rootPath = folder.getAbsolutePath() + File.separator;
+		String[] folderContents = CodeEnvironment.getAbsoluteFileListFromFolder(folder);
+		for(String element : folderContents) {
+			fileList.add(element.replace(rootPath, ""));
+		}
+		return fileList.toArray(new String[fileList.size()]);
+	}
+	
+	/**
+	 * Recursively generate an absolute path list of elements within a folder.
+	 */
+	private static String[] getAbsoluteFileListFromFolder(File folder) {
+		ArrayList<String> fileList = new ArrayList<String>();
 		File[] folderContents = folder.listFiles();
 		for(File f : folderContents) {
 			if(f.isDirectory()) {
-				String[] filesInDirectory = CodeEnvironment.getFileListFromFolder(f);
+				String[] filesInDirectory = CodeEnvironment.getAbsoluteFileListFromFolder(f);
 				for(String entry : filesInDirectory) {
-					fileList.add(entry.replace(rootPath, ""));
+					fileList.add(entry);
 				}
 			} else {
 				fileList.add(f.toString());
@@ -64,7 +76,7 @@ public class CodeEnvironment {
 	}
 	
 	/**
-	 * Returns a list of files that are contained within the current jar.
+	 * Returns a relative path list of files that are contained within the current jar.
 	 */
 	private static String[] getFileListFromJar(URL jar) {
 		List<String> list = new ArrayList<String>();
