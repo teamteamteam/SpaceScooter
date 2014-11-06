@@ -13,7 +13,7 @@ public abstract class ShootingEntity extends LivingEntity {
 	private int shootDirection;
 	private int damageValue = 5;
 	private int shootSpeed;
-	private String primaryShotImage = "images/shot01.png";
+	private String primaryShotImage = "images/shot02.png";
 	
 	public ShootingEntity(int x, int y) {
 		super(x, y);

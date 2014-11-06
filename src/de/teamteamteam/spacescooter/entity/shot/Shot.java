@@ -26,7 +26,7 @@ public class Shot extends LivingEntity {
 	
     //public void setImage(String filename) {
         //super.setImage(filename);
-        //this.setPosition(this.x - this.getImage().getWidth() / 2, this.y - this.getImage().getHeight() / 2);
+        //this.setposition(this.x - this.getimage().getwidth() / 2, this.y - this.getimage().getheight() / 2);
     //}
     
 	public int getDamageValue() {
