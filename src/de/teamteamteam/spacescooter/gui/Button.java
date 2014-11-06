@@ -2,7 +2,10 @@ package de.teamteamteam.spacescooter.gui;
 
 import de.teamteamteam.spacescooter.entity.Entity;
 
-public class Button extends Entity{
+/**
+ * This entity represents a simple button, as seen in all the menu screens.
+ */
+public class Button extends Entity {
 
 	
 	public Button(int x, int y) {

@@ -14,10 +14,19 @@ import de.teamteamteam.spacescooter.utility.GameConfig;
  */
 public class GameFrame extends JFrame {
 
+	/**
+	 * The usual stuff since the JFrame supports serialization.
+	 */
 	private static final long serialVersionUID = 1L;
 
+	/**
+	 * Our BufferStrategy for convenient reuse in the draw method.
+	 */
 	private BufferStrategy bufferStrategy;
 
+	/**
+	 * The SuperScreen instance, so we know who to trigger for fresh drawn frames.
+	 */
 	private Screen superScreen;
 
 	/**
@@ -31,7 +40,7 @@ public class GameFrame extends JFrame {
 	 * Set up the GameFrame before showing it to the world.
 	 */
 	public void init() {
-		this.setTitle("Unser schöner Titel");
+		this.setTitle(GameConfig.windowTitle);
 		this.setSize(GameConfig.windowWidth, GameConfig.windowHeight);
 		this.setResizable(false);
 		this.setUndecorated(false);
@@ -60,9 +69,27 @@ public class GameFrame extends JFrame {
 	}
 	
 	/**
-	 * The pain, do not underestimate it!
+	 * This is the draw method that gets called by the PaintThread through the AWT EventQueue.
+	 * We use a BufferStrategy for double buffering, so things are a little more complicated than usual.
+	 * First, we create our bufferStrategy _once_ within the init() method.
+	 * Then, we try to fetch our Graphics object from it and do the painting.
+	 * When the painting is done, we dispose the Graphics object.
+	 * 
+	 * Now the little tricky part:
+	 * We are drawing on what is called a VolatileImage (Due to the BufferStrategy).
+	 * This VolatileImage may lose its contents since it is stored in video ram.
+	 * This is why we need to repeat our painting operations in case the contents
+	 * of our VolatileImage were restored (aka reset to a blank canvas) or in case the
+	 * contents were lost (video ram was re-claimed by something, whatever...).
+	 * In between, there is a small window where the Image can be shown through the BufferStrategy.
+	 * 
+	 * After all that is done, we tell our Toolkit to do a sync.
+	 * This takes care of graphical output synchronization things related to the running OS.
+	 * 
+	 * And that's how you use double buffering. Easy, huh? ;-)
 	 * 
 	 * @see http://content.gpwiki.org/index.php/Java:Tutorials:Double_Buffering for details.
+	 * @see http://docs.oracle.com/javase/7/docs/api/java/awt/image/BufferStrategy.html
 	 */
 	public void draw() {
 		Graphics2D bufferedGraphics = null;
@@ -70,9 +97,7 @@ public class GameFrame extends JFrame {
 			do { // bufferStrategy.contentsRestored()
 				try {
 					bufferedGraphics = (Graphics2D) this.bufferStrategy.getDrawGraphics();
-
-					this.superScreen.doPaint(bufferedGraphics);
-
+					this.superScreen.doPaint(bufferedGraphics); //Trigger the actual paint routines.
 				} catch (Exception e) {
 					System.out.println("Hier geht was schief");
 					e.printStackTrace();

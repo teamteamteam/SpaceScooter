@@ -19,6 +19,11 @@ public class GameConfig {
 	 * Height of GameWindow.
 	 */
 	public static int windowHeight;
+
+	/**
+	 * Title of the game window.
+	 */
+	public static String windowTitle = "SpaceScooter!";
 	
 	
 	/**
