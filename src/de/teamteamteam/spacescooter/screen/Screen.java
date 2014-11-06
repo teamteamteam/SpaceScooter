@@ -2,6 +2,7 @@ package de.teamteamteam.spacescooter.screen;
 
 import java.awt.Graphics2D;
 import java.util.LinkedList;
+import java.util.List;
 
 import de.teamteamteam.spacescooter.entity.Entity;
 
@@ -32,7 +33,7 @@ public abstract class Screen {
 	/**
 	 * List of entities this screen is taking care of
 	 */
-	protected LinkedList<Entity> entities;
+	protected List<Entity> entities;
 
 	/**
 	 * Initialize parent, overlay and the Entity list
@@ -61,7 +62,7 @@ public abstract class Screen {
 		this.entities.remove(e);
 	}
 
-	public LinkedList<Entity> getEntities() {
+	public List<Entity> getEntities() {
 		return new LinkedList<Entity>(this.entities);
 	}
 

@@ -6,7 +6,7 @@ import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import java.util.Iterator;
-import java.util.LinkedList;
+import java.util.List;
 
 import de.teamteamteam.spacescooter.control.Keyboard;
 import de.teamteamteam.spacescooter.entity.Entity;
@@ -38,7 +38,7 @@ public class GamePausedScreen extends Screen {
 	@Override
 	protected void paint(Graphics2D g) {
 		g.drawImage(this.img, 0, 0, null);
-		LinkedList<Entity> list = this.getEntities();
+		List<Entity> list = this.getEntities();
 		Iterator<Entity> i = list.iterator();
 		while (i.hasNext()) {
 			i.next().paint(g);
@@ -54,7 +54,7 @@ public class GamePausedScreen extends Screen {
 
 	@Override
 	protected void update() {
-		LinkedList<Entity> list = this.getEntities();
+		List<Entity> list = this.getEntities();
 		Iterator<Entity> i = list.iterator();
 		while (i.hasNext()) {
 			i.next().update();

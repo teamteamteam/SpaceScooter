@@ -1,6 +1,6 @@
 package de.teamteamteam.spacescooter.background.item;
 
-import java.util.LinkedList;
+import java.util.List;
 
 import de.teamteamteam.spacescooter.entity.Entity;
 import de.teamteamteam.spacescooter.entity.LivingEntity;
@@ -20,7 +20,7 @@ public abstract class Items extends LivingEntity{
 			this.remove();
 		};
 		if(!this.isAlive()){
-			LinkedList<Entity> entities = Screen.currentScreen.getEntities();
+			List<Entity> entities = Screen.currentScreen.getEntities();
 			for (Entity e : entities) {
 				if(e instanceof Player){
 					itemCollected((Player) e);

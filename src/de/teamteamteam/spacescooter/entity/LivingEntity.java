@@ -1,7 +1,7 @@
 package de.teamteamteam.spacescooter.entity;
 
 import java.awt.Rectangle;
-import java.util.LinkedList;
+import java.util.List;
 
 import de.teamteamteam.spacescooter.background.item.Items;
 import de.teamteamteam.spacescooter.entity.enemy.Enemy;
@@ -25,7 +25,7 @@ public abstract class LivingEntity extends Entity implements Collidable {
 
 	public void update() {
 		if(!(this instanceof ShootingEntity)) return; //Only check collisions for ShootingEntity.
-		LinkedList<Entity> entities = Screen.currentScreen.getEntities();
+		List<Entity> entities = Screen.currentScreen.getEntities();
 		for (Entity e : entities) {
 			if (e.equals(this)) //Do not collide with myself!
 				continue;

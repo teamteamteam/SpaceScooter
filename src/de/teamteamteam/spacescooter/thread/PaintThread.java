@@ -5,23 +5,33 @@ import java.awt.EventQueue;
 import de.teamteamteam.spacescooter.gui.GameFrame;
 
 /**
- * This thread triggers about 60 redraws per second.
+ * This thread triggers the redrawing on the GameFrame.
  */
 public class PaintThread extends TimedThread {
 
-	private GameFrame gf;
-
+	/**
+	 * Runnable that is passed to the EventQueue for later invocation.
+	 */
+	private final Runnable paintRunnable;
+	
+	/**
+	 * Constructor. Sets the name of the Thread and creates the paintRunnable.
+	 */
 	public PaintThread(GameFrame gf) {
-		this.gf = gf;
+		final GameFrame gameFrame = gf;
 		this.setName("PaintThread");
+		this.paintRunnable = new Runnable() {
+			public void run() {
+				gameFrame.draw();
+			}
+		};
 	}
 
+	/**
+	 * The work method invoked by the TimingThread.
+	 */
 	public void work() {
 		//Trigger redrawing the things. Important: AWT-Context needed here!
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				gf.draw();
-			}
-		});
+		EventQueue.invokeLater(this.paintRunnable);
 	}
 }
