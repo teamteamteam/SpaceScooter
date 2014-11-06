@@ -3,7 +3,7 @@ package de.teamteamteam.spacescooter.entity.shot;
 import de.teamteamteam.spacescooter.entity.LivingEntity;
 import de.teamteamteam.spacescooter.utility.GameConfig;
 
-public abstract class Shot extends LivingEntity {
+public class Shot extends LivingEntity {
 
 	public static final int RIGHT = 1;
 	public static final int LEFT= -1;
@@ -14,19 +14,21 @@ public abstract class Shot extends LivingEntity {
 	private int speed;
 	private int direction;
 	
-	public Shot(int x, int y, int shootDirection, int shootSpeed, int damageValue) {
+	public Shot(int x, int y, int shootDirection, int shootSpeed, int damageValue, String filename) {
 		super(x, y);
 		this.direction = shootDirection;
 		this.speed = shootSpeed;
 		this.collisionCount = 1;
 		this.damageValue = damageValue;
-	}
-	
-	public void setImage(String filename) {
 		super.setImage(filename);
 		this.setPosition(this.x - this.getImage().getWidth() / 2, this.y - this.getImage().getHeight() / 2);
 	}
 	
+    //public void setImage(String filename) {
+        //super.setImage(filename);
+        //this.setposition(this.x - this.getimage().getwidth() / 2, this.y - this.getimage().getheight() / 2);
+    //}
+    
 	public int getDamageValue() {
 		return this.damageValue;
 	}
