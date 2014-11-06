@@ -20,7 +20,7 @@ public class Shot extends LivingEntity {
 		this.speed = shootSpeed;
 		this.collisionCount = 1;
 		this.damageValue = damageValue;
-		super.setImage(filename);
+		this.setImage(filename);
 		this.setPosition(this.x - this.getImage().getWidth() / 2, this.y - this.getImage().getHeight() / 2);
 	}
 	
