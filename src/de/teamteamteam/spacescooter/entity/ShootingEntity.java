@@ -76,4 +76,21 @@ public abstract class ShootingEntity extends LivingEntity {
 	public int getDamageValue(){
 		return this.damageValue;
 	}
+
+	protected int getShootSpawnX(){
+	    return this.shootSpawnX;
+	}
+
+	protected int getShootSpawnY(){
+	    return this.shootSpawnY;
+	}
+
+	protected int getShootDirection(){
+	    return this.shootDirection;
+	}
+
+	protected int getShootSpeed(){
+	    return this.shootSpeed;
+	}
+
 }
