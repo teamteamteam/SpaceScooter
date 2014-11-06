@@ -1,6 +1,6 @@
 package de.teamteamteam.spacescooter.entity;
 
-import de.teamteamteam.spacescooter.entity.shot.SingleBlueShot;
+import de.teamteamteam.spacescooter.entity.shot.Shot;
 
 public abstract class ShootingEntity extends LivingEntity {
 
@@ -13,6 +13,7 @@ public abstract class ShootingEntity extends LivingEntity {
 	private int shootDirection;
 	private int damageValue = 5;
 	private int shootSpeed;
+	private String primaryShotImage = "images/shot01.png";
 	
 	public ShootingEntity(int x, int y) {
 		super(x, y);
@@ -37,7 +38,14 @@ public abstract class ShootingEntity extends LivingEntity {
 	 * Override this method in the actual enemy class to change the type of shot the entity creates.
 	 */
 	public void createShot() {
-		new SingleBlueShot(this.x + this.shootSpawnX, this.y + this.shootSpawnY, this.shootDirection, this.shootSpeed, this.damageValue);
+		new Shot(
+		        this.x + this.shootSpawnX,
+		        this.y + this.shootSpawnY,
+		        this.shootDirection,
+		        this.shootSpeed,
+		        this.damageValue,
+		        this.primaryShotImage
+        );
 	}
 
 	public void setCanShoot(boolean canShoot) {
@@ -76,21 +84,10 @@ public abstract class ShootingEntity extends LivingEntity {
 	public int getDamageValue(){
 		return this.damageValue;
 	}
-
-	protected int getShootSpawnX(){
-	    return this.shootSpawnX;
+	
+	public void setPrimaryShotImage(String filename){
+	    this.primaryShotImage = filename;
 	}
 
-	protected int getShootSpawnY(){
-	    return this.shootSpawnY;
-	}
-
-	protected int getShootDirection(){
-	    return this.shootDirection;
-	}
-
-	protected int getShootSpeed(){
-	    return this.shootSpeed;
-	}
 
 }

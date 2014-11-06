@@ -3,7 +3,6 @@ import java.util.Random;
 
 import de.teamteamteam.spacescooter.entity.ShootingEntity;
 import de.teamteamteam.spacescooter.entity.shot.Shot;
-import de.teamteamteam.spacescooter.entity.shot.SingleRedShot;
 
 public abstract class Enemy extends ShootingEntity {
 
@@ -13,6 +12,7 @@ public abstract class Enemy extends ShootingEntity {
 		this.name = "EnemyOne";
 		this.willShoot = r.nextBoolean();
 		this.setShootDirection(Shot.LEFT);
+		this.setPrimaryShotImage("images/shot03.png");
 	}
 
 	protected String name;
@@ -24,16 +24,6 @@ public abstract class Enemy extends ShootingEntity {
 			this.shoot();
 	}
 
-	@Override
-	public void createShot() {
-		new SingleRedShot(
-		        super.getX() + super.getShootSpawnX(),
-		        super.getY() + super.getShootSpawnY(), 
-		        super.getShootDirection(), 
-		        super.getShootSpeed(), 
-		        super.getDamageValue()
-		    );
-	}
 
 }
 
