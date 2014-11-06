@@ -1,4 +1,4 @@
-package de.teamteamteam.spacescooter.background.item;
+package de.teamteamteam.spacescooter.entity.item;
 
 import de.teamteamteam.spacescooter.entity.Player;
 
