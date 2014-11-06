@@ -29,6 +29,9 @@ public class Loader {
 	 */
 	private static Hashtable<String, URL> sounds;
 
+	/**
+	 * Initialize the HashTables on load.
+	 */
 	static {
 		Loader.images = new Hashtable<String, BufferedImage>();
 		Loader.sounds = new Hashtable<String, URL>();
@@ -59,9 +62,9 @@ public class Loader {
 	}
 
 	/**
-	 * Return the loaded AudioInputStream by its relative filename.
+	 * Return the loaded sound URL by its relative filename.
 	 */
-	public static URL getAudioInputStreamByFilename(String filename) {
+	public static URL getSoundURLByFilename(String filename) {
 		if(CodeEnvironment.isJar()) {
 			return Loader.sounds.get(filename);
 		} else {
@@ -88,7 +91,7 @@ public class Loader {
 			if(e.endsWith(".wav")) {
 				if(GameConfig.DEBUG)
 					System.out.println("Creating AudioInputStream for: " + e);
-				Loader.addAudioInputStreamByFilename(e);
+				Loader.addSoundURLByFilename(e);
 			}
 			loadingScreen.increaseCurrentProcessed();
 		}
@@ -111,7 +114,7 @@ public class Loader {
 	/**
 	 * Load an AudioInputStream by relative filename.
 	 */
-	private static void addAudioInputStreamByFilename(String filename) {
+	private static void addSoundURLByFilename(String filename) {
 		try {
 			URL soundURL = Loader.class.getClassLoader().getResource(filename);
 			//make sure the sound is in a valid AudioFormat

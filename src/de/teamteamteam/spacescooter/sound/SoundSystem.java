@@ -128,7 +128,7 @@ public class SoundSystem {
 
 
 	public static void playSound(String filename) {
-		SoundSystem.playFromAudioInputStream(Loader.getAudioInputStreamByFilename(filename));
+		SoundSystem.playFromAudioInputStream(Loader.getSoundURLByFilename(filename));
 	}
 
 

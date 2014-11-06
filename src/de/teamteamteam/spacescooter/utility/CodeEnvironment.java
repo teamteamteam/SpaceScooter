@@ -9,6 +9,12 @@ import java.util.List;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
+/**
+ * This helper is used by the Loader to get a list of files of the whole Code
+ * and determine specific runtime configurations.
+ * Since there are some differences between OS and jar/non-jar environments,
+ * this helper makes sure, everything still works.
+ */
 public class CodeEnvironment {
 
 	/**

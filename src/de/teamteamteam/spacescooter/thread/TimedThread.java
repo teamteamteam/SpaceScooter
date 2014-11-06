@@ -1,5 +1,10 @@
 package de.teamteamteam.spacescooter.thread;
 
+/**
+ * Since things like drawing the next image or triggering the next game tick
+ * need to happen in time, this TimedThread allows more precise timing
+ * combined with a nap for the cpu in case there is enough time for it.
+ */
 public abstract class TimedThread extends Thread {
 
 	private long workInterval;
