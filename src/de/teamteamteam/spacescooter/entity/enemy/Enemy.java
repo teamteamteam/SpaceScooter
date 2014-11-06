@@ -26,7 +26,13 @@ public abstract class Enemy extends ShootingEntity {
 
 	@Override
 	public void createShot() {
-		new SingleRedShot(super.getX() + super.getShootSpawnX(), super.getY() + super.getShootSpawnY(), super.getShootDirection(), super.getShootSpeed(), super.getDamageValue());
+		new SingleRedShot(
+		        super.getX() + super.getShootSpawnX(),
+		        super.getY() + super.getShootSpawnY(), 
+		        super.getShootDirection(), 
+		        super.getShootSpeed(), 
+		        super.getDamageValue()
+		    );
 	}
 
 }
