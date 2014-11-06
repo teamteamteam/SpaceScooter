@@ -1,7 +1,7 @@
 package de.teamteamteam.spacescooter.entity.enemy;
 
 import java.util.Iterator;
-import java.util.LinkedList;
+import java.util.List;
 import java.util.Random;
 
 import de.teamteamteam.spacescooter.background.item.Items;
@@ -41,7 +41,7 @@ public class EnemyThree extends Enemy{
 			if(random.nextInt(10) < 5) Items.create(getX(), getY());
 			new EnemyThree(0, 0);
 		}
-		LinkedList<Entity> list = Screen.currentScreen.getEntities();
+		List<Entity> list = Screen.currentScreen.getEntities();
 		Iterator<Entity> i = list.iterator();
 		while (i.hasNext()) {
 			Entity entity = i.next();

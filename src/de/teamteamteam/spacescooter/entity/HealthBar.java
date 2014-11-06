@@ -2,7 +2,7 @@ package de.teamteamteam.spacescooter.entity;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
-import java.util.LinkedList;
+import java.util.List;
 
 import de.teamteamteam.spacescooter.screen.Screen;
 
@@ -18,7 +18,7 @@ public class HealthBar extends Entity {
 	}
 
 	public void paint(Graphics2D g) {
-		LinkedList<Entity> entities = Screen.currentScreen.getEntities();
+		List<Entity> entities = Screen.currentScreen.getEntities();
 		for (Entity e : entities) {
 			if(e instanceof Player){
 				this.width = ((Player) e).getHealthPoints();

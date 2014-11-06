@@ -5,7 +5,7 @@ import java.awt.Point;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.LinkedList;
+import java.util.List;
 
 import de.teamteamteam.spacescooter.background.StarBackground;
 import de.teamteamteam.spacescooter.background.item.ItemChance;
@@ -36,7 +36,7 @@ public class GameScreen extends Screen {
 
 	@Override
 	protected void paint(Graphics2D g) {
-		LinkedList<Entity> list = this.getEntities();
+		List<Entity> list = this.getEntities();
 		Iterator<Entity> i = list.iterator();
 		while (i.hasNext()) {
 			i.next().paint(g);
@@ -45,7 +45,7 @@ public class GameScreen extends Screen {
 
 	@Override
 	protected void update() {
-		LinkedList<Entity> list = this.getEntities();
+		List<Entity> list = this.getEntities();
 		Iterator<Entity> i = list.iterator();
 		while (i.hasNext()) {
 			i.next().update();
