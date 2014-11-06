@@ -75,7 +75,6 @@ public class Player extends ShootingEntity implements KeyboardListener {
 		super.remove();
 	}
 
-	@Override
 	public void keyPressed(KeyEvent e) {
 		//spontaneous fire happens here
 		if(e.getKeyCode() == KeyEvent.VK_SPACE) {
@@ -83,7 +82,6 @@ public class Player extends ShootingEntity implements KeyboardListener {
 		}
 	}
 
-	@Override
 	public void keyReleased(KeyEvent e) {
 		//space up -> reset shot cooldown
 		if(e.getKeyCode() == KeyEvent.VK_SPACE) {
@@ -91,7 +89,7 @@ public class Player extends ShootingEntity implements KeyboardListener {
 		}
 	}
 
-	@Override
 	public void keyTyped(KeyEvent e) {}
+
 
 }
