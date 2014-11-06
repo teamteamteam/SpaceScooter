@@ -18,15 +18,36 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 
 import de.teamteamteam.spacescooter.utility.Loader;
 
-
+/**
+ * Provides a static interface for convenient playing of sounds.
+ */
 public class SoundSystem {
 
+	/**
+	 * Internal Mixer instance.
+	 * Provides Controls of all sorts for the audio device.
+	 */
 	private static Mixer mixer = null;
+	
+	/**
+	 * Internal Line instance.
+	 * Represents an audio channel of our audio device.
+	 */
 	private static Line line = null;
+	
+	/**
+	 * Internal CompoundControl containing things like
+	 * volume control and more for our line.
+	 */
 	private static CompoundControl volCtrl = null;
+
+	/**
+	 * Internal SourceDataLine - used to pump out audio data which will
+	 * be played then.
+	 */
 	private static SourceDataLine sourceDataLine = null;
-
-
+	
+	
 	/**
 	 * Private constructor, this class will never be instantiated.
 	 */
@@ -38,6 +59,7 @@ public class SoundSystem {
 	 */
 	public static Mixer.Info[] getAvailableDevices() {
 		Mixer.Info[] devices = AudioSystem.getMixerInfo();
+		//Print information about available sound devices.
 		System.out.println("[Available Devices]");
 		for(int i=0; i < devices.length; i++) {
 			System.out.println("["+i+"] " + devices[i]);
@@ -80,6 +102,7 @@ public class SoundSystem {
 	
 	/**
 	 * Create a SourceDataLine and play the BufferedInputStream into it.
+	 * Uses the internal audioPlayerRunnable since this operation is blocking.
 	 */
 	public static void playFromAudioInputStream(URL soundURL) {
 		final URL fSoundURL = soundURL;
@@ -109,6 +132,10 @@ public class SoundSystem {
 		soundThread.start();
 	}
 	
+	/**
+	 * This method allows to set the output volume using a float parameter.
+	 * TODO: This is not finished yet.
+	 */
 	public static void setVolume(float volume) {
 		Control[] c = SoundSystem.line.getControls();
 		SoundSystem.volCtrl = (CompoundControl) SoundSystem.line.getControl(c[0].getType());
@@ -126,12 +153,17 @@ public class SoundSystem {
 		bc.setValue(false);
 	}
 
-
+	/**
+	 * Play a sound by passing a relative path to this method.
+	 */
 	public static void playSound(String filename) {
 		SoundSystem.playFromAudioInputStream(Loader.getSoundURLByFilename(filename));
 	}
 
-
+	/**
+	 * Open a given sound URL and return an AudioInputStream.
+	 * Can be used externally to make sure an audio format can be played by the AudioSystem.
+	 */
 	public static AudioInputStream getAudioInputStreamByURL(URL soundURL) throws UnsupportedAudioFileException, IOException {
 		return AudioSystem.getAudioInputStream(new BufferedInputStream(soundURL.openStream()));
 	}
