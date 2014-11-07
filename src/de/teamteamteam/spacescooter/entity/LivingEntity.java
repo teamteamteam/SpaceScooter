@@ -10,19 +10,51 @@ import de.teamteamteam.spacescooter.entity.shot.Shot;
 import de.teamteamteam.spacescooter.screen.Screen;
 import de.teamteamteam.spacescooter.utility.GameConfig;
 
+/**
+ * A LivingEntity is an Entity that is able to take damage.
+ * It can collide with other Collidable Entities.
+ * It knows about its collision box, which is based on width and height.
+ * Also, it contains the generic logic about health points and shield points and
+ * takes care of damage calculations.
+ */
 public abstract class LivingEntity extends Entity implements Collidable {
 
+	/**
+	 * Damage other LivingEntities take when colliding with this.
+	 */
+	private int collisionDamage;
+
+	/**
+	 * The LivingEntities health points.
+	 */
+	private int healthPoints;
+
+	/**
+	 * The LivingEntities shield points.
+	 */
+	private int shieldPoints;
+	
+	
+	/**
+	 * Default constructor.
+	 */
 	public LivingEntity(int x, int y) {
 		super(x, y);
 	}
 
-	private int collisionDamage;
-
+	
+	/**
+	 * Create a Rectangle containing all information to check for 
+	 * intersection with other Rectangles.
+	 */
 	public Rectangle getCollisionBox() {
 		return new Rectangle(this.getX(), this.getY(), this.getWidth(),
 				this.getHeight());
 	}
 
+	/**
+	 * Update logic containing basic collision detection and collision handling.
+	 */
 	public void update() {
 		if(!(this instanceof ShootingEntity)) return; //Only check collisions for ShootingEntity.
 		List<Entity> entities = Screen.currentScreen.getEntities();
@@ -39,7 +71,8 @@ public abstract class LivingEntity extends Entity implements Collidable {
 	}
 
 	/**
-	 * Handle collisions based on what we collide with.
+	 * Handle collisions based on what the LivingEntity collided with.
+	 * Triggers damage calculations for both LivingEntities involved.
 	 */
 	public void collideWith(Collidable entity) {
 		//this instanceof ShootingEntity
@@ -65,21 +98,32 @@ public abstract class LivingEntity extends Entity implements Collidable {
 		}
 	}
 
+	/**
+	 * Set the collision damage of the Entity.
+	 */
 	public void setCollisionDamage(int d) {
 		this.collisionDamage = d;
 	}
 
+	/**
+	 * Get the current collision damage of the Entity.
+	 */
 	public int getCollisionDamage() {
 		return this.collisionDamage;
 	}
 
-	private int healthPoints;
-	private int shieldPoints;
-
+	/**
+	 * Determine whether the LivingEntity is still alive.
+	 */
 	public boolean isAlive() {
 		return healthPoints > 0;
 	}
 
+	/**
+	 * Process incoming damage by calculating remaining health points
+	 * and shield points.
+	 * Also check for the need of triggering an explosion if dead.
+	 */
 	public void takeDamage(int damage) {
 		if(this instanceof Shot) {
 			if(GameConfig.DEBUG) System.out.println("Shot took damage: " + damage + "left: "+this.getHealthPoints()+" (" + this + ")");
@@ -93,22 +137,38 @@ public abstract class LivingEntity extends Entity implements Collidable {
 		}
 	}
 
+	/**
+	 * The default way the LivingEntity explodes.
+	 * Override this method for a different explosion behaviour.
+	 */
 	public void explode() {
 		new Explosion(this.getX(), this.getY());
 	}
 
+	/**
+	 * Set the current health points.
+	 */
 	public void setHealthPoints(int hp) {
 		this.healthPoints = hp;
 	}
 
+	/**
+	 * Get the current health points.
+	 */
 	public int getHealthPoints() {
 		return this.healthPoints;
 	}
 
+	/**
+	 * Set the current shield points.
+	 */
 	public void setShieldPoints(int sp) {
 		this.shieldPoints = sp;
 	}
 
+	/**
+	 * Get the current shield points.
+	 */
 	public int getShieldPoints() {
 		return this.shieldPoints;
 	}
