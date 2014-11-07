@@ -10,8 +10,6 @@ import de.teamteamteam.spacescooter.utility.GameConfig;
 
 public class Player extends ShootingEntity implements KeyboardListener {
 	
-	private boolean canMove = true;
-
 	private Keyboard keyboard = null;
 	
 	public Player(int x, int y) {
@@ -33,7 +31,7 @@ public class Player extends ShootingEntity implements KeyboardListener {
 	}
 
 	public void update() {
-		if(this.canMove) {
+		if(this.canMove()) {
 			super.update();
 			int offset = 3;
 			if(Keyboard.isKeyDown(KeyEvent.VK_UP) && this.getY() > 0) {
@@ -55,10 +53,6 @@ public class Player extends ShootingEntity implements KeyboardListener {
 		}
 	}
 
-	public void setCanMove(boolean canMove){
-		this.canMove = canMove;
-	}
-	
 	@Override
 	public void explode() {
 		super.explode();

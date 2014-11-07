@@ -29,6 +29,10 @@ public abstract class Entity implements Updateable, Paintable {
 	private int height;
 	
 	/**
+	 * Whether or not the Entity is able to move using transpose.
+	 */
+	private boolean canMove;
+	/**
 	 * Internal reference to the entities image.
 	 */
 	private BufferedImage img;
@@ -40,6 +44,7 @@ public abstract class Entity implements Updateable, Paintable {
 	 */
 	public Entity(int x, int y) {
 		this.setPosition(x, y);
+		this.setCanMove(true);
 		Screen.currentScreen.addEntity(this);
 	}
 	
@@ -71,8 +76,10 @@ public abstract class Entity implements Updateable, Paintable {
 	 * Example: X = X + x_delta, Y = Y + y_delta.
 	 */
 	public void transpose(int x_delta, int y_delta) {
-		this.x += x_delta;
-		this.y += y_delta;
+		if(this.canMove) {
+			this.x += x_delta;
+			this.y += y_delta;
+		}
 	}
 	
 	/**
@@ -111,6 +118,20 @@ public abstract class Entity implements Updateable, Paintable {
 		this.img = Loader.getBufferedImageByFilename(filename);
 		//set the entities dimensions using the dimensions of the image.
 		this.setDimensions(this.img.getWidth(), this.img.getHeight());
+	}
+	
+	/**
+	 * Set whether the Entity is able to move.
+	 */
+	public void setCanMove(boolean canMove) {
+		this.canMove = canMove;
+	}
+
+	/**
+	 * Returns true if the Entity is able to move.
+	 */
+	public boolean canMove() {
+		return this.canMove;
 	}
 	
 	/**
