@@ -46,7 +46,7 @@ public class Shot extends LivingEntity {
 		this.speed = shootSpeed;
 		this.damageValue = damageValue;
 		this.setImage(filename);
-		this.setPosition(this.x - this.getImage().getWidth() / 2, this.y - this.getImage().getHeight() / 2);
+		this.setPosition(this.getX() - this.getImage().getWidth() / 2, this.getY() - this.getImage().getHeight() / 2);
 	}
 
 	/**
@@ -68,11 +68,11 @@ public class Shot extends LivingEntity {
 	 * Remove the shot once out of the visible area.
 	 */
 	public void update() {
-		this.x += this.direction * this.speed;
+		this.transpose(this.direction * this.speed, 0);
 		//remove the shot in case it is out of the game window.
-		if ((this.x + this.getWidth()) < 0 || this.x > GameConfig.windowWidth
-				|| (this.y + this.getHeight()) < 0
-				|| this.y > GameConfig.windowHeight) {
+		if ((this.getX() + this.getWidth()) < 0 || this.getX() > GameConfig.windowWidth
+				|| (this.getY() + this.getHeight()) < 0
+				|| this.getY() > GameConfig.windowHeight) {
 			this.remove();
 		}
 	}

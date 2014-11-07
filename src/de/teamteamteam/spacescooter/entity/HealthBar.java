@@ -27,7 +27,7 @@ public class HealthBar extends Entity {
 		Graphics2D grpahic = (Graphics2D) g;
 		this.g = grpahic;
 		this.g.setColor(new Color(0,255,0));
-		this.g.fillRect(this.x, this.y, this.width, this.height);
+		this.g.fillRect(this.getX(), this.getY(), this.width, this.height);
 	}
 	
 	public void update() {

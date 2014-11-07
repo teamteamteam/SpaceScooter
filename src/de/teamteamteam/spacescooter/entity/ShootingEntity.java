@@ -36,8 +36,8 @@ public abstract class ShootingEntity extends LivingEntity {
 
 	public void createShot() {
 		new Shot(
-				this.x + this.shootSpawnX,
-				this.y + this.shootSpawnY,
+				this.getX() + this.shootSpawnX,
+				this.getY() + this.shootSpawnY,
 				this.shootDirection,
 				this.shootSpeed,
 				this.damageValue,

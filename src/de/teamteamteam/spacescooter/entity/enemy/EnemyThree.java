@@ -48,10 +48,10 @@ public class EnemyThree extends Enemy{
 			Entity entity = i.next();
 			if(entity instanceof Player){
 				Player player = (Player) entity;
-				if(this.y < player.getY()){
+				if(this.getY() < player.getY()){
 					this.newY += ySpeed;
 					this.setPosition(this.getX(), (int) newY);
-				}else if(this.y > player.getY()){
+				}else if(this.getY() > player.getY()){
 					this.newY -= ySpeed;
 					this.setPosition(this.getX(), (int) newY);
 				}

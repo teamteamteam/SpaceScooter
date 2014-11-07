@@ -34,18 +34,18 @@ public class Player extends ShootingEntity implements KeyboardListener {
 	public void update() {
 		if(this.canMove) {
 			super.update();
-			int off = 3;
-			if(Keyboard.isKeyDown(KeyEvent.VK_UP) && this.y > 0) {
-				this.y -= off;
+			int offset = 3;
+			if(Keyboard.isKeyDown(KeyEvent.VK_UP) && this.getY() > 0) {
+				this.transpose(0, -1 * offset);
 			}
-			if(Keyboard.isKeyDown(KeyEvent.VK_DOWN) && this.y < (GameConfig.windowHeight - this.getImage().getHeight())) {
-				this.y += off;
+			if(Keyboard.isKeyDown(KeyEvent.VK_DOWN) && this.getY() < (GameConfig.windowHeight - this.getImage().getHeight())) {
+				this.transpose(0, offset);
 			}
-			if(Keyboard.isKeyDown(KeyEvent.VK_LEFT) && this.x > 0) {
-				this.x -= off;
+			if(Keyboard.isKeyDown(KeyEvent.VK_LEFT) && this.getX() > 0) {
+				this.transpose(-1 * offset, 0);
 			}
-			if(Keyboard.isKeyDown(KeyEvent.VK_RIGHT) && this.x < (GameConfig.windowWidth - this.getImage().getWidth())) {
-				this.x += off;
+			if(Keyboard.isKeyDown(KeyEvent.VK_RIGHT) && this.getX() < (GameConfig.windowWidth - this.getImage().getWidth())) {
+				this.transpose(offset, 0);
 			}
 			//continuous fire takes place here
 			if(Keyboard.isKeyDown(KeyEvent.VK_SPACE)) {
