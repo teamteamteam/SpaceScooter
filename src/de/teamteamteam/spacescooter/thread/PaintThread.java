@@ -2,7 +2,7 @@ package de.teamteamteam.spacescooter.thread;
 
 import java.awt.EventQueue;
 
-import de.teamteamteam.spacescooter.gui.GameFrame;
+import de.teamteamteam.spacescooter.GameFrame;
 
 /**
  * This thread triggers the redrawing on the GameFrame.

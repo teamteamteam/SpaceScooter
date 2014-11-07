@@ -1,9 +1,11 @@
-package de.teamteamteam.spacescooter.entity;
+package de.teamteamteam.spacescooter.gui;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.util.List;
 
+import de.teamteamteam.spacescooter.entity.Entity;
+import de.teamteamteam.spacescooter.entity.Player;
 import de.teamteamteam.spacescooter.screen.Screen;
 
 public class HealthBar extends Entity {

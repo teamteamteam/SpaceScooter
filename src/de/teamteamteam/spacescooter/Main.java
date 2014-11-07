@@ -2,7 +2,6 @@ package de.teamteamteam.spacescooter;
 
 import java.awt.EventQueue;
 
-import de.teamteamteam.spacescooter.gui.GameFrame;
 import de.teamteamteam.spacescooter.screen.LoadingScreen;
 import de.teamteamteam.spacescooter.screen.Screen;
 import de.teamteamteam.spacescooter.screen.SuperScreen;

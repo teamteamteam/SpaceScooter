@@ -1,4 +1,4 @@
-package de.teamteamteam.spacescooter.gui;
+package de.teamteamteam.spacescooter;
 
 import java.awt.Graphics2D;
 import java.awt.Toolkit;
