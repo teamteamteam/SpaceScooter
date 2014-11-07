@@ -1,4 +1,4 @@
-package de.teamteamteam.spacescooter.entity;
+package de.teamteamteam.spacescooter.entity.spi;
 
 import java.awt.Graphics2D;
 

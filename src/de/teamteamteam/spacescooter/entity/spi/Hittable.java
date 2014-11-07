@@ -1,4 +1,4 @@
-package de.teamteamteam.spacescooter.entity;
+package de.teamteamteam.spacescooter.entity.spi;
 
 /**
  * Interface providing everything needed to handle taking damage.
