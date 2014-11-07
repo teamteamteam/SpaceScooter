@@ -47,7 +47,7 @@ public abstract class ShootingEntity extends LivingEntity {
 	/**
 	 * The damage the fired Shots will cause.
 	 */
-	private int damageValue;
+	private int shootDamage;
 	
 	/**
 	 * The speed the fired Shots will travel at.
@@ -145,15 +145,15 @@ public abstract class ShootingEntity extends LivingEntity {
 	/**
 	 * Set the damage value the fired shots will cause.
 	 */
-	public void setDamageValue(int damageValue){
-		this.damageValue = damageValue;
+	public void setShootDamage(int shootDamage){
+		this.shootDamage = shootDamage;
 	}
 	
 	/**
 	 * Get the current damage the fired shots will cause.
 	 */
-	public int getDamageValue(){
-		return this.damageValue;
+	public int getShootDamage(){
+		return this.shootDamage;
 	}
 
 	/**
@@ -173,7 +173,7 @@ public abstract class ShootingEntity extends LivingEntity {
 			this.getY() + this.shootSpawnY,
 			this.shootDirection,
 			this.shootSpeed,
-			this.damageValue,
+			this.shootDamage,
 			this.primaryShotImage
 		);
 	}
