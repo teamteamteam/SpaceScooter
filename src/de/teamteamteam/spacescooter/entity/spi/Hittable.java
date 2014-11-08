@@ -23,7 +23,7 @@ public interface Hittable {
 	/**
 	 * Set the Hittables current health points.
 	 */
-	public int setHealthPoints();
+	public void setHealthPoints(int healthPoints);
 
 	/**
 	 * Get the Hittables current shield points.
@@ -33,7 +33,7 @@ public interface Hittable {
 	/**
 	 * Set the Hittables current shield points.
 	 */
-	public int setShieldPoints();
+	public void setShieldPoints(int shieldPoints);
 	
 
 	

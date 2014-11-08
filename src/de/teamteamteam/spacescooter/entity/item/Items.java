@@ -1,7 +1,6 @@
 package de.teamteamteam.spacescooter.entity.item;
 
-import java.util.List;
-
+import de.teamteamteam.spacescooter.datastructure.ConcurrentIterator;
 import de.teamteamteam.spacescooter.entity.Entity;
 import de.teamteamteam.spacescooter.entity.LivingEntity;
 import de.teamteamteam.spacescooter.entity.Player;
@@ -20,8 +19,9 @@ public abstract class Items extends LivingEntity{
 			this.remove();
 		};
 		if(!this.isAlive()){
-			List<Entity> entities = Screen.currentScreen.getEntities();
-			for (Entity e : entities) {
+			ConcurrentIterator<Entity> i = Screen.currentScreen.getEntityIterator();
+			while(i.hasNext()) {
+				Entity e = i.next();
 				if(e instanceof Player){
 					itemCollected((Player) e);
 				}

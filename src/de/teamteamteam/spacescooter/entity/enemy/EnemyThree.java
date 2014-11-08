@@ -1,9 +1,8 @@
 package de.teamteamteam.spacescooter.entity.enemy;
 
-import java.util.Iterator;
-import java.util.List;
 import java.util.Random;
 
+import de.teamteamteam.spacescooter.datastructure.ConcurrentIterator;
 import de.teamteamteam.spacescooter.entity.Entity;
 import de.teamteamteam.spacescooter.entity.Player;
 import de.teamteamteam.spacescooter.entity.item.Items;
@@ -30,6 +29,16 @@ public class EnemyThree extends Enemy{
 		this.newY = this.getY();
 	}
 	
+	/**
+	 * This enemy spawns an Item on its death and causes another enemy to appear.
+	 */
+	@Override
+	public void die() {
+		if(random.nextInt(10) < 5) Items.create(getX(), getY());
+		new EnemyThree(0, 0);
+		super.die();
+	}
+	
 	@Override
 	public void update() {
 		super.update();
@@ -38,12 +47,7 @@ public class EnemyThree extends Enemy{
 			this.remove();
 			new EnemyThree(0, 0);
 		}
-		if(!this.isAlive()){
-			if(random.nextInt(10) < 5) Items.create(getX(), getY());
-			new EnemyThree(0, 0);
-		}
-		List<Entity> list = Screen.currentScreen.getEntities();
-		Iterator<Entity> i = list.iterator();
+		ConcurrentIterator<Entity> i =  Screen.currentScreen.getEntityIterator();
 		while (i.hasNext()) {
 			Entity entity = i.next();
 			if(entity instanceof Player){

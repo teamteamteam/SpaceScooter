@@ -3,13 +3,11 @@ package de.teamteamteam.spacescooter.screen;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
-
 import java.awt.event.KeyEvent;
-import java.util.Iterator;
-import java.util.List;
 
 import de.teamteamteam.spacescooter.background.StarBackground;
 import de.teamteamteam.spacescooter.control.Keyboard;
+import de.teamteamteam.spacescooter.datastructure.ConcurrentIterator;
 import de.teamteamteam.spacescooter.entity.Entity;
 import de.teamteamteam.spacescooter.entity.Player;
 import de.teamteamteam.spacescooter.gui.Button;
@@ -43,8 +41,7 @@ public class MainMenuScreen extends Screen {
 
 	@Override
 	public void paint(Graphics2D g) {
-		List<Entity> list = this.getEntities();
-		Iterator<Entity> i = list.iterator();
+		ConcurrentIterator<Entity> i = this.getEntityIterator();
 		while (i.hasNext()) {
 			i.next().paint(g);
 		}
@@ -62,8 +59,7 @@ public class MainMenuScreen extends Screen {
 
 	@Override
 	public void update() {
-		List<Entity> list = this.getEntities();
-		Iterator<Entity> i = list.iterator();
+		ConcurrentIterator<Entity> i = this.getEntityIterator();
 		while (i.hasNext()) {
 			i.next().update();
 		}

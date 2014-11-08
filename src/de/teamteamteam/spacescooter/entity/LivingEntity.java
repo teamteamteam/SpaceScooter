@@ -1,14 +1,12 @@
 package de.teamteamteam.spacescooter.entity;
 
 import java.awt.Rectangle;
-import java.util.List;
 
 import de.teamteamteam.spacescooter.entity.enemy.Enemy;
 import de.teamteamteam.spacescooter.entity.explosion.Explosion;
-import de.teamteamteam.spacescooter.entity.item.Items;
 import de.teamteamteam.spacescooter.entity.shot.Shot;
 import de.teamteamteam.spacescooter.entity.spi.Collidable;
-import de.teamteamteam.spacescooter.screen.Screen;
+import de.teamteamteam.spacescooter.entity.spi.Hittable;
 import de.teamteamteam.spacescooter.utility.GameConfig;
 
 /**
@@ -18,7 +16,7 @@ import de.teamteamteam.spacescooter.utility.GameConfig;
  * Also, it contains the generic logic about health points and shield points and
  * takes care of damage calculations.
  */
-public abstract class LivingEntity extends Entity implements Collidable {
+public abstract class LivingEntity extends Entity implements Collidable, Hittable {
 
 	/**
 	 * Damage other LivingEntities take when colliding with this.
@@ -54,48 +52,22 @@ public abstract class LivingEntity extends Entity implements Collidable {
 	}
 
 	/**
-	 * Update logic containing basic collision detection and collision handling.
-	 */
-	public void update() {
-		if(!(this instanceof ShootingEntity)) return; //Only check collisions for ShootingEntity.
-		List<Entity> entities = Screen.currentScreen.getEntities();
-		for (Entity e : entities) {
-			if (e.equals(this)) //Do not collide with myself!
-				continue;
-			if(!(e instanceof Collidable)) //Do not collide with non-collidable!
-				continue;
-			Collidable ce = (Collidable) e;
-			if (ce.getCollisionBox().intersects(this.getCollisionBox())) {
-				this.collideWith(ce);
-			}
-		}
-	}
-
-	/**
 	 * Handle collisions based on what the LivingEntity collided with.
-	 * Triggers damage calculations for both LivingEntities involved.
+	 * Triggers damage calculations for itself only.
+	 * Override to add specific behaviour, e.g. a Player picking up Items.
 	 */
 	public void collideWith(Collidable entity) {
-		//this instanceof ShootingEntity
 		if(entity instanceof Shot) {
 			Shot s = (Shot) entity;
 			this.takeDamage(s.getDamageValue());
-			s.takeDamage(this.getCollisionDamage());
 		}
 		if(entity instanceof Player && (!(this instanceof Player))) {
 			Player player = (Player) entity;
-			player.takeDamage(this.getCollisionDamage());
 			this.takeDamage(player.getCollisionDamage());
 		}
 		if(entity instanceof Enemy && (!(this instanceof Enemy))) {
 			Enemy enemy = (Enemy) entity;
-			enemy.takeDamage(this.getCollisionDamage());
 			this.takeDamage(enemy.getCollisionDamage());
-		}
-		if(this instanceof Player && entity instanceof Items){
-			Items item = (Items) entity;
-			item.setHealthPoints(0);
-			item.remove();
 		}
 	}
 
@@ -126,6 +98,8 @@ public abstract class LivingEntity extends Entity implements Collidable {
 	 * Also check for the need of triggering an explosion if dead.
 	 */
 	public void takeDamage(int damage) {
+		//Skip everything if already dead.
+		if(this.isAlive() == false) return;
 		if(this instanceof Shot) {
 			if(GameConfig.DEBUG) System.out.println("Shot took damage: " + damage + "left: "+this.getHealthPoints()+" (" + this + ")");
 		}
@@ -133,8 +107,7 @@ public abstract class LivingEntity extends Entity implements Collidable {
 		this.healthPoints -= damage;
 		if (this.isAlive() == false) {
 			if(GameConfig.DEBUG) System.out.println(this + " ist gestorben. RIP");
-			this.explode();
-			this.remove();
+			this.die();
 		}
 	}
 
@@ -144,6 +117,15 @@ public abstract class LivingEntity extends Entity implements Collidable {
 	 */
 	public void explode() {
 		new Explosion(this.getX(), this.getY());
+	}
+	
+	/**
+	 * The default way the LivingEntity dies.
+	 * Override this method for a different death behaviour.
+	 */
+	public void die() {
+		this.explode();
+		this.remove();
 	}
 
 	/**

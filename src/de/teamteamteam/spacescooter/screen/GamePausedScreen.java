@@ -5,10 +5,9 @@ import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
-import java.util.Iterator;
-import java.util.List;
 
 import de.teamteamteam.spacescooter.control.Keyboard;
+import de.teamteamteam.spacescooter.datastructure.ConcurrentIterator;
 import de.teamteamteam.spacescooter.entity.Entity;
 import de.teamteamteam.spacescooter.entity.Player;
 import de.teamteamteam.spacescooter.gui.Button;
@@ -43,8 +42,7 @@ public class GamePausedScreen extends Screen {
 	@Override
 	protected void paint(Graphics2D g) {
 		g.drawImage(this.img, 0, 0, null);
-		List<Entity> list = this.getEntities();
-		Iterator<Entity> i = list.iterator();
+		ConcurrentIterator<Entity> i = this.getEntityIterator();
 		while (i.hasNext()) {
 			i.next().paint(g);
 		}
@@ -59,8 +57,7 @@ public class GamePausedScreen extends Screen {
 
 	@Override
 	protected void update() {
-		List<Entity> list = this.getEntities();
-		Iterator<Entity> i = list.iterator();
+		ConcurrentIterator<Entity> i = this.getEntityIterator();
 		while (i.hasNext()) {
 			i.next().update();
 		}

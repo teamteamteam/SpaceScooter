@@ -1,6 +1,7 @@
 package de.teamteamteam.spacescooter.entity.shot;
 
 import de.teamteamteam.spacescooter.entity.LivingEntity;
+import de.teamteamteam.spacescooter.entity.spi.Collidable;
 import de.teamteamteam.spacescooter.utility.GameConfig;
 
 /**
@@ -75,6 +76,18 @@ public class Shot extends LivingEntity {
 				|| this.getY() > GameConfig.windowHeight) {
 			this.remove();
 		}
+	}
+	
+	/**
+	 * When a shot collides with something, leave behind a small explosion
+	 * and vanish.
+	 * TODO: Stronger shots may later survive a specific amount of collisions.
+	 */
+	@Override
+	public void collideWith(Collidable entity) {
+		super.collideWith(entity);
+		this.explode();
+		this.remove();
 	}
 	
 }

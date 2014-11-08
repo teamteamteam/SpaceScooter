@@ -4,17 +4,17 @@ import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
 
 import de.teamteamteam.spacescooter.background.StarBackground;
 import de.teamteamteam.spacescooter.control.Keyboard;
+import de.teamteamteam.spacescooter.datastructure.ConcurrentIterator;
 import de.teamteamteam.spacescooter.entity.Entity;
 import de.teamteamteam.spacescooter.entity.Player;
 import de.teamteamteam.spacescooter.entity.enemy.EnemyFour;
 import de.teamteamteam.spacescooter.entity.enemy.EnemyThree;
 import de.teamteamteam.spacescooter.entity.item.ItemChance;
 import de.teamteamteam.spacescooter.gui.HealthBar;
+import de.teamteamteam.spacescooter.utility.CollisionHandler;
 
 /**
  * In this GameScreen, the actual gameplay takes place.
@@ -42,8 +42,7 @@ public class GameScreen extends Screen {
 
 	@Override
 	protected void paint(Graphics2D g) {
-		List<Entity> list = this.getEntities();
-		Iterator<Entity> i = list.iterator();
+		ConcurrentIterator<Entity> i = this.getEntityIterator();
 		while (i.hasNext()) {
 			i.next().paint(g);
 		}
@@ -51,20 +50,26 @@ public class GameScreen extends Screen {
 
 	@Override
 	protected void update() {
-		List<Entity> list = this.getEntities();
-		Iterator<Entity> i = list.iterator();
+		ConcurrentIterator<Entity> i = this.getEntityIterator();
 		while (i.hasNext()) {
 			i.next().update();
 		}
+		// Pass the collision handler a copy of the entity list
+		CollisionHandler.handleCollisions();
 		if (Keyboard.isKeyDown(KeyEvent.VK_ESCAPE)) {
 			this.setOverlay(new GamePausedScreen(this));
 		}
-		if (list.get(1) instanceof Player) {
-			Player player = (Player) list.get(1);
-			if (!player.isAlive()) {
-				this.parent.setOverlay(new GameOverScreen(this.parent));
+		i.reset();
+		while (i.hasNext()) {
+			Entity e = i.next();
+			if (e instanceof Player) {
+				Player player = (Player) e;
+				if (!player.isAlive()) {
+					this.parent.setOverlay(new GameOverScreen(this.parent));
+				}
 			}
 		}
+
 	}
 
 }

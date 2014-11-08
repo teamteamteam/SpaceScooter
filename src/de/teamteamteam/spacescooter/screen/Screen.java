@@ -1,9 +1,9 @@
 package de.teamteamteam.spacescooter.screen;
 
 import java.awt.Graphics2D;
-import java.util.LinkedList;
-import java.util.List;
 
+import de.teamteamteam.spacescooter.datastructure.ConcurrentIterator;
+import de.teamteamteam.spacescooter.datastructure.ConcurrentLinkedList;
 import de.teamteamteam.spacescooter.entity.Entity;
 
 /**
@@ -33,17 +33,19 @@ public abstract class Screen {
 	/**
 	 * List of entities this screen is taking care of
 	 */
-	protected List<Entity> entities;
-
+	private ConcurrentLinkedList<Entity> entities;
+	
+	
 	/**
 	 * Initialize parent, overlay and the Entity list
 	 */
 	public Screen(Screen parent) {
 		this.setOverlay(null);
 		this.parent = parent;
-		this.entities = new LinkedList<Entity>();
+		this.entities = new ConcurrentLinkedList<Entity>();
 	}
-
+	
+	
 	/**
 	 * Method for each Screen to implement. Does the actual painting.
 	 */
@@ -69,12 +71,13 @@ public abstract class Screen {
 	}
 
 	/**
-	 * Get a copy of the List of the Entities this Screen takes care of.
+	 * Get an Iterator over the Entity List.
+	 * Use this within update method context!
 	 */
-	public List<Entity> getEntities() {
-		return new LinkedList<Entity>(this.entities);
+	public ConcurrentIterator<Entity> getEntityIterator() {
+		return this.entities.iterator();
 	}
-
+	
 	/**
 	 * This gets called by the PaintThread. It takes care of the painting order,
 	 * so an overlay Screen is actually in front of its parent Screen.
@@ -100,19 +103,6 @@ public abstract class Screen {
 	}
 
 	/**
-	 * When a Screens life ends, because it is removed, this method will take
-	 * care of existing overlays and remove all references to existing entities.
-	 */
-	public void cleanup() {
-		if(this.overlay != null) this.overlay.cleanup();
-		//tell all entities to cleanup themselves.
-		for(Entity e : this.getEntities()) {
-			e.remove();
-		}
-		this.entities.removeAll(this.entities);
-	}
-
-	/**
 	 * Sets the overlay Screen for the current Screen. In case an overlay is
 	 * being replaced, the old overlays cleanup-method is called. Also, this
 	 * takes care of the static currentScreen value, which is accessible for
@@ -126,5 +116,19 @@ public abstract class Screen {
 			Screen.currentScreen = screen;
 		}
 		this.overlay = screen;
+	}
+
+	/**
+	 * When a Screens life ends, because it is removed, this method will take
+	 * care of existing overlays and remove all references to existing entities.
+	 */
+	private void cleanup() {
+		if(this.overlay != null) this.overlay.cleanup();
+		//tell all entities to cleanup themselves.
+		ConcurrentIterator<Entity> i = this.getEntityIterator();
+		while(i.hasNext()) {
+			Entity e = i.next();
+			e.remove();
+		}
 	}
 }

@@ -4,7 +4,9 @@ import java.awt.event.KeyEvent;
 
 import de.teamteamteam.spacescooter.control.Keyboard;
 import de.teamteamteam.spacescooter.control.KeyboardListener;
+import de.teamteamteam.spacescooter.entity.item.Items;
 import de.teamteamteam.spacescooter.entity.shot.Shot;
+import de.teamteamteam.spacescooter.entity.spi.Collidable;
 import de.teamteamteam.spacescooter.sound.SoundSystem;
 import de.teamteamteam.spacescooter.utility.GameConfig;
 
@@ -54,6 +56,16 @@ public class Player extends ShootingEntity implements KeyboardListener {
 	}
 
 	@Override
+	public void collideWith(Collidable entity) {
+		super.collideWith(entity);
+		if(this instanceof Player && entity instanceof Items){
+			Items item = (Items) entity;
+			item.setHealthPoints(0);
+			item.remove();
+		}
+	}
+	
+	@Override
 	public void explode() {
 		super.explode();
 		SoundSystem.playSound("sounds/abgang.wav");
@@ -86,6 +98,5 @@ public class Player extends ShootingEntity implements KeyboardListener {
 	}
 
 	public void keyTyped(KeyEvent e) {}
-
-
+	
 }
