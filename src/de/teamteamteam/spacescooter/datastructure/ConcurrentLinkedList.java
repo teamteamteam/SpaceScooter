@@ -17,6 +17,7 @@ public class ConcurrentLinkedList<T> {
 	 */
 	public ConcurrentLinkedList() {
 		this.head = new ConcurrentLinkedListNode<T>();
+		this.head.setNext(new ConcurrentLinkedListNode<T>());
 	}
 
 	
@@ -24,10 +25,18 @@ public class ConcurrentLinkedList<T> {
 	 * Add an element to the list.
 	 */
 	public void add(T element) {
-		ConcurrentLinkedListNode<T> newNode = new ConcurrentLinkedListNode<T>(element);
-		ConcurrentLinkedListNode<T> currentNode = this.head;
-		while(currentNode.hasNext()) currentNode = currentNode.next();
-		currentNode.setNext(newNode);
+		ConcurrentLinkedListNode<T> currentNode = this.head.next();
+		//jump to the next node until we reached the last OR we got one that has a null value.
+		while(currentNode.hasNext() && currentNode.getValue() != null) currentNode = currentNode.next();
+		//if it has a null value, add the element here
+		if(currentNode.getValue() == null) {
+			currentNode.setValue(element);
+		} else {
+			//since getValue must be != null, we surely reached the _last_ node.
+			//create a new node and append it to the list.
+			ConcurrentLinkedListNode<T> newNode = new ConcurrentLinkedListNode<T>(element);
+			currentNode.setNext(newNode);
+		}
 	}
 
 	/**
