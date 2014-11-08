@@ -8,7 +8,7 @@ public class ExplosionOne extends Entity {
 	
 	public ExplosionOne(int x, int y) {
 		super(x, y);
-		this.setImage("images/explosion_proto.png");
+		this.setImage("images/explosions/explosion_proto.png");
 		this.setPosition(x - (this.getWidth()/2), y - (this.getHeight()/2));
 	}
 
@@ -20,25 +20,25 @@ public class ExplosionOne extends Entity {
 		}
 		switch (count) {
 		case 70:
-			this.setImage("images/explosion1.png");
+			this.setImage("images/explosions/01/explosion1.png");
 			break;
 		case 60:
-			this.setImage("images/explosion2.png");
+			this.setImage("images/explosions/01/explosion2.png");
 			break;
 		case 50:
-			this.setImage("images/explosion3.png");
+			this.setImage("images/explosions/01/explosion3.png");
 			break;
 		case 40:
-			this.setImage("images/explosion4.png");
+			this.setImage("images/explosions/01/explosion4.png");
 			break;
 		case 30:
-			this.setImage("images/explosion5.png");
+			this.setImage("images/explosions/01/explosion5.png");
 			break;
 		case 20:
-			this.setImage("images/explosion6.png");
+			this.setImage("images/explosions/01/explosion6.png");
 			break;
 		case 10:
-			this.setImage("images/explosion7.png");
+			this.setImage("images/explosions/01/explosion7.png");
 			break;
 		}
 	}

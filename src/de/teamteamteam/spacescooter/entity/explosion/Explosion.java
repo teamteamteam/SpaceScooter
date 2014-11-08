@@ -28,7 +28,7 @@ public class Explosion extends Entity {
 	 */
 	public Explosion(int x, int y) {
 		super(x, y);
-		this.setImage("images/explosion_proto.png");
+		this.setImage("images/explosions/explosion_proto.png");
 		this.setPosition(x - (this.getWidth()/2), y - (this.getHeight()/2));
 		Random rand = new Random();	
 		if (rand.nextInt(99) <= 70) {
@@ -44,7 +44,7 @@ public class Explosion extends Entity {
 	public Explosion(int x, int y, int count, int width, int height) {
 		super(x, y);
 		System.out.println("Explosion with: " + count);
-		this.setImage("images/explosion_proto.png");
+		this.setImage("images/explosions/explosion_proto.png");
 		this.setPosition(x, y);
 		this.random = new Random();
 		this.count = 10;
