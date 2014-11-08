@@ -11,36 +11,27 @@ import de.teamteamteam.spacescooter.screen.Screen;
 public class HealthBar extends Entity {
 
 	private int width = 100;
-	private int height = 20;
-	private Graphics2D g;
+	private int height = 24;
 	
 	public HealthBar(int x, int y) {
 		super(x, y);
-	
 	}
 
 	public void paint(Graphics2D g) {
+		Player player = null;
 		ConcurrentIterator<Entity> entities = Screen.currentScreen.getEntityIterator();
 		while(entities.hasNext()) {
 			Entity e = entities.next();
 			if(e instanceof Player){
-				this.width = ((Player) e).getHealthPoints();
+				player = ((Player) e);
 			}
 		}
-		Graphics2D grpahic = (Graphics2D) g;
-		this.g = grpahic;
-		this.g.setColor(new Color(0,255,0));
-		this.g.fillRect(this.getX(), this.getY(), this.width, this.height);
+		g.setColor(Color.GREEN);
+		g.fillRect(this.getX(), this.getY(), (this.width / 100) * player.getHealthPoints(), this.height);
+		g.setColor(Color.WHITE);
+		g.drawRect(this.getX(), this.getY(), this.width, this.height);
 	}
 	
-	public void update() {
-	}
+	public void update() {}
 	
-	public int getWidth() {
-		return 0;
-	}
-	
-	public int getHeight() {
-		return 0;
-	}
 }
