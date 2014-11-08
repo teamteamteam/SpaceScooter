@@ -100,12 +100,12 @@ public abstract class LivingEntity extends Entity implements Collidable, Hittabl
 	public void takeDamage(int damage) {
 		//Skip everything if already dead.
 		if(this.isAlive() == false) return;
-		if(this instanceof Shot) {
-			if(GameConfig.DEBUG) System.out.println("Shot took damage: " + damage + "left: "+this.getHealthPoints()+" (" + this + ")");
-		}
 		// TODO: shield and health logic
 		this.healthPoints -= damage;
 		if (this.isAlive() == false) {
+			//Set the correct values for gui indicators
+			this.healthPoints = 0;
+			this.shieldPoints = 0;
 			if(GameConfig.DEBUG) System.out.println(this + " ist gestorben. RIP");
 			this.die();
 		}

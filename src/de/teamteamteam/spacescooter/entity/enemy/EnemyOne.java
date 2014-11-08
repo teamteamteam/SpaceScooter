@@ -9,6 +9,7 @@ public class EnemyOne extends Enemy {
 		this.setShootSpeed(2);
 		this.setShootDelay(42);
 		this.setShootSpawn(-8, 10);
+		this.setShootDamage(5);
 		this.setHealthPoints(5);
 		this.setCollisionDamage(this.getHealthPoints());
 	}

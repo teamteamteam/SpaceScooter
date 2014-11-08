@@ -23,6 +23,7 @@ public class EnemyThree extends Enemy{
 		this.setShootSpeed(4);
 		this.setShootDelay(42);
 		this.setShootSpawn(-10, 10);
+		this.setShootDamage(5);
 		this.setHealthPoints(15);
 		this.setCollisionDamage(this.getHealthPoints());
 		this.setPosition(GameConfig.windowWidth, random.nextInt(GameConfig.windowHeight - this.getHeight()));
