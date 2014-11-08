@@ -28,6 +28,10 @@ There are some minor things you need to set up to your project in eclipse:
 * Add the folder res/ to your *build path*!
 * You're now set up to develop and test!
 
+Stats
+-----
+If you're interested in the amount of code, run 'make stat'.
+
 Troubleshooting
 ---------------
 

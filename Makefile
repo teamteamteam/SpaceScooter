@@ -1,4 +1,4 @@
-.PHONY: clean run
+.PHONY: clean run stat
 
 game.jar: clean
 	mkdir -p compiled
@@ -13,3 +13,6 @@ run: game.jar
 clean:
 	rm -rf compiled
 	rm -f game.jar
+
+stat:
+	find . -type f -name '*.java' -print0 | xargs -0 wc -l
