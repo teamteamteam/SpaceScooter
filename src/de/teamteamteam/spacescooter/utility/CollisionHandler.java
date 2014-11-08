@@ -1,7 +1,5 @@
 package de.teamteamteam.spacescooter.utility;
 
-import java.awt.Rectangle;
-
 import de.teamteamteam.spacescooter.datastructure.ConcurrentIterator;
 import de.teamteamteam.spacescooter.entity.Entity;
 import de.teamteamteam.spacescooter.entity.Player;
@@ -63,12 +61,28 @@ public class CollisionHandler {
 
 	/**
 	 * Check if two Collidables actually collided.
-	 * TODO: Do not use Rectangles, since there are so many created that it gets messy.
 	 */
 	private static boolean doCollide(Collidable cOne, Collidable cTwo) {
+		int x1 = cOne.getX();
+		int x2 = cOne.getX() + cOne.getWidth();
+		int x3 = cTwo.getX();
+		int x4 = cTwo.getX() + cTwo.getWidth();
+		int total_width = cOne.getWidth() + cTwo.getWidth();
+		boolean x_overlap = total_width > Math.abs(Math.max(x2, x4) - Math.min(x1, x3));
+		
+		int y1 = cOne.getY();
+		int y2 = cOne.getY() + cOne.getHeight();
+		int y3 = cTwo.getY();
+		int y4 = cTwo.getY() + cTwo.getHeight();
+		int total_height = cOne.getWidth() + cTwo.getWidth();
+		boolean y_overlap = total_height > Math.abs(Math.max(y2, y4) - Math.min(y1, y3));
+		
+		return x_overlap && y_overlap;
+		/*
 		Rectangle one = new Rectangle(cOne.getX() , cOne.getY(), cOne.getWidth(), cOne.getHeight());
 		Rectangle two = new Rectangle(cTwo.getX() , cTwo.getY(), cTwo.getWidth(), cTwo.getHeight());
 		return one.intersects(two);
+		*/
 	}
 	
 }
