@@ -23,6 +23,7 @@ public class Player extends ShootingEntity implements KeyboardListener {
 		this.setShootSpawn(50, 16);
 		this.setShootDirection(Shot.RIGHT);
 		this.setShootSpeed(10);
+		this.setCollisionDamage(10);
 		this.setHealthPoints(100);
 		this.registerOnKeyboard(Keyboard.getInstance());
 	}
