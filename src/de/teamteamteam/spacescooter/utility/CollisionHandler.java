@@ -78,11 +78,6 @@ public class CollisionHandler {
 		boolean y_overlap = total_height > Math.abs(Math.max(y2, y4) - Math.min(y1, y3));
 		
 		return x_overlap && y_overlap;
-		/*
-		Rectangle one = new Rectangle(cOne.getX() , cOne.getY(), cOne.getWidth(), cOne.getHeight());
-		Rectangle two = new Rectangle(cTwo.getX() , cTwo.getY(), cTwo.getWidth(), cTwo.getHeight());
-		return one.intersects(two);
-		*/
 	}
 	
 }
