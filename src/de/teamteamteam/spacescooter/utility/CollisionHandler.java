@@ -23,8 +23,9 @@ public class CollisionHandler {
 	 * then intelligently check them against each other to reduce the amount of checks.
 	 */
 	public static void handleCollisions() {
-		ConcurrentIterator<Entity> iteratorOne = Screen.currentScreen.getEntityIterator();
-		ConcurrentIterator<Entity> iteratorTwo = Screen.currentScreen.getEntityIterator();
+		ConcurrentIterator<Entity> iteratorOne = Screen.currentScreen.getCollisionIteratorOne();
+		ConcurrentIterator<Entity> iteratorTwo = Screen.currentScreen.getCollisionIteratorTwo();
+		iteratorOne.reset();
 		while(iteratorOne.hasNext()) {
 			Entity entityOne = iteratorOne.next();
 			//Only check Player and Enemy for the active side of a collision.

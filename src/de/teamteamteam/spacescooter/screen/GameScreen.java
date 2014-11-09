@@ -7,8 +7,6 @@ import java.util.ArrayList;
 
 import de.teamteamteam.spacescooter.background.StarBackground;
 import de.teamteamteam.spacescooter.control.Keyboard;
-import de.teamteamteam.spacescooter.datastructure.ConcurrentIterator;
-import de.teamteamteam.spacescooter.entity.Entity;
 import de.teamteamteam.spacescooter.entity.Player;
 import de.teamteamteam.spacescooter.entity.enemy.EnemyFour;
 import de.teamteamteam.spacescooter.entity.enemy.EnemyThree;
@@ -44,17 +42,17 @@ public class GameScreen extends Screen {
 
 	@Override
 	protected void paint(Graphics2D g) {
-		ConcurrentIterator<Entity> i = this.getEntityIterator();
-		while (i.hasNext()) {
-			i.next().paint(g);
+		this.entityPaintIterator.reset();
+		while (this.entityPaintIterator.hasNext()) {
+			this.entityPaintIterator.next().paint(g);
 		}
 	}
 
 	@Override
 	protected void update() {
-		ConcurrentIterator<Entity> i = this.getEntityIterator();
-		while (i.hasNext()) {
-			i.next().update();
+		this.entityUpdateIterator.reset();
+		while (this.entityUpdateIterator.hasNext()) {
+			this.entityUpdateIterator.next().update();
 		}
 		// Pass the collision handler a copy of the entity list
 		CollisionHandler.handleCollisions();

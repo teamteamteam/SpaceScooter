@@ -14,6 +14,7 @@ public class EnemyThree extends Enemy{
 	private double newY;
 	private double ySpeed = 0.4;
 	private Random random;
+	private ConcurrentIterator<Entity> entityIterator;
 	
 	public EnemyThree(int x, int y) {
 		super(x, y);
@@ -28,6 +29,7 @@ public class EnemyThree extends Enemy{
 		this.setCollisionDamage(10);
 		this.setPosition(GameConfig.windowWidth, random.nextInt(GameConfig.windowHeight - this.getHeight()));
 		this.newY = this.getY();
+		this.entityIterator = Screen.currentScreen.createEntityIterator();
 	}
 	
 	/**
@@ -48,9 +50,9 @@ public class EnemyThree extends Enemy{
 			this.remove();
 			new EnemyThree(0, 0);
 		}
-		ConcurrentIterator<Entity> i =  Screen.currentScreen.getEntityIterator();
-		while (i.hasNext()) {
-			Entity entity = i.next();
+		entityIterator.reset();
+		while (entityIterator.hasNext()) {
+			Entity entity = entityIterator.next();
 			if(entity instanceof Player){
 				Player player = (Player) entity;
 				if(this.getY() < player.getY()){

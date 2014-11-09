@@ -7,8 +7,6 @@ import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 
 import de.teamteamteam.spacescooter.control.Keyboard;
-import de.teamteamteam.spacescooter.datastructure.ConcurrentIterator;
-import de.teamteamteam.spacescooter.entity.Entity;
 import de.teamteamteam.spacescooter.entity.Player;
 import de.teamteamteam.spacescooter.gui.Button;
 import de.teamteamteam.spacescooter.utility.GameConfig;
@@ -42,9 +40,9 @@ public class GameOverScreen extends Screen {
 	@Override
 	protected void paint(Graphics2D g) {
 		g.drawImage(this.img, 0, 0, null);
-		ConcurrentIterator<Entity> i = this.getEntityIterator();
-		while (i.hasNext()) {
-			i.next().paint(g);
+		this.entityPaintIterator.reset();
+		while (this.entityPaintIterator.hasNext()) {
+			this.entityPaintIterator.next().paint(g);
 		}
 		g.setFont(new Font("Monospace", 0, 100));
 		g.setColor(new Color(75 + colorValue, 175 + colorValue, 175 + colorValue));
@@ -57,9 +55,9 @@ public class GameOverScreen extends Screen {
 
 	@Override
 	protected void update() {
-		ConcurrentIterator<Entity> i = this.getEntityIterator();
-		while (i.hasNext()) {
-			i.next().update();
+		this.entityUpdateIterator.reset();
+		while (this.entityUpdateIterator.hasNext()) {
+			this.entityUpdateIterator.next().update();
 		}
 		
 		if(this.colorValueIncrease) {

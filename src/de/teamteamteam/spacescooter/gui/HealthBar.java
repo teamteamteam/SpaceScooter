@@ -13,15 +13,18 @@ public class HealthBar extends Entity {
 	private int width = 100;
 	private int height = 24;
 	
+	private ConcurrentIterator<Entity> entityIterator;
+	
 	public HealthBar(int x, int y) {
 		super(x, y);
+		this.entityIterator = Screen.currentScreen.createEntityIterator();
 	}
 
 	public void paint(Graphics2D g) {
 		Player player = null;
-		ConcurrentIterator<Entity> entities = Screen.currentScreen.getEntityIterator();
-		while(entities.hasNext()) {
-			Entity e = entities.next();
+		this.entityIterator.reset();
+		while(this.entityIterator.hasNext()) {
+			Entity e = this.entityIterator.next();
 			if(e instanceof Player){
 				player = ((Player) e);
 			}

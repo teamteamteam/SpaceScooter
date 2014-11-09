@@ -35,6 +35,21 @@ public abstract class Screen {
 	 */
 	private ConcurrentLinkedList<Entity> entities;
 	
+	/**
+	 * Internal entity Iterator instance for updating
+	 */
+	protected ConcurrentIterator<Entity> entityUpdateIterator;
+
+	/**
+	 * Internal entity Iterator instance for painting
+	 */
+	protected ConcurrentIterator<Entity> entityPaintIterator;
+	
+	/**
+	 * Internal entity Iterator instances for collision detection
+	 */
+	private ConcurrentIterator<Entity> collisionIteratorOne;
+	private ConcurrentIterator<Entity> collisionIteratorTwo;
 	
 	/**
 	 * Initialize parent, overlay and the Entity list
@@ -43,6 +58,10 @@ public abstract class Screen {
 		this.setOverlay(null);
 		this.parent = parent;
 		this.entities = new ConcurrentLinkedList<Entity>();
+		this.entityUpdateIterator = this.entities.iterator();
+		this.entityPaintIterator = this.entities.iterator();
+		this.collisionIteratorOne = this.entities.iterator();
+		this.collisionIteratorTwo = this.entities.iterator();
 	}
 	
 	
@@ -74,7 +93,7 @@ public abstract class Screen {
 	 * Get an Iterator over the Entity List.
 	 * Use this within update method context!
 	 */
-	public final ConcurrentIterator<Entity> getEntityIterator() {
+	public final ConcurrentIterator<Entity> createEntityIterator() {
 		return this.entities.iterator();
 	}
 	
@@ -125,10 +144,26 @@ public abstract class Screen {
 	private final void cleanup() {
 		if(this.overlay != null) this.overlay.cleanup();
 		//tell all entities to cleanup themselves.
-		ConcurrentIterator<Entity> i = this.getEntityIterator();
-		while(i.hasNext()) {
-			Entity e = i.next();
+		this.entityUpdateIterator.reset();
+		while(this.entityUpdateIterator.hasNext()) {
+			Entity e = this.entityUpdateIterator.next();
 			e.remove();
 		}
+	}
+
+	/**
+	 * Returns second collision iterator.
+	 * These are used for collision detection _only_!
+	 */
+	public ConcurrentIterator<Entity> getCollisionIteratorOne() {
+		return this.collisionIteratorOne;
+	}
+
+	/**
+	 * Returns second collision iterator.
+	 * These are used for collision detection _only_!
+	 */
+	public ConcurrentIterator<Entity> getCollisionIteratorTwo() {
+		return this.collisionIteratorTwo;
 	}
 }
