@@ -43,13 +43,13 @@ public class ConcurrentLinkedList<T> {
 	 * Remove an element from the list.
 	 */
 	public void remove(T element) {
-		ConcurrentIterator<T> iter = this.iterator();
-		while (iter.hasNext()) {
-			T e = iter.next();
-			if (e.equals(element)) {
-				iter.remove();
-				return;
-			}
+		ConcurrentLinkedListNode<T> currentNode = this.head;
+		while(element.equals(currentNode.getValue()) == false && currentNode.hasNext()) {
+			currentNode = currentNode.next();
+		}
+		if(currentNode.getValue().equals(element)) {
+			currentNode.setValue(null);
+			return;
 		}
 	}
 
