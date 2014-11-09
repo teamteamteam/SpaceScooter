@@ -83,6 +83,11 @@ public class Loader {
 		loadingScreen.initialize(0, elements.length);
 		for(int i=0; i<elements.length; i++) {
 			String e = elements[i];
+			if(e.endsWith(".class")) {
+				if(GameConfig.DEBUG)
+					System.out.println("Loading Class for: " + e);
+				Loader.preloadClassByFilename(e);
+			}
 			if(e.endsWith(".png")) {
 				if(GameConfig.DEBUG)
 					System.out.println("Creating BufferedImage for: " + e);
@@ -94,6 +99,22 @@ public class Loader {
 				Loader.addSoundURLByFilename(e);
 			}
 			loadingScreen.increaseCurrentProcessed();
+		}
+	}
+
+	/**
+	 * Preload a given class by its filename using the ClassLoader.
+	 * This way, we avoid reading out of a jar later.
+	 */
+	private static void preloadClassByFilename(String classFilename) {
+		if(classFilename.contains("$")) return; //skip anonymous classes
+		String className = classFilename.replace(".class", "").replace(File.separator, ".");
+		try {
+			Class.forName(className);
+		} catch (ClassNotFoundException e) {
+			System.err.println("Error preloading class: " + classFilename);
+			System.err.println("> Resulting class name: " + className);
+			e.printStackTrace();
 		}
 	}
 
