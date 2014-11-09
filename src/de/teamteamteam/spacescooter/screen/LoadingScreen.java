@@ -3,6 +3,7 @@ package de.teamteamteam.spacescooter.screen;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
+import java.awt.RenderingHints;
 import de.teamteamteam.spacescooter.utility.GameConfig;
 
 /**
@@ -36,6 +37,8 @@ public class LoadingScreen extends Screen {
 	
 	@Override
 	protected void paint(Graphics2D g) {
+		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
+        RenderingHints.VALUE_ANTIALIAS_ON);
 		g.setColor(new Color(0,0,120));
 		g.fillRect(0, 0, GameConfig.windowWidth, GameConfig.windowHeight);
 		g.setColor(new Color(255,255,255));

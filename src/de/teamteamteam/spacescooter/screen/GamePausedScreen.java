@@ -5,6 +5,7 @@ import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
+import java.awt.RenderingHints;
 
 import de.teamteamteam.spacescooter.control.Keyboard;
 import de.teamteamteam.spacescooter.entity.Player;
@@ -39,6 +40,8 @@ public class GamePausedScreen extends Screen {
 
 	@Override
 	protected void paint(Graphics2D g) {
+		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
+        RenderingHints.VALUE_ANTIALIAS_ON);
 		g.drawImage(this.img, 0, 0, null);
 		this.entityPaintIterator.reset();
 		while (this.entityPaintIterator.hasNext()) {
@@ -50,7 +53,7 @@ public class GamePausedScreen extends Screen {
 		g.setFont(new Font("Monospace", 0, 20));
 		g.setColor(new Color(0, 0, 0));
 		g.drawString("Weiter", GameConfig.windowWidth/2-30, 332);
-		g.drawString("Hauptmenü", GameConfig.windowWidth/2-50, 432);
+		g.drawString("Hauptmen\u00fc", GameConfig.windowWidth/2-50, 432);
 	}
 
 	@Override
