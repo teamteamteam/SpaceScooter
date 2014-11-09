@@ -14,14 +14,14 @@ public abstract class TimedThread extends Thread {
 	 * 
 	 * @param hz
 	 */
-	public void setHz(int hz) {
+	public final void setHz(int hz) {
 		this.workInterval = (1000L * 1000L * 1000L) / (long) hz;
 	}
 
 	/**
 	 * This method takes care of the timing.
 	 */
-	public void run() {
+	public final void run() {
 		while (true) {
 			long workStart = System.nanoTime();
 			// do the actual work

@@ -59,14 +59,14 @@ public abstract class Screen {
 	/**
 	 * Add an Entity to this Screen, so it will be updated and drawn.
 	 */
-	public void addEntity(Entity e) {
+	public final void addEntity(Entity e) {
 		this.entities.add(e);
 	}
 
 	/**
 	 * Remove an Entity from this Screen.
 	 */
-	public void removeEntity(Entity e) {
+	public final void removeEntity(Entity e) {
 		this.entities.remove(e);
 	}
 
@@ -74,7 +74,7 @@ public abstract class Screen {
 	 * Get an Iterator over the Entity List.
 	 * Use this within update method context!
 	 */
-	public ConcurrentIterator<Entity> getEntityIterator() {
+	public final ConcurrentIterator<Entity> getEntityIterator() {
 		return this.entities.iterator();
 	}
 	
@@ -82,7 +82,7 @@ public abstract class Screen {
 	 * This gets called by the PaintThread. It takes care of the painting order,
 	 * so an overlay Screen is actually in front of its parent Screen.
 	 */
-	public void doPaint(Graphics2D g) {
+	public final void doPaint(Graphics2D g) {
 		this.paint(g);
 		if(this.overlay != null) {
 			this.overlay.doPaint(g);
@@ -94,7 +94,7 @@ public abstract class Screen {
 	 * will be called, so an overlay Screen stops the parent Screen from being
 	 * updated.
 	 */
-	public void doUpdate() {
+	public final void doUpdate() {
 		if(this.overlay != null) {
 			this.overlay.doUpdate();
 		} else {
@@ -108,7 +108,7 @@ public abstract class Screen {
 	 * takes care of the static currentScreen value, which is accessible for
 	 * everybody.
 	 */
-	public void setOverlay(Screen screen) {
+	public final void setOverlay(Screen screen) {
 		if(this.overlay != null) this.overlay.cleanup();
 		if(screen == null) {
 			Screen.currentScreen = this;
@@ -122,7 +122,7 @@ public abstract class Screen {
 	 * When a Screens life ends, because it is removed, this method will take
 	 * care of existing overlays and remove all references to existing entities.
 	 */
-	private void cleanup() {
+	private final void cleanup() {
 		if(this.overlay != null) this.overlay.cleanup();
 		//tell all entities to cleanup themselves.
 		ConcurrentIterator<Entity> i = this.getEntityIterator();
