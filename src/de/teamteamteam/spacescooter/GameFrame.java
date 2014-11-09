@@ -99,16 +99,16 @@ public class GameFrame extends JFrame {
 					bufferedGraphics = (Graphics2D) this.bufferStrategy.getDrawGraphics();
 					this.superScreen.doPaint(bufferedGraphics); //Trigger the actual paint routines.
 				} catch (Exception e) {
-					System.out.println("Hier geht was schief");
+					System.err.println("Exception in GameFrame.draw() gefangen:");
 					e.printStackTrace();
 				} finally {
 					// We are done, dispose the pen and celebrate the result!
 					if (bufferedGraphics != null)
 						bufferedGraphics.dispose();
 				}
-			} while (this.bufferStrategy.contentsRestored());
-			this.bufferStrategy.show();
-		} while (this.bufferStrategy.contentsLost());
+			} while (this.bufferStrategy.contentsRestored()); //Redraw in case the VolatileImage was restored
+			this.bufferStrategy.show(); //Show the drawn image
+		} while (this.bufferStrategy.contentsLost()); //Redraw in case the VolatileImage got lost
 		Toolkit.getDefaultToolkit().sync(); //Tell the OS to update its graphics of the window.
 	}
 
