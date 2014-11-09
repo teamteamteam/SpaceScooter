@@ -45,10 +45,12 @@ public abstract class TimedThread extends Thread {
 			
 			//wait manually for the rest of the interval
 			long sleepUntil = workStart + this.workInterval;
-			while ((sleepUntil- System.nanoTime()) > 0) {
-				if((sleepUntil- System.nanoTime()) > 5000) {
+			long currentTime = System.nanoTime();
+			while ((sleepUntil - currentTime) > 10) {
+				if((sleepUntil - currentTime) > 10000) {
 					Thread.yield(); //Give other threads a chance.
 				}
+				currentTime = System.nanoTime();
 			}
 		}
 	}
