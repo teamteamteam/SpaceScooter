@@ -4,7 +4,6 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
-import java.awt.RenderingHints;
 
 import de.teamteamteam.spacescooter.background.StarBackground;
 import de.teamteamteam.spacescooter.control.Keyboard;
@@ -40,8 +39,6 @@ public class MainMenuScreen extends Screen {
 
 	@Override
 	public void paint(Graphics2D g) {
-		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
-        RenderingHints.VALUE_ANTIALIAS_ON);
 		this.entityPaintIterator.reset();
 		while (this.entityPaintIterator.hasNext()) {
 			this.entityPaintIterator.next().paint(g);

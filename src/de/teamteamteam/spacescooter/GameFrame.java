@@ -1,8 +1,10 @@
 package de.teamteamteam.spacescooter;
 
 import java.awt.Graphics2D;
+import java.awt.RenderingHints;
 import java.awt.Toolkit;
 import java.awt.image.BufferStrategy;
+
 import javax.swing.JFrame;
 
 import de.teamteamteam.spacescooter.control.Keyboard;
@@ -97,6 +99,7 @@ public class GameFrame extends JFrame {
 			do { // bufferStrategy.contentsRestored()
 				try {
 					bufferedGraphics = (Graphics2D) this.bufferStrategy.getDrawGraphics();
+					this.applyRenderingHints(bufferedGraphics);
 					this.superScreen.doPaint(bufferedGraphics); //Trigger the actual paint routines.
 				} catch (Exception e) {
 					System.err.println("Exception in GameFrame.draw() gefangen:");
@@ -112,4 +115,11 @@ public class GameFrame extends JFrame {
 		Toolkit.getDefaultToolkit().sync(); //Tell the OS to update its graphics of the window.
 	}
 
+	/**
+	 * Apply rendering hints to the given Graphics2D.
+	 */
+	private void applyRenderingHints(Graphics2D bufferedGraphics) {
+		bufferedGraphics.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+		bufferedGraphics.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
+	}
 }
