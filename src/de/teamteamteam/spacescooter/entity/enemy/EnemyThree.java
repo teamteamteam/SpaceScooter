@@ -27,6 +27,7 @@ public class EnemyThree extends Enemy{
 		this.setShootDamage(5);
 		this.setHealthPoints(15);
 		this.setCollisionDamage(10);
+		this.setScore(30);
 		this.setPosition(GameConfig.windowWidth, random.nextInt(GameConfig.windowHeight - this.getHeight()));
 		this.newY = this.getY();
 		this.entityIterator = Screen.currentScreen.createEntityIterator();

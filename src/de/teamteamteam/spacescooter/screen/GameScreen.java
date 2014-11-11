@@ -12,6 +12,9 @@ import de.teamteamteam.spacescooter.entity.enemy.EnemyFour;
 import de.teamteamteam.spacescooter.entity.enemy.EnemyThree;
 import de.teamteamteam.spacescooter.entity.item.ItemChance;
 import de.teamteamteam.spacescooter.gui.HealthBar;
+import de.teamteamteam.spacescooter.gui.InterfaceBar;
+import de.teamteamteam.spacescooter.gui.ScoreBar;
+import de.teamteamteam.spacescooter.gui.ShieldBar;
 import de.teamteamteam.spacescooter.utility.CollisionHandler;
 
 /**
@@ -32,9 +35,12 @@ public class GameScreen extends Screen {
 		points.add(new Point(300,300));
 		points.add(new Point(600,100));
 		points.add(new Point(0,500));
-		new StarBackground(0, 0);
+		new StarBackground(0, 50);
 		this.player = new Player(200, 300);
-		new HealthBar(10, 10);
+		new InterfaceBar(0, 0);
+		new HealthBar(10, 5);
+		new ShieldBar(10, 27);
+		new ScoreBar(575, 33);
 		new EnemyFour(800, 400, points);
 		new EnemyThree(650, 300);
 		new EnemyThree(450, 100);

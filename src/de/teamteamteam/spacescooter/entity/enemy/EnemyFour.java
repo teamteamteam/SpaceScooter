@@ -23,6 +23,7 @@ public class EnemyFour extends Enemy{
 		this.setShootDamage(5);
 		this.setCollisionDamage(5);
 		this.setHealthPoints(5);
+		this.setScore(40);
 		this.points = points;
 		this.x = x;
 		this.y = y;

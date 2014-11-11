@@ -2,6 +2,7 @@ package de.teamteamteam.spacescooter.entity;
 
 import java.awt.Rectangle;
 
+import de.teamteamteam.spacescooter.datastructure.Score;
 import de.teamteamteam.spacescooter.entity.enemy.Enemy;
 import de.teamteamteam.spacescooter.entity.explosion.Explosion;
 import de.teamteamteam.spacescooter.entity.shot.Shot;
@@ -32,6 +33,11 @@ public abstract class LivingEntity extends Entity implements Collidable, Hittabl
 	 * The LivingEntities shield points.
 	 */
 	private int shieldPoints;
+	
+	/**
+	 * The LivingEntities shield points.
+	 */
+	private int ScorePoints;
 	
 	
 	/**
@@ -106,6 +112,7 @@ public abstract class LivingEntity extends Entity implements Collidable, Hittabl
 			//Set the correct values for gui indicators
 			this.healthPoints = 0;
 			this.shieldPoints = 0;
+			Score.addScore(ScorePoints);
 			if(GameConfig.DEBUG) System.out.println(this + " ist gestorben. RIP");
 			this.die();
 		}
@@ -154,6 +161,13 @@ public abstract class LivingEntity extends Entity implements Collidable, Hittabl
 	 */
 	public int getShieldPoints() {
 		return this.shieldPoints;
+	}
+	
+	/**
+	 * Set the current score points.
+	 */
+	public void setScore(int s) {
+		this.ScorePoints = s;
 	}
 
 }

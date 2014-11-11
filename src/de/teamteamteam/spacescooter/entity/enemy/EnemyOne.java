@@ -13,6 +13,7 @@ public class EnemyOne extends Enemy {
 		this.setCollisionDamage(5);
 		this.setHealthPoints(5);
 		this.setCollisionDamage(this.getHealthPoints());
+		this.setScore(10);
 	}
 
 	@Override

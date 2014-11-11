@@ -26,7 +26,7 @@ public class Main {
 		GraphicsSettings gs = new GraphicsSettings(); //Get settings
 		
 		GameConfig.windowWidth = 800;
-		GameConfig.windowHeight = 600;
+		GameConfig.windowHeight = 650;
 		
 		//Instantiate the GameFrame
 		final GameFrame gameFrame = new GameFrame();
