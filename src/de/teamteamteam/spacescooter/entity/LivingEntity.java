@@ -115,7 +115,7 @@ public abstract class LivingEntity extends Entity implements Collidable, Hittabl
 			this.healthPoints = 0;
 			this.shieldPoints = 0;
 			Score.addScore(ScorePoints);
-			if(this instanceof Enemy){ // Add 1 credit for the shop
+			if(this instanceof Enemy){ // Add 1 credit for the shop        
 				Credits.setCredits(Credits.getCredits() + 1);
 			}
 			if(GameConfig.DEBUG) System.out.println(this + " ist gestorben. RIP");
