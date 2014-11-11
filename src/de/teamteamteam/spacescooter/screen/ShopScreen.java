@@ -81,7 +81,6 @@ public class ShopScreen extends Screen {
 					StaticValue.ShootDamage += 5;
 					StaticValue.schaden++;
 					Credits.setCredits(Credits.getCredits() - 5);
-					System.out.println(schaden.getGekauft());
 				}
 				break;
 			case 1:
