@@ -42,13 +42,6 @@ public class SoundSystem {
 	private static CompoundControl volCtrl = null;
 
 	/**
-	 * Internal SourceDataLine - used to pump out audio data which will
-	 * be played then.
-	 */
-	private static SourceDataLine sourceDataLine = null;
-	
-	
-	/**
 	 * Private constructor, this class will never be instantiated.
 	 */
 	private SoundSystem() {}
@@ -111,17 +104,18 @@ public class SoundSystem {
 				try {
 					AudioInputStream sound = SoundSystem.getAudioInputStreamByURL(fSoundURL);
 					sound.reset();
-					SoundSystem.sourceDataLine = AudioSystem.getSourceDataLine(sound.getFormat());
-					SoundSystem.sourceDataLine.open(sound.getFormat());
-					SoundSystem.sourceDataLine.start();
+					SourceDataLine sourceDataLine = AudioSystem.getSourceDataLine(sound.getFormat());
+					sourceDataLine.open(sound.getFormat());
+					sourceDataLine.start();
 					sound.reset();
-					byte[] b = new byte[512];
+					int chunksize = 16384*4;
+					byte[] b = new byte[chunksize];
 					while (sound.available() > 0) {
-						sound.read(b, 0, 512);
-						SoundSystem.sourceDataLine.write(b, 0, 512);
+						sound.read(b, 0, chunksize);
+						sourceDataLine.write(b, 0, chunksize);
 					}
-					SoundSystem.sourceDataLine.drain();
-					SoundSystem.sourceDataLine.close();
+					sourceDataLine.drain();
+					sourceDataLine.close();
 					sound.close();
 				} catch (Exception e) {
 					e.printStackTrace();
