@@ -12,6 +12,5 @@ public class Credits {
 
 	public static void setCredits(int credits) {
 		Credits.credits = credits;
-		System.out.println(credits);
 	}
 }
