@@ -3,7 +3,7 @@ package de.teamteamteam.spacescooter.entity;
 import java.awt.Rectangle;
 
 import de.teamteamteam.spacescooter.entity.enemy.Enemy;
-import de.teamteamteam.spacescooter.entity.explosion.Explosion;
+import de.teamteamteam.spacescooter.entity.explosion.ExplosionTwo;
 import de.teamteamteam.spacescooter.entity.shot.Shot;
 import de.teamteamteam.spacescooter.entity.spi.Collidable;
 import de.teamteamteam.spacescooter.entity.spi.Hittable;
@@ -60,6 +60,8 @@ public abstract class LivingEntity extends Entity implements Collidable, Hittabl
 	public void collideWith(Collidable entity) {
 		if(entity instanceof Shot) {
 			Shot s = (Shot) entity;
+			if(this instanceof Enemy && s.getDirection() == Shot.LEFT) return;
+			if(this instanceof Player && s.getDirection() == Shot.RIGHT) return;
 			this.takeDamage(s.getDamageValue());
 		}
 		if(entity instanceof Player && (!(this instanceof Player))) {
@@ -120,7 +122,7 @@ public abstract class LivingEntity extends Entity implements Collidable, Hittabl
 	 * Override this method for a different explosion behaviour.
 	 */
 	public void explode() {
-		new Explosion(this.getX(), this.getY());
+		new ExplosionTwo(this.getX(), this.getY());
 	}
 	
 	/**

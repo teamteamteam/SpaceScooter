@@ -1,6 +1,8 @@
 package de.teamteamteam.spacescooter.entity.shot;
 
 import de.teamteamteam.spacescooter.entity.LivingEntity;
+import de.teamteamteam.spacescooter.entity.Player;
+import de.teamteamteam.spacescooter.entity.enemy.Enemy;
 import de.teamteamteam.spacescooter.entity.spi.Collidable;
 import de.teamteamteam.spacescooter.utility.GameConfig;
 
@@ -49,6 +51,14 @@ public class Shot extends LivingEntity {
 		this.setImage(filename);
 		this.setPosition(this.getX() - this.getImage().getWidth() / 2, this.getY() - this.getImage().getHeight() / 2);
 	}
+	
+	/**
+	 * Return the direction the Shot is traveling into.
+	 * Returns Shot.LEFT or Shot.RIGHT
+	 */
+	public int getDirection() {
+		return this.direction;
+	}
 
 	/**
 	 * Returns the damage this shot does to LivingEntities it hits.
@@ -85,6 +95,8 @@ public class Shot extends LivingEntity {
 	 */
 	@Override
 	public void collideWith(Collidable entity) {
+		if(this.direction == LEFT && entity instanceof Enemy) return;
+		if(this.direction == RIGHT && entity instanceof Player) return;
 		super.collideWith(entity);
 		this.explode();
 		this.remove();
