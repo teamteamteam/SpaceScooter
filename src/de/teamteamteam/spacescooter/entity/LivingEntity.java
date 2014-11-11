@@ -3,7 +3,6 @@ package de.teamteamteam.spacescooter.entity;
 import java.awt.Rectangle;
 
 import de.teamteamteam.spacescooter.entity.enemy.Enemy;
-import de.teamteamteam.spacescooter.entity.explosion.ExplosionTwo;
 import de.teamteamteam.spacescooter.entity.shot.Shot;
 import de.teamteamteam.spacescooter.entity.spi.Collidable;
 import de.teamteamteam.spacescooter.entity.spi.Hittable;
@@ -121,9 +120,7 @@ public abstract class LivingEntity extends Entity implements Collidable, Hittabl
 	 * The default way the LivingEntity explodes.
 	 * Override this method for a different explosion behaviour.
 	 */
-	public void explode() {
-		new ExplosionTwo(this.getX(), this.getY());
-	}
+	public void explode() {}
 	
 	/**
 	 * The default way the LivingEntity dies.
