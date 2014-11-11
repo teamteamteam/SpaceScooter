@@ -7,6 +7,7 @@ import de.teamteamteam.spacescooter.entity.explosion.Explosion;
 import de.teamteamteam.spacescooter.entity.shot.Shot;
 import de.teamteamteam.spacescooter.entity.spi.Collidable;
 import de.teamteamteam.spacescooter.entity.spi.Hittable;
+import de.teamteamteam.spacescooter.gui.Credits;
 import de.teamteamteam.spacescooter.utility.GameConfig;
 
 /**
@@ -106,6 +107,9 @@ public abstract class LivingEntity extends Entity implements Collidable, Hittabl
 			//Set the correct values for gui indicators
 			this.healthPoints = 0;
 			this.shieldPoints = 0;
+			if(this instanceof Enemy){ // Add 1 credit for the shop
+				Credits.setCredits(Credits.getCredits() + 1);
+			}
 			if(GameConfig.DEBUG) System.out.println(this + " ist gestorben. RIP");
 			this.die();
 		}
