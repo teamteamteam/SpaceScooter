@@ -1,5 +1,7 @@
 package de.teamteamteam.spacescooter;
 
+import java.awt.Container;
+import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.Toolkit;
@@ -56,8 +58,19 @@ public class GameFrame extends JFrame {
 		// Make sure we get the keyboard events. Use Keyboard.isKeyDown() to ask
 		// about keys status.
 		this.addKeyListener(Keyboard.getInstance());
-
+		
+		//Make sure the window has the right size.
+		Container contentPane = this.getContentPane();
+		//Apply right and bottom inset offset to the dimension, so the result will be a properly sized window.
+		Dimension enforcedDimension = new Dimension(GameConfig.windowWidth + this.getInsets().right, GameConfig.windowHeight + this.getInsets().bottom);
+		contentPane.setSize(enforcedDimension);
+		contentPane.setMinimumSize(enforcedDimension);
+		contentPane.setPreferredSize(enforcedDimension);
+		
+		//Make the window visible
 		this.setVisible(true);
+		//Pack it, so the Dimensions of the contentPane apply.
+		this.pack();
 
 		//ignore the OS telling us to repaint - it's wasting our time.
 		this.setIgnoreRepaint(true);
@@ -106,6 +119,9 @@ public class GameFrame extends JFrame {
 				try {
 					bufferedGraphics = (Graphics2D) this.bufferStrategy.getDrawGraphics();
 					this.applyRenderingHints(bufferedGraphics);
+					//Apply translation since different platforms use different window decorations that mess
+					//up our coordinates. The new origin shall be the first usable pixel in the top left corner.
+					bufferedGraphics.translate(this.getInsets().left, this.getInsets().top);
 					this.superScreen.doPaint(bufferedGraphics); //Trigger the actual paint routines.
 				} catch (Exception e) {
 					System.err.println("Exception in GameFrame.draw() gefangen:");
