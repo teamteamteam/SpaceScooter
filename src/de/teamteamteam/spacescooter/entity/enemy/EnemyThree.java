@@ -5,6 +5,7 @@ import java.util.Random;
 import de.teamteamteam.spacescooter.datastructure.ConcurrentIterator;
 import de.teamteamteam.spacescooter.entity.Entity;
 import de.teamteamteam.spacescooter.entity.Player;
+import de.teamteamteam.spacescooter.entity.explosion.MultiExplosion;
 import de.teamteamteam.spacescooter.entity.item.Items;
 import de.teamteamteam.spacescooter.screen.Screen;
 import de.teamteamteam.spacescooter.utility.GameConfig;
@@ -41,6 +42,14 @@ public class EnemyThree extends Enemy{
 		if(random.nextInt(10) < 5) Items.create(getX(), getY());
 		new EnemyThree(0, 0);
 		super.die();
+	}
+	
+	/**
+	 * Custom MultiExplosion for this enemy.
+	 */
+	@Override
+	public void explode() {
+		new MultiExplosion(this.getX(), this.getY());
 	}
 	
 	@Override

@@ -4,10 +4,10 @@ import java.awt.Rectangle;
 
 import de.teamteamteam.spacescooter.datastructure.Score;
 import de.teamteamteam.spacescooter.entity.enemy.Enemy;
-import de.teamteamteam.spacescooter.entity.explosion.Explosion;
 import de.teamteamteam.spacescooter.entity.shot.Shot;
 import de.teamteamteam.spacescooter.entity.spi.Collidable;
 import de.teamteamteam.spacescooter.entity.spi.Hittable;
+import de.teamteamteam.spacescooter.gui.Credits;
 import de.teamteamteam.spacescooter.utility.GameConfig;
 
 /**
@@ -65,6 +65,8 @@ public abstract class LivingEntity extends Entity implements Collidable, Hittabl
 	public void collideWith(Collidable entity) {
 		if(entity instanceof Shot) {
 			Shot s = (Shot) entity;
+			if(this instanceof Enemy && s.getDirection() == Shot.LEFT) return;
+			if(this instanceof Player && s.getDirection() == Shot.RIGHT) return;
 			this.takeDamage(s.getDamageValue());
 		}
 		if(entity instanceof Player && (!(this instanceof Player))) {
@@ -113,6 +115,9 @@ public abstract class LivingEntity extends Entity implements Collidable, Hittabl
 			this.healthPoints = 0;
 			this.shieldPoints = 0;
 			Score.addScore(ScorePoints);
+			if(this instanceof Enemy){ // Add 1 credit for the shop
+				Credits.setCredits(Credits.getCredits() + 1);
+			}
 			if(GameConfig.DEBUG) System.out.println(this + " ist gestorben. RIP");
 			this.die();
 		}
@@ -122,9 +127,7 @@ public abstract class LivingEntity extends Entity implements Collidable, Hittabl
 	 * The default way the LivingEntity explodes.
 	 * Override this method for a different explosion behaviour.
 	 */
-	public void explode() {
-		new Explosion(this.getX(), this.getY());
-	}
+	public void explode() {}
 	
 	/**
 	 * The default way the LivingEntity dies.

@@ -18,14 +18,14 @@ public class Player extends ShootingEntity implements KeyboardListener {
 		super(x, y);
 		this.setImage("images/ship.png");
 		this.setPrimaryShotImage("images/shots/laser_blue.png");
-		this.setShootDamage(5);
+		this.setShootDamage(PlayerStatus.ShootDamage);
 		this.setShootDelay(20);
 		this.setShootSpawn(50, 16);
 		this.setShootDirection(Shot.RIGHT);
 		this.setShootSpeed(10);
 		this.setCollisionDamage(10);
-		this.setHealthPoints(100);
 		this.setShieldPoints(100);
+		this.setHealthPoints(PlayerStatus.HealthPoints);
 		this.registerOnKeyboard(Keyboard.getInstance());
 	}
 
