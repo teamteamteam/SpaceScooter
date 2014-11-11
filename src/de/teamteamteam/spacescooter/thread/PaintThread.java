@@ -15,6 +15,11 @@ public class PaintThread extends TimedThread {
 	private final Runnable paintRunnable;
 	
 	/**
+	 * Internal pointer to GameFrame.
+	 */
+	private final GameFrame gameFrame;
+	
+	/**
 	 * Constructor. Sets the name of the Thread and creates the paintRunnable.
 	 */
 	public PaintThread(GameFrame gf) {
@@ -25,6 +30,7 @@ public class PaintThread extends TimedThread {
 				gameFrame.draw();
 			}
 		};
+		this.gameFrame = gf;
 	}
 
 	/**
@@ -33,5 +39,14 @@ public class PaintThread extends TimedThread {
 	public void work() {
 		//Trigger redrawing the things. Important: AWT-Context needed here!
 		EventQueue.invokeLater(this.paintRunnable);
+	}
+
+	/**
+	 * Return the workTime by asking the GameFrame for the time the
+	 * draw() call took in nanoseconds.
+	 */
+	@Override
+	public long getWorkTime() {
+		return this.gameFrame.getFrameTime();
 	}
 }

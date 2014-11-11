@@ -52,6 +52,7 @@ public class GameScreen extends Screen {
 		while (this.entityPaintIterator.hasNext()) {
 			this.entityPaintIterator.next().paint(g);
 		}
+		g.drawString("Frame Time: " + "", 20, 20);
 	}
 
 	@Override

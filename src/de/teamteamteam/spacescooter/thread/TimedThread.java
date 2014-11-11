@@ -7,8 +7,17 @@ package de.teamteamteam.spacescooter.thread;
  */
 public abstract class TimedThread extends Thread {
 
+	/**
+	 * Internal interval in which to trigger work().
+	 * Calculated based on setHz()
+	 */
 	private long workInterval;
 
+	/**
+	 * Internal value representing runtime of the last work() call.
+	 */
+	private long workTime;
+	
 	/**
 	 * This method sets the actual working interval based on hz.
 	 * 
@@ -28,7 +37,7 @@ public abstract class TimedThread extends Thread {
 			this.work();
 			long workDone = System.nanoTime();
 			//calculate time of work
-			long workTime = (workDone - workStart);
+			this.workTime = (workDone - workStart);
 
 			long timeToWait = this.workInterval - workTime;
 			long msToWait = timeToWait / 1000000;
@@ -59,5 +68,13 @@ public abstract class TimedThread extends Thread {
 	 * Do the actual thread work in here.
 	 */
 	public abstract void work();
+	
+	/**
+	 * Returns current value of workTime.
+	 * Tells how many nanoseconds the last work() call needed to complete.
+	 */
+	public long getWorkTime() {
+		return this.workTime;
+	}
 
 }

@@ -32,6 +32,11 @@ public class GameFrame extends JFrame {
 	private Screen superScreen;
 
 	/**
+	 * Time in nanoseconds the last draw() call took.
+	 */
+	private long frameTime;
+
+	/**
 	 * Default constructor.
 	 */
 	public GameFrame() {
@@ -94,6 +99,7 @@ public class GameFrame extends JFrame {
 	 * @see http://docs.oracle.com/javase/7/docs/api/java/awt/image/BufferStrategy.html
 	 */
 	public void draw() {
+		long frameStart = System.nanoTime(); //Record time the draw call started.
 		Graphics2D bufferedGraphics = null;
 		do { // while bufferStrategy.contentsLost()
 			do { // bufferStrategy.contentsRestored()
@@ -113,6 +119,7 @@ public class GameFrame extends JFrame {
 			this.bufferStrategy.show(); //Show the drawn image
 		} while (this.bufferStrategy.contentsLost()); //Redraw in case the VolatileImage got lost
 		Toolkit.getDefaultToolkit().sync(); //Tell the OS to update its graphics of the window.
+		this.frameTime = System.nanoTime() - frameStart; //Update frameTime
 	}
 
 	/**
@@ -121,5 +128,12 @@ public class GameFrame extends JFrame {
 	private void applyRenderingHints(Graphics2D bufferedGraphics) {
 		bufferedGraphics.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 		bufferedGraphics.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
+	}
+	
+	/**
+	 * Returns the time in nanoseconds the last draw() call took.
+	 */
+	public long getFrameTime() {
+		return this.frameTime;
 	}
 }

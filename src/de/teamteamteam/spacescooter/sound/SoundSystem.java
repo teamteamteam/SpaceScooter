@@ -117,6 +117,8 @@ public class SoundSystem {
 					sourceDataLine.drain();
 					sourceDataLine.close();
 					sound.close();
+				} catch (javax.sound.sampled.LineUnavailableException lue) {
+					System.err.println("Could not play sound: " + fSoundURL);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
