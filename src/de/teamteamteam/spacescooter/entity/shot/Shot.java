@@ -1,9 +1,10 @@
 package de.teamteamteam.spacescooter.entity.shot;
 
-import de.teamteamteam.spacescooter.entity.LivingEntity;
+import de.teamteamteam.spacescooter.entity.CollidableEntity;
 import de.teamteamteam.spacescooter.entity.Player;
 import de.teamteamteam.spacescooter.entity.enemy.Enemy;
 import de.teamteamteam.spacescooter.entity.spi.Collidable;
+import de.teamteamteam.spacescooter.sound.SoundSystem;
 import de.teamteamteam.spacescooter.utility.GameConfig;
 
 /**
@@ -11,7 +12,7 @@ import de.teamteamteam.spacescooter.utility.GameConfig;
  * It takes care of its movements, contains information about its
  * look and damage, and ends its life once it is out of the visible screen.
  */
-public class Shot extends LivingEntity {
+public class Shot extends CollidableEntity {
 
 	/**
 	 * Valid value for shootDirection parameter.
@@ -97,8 +98,7 @@ public class Shot extends LivingEntity {
 	public void collideWith(Collidable entity) {
 		if(this.direction == LEFT && entity instanceof Enemy) return;
 		if(this.direction == RIGHT && entity instanceof Player) return;
-		super.collideWith(entity);
-		this.explode();
+		SoundSystem.playSound("sounds/shot_hit_something.wav");
 		this.remove();
 	}
 	
