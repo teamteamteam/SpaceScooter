@@ -27,7 +27,7 @@ public class GameScreen extends Screen {
 
 	private ArrayList<Point> points = new ArrayList<Point>();
 	
-	private Player player;
+	private static Player player;
 	
 	public GameScreen(Screen parent) {
 		super(parent);
@@ -36,7 +36,7 @@ public class GameScreen extends Screen {
 		points.add(new Point(600,100));
 		points.add(new Point(0,500));
 		new StarBackground(0, 50);
-		this.player = new Player(200, 300);
+		GameScreen.player = new Player(200, 300);
 		new InterfaceBar(0, 0);
 		new HealthBar(10, 5);
 		new ShieldBar(10, 27);
@@ -65,9 +65,13 @@ public class GameScreen extends Screen {
 		if (Keyboard.isKeyDown(KeyEvent.VK_ESCAPE)) {
 			this.setOverlay(new GamePausedScreen(this));
 		}
-		if (!this.player.isAlive()) {
+		if (!GameScreen.player.isAlive()) {
 			this.parent.setOverlay(new GameOverScreen(this.parent));
 		}
+	}
+	
+	public static Player getPlayer() {
+		return GameScreen.player;
 	}
 	
 }

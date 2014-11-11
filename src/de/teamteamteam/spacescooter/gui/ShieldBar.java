@@ -4,10 +4,9 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
 
-import de.teamteamteam.spacescooter.datastructure.ConcurrentIterator;
 import de.teamteamteam.spacescooter.entity.Entity;
 import de.teamteamteam.spacescooter.entity.Player;
-import de.teamteamteam.spacescooter.screen.Screen;
+import de.teamteamteam.spacescooter.screen.GameScreen;
 
 public class ShieldBar extends Entity {
 
@@ -16,22 +15,12 @@ public class ShieldBar extends Entity {
 	private int shield = 0;
 	private int shieldwidth = 0;
 	
-	private ConcurrentIterator<Entity> entityIterator;
-	
 	public ShieldBar(int x, int y) {
 		super(x, y);
-		this.entityIterator = Screen.currentScreen.createEntityIterator();
 	}
 
 	public void paint(Graphics2D g) {
-		Player player = null;
-		this.entityIterator.reset();
-		while(this.entityIterator.hasNext()) {
-			Entity e = this.entityIterator.next();
-			if(e instanceof Player){
-				player = ((Player) e);
-			}
-		}
+		Player player = GameScreen.getPlayer();
 		try {
 			this.shield = player.getShieldPoints();
 			this.shieldwidth = ((this.width) * this.shield) / 100;

@@ -4,10 +4,9 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
 
-import de.teamteamteam.spacescooter.datastructure.ConcurrentIterator;
 import de.teamteamteam.spacescooter.entity.Entity;
 import de.teamteamteam.spacescooter.entity.Player;
-import de.teamteamteam.spacescooter.screen.Screen;
+import de.teamteamteam.spacescooter.screen.GameScreen;
 
 public class HealthBar extends Entity {
 
@@ -16,22 +15,12 @@ public class HealthBar extends Entity {
 	private int health = 0;
 	private int healthwidth = 0;
 	
-	private ConcurrentIterator<Entity> entityIterator;
-	
 	public HealthBar(int x, int y) {
 		super(x, y);
-		this.entityIterator = Screen.currentScreen.createEntityIterator();
 	}
 
 	public void paint(Graphics2D g) {
-		Player player = null;
-		this.entityIterator.reset();
-		while(this.entityIterator.hasNext()) {
-			Entity e = this.entityIterator.next();
-			if(e instanceof Player){
-				player = ((Player) e);
-			}
-		}
+		Player player = GameScreen.getPlayer();
 		try {
 			this.health = player.getHealthPoints();
 			this.healthwidth = ((this.width) * this.health) / 100;
