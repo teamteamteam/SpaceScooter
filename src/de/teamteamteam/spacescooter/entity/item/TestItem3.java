@@ -2,7 +2,7 @@ package de.teamteamteam.spacescooter.entity.item;
 
 import de.teamteamteam.spacescooter.entity.Player;
 
-public class TestItem3 extends Items{
+public class TestItem3 extends Item {
 	
 	public static int chance = 3;
 	

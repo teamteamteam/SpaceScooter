@@ -4,7 +4,7 @@ import java.awt.event.KeyEvent;
 
 import de.teamteamteam.spacescooter.control.Keyboard;
 import de.teamteamteam.spacescooter.control.KeyboardListener;
-import de.teamteamteam.spacescooter.entity.item.Items;
+import de.teamteamteam.spacescooter.entity.item.Item;
 import de.teamteamteam.spacescooter.entity.shot.Shot;
 import de.teamteamteam.spacescooter.entity.spi.Collidable;
 import de.teamteamteam.spacescooter.sound.SoundSystem;
@@ -57,13 +57,15 @@ public class Player extends ShootingEntity implements KeyboardListener {
 		}
 	}
 
+	/**
+	 * Determine what will happen if a Player collides with an Item.
+	 */
 	@Override
 	public void collideWith(Collidable entity) {
 		super.collideWith(entity);
-		if(this instanceof Player && entity instanceof Items){
-			Items item = (Items) entity;
-			item.setHealthPoints(0);
-			item.remove();
+		if(this instanceof Player && entity instanceof Item){
+			//Item item = (Item) entity;
+			//Apply cool item effects here ...
 		}
 	}
 	

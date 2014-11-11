@@ -1,6 +1,7 @@
 package de.teamteamteam.spacescooter.entity.explosion;
 
 import de.teamteamteam.spacescooter.entity.Animation;
+import de.teamteamteam.spacescooter.sound.SoundSystem;
 
 public class ExplosionTwo extends Animation {
 
@@ -26,6 +27,7 @@ public class ExplosionTwo extends Animation {
 		};
 		this.configure(images, 10);
 		this.setPosition(x - (this.getWidth()/2), y - (this.getHeight()/2));
+		SoundSystem.playSound("sounds/bad_explosion2.wav");
 	}
 
 }

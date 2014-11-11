@@ -6,7 +6,7 @@ import de.teamteamteam.spacescooter.datastructure.ConcurrentIterator;
 import de.teamteamteam.spacescooter.entity.Entity;
 import de.teamteamteam.spacescooter.entity.Player;
 import de.teamteamteam.spacescooter.entity.explosion.MultiExplosion;
-import de.teamteamteam.spacescooter.entity.item.Items;
+import de.teamteamteam.spacescooter.entity.item.Item;
 import de.teamteamteam.spacescooter.screen.Screen;
 import de.teamteamteam.spacescooter.utility.GameConfig;
 
@@ -39,7 +39,7 @@ public class EnemyThree extends Enemy{
 	 */
 	@Override
 	public void die() {
-		if(random.nextInt(10) < 5) Items.create(getX(), getY());
+		if(random.nextInt(10) < 5) Item.create(getX(), getY());
 		new EnemyThree(0, 0);
 		super.die();
 	}
