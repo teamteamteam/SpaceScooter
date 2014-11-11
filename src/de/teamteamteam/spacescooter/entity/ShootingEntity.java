@@ -166,7 +166,7 @@ public abstract class ShootingEntity extends LivingEntity {
 	/**
 	 * Internal method to actually spawn the fired Shots.
 	 */
-	private void createShot() {
+	public void createShot() {
 		new Shot(
 			this.getX() + this.shootSpawnX,
 			this.getY() + this.shootSpawnY,

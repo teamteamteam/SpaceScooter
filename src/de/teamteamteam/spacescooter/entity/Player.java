@@ -75,6 +75,12 @@ public class Player extends ShootingEntity implements KeyboardListener {
 		SoundSystem.playSound("sounds/abgang.wav");
 	}
 	
+	@Override
+	public void createShot() {
+		super.createShot();
+		SoundSystem.playSound("sounds/shot_fired1.wav");
+	}
+	
 	/**
 	 * On cleanup, unregister from the keyboard.
 	 */
