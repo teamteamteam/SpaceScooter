@@ -1,6 +1,6 @@
 package de.teamteamteam.spacescooter.entity.item;
 
-import java.util.Random;
+import de.teamteamteam.spacescooter.utility.Random;
 
 public class ItemChance {
 
@@ -21,8 +21,7 @@ public class ItemChance {
 	
 	public static int choose() {
 		//dauerhaft
-		Random random = new Random();
-		int r = random.nextInt(ItemChance.summe - 1) + 1;
+		int r = Random.nextInt(ItemChance.summe - 1) + 1;
 		
 		for(int i=0; i<ItemChance.items.length; i++) {
 			r -= ItemChance.items[i];

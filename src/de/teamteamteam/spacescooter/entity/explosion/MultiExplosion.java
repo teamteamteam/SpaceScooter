@@ -1,6 +1,6 @@
 package de.teamteamteam.spacescooter.entity.explosion;
 
-import java.util.Random;
+import de.teamteamteam.spacescooter.utility.Random;
 
 /**
  * Extends the functionality of the simple ExplosionOne to randomly
@@ -13,17 +13,12 @@ public class MultiExplosion extends ExplosionOne {
 	 */
 	private int counter;
 	
-	/**
-	 * Instance of Random, so we get good random numbers.
-	 */
-	private Random random;
-
+	
 	/**
 	 * Just be a single explosion.
 	 */
 	public MultiExplosion(int x, int y) {
 		super(x, y);
-		this.random = new Random();
 	}
 	
 	/**
@@ -32,7 +27,7 @@ public class MultiExplosion extends ExplosionOne {
 	@Override
 	public void update() {
 		if(this.counter % 10 == 0) {
-			if(this.random.nextBoolean()) {
+			if(Random.nextBoolean()) {
 				this.spawnExplosion();
 			}
 		}
@@ -44,11 +39,11 @@ public class MultiExplosion extends ExplosionOne {
 	 * Randomly spawn a new random explosion at a random location.
 	 */
 	private void spawnExplosion() {
-		int x_offset = this.random.nextInt(35);
-		if(this.random.nextBoolean()) x_offset *= -1;
-		int y_offset = this.random.nextInt(35);
-		if(this.random.nextBoolean()) y_offset *= -1;
-		int explosionType = this.random.nextInt(2);
+		int x_offset = Random.nextInt(35);
+		if(Random.nextBoolean()) x_offset *= -1;
+		int y_offset = Random.nextInt(35);
+		if(Random.nextBoolean()) y_offset *= -1;
+		int explosionType = Random.nextInt(2);
 		switch(explosionType) {
 			case 0:
 				new ExplosionOne(this.getX() + x_offset, this.getY() + y_offset);

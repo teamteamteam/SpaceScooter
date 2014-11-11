@@ -1,7 +1,5 @@
 package de.teamteamteam.spacescooter.entity.enemy;
 
-import java.util.Random;
-
 import de.teamteamteam.spacescooter.datastructure.ConcurrentIterator;
 import de.teamteamteam.spacescooter.entity.Entity;
 import de.teamteamteam.spacescooter.entity.Player;
@@ -9,17 +7,16 @@ import de.teamteamteam.spacescooter.entity.explosion.MultiExplosion;
 import de.teamteamteam.spacescooter.entity.item.Item;
 import de.teamteamteam.spacescooter.screen.Screen;
 import de.teamteamteam.spacescooter.utility.GameConfig;
+import de.teamteamteam.spacescooter.utility.Random;
 
 public class EnemyThree extends Enemy{
 
 	private double newY;
 	private double ySpeed = 0.4;
-	private Random random;
 	private ConcurrentIterator<Entity> entityIterator;
 	
 	public EnemyThree(int x, int y) {
 		super(x, y);
-		random = new Random();
 		this.setImage("images/enemy02.png");
 		this.setPrimaryShotImage("images/shots/laser_red.png");
 		this.setShootSpeed(4);
@@ -29,7 +26,7 @@ public class EnemyThree extends Enemy{
 		this.setHealthPoints(15);
 		this.setCollisionDamage(10);
 		this.setScore(30);
-		this.setPosition(GameConfig.windowWidth, random.nextInt(GameConfig.windowHeight - this.getHeight()));
+		this.setPosition(GameConfig.windowWidth, Random.nextInt(GameConfig.windowHeight - this.getHeight()));
 		this.newY = this.getY();
 		this.entityIterator = Screen.currentScreen.createEntityIterator();
 	}
@@ -39,7 +36,7 @@ public class EnemyThree extends Enemy{
 	 */
 	@Override
 	public void die() {
-		if(random.nextInt(10) < 5) Item.create(getX(), getY());
+		if(Random.nextInt(10) < 5) Item.create(getX(), getY());
 		new EnemyThree(0, 0);
 		super.die();
 	}

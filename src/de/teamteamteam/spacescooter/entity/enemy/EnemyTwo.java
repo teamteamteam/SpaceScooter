@@ -1,14 +1,12 @@
 package de.teamteamteam.spacescooter.entity.enemy;
 
-import java.util.Random;
-
 import de.teamteamteam.spacescooter.utility.GameConfig;
+import de.teamteamteam.spacescooter.utility.Random;
 
 public class EnemyTwo extends Enemy{
 
 	public EnemyTwo(int x, int y) {
 		super(x, y);
-		Random random = new Random();
 		this.setImage("images/enemy02.png");
 		this.setPrimaryShotImage("images/shots/laser_green.png");
 		this.setShootSpeed(4);
@@ -19,7 +17,7 @@ public class EnemyTwo extends Enemy{
 		this.setHealthPoints(5);
 		this.setScore(20);
 		this.setCollisionDamage(this.getHealthPoints());
-		this.setPosition(GameConfig.windowWidth, random.nextInt(GameConfig.windowHeight - this.getHeight()));
+		this.setPosition(GameConfig.windowWidth, Random.nextInt(GameConfig.windowHeight - this.getHeight()));
 	}
 	
 	@Override

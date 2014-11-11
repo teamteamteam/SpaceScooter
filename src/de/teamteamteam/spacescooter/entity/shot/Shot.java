@@ -6,6 +6,7 @@ import de.teamteamteam.spacescooter.entity.enemy.Enemy;
 import de.teamteamteam.spacescooter.entity.spi.Collidable;
 import de.teamteamteam.spacescooter.sound.SoundSystem;
 import de.teamteamteam.spacescooter.utility.GameConfig;
+import de.teamteamteam.spacescooter.utility.Random;
 
 /**
  * This class represents a Shot in the game.
@@ -98,7 +99,17 @@ public class Shot extends CollidableEntity {
 	public void collideWith(Collidable entity) {
 		if(this.direction == LEFT && entity instanceof Enemy) return;
 		if(this.direction == RIGHT && entity instanceof Player) return;
-		SoundSystem.playSound("sounds/shot_hit_something.wav");
+		int soundToPlay = Random.getRandom().nextInt(2);
+		switch(soundToPlay) {
+			case 0:
+				SoundSystem.playSound("sounds/shot_hit_something.wav");
+				break;
+			case 1:
+				SoundSystem.playSound("sounds/shot_hit_something_loud.wav");
+				break;
+			default:
+				break;
+		}
 		this.remove();
 	}
 	
