@@ -22,7 +22,7 @@ public class ShieldBar extends Entity {
 	public void paint(Graphics2D g) {
 		Player player = GameScreen.getPlayer();
 		try {
-			this.shield = player.getShieldPoints();
+			this.shield = player.getShieldPercent();
 			this.shieldwidth = ((this.width) * this.shield) / 100;
 		} catch(Exception e) {
 			this.shieldwidth = 0;
