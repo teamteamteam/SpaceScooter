@@ -14,6 +14,7 @@ public class ShieldBar extends Entity {
 	private int width = 150;
 	private int height = 14;
 	private int shield = 0;
+	private int shieldwidth = 0;
 	
 	private ConcurrentIterator<Entity> entityIterator;
 	
@@ -31,12 +32,17 @@ public class ShieldBar extends Entity {
 				player = ((Player) e);
 			}
 		}
-		this.shield = ((this.width) * player.getShieldPoints());
+		try {
+			this.shield = player.getShieldPoints();
+			this.shieldwidth = ((this.width) * this.shield) / 100;
+		} catch(Exception e) {
+			this.shieldwidth = 0;
+		}
 		g.setColor(Color.WHITE);
 		g.setFont(new Font("Monospace", 0, 16));
 		g.drawString("Shield:", this.getX(), this.getY()+12);
 		g.setColor(Color.BLUE);
-		g.fillRect(this.getX()+70, this.getY(), this.shield / 100, this.height);
+		g.fillRect(this.getX()+70, this.getY(), this.shieldwidth, this.height);
 		g.setColor(Color.WHITE);
 		g.drawRect(this.getX()+70, this.getY(), this.width, this.height);
 	}

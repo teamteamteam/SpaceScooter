@@ -14,6 +14,7 @@ public class HealthBar extends Entity {
 	private int width = 150;
 	private int height = 14;
 	private int health = 0;
+	private int healthwidth = 0;
 	
 	private ConcurrentIterator<Entity> entityIterator;
 	
@@ -31,18 +32,23 @@ public class HealthBar extends Entity {
 				player = ((Player) e);
 			}
 		}
-		this.health = ((this.width) * player.getHealthPoints());
+		try {
+			this.health = player.getHealthPoints();
+			this.healthwidth = ((this.width) * this.health) / 100;
+		} catch(Exception e) {
+			this.healthwidth = 0;
+		}
 		g.setColor(Color.WHITE);
 		g.setFont(new Font("Monospace", 0, 16));
 		g.drawString("Health:", this.getX(), this.getY()+12);
-		if (player.getHealthPoints() <= 15) {
+		if (this.health <= 15) {
 			g.setColor(Color.RED);
-		} else if (player.getHealthPoints() <= 50) {
+		} else if (this.health <= 50) {
 			g.setColor(Color.YELLOW);
 		} else {
 			g.setColor(Color.GREEN);
 		}
-		g.fillRect(this.getX()+70, this.getY(), this.health / 100, this.height);
+		g.fillRect(this.getX()+70, this.getY(), this.healthwidth, this.height);
 		g.setColor(Color.WHITE);
 		g.drawRect(this.getX()+70, this.getY(), this.width, this.height);
 	}
