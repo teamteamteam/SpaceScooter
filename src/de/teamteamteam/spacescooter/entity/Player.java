@@ -38,7 +38,7 @@ public class Player extends ShootingEntity implements KeyboardListener {
 		if(this.canMove()) {
 			super.update();
 			int offset = 3;
-			if(Keyboard.isKeyDown(KeyEvent.VK_UP) && this.getY() > 0) {
+			if(Keyboard.isKeyDown(KeyEvent.VK_UP) && this.getY() > 51) {
 				this.transpose(0, -1 * offset);
 			}
 			if(Keyboard.isKeyDown(KeyEvent.VK_DOWN) && this.getY() < (GameConfig.windowHeight - this.getImage().getHeight())) {

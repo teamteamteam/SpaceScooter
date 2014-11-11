@@ -10,7 +10,7 @@ public class StaticValue {
 	public static int ShieldPoints = 100;
 	
 	/**
-	 * Values for the Shop
+	 * Values for the shop
 	 */
 	public static int schaden = 0;
 	public static int schild = 0;
