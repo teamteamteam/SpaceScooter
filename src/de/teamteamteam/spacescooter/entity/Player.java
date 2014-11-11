@@ -13,6 +13,8 @@ import de.teamteamteam.spacescooter.utility.GameConfig;
 public class Player extends ShootingEntity implements KeyboardListener {
 	
 	private Keyboard keyboard = null;
+	private double healthPercent = 0;
+	private double shieldPercent = 0;
 	
 	public Player(int x, int y) {
 		super(x, y);
@@ -35,6 +37,12 @@ public class Player extends ShootingEntity implements KeyboardListener {
 	}
 
 	public void update() {
+		if (StaticValue.HealthPoints != 0) {
+			this.healthPercent = ((double) this.getHealthPoints() / (double) StaticValue.HealthPoints) * 100;
+		}
+		if (StaticValue.ShieldPoints != 0) {
+			this.shieldPercent = ((double) this.getShieldPoints() / (double) StaticValue.ShieldPoints) * 100;
+		}
 		if(this.canMove()) {
 			super.update();
 			int offset = 3;
@@ -108,5 +116,13 @@ public class Player extends ShootingEntity implements KeyboardListener {
 	}
 
 	public void keyTyped(KeyEvent e) {}
+	
+	public int getHealthPercent() {
+		return (int) this.healthPercent;
+	}
+	
+	public int getShieldPercent() {
+		return (int) this.shieldPercent;
+	}
 	
 }
