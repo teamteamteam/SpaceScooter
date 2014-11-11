@@ -9,6 +9,7 @@ import de.teamteamteam.spacescooter.background.StarBackground;
 import de.teamteamteam.spacescooter.control.Keyboard;
 import de.teamteamteam.spacescooter.entity.Player;
 import de.teamteamteam.spacescooter.gui.Button;
+import de.teamteamteam.spacescooter.sound.SoundSystem;
 import de.teamteamteam.spacescooter.utility.GameConfig;
 
 /**
@@ -35,6 +36,7 @@ public class MainMenuScreen extends Screen {
 		player = new Player(GameConfig.windowWidth/2-170, 209);
 		player.setCanMove(false);
 		player.setCanShoot(false);
+		SoundSystem.playSound("music/ScooterFriendsTurbo8Bit.wav");
 	}
 
 	@Override
