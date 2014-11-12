@@ -1,6 +1,7 @@
 package de.teamteamteam.spacescooter.thread;
 
 import java.awt.EventQueue;
+import java.lang.reflect.InvocationTargetException;
 
 import de.teamteamteam.spacescooter.GameFrame;
 
@@ -38,7 +39,13 @@ public class PaintThread extends TimedThread {
 	 */
 	public void work() {
 		//Trigger redrawing the things. Important: AWT-Context needed here!
-		EventQueue.invokeLater(this.paintRunnable);
+		try {
+			EventQueue.invokeAndWait(this.paintRunnable);
+		} catch (InvocationTargetException e) {
+			e.printStackTrace();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 	}
 
 	/**

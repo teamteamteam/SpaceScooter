@@ -40,6 +40,11 @@ public abstract class TimedThread extends Thread {
 			this.workTime = (workDone - workStart);
 
 			long timeToWait = this.workInterval - workTime;
+			//in case we are already running late, just print a warning and carry on!
+			if(timeToWait < 0) {
+				System.err.println("[" + this.getName() + "] workTime exceeds workInterval!:" + this.workTime + " > " + this.workInterval);
+				continue;
+			}
 			long msToWait = timeToWait / 1000000;
 
 			// wait using sleep for bigger intervals
