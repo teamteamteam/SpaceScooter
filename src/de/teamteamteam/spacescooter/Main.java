@@ -24,8 +24,6 @@ public class Main {
 	 * @param args Command line arguments.
 	 */
 	public static void main(String[] args) {
-		//Make sure opengl acceleration is used
-		System.setProperty("sun.java2d.opengl", "True");
 		//Initialize the GameFrame properly within the AWT EventQueue
 		try {
 			EventQueue.invokeAndWait(new Runnable() {
