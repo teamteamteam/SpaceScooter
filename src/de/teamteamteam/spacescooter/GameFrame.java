@@ -39,6 +39,17 @@ public class GameFrame extends JFrame {
 	private long frameTime;
 
 	/**
+	 * Amount of pixels taken away from window decoration on the left side.
+	 */
+	private int insetLeft;
+
+	/**
+	 * Amount of pixels taken away from window decoration on the top side.
+	 */
+	private int insetTop;
+
+
+	/**
 	 * Default constructor.
 	 */
 	public GameFrame() {
@@ -78,6 +89,11 @@ public class GameFrame extends JFrame {
 		//prepare the buffered strategy
 		this.createBufferStrategy(2);
 		this.bufferStrategy = this.getBufferStrategy();
+		
+		//Measure and cache inset offsets for continuous use in the draw() method.
+		//This way, we translate our 0x0 to the first top left pixel that is actually visible.
+		this.insetLeft = this.getInsets().left;
+		this.insetTop = this.getInsets().top;
 	}
 
 	/**
@@ -121,7 +137,7 @@ public class GameFrame extends JFrame {
 					this.applyRenderingHints(bufferedGraphics);
 					//Apply translation since different platforms use different window decorations that mess
 					//up our coordinates. The new origin shall be the first usable pixel in the top left corner.
-					bufferedGraphics.translate(this.getInsets().left, this.getInsets().top);
+					bufferedGraphics.translate(this.insetLeft, this.insetTop);
 					this.superScreen.doPaint(bufferedGraphics); //Trigger the actual paint routines.
 				} catch (Exception e) {
 					System.err.println("Exception in GameFrame.draw() gefangen:");
