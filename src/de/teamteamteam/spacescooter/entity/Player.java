@@ -125,4 +125,12 @@ public class Player extends ShootingEntity implements KeyboardListener {
 		return (int) this.shieldPercent;
 	}
 	
+	public void increaseHealthPoints(int inc) {
+		if (this.getHealthPoints() <= 85) {
+			this.setHealthPoints(getHealthPercent() + inc);
+		} else {
+			this.setHealthPoints(100);
+		}
+	}
+	
 }
