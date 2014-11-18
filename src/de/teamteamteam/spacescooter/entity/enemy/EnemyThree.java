@@ -17,7 +17,7 @@ public class EnemyThree extends Enemy{
 	
 	public EnemyThree(int x, int y) {
 		super(x, y);
-		this.setImage("images/enemy02.png");
+		this.setImage("images/enemy03.png");
 		this.setPrimaryShotImage("images/shots/laser_red.png");
 		this.setShootSpeed(4);
 		this.setShootDelay(42);
