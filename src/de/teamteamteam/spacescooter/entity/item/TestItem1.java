@@ -6,7 +6,7 @@ public class TestItem1 extends Item {
 		
 	public TestItem1(int x, int y) {
 		super(x, y);
-		this.setImage("images/items/item4.png");
+		this.setImage("images/items/item.png");
 	}
 
 	@Override
