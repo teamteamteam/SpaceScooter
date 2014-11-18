@@ -13,6 +13,6 @@ public class TestItem3 extends Item {
 
 	@Override
 	public void itemCollected(Player player) {
-		player.setShootDamage(player.getShootDamage()+5);
+		player.increaseHealthPoints(15);
 	}
 }

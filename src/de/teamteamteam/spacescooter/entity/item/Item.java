@@ -24,6 +24,12 @@ public abstract class Item extends CollidableEntity {
 	public void collideWith(Collidable entity) {
 		if(entity instanceof Player) {
 			SoundSystem.playSound("sounds/powerup_pickup.wav");
+			while(entityIterator.hasNext()) {
+				Entity e = entityIterator.next();
+				if(e instanceof Player){
+					itemCollected((Player) e);
+				}
+			}
 			this.remove();
 		}
 	}
@@ -34,12 +40,6 @@ public abstract class Item extends CollidableEntity {
 			this.remove();
 		};
 		entityIterator.reset();
-		while(entityIterator.hasNext()) {
-			Entity e = entityIterator.next();
-			if(e instanceof Player){
-				itemCollected((Player) e);
-			}
-		}
 	}
 	
 	public abstract void itemCollected(Player player);
