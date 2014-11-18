@@ -176,4 +176,18 @@ public abstract class ShootingEntity extends LivingEntity {
 			this.primaryShotImage
 		);
 	}
+	
+	/**
+	 * Custom Shoot for Custom Action!!!
+	 */
+	public void createCustomShot(int x, int y, int speed, int dmg, String filename) {
+		new Shot(
+				this.getX() + x,
+				this.getY() + y,
+				Shot.LEFT,
+				speed,
+				dmg,
+				filename
+			);
+	}
 }

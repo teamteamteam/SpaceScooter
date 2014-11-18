@@ -4,26 +4,24 @@ import de.teamteamteam.spacescooter.entity.Player;
 import de.teamteamteam.spacescooter.entity.explosion.MultiExplosion;
 import de.teamteamteam.spacescooter.entity.item.Item;
 import de.teamteamteam.spacescooter.screen.GameScreen;
-import de.teamteamteam.spacescooter.utility.GameConfig;
 import de.teamteamteam.spacescooter.utility.Random;
 
-public class EnemyThree extends Enemy{
+public class EnemyBossMinion extends Enemy{
 
 	private double newY;
 	private double ySpeed = 0.4;
 	
-	public EnemyThree(int x, int y) {
+	public EnemyBossMinion(int x, int y) {
 		super(x, y);
-		this.setImage("images/enemy03.png");
-		this.setPrimaryShotImage("images/shots/laser_red.png");
+		this.setImage("images/enemybossminion.png");
+		this.setPrimaryShotImage("images/shots/laser_green.png");
 		this.setShootSpeed(4);
 		this.setShootDelay(42);
 		this.setShootSpawn(-10, 10);
 		this.setShootDamage(5);
 		this.setHealthPoints(15);
 		this.setCollisionDamage(10);
-		this.setScore(30);
-		this.setPosition(GameConfig.windowWidth, Random.nextInt(GameConfig.windowHeight - this.getHeight() - 50) +50);
+		this.setScore(10);
 		this.newY = this.getY();
 	}
 	
@@ -33,7 +31,7 @@ public class EnemyThree extends Enemy{
 	@Override
 	public void die() {
 		if(Random.nextInt(10) < 5) Item.create(getX(), getY());
-		new EnemyThree(0, 0);
+		new EnemyBossMinion(0, 0);
 		super.die();
 	}
 	
@@ -49,10 +47,6 @@ public class EnemyThree extends Enemy{
 	public void update() {
 		super.update();
 		this.setPosition(this.getX()-1, this.getY());
-		if(this.getX() < 0-getWidth()){
-			this.remove();
-			new EnemyThree(0, 0);
-		}
 		Player player = GameScreen.getPlayer();
 		if(this.getY() < player.getY()){
 			this.newY += ySpeed;

@@ -1,21 +1,15 @@
 package de.teamteamteam.spacescooter.entity.item;
 
-import de.teamteamteam.spacescooter.datastructure.ConcurrentIterator;
 import de.teamteamteam.spacescooter.entity.CollidableEntity;
-import de.teamteamteam.spacescooter.entity.Entity;
 import de.teamteamteam.spacescooter.entity.Player;
 import de.teamteamteam.spacescooter.entity.spi.Collidable;
-import de.teamteamteam.spacescooter.screen.Screen;
 import de.teamteamteam.spacescooter.sound.SoundSystem;
 
 public abstract class Item extends CollidableEntity {
 	
-	private ConcurrentIterator<Entity> entityIterator;
-	
 	
 	public Item(int x, int y) {
 		super(x, y);
-		this.entityIterator = Screen.currentScreen.createEntityIterator();
 	}
 
 	/**
@@ -24,12 +18,7 @@ public abstract class Item extends CollidableEntity {
 	public void collideWith(Collidable entity) {
 		if(entity instanceof Player) {
 			SoundSystem.playSound("sounds/powerup_pickup.wav");
-			while(entityIterator.hasNext()) {
-				Entity e = entityIterator.next();
-				if(e instanceof Player){
-					itemCollected((Player) e);
-				}
-			}
+			itemCollected((Player) entity);
 			this.remove();
 		}
 	}
@@ -39,7 +28,6 @@ public abstract class Item extends CollidableEntity {
 		if(this.getX() < 0-this.getWidth()){
 			this.remove();
 		};
-		entityIterator.reset();
 	}
 	
 	public abstract void itemCollected(Player player);

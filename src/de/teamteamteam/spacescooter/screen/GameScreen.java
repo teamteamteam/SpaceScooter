@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import de.teamteamteam.spacescooter.background.StarBackground;
 import de.teamteamteam.spacescooter.control.Keyboard;
 import de.teamteamteam.spacescooter.entity.Player;
+import de.teamteamteam.spacescooter.entity.enemy.EnemyBoss;
 import de.teamteamteam.spacescooter.entity.enemy.EnemyFour;
 import de.teamteamteam.spacescooter.entity.enemy.EnemyThree;
 import de.teamteamteam.spacescooter.entity.item.ItemChance;
@@ -41,9 +42,10 @@ public class GameScreen extends Screen {
 		new HealthBar(10, 5);
 		new ShieldBar(10, 27);
 		new ScoreBar(575, 33);
-		new EnemyFour(800, 400, points);
-		new EnemyThree(650, 300);
-		new EnemyThree(450, 100);
+		//new EnemyFour(800, 400, points);
+		//new EnemyThree(650, 300);
+		//new EnemyThree(450, 100);
+		new EnemyBoss(200, 300);
 	}
 
 	@Override

@@ -39,6 +39,8 @@ public abstract class Entity implements Updateable, Paintable {
 	 */
 	private BufferedImage img;
 	
+	private boolean removed = false;
+	
 	
 	/**
 	 * Constructor.
@@ -149,10 +151,20 @@ public abstract class Entity implements Updateable, Paintable {
 	}
 	
 	/**
+	 * Returns Boolean If the Entity got Removed.
+	 * @return removed
+	 */
+	
+	public boolean isRemoved() {
+		return removed;
+	}
+	
+	/**
 	 * Removes entity from the game by telling the current Screen
 	 * to remove it from its list.
 	 */
 	public void remove() {
+		this.removed = true;
 		Screen.currentScreen.removeEntity(this);
 	}
 }
