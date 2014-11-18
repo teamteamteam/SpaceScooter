@@ -156,9 +156,10 @@ public class GameFrame extends JFrame {
 
 	/**
 	 * Apply rendering hints to the given Graphics2D.
+	 * KEY_ANTIALIASING is very expensive and doesn't do much more over KEY_TEXT_ANTIALIASING
 	 */
 	private void applyRenderingHints(Graphics2D bufferedGraphics) {
-		bufferedGraphics.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+		//bufferedGraphics.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 		bufferedGraphics.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
 	}
 	
