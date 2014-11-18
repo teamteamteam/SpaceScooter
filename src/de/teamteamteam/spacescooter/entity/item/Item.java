@@ -48,7 +48,7 @@ public abstract class Item extends CollidableEntity {
 		int auswahl = ItemChance.choose();
 		switch (auswahl) {
 		case 0:
-			new TestItem1(x, y);
+			new TestItem5(x, y);
 			break;
 		case 1:
 			new TestItem2(x, y);
@@ -57,7 +57,10 @@ public abstract class Item extends CollidableEntity {
 			new TestItem3(x, y);
 			break;
 		case 3:
-			new TestItem4(x, y);;
+			new TestItem4(x, y);
+			break;
+		case 4:
+			new TestItem1(x, y);
 			break;
 		}
 	}
