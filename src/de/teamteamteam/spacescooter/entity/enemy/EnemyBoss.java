@@ -16,7 +16,7 @@ public class EnemyBoss extends Enemy{
 		this.setShootSpeed(5);
 		this.setShootDelay(50);
 		this.setShootSpawn(-10, 30);
-		this.setShootDamage(8);
+		this.setShootDamage(20);
 		this.setHealthPoints(300);
 		this.setCollisionDamage(50);
 		this.setScore(5000);
@@ -53,8 +53,8 @@ public class EnemyBoss extends Enemy{
 		}
 		if(Random.nextInt(1000) < 5) new EnemyBossMinion(730, this.getY());
 		if(Random.nextInt(1000) < 50) {
-			createCustomShot(-10, 3, 8, 15, "images/shots/laser_red.png");
-			createCustomShot(-10, 59, 8, 15, "images/shots/laser_red.png");
+			createCustomShot(-10, 3, 8, 5, "images/shots/laser_red.png");
+			createCustomShot(-10, 59, 8, 5, "images/shots/laser_red.png");
 		}
 	}
 	
