@@ -42,9 +42,8 @@ public class GameScreen extends Screen {
 		new HealthBar(10, 5);
 		new ShieldBar(10, 27);
 		new ScoreBar(575, 33);
-		//new EnemyFour(800, 400, points);
-		//new EnemyThree(650, 300);
-		//new EnemyThree(450, 100);
+		new EnemyFour(800, 400, points);
+		new EnemyThree(450, 100);
 		new EnemyBoss(200, 300);
 	}
 
