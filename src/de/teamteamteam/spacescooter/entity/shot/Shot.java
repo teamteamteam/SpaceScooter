@@ -77,6 +77,13 @@ public class Shot extends CollidableEntity {
 	}
 
 	/**
+	 * Returns the shot speed.
+	 */
+	public int getSpeed(){
+		return speed;
+	}
+	
+	/**
 	 * Make the shot travel in the right direction.
 	 * Remove the shot once out of the visible area.
 	 */

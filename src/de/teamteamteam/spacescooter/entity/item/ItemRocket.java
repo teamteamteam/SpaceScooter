@@ -2,15 +2,16 @@ package de.teamteamteam.spacescooter.entity.item;
 
 import de.teamteamteam.spacescooter.entity.Player;
 
-public class ItemShield extends Item {
-	
-	public ItemShield(int x, int y) {
+public class ItemRocket extends Item {
+		
+	public ItemRocket(int x, int y) {
 		super(x, y);
-		this.setImage("images/items/itemShield.png");
+		this.setImage("images/items/itemRocket.png");
 	}
 
 	@Override
 	public void itemCollected(Player player) {
-		player.setShieldPoints(player.getShieldPoints() + 5);
+		player.addRocketAmount();
 	}
+
 }

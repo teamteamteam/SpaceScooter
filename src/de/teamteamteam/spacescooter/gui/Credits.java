@@ -8,7 +8,7 @@ public class Credits {
 	/**
 	 * Credit points for the shop
 	 */
-	private static int credits = 1000;
+	private static int credits = 0;
 	
 	
 	/**

@@ -4,8 +4,6 @@ import de.teamteamteam.spacescooter.entity.Player;
 
 public class ItemHeal extends Item {
 	
-	public static int chance = 3;
-	
 	public ItemHeal(int x, int y) {
 		super(x, y);
 		this.setImage("images/items/itemHeal.png");

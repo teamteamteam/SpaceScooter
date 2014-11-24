@@ -4,8 +4,6 @@ import de.teamteamteam.spacescooter.entity.Player;
 
 public class ItemNuke extends Item {
 
-public static int chance = 2;
-	
 	public ItemNuke(int x, int y) {
 		super(x, y);
 		this.setImage("images/items/itemNuke.png");

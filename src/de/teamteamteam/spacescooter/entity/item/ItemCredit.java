@@ -1,10 +1,9 @@
 package de.teamteamteam.spacescooter.entity.item;
 
 import de.teamteamteam.spacescooter.entity.Player;
+import de.teamteamteam.spacescooter.gui.Credits;
 
 public class ItemCredit extends Item {
-	
-	public static int chance = 2;
 	
 	public ItemCredit(int x, int y) {
 		super(x, y);
@@ -13,6 +12,6 @@ public class ItemCredit extends Item {
 
 	@Override
 	public void itemCollected(Player player) {
-		player.setShootDamage(player.getShootDamage()+5);
+		Credits.add(10);
 	}
 }

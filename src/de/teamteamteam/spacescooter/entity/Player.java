@@ -15,6 +15,7 @@ public class Player extends ShootingEntity implements KeyboardListener {
 	private Keyboard keyboard = null;
 	private double healthPercent = 0;
 	private double shieldPercent = 0;
+	private int rocketAmount = 1;
 	
 	public Player(int x, int y) {
 		super(x, y);
@@ -61,6 +62,11 @@ public class Player extends ShootingEntity implements KeyboardListener {
 			//continuous fire takes place here
 			if(Keyboard.isKeyDown(KeyEvent.VK_SPACE)) {
 				this.shoot();
+			}
+			if(Keyboard.isKeyDown(KeyEvent.VK_Y)) {
+				if(rocketAmount > 0){
+					this.shootRocket();
+				}
 			}
 		}
 	}
@@ -131,6 +137,27 @@ public class Player extends ShootingEntity implements KeyboardListener {
 		} else {
 			this.setHealthPoints(100);
 		}
+	}
+	
+	/**
+	 *  Get the current rocket amount.
+	 */
+	public int getRocketAmount(){
+		return rocketAmount;
+	}
+	
+	/**
+	 *  Add one rocket.
+	 */
+	public void addRocketAmount(){
+		rocketAmount++;
+	}
+	
+	/**
+	 *  Remove one rocket.
+	 */
+	public void removeRocketAmount(){
+		rocketAmount--;
 	}
 	
 }

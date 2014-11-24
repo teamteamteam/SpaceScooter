@@ -1,6 +1,8 @@
 package de.teamteamteam.spacescooter.entity;
 
+import de.teamteamteam.spacescooter.entity.shot.Rocket;
 import de.teamteamteam.spacescooter.entity.shot.Shot;
+import de.teamteamteam.spacescooter.screen.GameScreen;
 
 /**
  * The ShootingEntity is a LivingEntity that is able to fire Shots.
@@ -25,6 +27,12 @@ public abstract class ShootingEntity extends LivingEntity {
 	 * This value is used to enforce the actual delay defined in shootDelay.
 	 */
 	private int currentShootDelay;
+	
+	/**
+	 * The current tick delay to wait until the next Rocket can be fired.
+	 * This value is used to enforce the actual delay defined in shootDelay.
+	 */
+	private int currentRocketDelay;
 	
 	/**
 	 * The X delta to pass to the Shot, so it spawns at the 
@@ -74,6 +82,7 @@ public abstract class ShootingEntity extends LivingEntity {
 	 */
 	public void update() {
 		if(this.currentShootDelay > 0) this.currentShootDelay--;
+		if(this.currentRocketDelay > 0) this.currentRocketDelay--;
 	}
 	
 	/**
@@ -85,6 +94,16 @@ public abstract class ShootingEntity extends LivingEntity {
 			if(this.currentShootDelay == 0) {
 				this.createShot();
 				this.currentShootDelay = this.shootDelay;
+			}
+		}
+	}
+	
+	public void shootRocket() {
+		if(this.canShoot == true) {
+			if(this.currentRocketDelay == 0) {
+				this.createRocket();
+				GameScreen.getPlayer().removeRocketAmount();
+				this.currentRocketDelay = this.shootDelay*3;
 			}
 		}
 	}
@@ -177,6 +196,17 @@ public abstract class ShootingEntity extends LivingEntity {
 		);
 	}
 	
+	public void createRocket() {
+		new Rocket(
+				this.getX() + this.shootSpawnX,
+				this.getY() + this.shootSpawnY,
+				this.shootDirection,
+				this.shootSpeed,
+				(int)(this.shootDamage*1.5),
+				this.primaryShotImage
+				);
+	}
+	
 	/**
 	 * Custom Shoot for Custom Action!!!
 	 */
@@ -190,4 +220,5 @@ public abstract class ShootingEntity extends LivingEntity {
 				filename
 			);
 	}
+
 }

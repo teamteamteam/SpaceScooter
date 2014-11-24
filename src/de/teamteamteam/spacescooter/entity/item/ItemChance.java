@@ -7,12 +7,21 @@ public class ItemChance {
 	private static int summe = 0;
 	private static int[] items;
 	
+	/**
+	 * Item spawn probability,
+	 * higher number, higher spawn rate,
+	 * same number, same spawn rate.
+	 * 
+	 * New items must be registered here!!
+	 */
 	public ItemChance() {
-		ItemChance.items = new int[4];
-		items[0] = 4;
-		items[1] = 3;
-		items[2] = 2;
-		items[3] = 1;
+		ItemChance.items = new int[6];
+		items[0] = 1;	//ItemNuke
+		items[2] = 2;	//ItemHeal
+		items[3] = 2;	//ItemShield
+		items[4] = 2;	//ItemRocket
+		items[1] = 4;	//ItemCredit
+		items[5] = 3;	//ItemIncreaseDamage
 
 		for(int i=0; i<ItemChance.items.length; i++) {
 			ItemChance.summe += ItemChance.items[i];
@@ -20,7 +29,6 @@ public class ItemChance {
 	}
 	
 	public static int choose() {
-		//dauerhaft
 		int r = Random.nextInt(ItemChance.summe - 1) + 1;
 		
 		for(int i=0; i<ItemChance.items.length; i++) {

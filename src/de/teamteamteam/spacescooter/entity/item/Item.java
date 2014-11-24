@@ -30,8 +30,17 @@ public abstract class Item extends CollidableEntity {
 		};
 	}
 	
+	/**
+	 * Item property.
+	 * What happens when item is collected.
+	 */
 	public abstract void itemCollected(Player player);
 	
+	/**
+	 * Selects which item spawns.
+	 * 
+	 * (If you add a new item, you must also add it in ItemChance.java)
+	 */
 	public static void create(int x, int y){
 		int auswahl = ItemChance.choose();
 		switch (auswahl) {
@@ -48,7 +57,7 @@ public abstract class Item extends CollidableEntity {
 			new ItemShield(x, y);
 			break;
 		case 4:
-			new TestItem1(x, y);
+			new ItemRocket(x, y);
 			break;
 		}
 	}

@@ -26,6 +26,9 @@ import de.teamteamteam.spacescooter.utility.CollisionHandler;
  */
 public class GameScreen extends Screen {
 
+	/**
+	 * Road points for EnemyFour
+	 */
 	private ArrayList<Point> points = new ArrayList<Point>();
 	
 	private static Player player;

@@ -2,10 +2,11 @@ package de.teamteamteam.spacescooter.entity.item;
 
 import de.teamteamteam.spacescooter.entity.Player;
 
-public class TestItem1 extends Item {
+public class ItemIncreaseDamage extends Item {
 		
-	public TestItem1(int x, int y) {
+	public ItemIncreaseDamage(int x, int y) {
 		super(x, y);
+		//TODO: Chane Image
 		this.setImage("images/items/item.png");
 	}
 
