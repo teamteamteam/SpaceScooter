@@ -59,6 +59,9 @@ public abstract class Item extends CollidableEntity {
 		case 4:
 			new ItemRocket(x, y);
 			break;
+		case 5:
+			new ItemIncreaseDamage(x, y);
+			break;
 		}
 	}
 }
