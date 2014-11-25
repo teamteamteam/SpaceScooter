@@ -80,8 +80,13 @@ public class LevelConfigParser {
 						this.currentIntervalEnd = Integer.parseInt(intervalBorder[1]);
 						this.levelConfig.addIntervalToList(this.currentIntervalStart, this.currentIntervalEnd);
 					} else {
-						String[] entitySpawnRule = line.split(",", 3);
-						this.levelConfig.addEntitySpawnRule(this.currentIntervalStart, this.currentIntervalEnd, entitySpawnRule[0], Integer.parseInt(entitySpawnRule[1]), Integer.parseInt(entitySpawnRule[2]));
+						String[] rule = line.split(":", 2);
+						if(rule[0].equals("spawn")) {
+							String[] entitySpawnRule = rule[1].split(",", 3);
+							this.levelConfig.addEntitySpawnRule(this.currentIntervalStart, this.currentIntervalEnd, entitySpawnRule[0], Integer.parseInt(entitySpawnRule[1]), Integer.parseInt(entitySpawnRule[2]));
+						} else {
+							System.err.println("Unknown rule type: '"+rule[0]+"' : '"+line+"'");
+						}
 					}
 					break;
 				default:
