@@ -3,6 +3,11 @@ package de.teamteamteam.spacescooter.level;
 import java.io.InputStream;
 import java.util.Scanner;
 
+/**
+ * To parse the LevelConfig, this parser will be used.
+ * It reads the level config file using a scanner and creates a LevelConfig object
+ * filled with all the information it could extract.
+ */
 public class LevelConfigParser {
 
 	

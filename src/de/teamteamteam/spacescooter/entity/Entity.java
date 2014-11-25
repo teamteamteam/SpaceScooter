@@ -19,6 +19,26 @@ import de.teamteamteam.spacescooter.utility.Loader;
 public abstract class Entity implements Updateable, Paintable {
 	
 	/**
+	 * All available entity names are listed here, so the Level logic can use
+	 * these to instantiate things.
+	 * All the elements in this list HAVE to match their class name AND they have to be
+	 * non-abstract!
+	 * @see <de.teamteamteam.spacescooter.level.Level>
+	 */
+	public static enum availableNames {
+		/* Backgrounds */
+		StarBackground,
+		/* Enemies */
+		EnemyOne, EnemyTwo, EnemyThree, EnemyFour,
+		/* Boss Enemies and belongings */
+		EnemyBoss, EnemyBossMinion,
+		/* Explosions */
+		ExplosionOne, ExplosionTwo, MultiExplosion,
+		/* Items */
+		ItemCredit, ItemHeal, ItemIncreaseDamage, ItemNuke, ItemOneUp, ItemRocket, ItemShield,
+	}
+	
+	/**
 	 * Entity position.
 	 */
 	private int x;

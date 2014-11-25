@@ -3,6 +3,11 @@ package de.teamteamteam.spacescooter.level;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The actual LevelConfig.
+ * It contains all the important details that are required to build the level up
+ * and fill it with hot living action.
+ */
 public class LevelConfig {
 
 	public String name;

@@ -1,18 +1,15 @@
 package de.teamteamteam.spacescooter.level;
 
-import java.awt.Point;
 import java.awt.event.KeyEvent;
-import java.util.ArrayList;
-
 import de.teamteamteam.spacescooter.background.StarBackground;
 import de.teamteamteam.spacescooter.control.Keyboard;
 import de.teamteamteam.spacescooter.entity.Player;
 import de.teamteamteam.spacescooter.entity.enemy.EnemyBoss;
-import de.teamteamteam.spacescooter.entity.enemy.EnemyFour;
 import de.teamteamteam.spacescooter.entity.enemy.EnemyOne;
 import de.teamteamteam.spacescooter.entity.enemy.EnemyThree;
 import de.teamteamteam.spacescooter.entity.enemy.EnemyTwo;
-import de.teamteamteam.spacescooter.entity.item.ItemChance;
+import de.teamteamteam.spacescooter.entity.Entity;
+import de.teamteamteam.spacescooter.entity.Entity.availableNames;
 import de.teamteamteam.spacescooter.screen.GameScreen;
 import de.teamteamteam.spacescooter.utility.Loader;
 
@@ -30,9 +27,13 @@ public final class Level {
 	 */
 	private LevelConfig config;
 	
-	ArrayList<Point> points = new ArrayList<Point>();
-
-
+	/**
+	 * Internal levelClock counter thing.
+	 * This is the "level time, we will use in our configs and such.
+	 */
+	private long levelClock;
+	
+	
 	/**
 	 * Constructor creating a LevelConfig based on a given config file.
 	 */
@@ -49,16 +50,6 @@ public final class Level {
 		new StarBackground(0, 50);
 		GameScreen.setPlayer(new Player(200, 300));
 		
-		
-		new ItemChance();
-		/*ArrayList<Point> points = new ArrayList<Point>();
-		points.add(new Point(300,300));
-		points.add(new Point(600,100));
-		points.add(new Point(0,500));
-		new EnemyFour(800, 400, points);*/
-
-		//new EnemyThree(450, 100);
-		//new EnemyBoss(200, 300);
 	}
 	
 	/**
@@ -66,7 +57,7 @@ public final class Level {
 	 * Each time the Level will receive its updateTick,
 	 * it will do some checks, increase an internal counter and do
 	 * evil stuff like looking up what monsters to spawn and whatever else
-	 * is neccessary to torture the player.
+	 * is necessary to torture the player.
 	 */
 	public void handleUpdateTick() {
 		//Debug Spawn Enemy on Press
@@ -79,15 +70,10 @@ public final class Level {
 		if (Keyboard.isKeyDown(KeyEvent.VK_3)) {
 			new EnemyThree(400,400);
 		}
-		if (Keyboard.isKeyDown(KeyEvent.VK_4)) {
-			points.add(new Point(300,300));
-			points.add(new Point(600,100));
-			points.add(new Point(0,500));
-			new EnemyFour(400,400,points);
-		}
 		if (Keyboard.isKeyDown(KeyEvent.VK_0)) {
 			new EnemyBoss(400,400);
 		}
+		this.levelClock++;
 	}
 	
 	/**
@@ -97,5 +83,33 @@ public final class Level {
 	 */
 	public boolean isGameOver() {
 		return !GameScreen.getPlayer().isAlive();
+	}
+	
+	/**
+	 * Spawn an Entity by name on the given position.
+	 * Uses Entity.availableNames to determine the actual Entity to spawn.
+	 */
+	private void spawnEntityByName(String entityName, int x, int y) {
+		availableNames entity = Entity.availableNames.valueOf(entityName);
+		switch(entity) {
+			case EnemyOne:
+				new EnemyOne(x, y);
+				break;
+			case EnemyTwo:
+				new EnemyTwo(x, y);
+				break;
+			case EnemyThree:
+				new EnemyThree(x, y);
+				break;
+			case EnemyFour:
+				//TODO: FIX CONSTRUCTOR new EnemyFour(x, y);
+				break;
+			case EnemyBoss:
+				new EnemyBoss(x, y);
+				break;
+			default:
+				System.err.println("Fuck you, i don't know what you mean with this!");
+				break;
+		}
 	}
 }
