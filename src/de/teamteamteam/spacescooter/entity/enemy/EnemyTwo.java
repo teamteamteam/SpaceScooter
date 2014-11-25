@@ -1,5 +1,6 @@
 package de.teamteamteam.spacescooter.entity.enemy;
 
+import de.teamteamteam.spacescooter.entity.explosion.ExplosionTwo;
 import de.teamteamteam.spacescooter.utility.GameConfig;
 import de.teamteamteam.spacescooter.utility.Random;
 
@@ -27,6 +28,11 @@ public class EnemyTwo extends Enemy{
 		if(this.getX() < 0-getWidth()){
 			this.remove();
 		}
+	}
+
+	@Override
+	public void explode() {
+		new ExplosionTwo(this.getX(), this.getY());
 	}
 	
 }

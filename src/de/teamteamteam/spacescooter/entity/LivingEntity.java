@@ -109,7 +109,7 @@ public abstract class LivingEntity extends CollidableEntity implements Hittable 
 	 * The default way the LivingEntity explodes. Override this method for a
 	 * different explosion behaviour.
 	 */
-	public void explode() {}
+	public abstract void explode();
 
 	/**
 	 * The default way the LivingEntity dies. Override this method for a

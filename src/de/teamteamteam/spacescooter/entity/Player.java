@@ -126,7 +126,6 @@ public class Player extends ShootingEntity implements KeyboardListener {
 	 */
 	@Override
 	public void explode() {
-		super.explode();
 		SoundSystem.playSound("sounds/abgang.wav");
 	}
 	
