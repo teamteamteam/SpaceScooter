@@ -76,8 +76,7 @@ public class GameScreen extends Screen {
 	/**
 	 * Trigger level logic, trigger updates on all entities,
 	 * take care of user input such as pressing escape and
-	 * do a little(!) check on the gameover condition.
-	 * TODO: Let the level take care of that.
+	 * do a little check on the gameover condition.
 	 */
 	@Override
 	protected void update() {
@@ -94,7 +93,8 @@ public class GameScreen extends Screen {
 		if (Keyboard.isKeyDown(KeyEvent.VK_ESCAPE)) {
 			this.setOverlay(new GamePausedScreen(this));
 		}
-		if (!GameScreen.player.isAlive()) { //The level shall take this over.
+		//Go to GameOverScreen if the game is actually over.
+		if (this.level.isGameOver()) {
 			this.parent.setOverlay(new GameOverScreen(this.parent));
 		}
 	}
