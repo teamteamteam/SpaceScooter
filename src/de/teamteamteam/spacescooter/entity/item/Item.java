@@ -4,10 +4,13 @@ import de.teamteamteam.spacescooter.entity.CollidableEntity;
 import de.teamteamteam.spacescooter.entity.Player;
 import de.teamteamteam.spacescooter.entity.spi.Collidable;
 import de.teamteamteam.spacescooter.sound.SoundSystem;
+import de.teamteamteam.spacescooter.utility.Random;
 
 public abstract class Item extends CollidableEntity {
 	
-	
+	/**
+	 * Default constructor.
+	 */
 	public Item(int x, int y) {
 		super(x, y);
 	}
@@ -23,11 +26,15 @@ public abstract class Item extends CollidableEntity {
 		}
 	}
 	
+	/**
+	 * Default update method for all items.
+	 * They smoothly scroll along and vanish when they're off the screen.
+	 */
 	public void update(){
 		this.transpose(-1, 0);
-		if(this.getX() < 0-this.getWidth()){
+		if(this.getX() < this.getWidth()) {
 			this.remove();
-		};
+		}
 	}
 	
 	/**
@@ -37,31 +44,59 @@ public abstract class Item extends CollidableEntity {
 	public abstract void itemCollected(Player player);
 	
 	/**
-	 * Selects which item spawns.
-	 * 
-	 * (If you add a new item, you must also add it in ItemChance.java)
+	 * Spawns a random item using the weighted probabilities..
 	 */
 	public static void create(int x, int y){
-		int auswahl = ItemChance.choose();
-		switch (auswahl) {
-		case 0:
-			new ItemNuke(x, y);
-			break;
-		case 1:
-			new ItemCredit(x, y);
-			break;
-		case 2:
-			new ItemHeal(x, y);
-			break;
-		case 3:
-			new ItemShield(x, y);
-			break;
-		case 4:
-			new ItemRocket(x, y);
-			break;
-		case 5:
-			new ItemIncreaseDamage(x, y);
-			break;
+		int i;
+		int sum = 0;
+		int choice = -1;
+		//List of items with their weighted probabilities.
+		int[] items = new int[6];
+		items[0] = 1;	//ItemNuke
+		items[1] = 4;	//ItemCredit
+		items[2] = 2;	//ItemHeal
+		items[3] = 2;	//ItemShield
+		items[4] = 2;	//ItemRocket
+		items[5] = 3;	//ItemIncreaseDamage
+		//Add them all up
+		for(i=0; i<items.length; i++) {
+			sum += items[i];
+		}
+		//Get a random number between 0 and sum
+		int randomNumber = Random.nextInt(sum);
+		//Check out which one is the current choice.
+		for(i=0; i<items.length; i++) {
+			if(randomNumber >= items[i]) {
+				randomNumber -= items[i];
+			} else {
+				//A choice has been made. Break away now.
+				choice = i;
+				break;
+			}
+		}
+		//Actually spawn the item now
+		switch (choice) {
+			case 0:
+				new ItemNuke(x, y);
+				break;
+			case 1:
+				new ItemCredit(x, y);
+				break;
+			case 2:
+				new ItemHeal(x, y);
+				break;
+			case 3:
+				new ItemShield(x, y);
+				break;
+			case 4:
+				new ItemRocket(x, y);
+				break;
+			case 5:
+				new ItemIncreaseDamage(x, y);
+				break;
+			default:
+				System.err.println("Could not determine which item to spawn!");
+				break;
 		}
 	}
 }

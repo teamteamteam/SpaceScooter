@@ -8,7 +8,6 @@ import de.teamteamteam.spacescooter.entity.enemy.EnemyBoss;
 import de.teamteamteam.spacescooter.entity.enemy.EnemyOne;
 import de.teamteamteam.spacescooter.entity.enemy.EnemyThree;
 import de.teamteamteam.spacescooter.entity.enemy.EnemyTwo;
-import de.teamteamteam.spacescooter.entity.item.ItemChance;
 import de.teamteamteam.spacescooter.entity.Entity;
 import de.teamteamteam.spacescooter.screen.GameScreen;
 import de.teamteamteam.spacescooter.utility.GameConfig;
@@ -50,7 +49,6 @@ public final class Level {
 	 * Initialize the level based on the LevelConfig attributes.
 	 */
 	public void doBuildUp() {
-		new ItemChance();
 		new StarBackground(0, 50);
 		GameScreen.setPlayer(new Player(200, 300));
 	}

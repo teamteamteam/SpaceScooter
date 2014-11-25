@@ -24,8 +24,8 @@ public class EnemyTwo extends Enemy{
 	public void update() {
 		super.update();
 		this.setPosition(this.getX()-1, this.getY());
-		if(!this.isAlive()){
-			new EnemyTwo(0, 0);
+		if(this.getX() < 0-getWidth()){
+			this.remove();
 		}
 	}
 	

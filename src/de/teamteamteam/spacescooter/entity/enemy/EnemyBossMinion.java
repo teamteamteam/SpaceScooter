@@ -31,7 +31,6 @@ public class EnemyBossMinion extends Enemy{
 	@Override
 	public void die() {
 		if(Random.nextInt(10) < 5) Item.create(getX(), getY());
-		new EnemyBossMinion(0, 0);
 		super.die();
 	}
 	
