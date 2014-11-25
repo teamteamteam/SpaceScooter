@@ -75,7 +75,7 @@ public class CollisionHandler {
 		int y2 = cOne.getY() + cOne.getHeight();
 		int y3 = cTwo.getY();
 		int y4 = cTwo.getY() + cTwo.getHeight();
-		int total_height = cOne.getWidth() + cTwo.getWidth();
+		int total_height = cOne.getHeight() + cTwo.getHeight();
 		boolean y_overlap = total_height > Math.abs(Math.max(y2, y4) - Math.min(y1, y3));
 		
 		return x_overlap && y_overlap;

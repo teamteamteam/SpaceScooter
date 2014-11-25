@@ -107,7 +107,7 @@ public abstract class ShootingEntity extends LivingEntity {
 			if(this.currentRocketDelay == 0) {
 				this.createRocket();
 				GameScreen.getPlayer().removeRocketAmount();
-				this.currentRocketDelay = this.shootDelay*3;
+				this.currentRocketDelay = this.shootDelay*2;
 			}
 		}
 	}
@@ -117,7 +117,7 @@ public abstract class ShootingEntity extends LivingEntity {
 			if(this.currentBeamDelay == 0) {
 				this.createBeam();
 				GameScreen.getPlayer().removeBeamAmount();
-				this.currentBeamDelay = this.shootDelay;
+				this.currentBeamDelay = this.shootDelay*2;
 			}
 		}
 	}
@@ -215,11 +215,22 @@ public abstract class ShootingEntity extends LivingEntity {
 				this.getY() + this.shootSpawnY,
 				this.shootDirection,
 				this.shootSpeed,
-				(int)(this.shootDamage*1.5),
+				(int)(this.shootDamage*1.2),
 				this.primaryShotImage
 				);
 	}
 	
+	public void createBeam() {
+		new Beam(
+				this.getX() + this.shootSpawnX,
+				this.getY() + this.shootSpawnY,
+				this.shootDirection,
+				this.shootSpeed,
+				this.shootDamage,
+				this.primaryShotImage
+				);
+	}
+		
 	/**
 	 * Custom Shoot for Custom Action!!!
 	 */
@@ -232,16 +243,6 @@ public abstract class ShootingEntity extends LivingEntity {
 				dmg,
 				filename
 			);
-	}
-	public void createBeam() {
-		new Beam(
-				this.getX() + this.shootSpawnX,
-				this.getY() + this.shootSpawnY,
-				this.shootDirection,
-				this.shootSpeed,
-				this.shootDamage,
-				this.primaryShotImage
-				);
 	}
 
 }
