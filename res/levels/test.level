@@ -3,7 +3,7 @@ backgroundMusic:music/bla.wav
 background:StarBackground
 -
 [0-4]
-spawn:EnemyBoss,1,1
+spawn:EnemyOne,1,1
 [5-10]
 spawn:EnemyTwo,2,10
 [11-25]

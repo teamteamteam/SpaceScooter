@@ -41,7 +41,6 @@ public final class Level {
 	public Level(String levelConfig) {
 		this.levelClock = 0;
 		this.config = Loader.getLevelConfigByFilename(levelConfig);
-		System.out.println(this.config);
 	}
 	
 	
@@ -49,7 +48,7 @@ public final class Level {
 	 * Initialize the level based on the LevelConfig attributes.
 	 */
 	public void doBuildUp() {
-		new StarBackground(0, 50);
+		this.spawnEntityByAvailableName(Entity.availableNames.valueOf(this.config.background), 0, 50);
 		GameScreen.setPlayer(new Player(200, 300));
 	}
 	
@@ -122,6 +121,9 @@ public final class Level {
 	 */
 	private void spawnEntityByAvailableName(Entity.availableNames entity, int x, int y) {
 		switch(entity) {
+			case StarBackground:
+				new StarBackground(x, y);
+				break;
 			case EnemyOne:
 				new EnemyOne(x, y);
 				break;
