@@ -12,7 +12,7 @@ public class Beam extends Shot{
 	@Override
 	public void update() {
 		i++;
-		if(i>100){
+		if(i>10){
 			this.remove();
 		}
 	}
