@@ -93,7 +93,7 @@ public class LevelConfig {
 	 */
 	public int getIntervalIndexByCurrentTime(int time) {
 		for(int[] interval : this.intervalList) {
-			if(interval[0] <= time && interval[1] >= time) {
+			if(time >= interval[0] && time < interval[1]) {
 				return this.intervalList.indexOf(interval);
 			}
 		}

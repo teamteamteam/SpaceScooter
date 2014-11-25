@@ -40,7 +40,7 @@ public abstract class Enemy extends ShootingEntity {
 		if(willShoot == true){
 			this.shoot();
 		}
-		if(this.getX() < 0-getWidth()){
+		if(this.getX() < 0-this.getWidth()) {
 			this.remove();
 		}
 	}

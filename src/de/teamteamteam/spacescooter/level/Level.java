@@ -74,8 +74,6 @@ public final class Level {
 		if (Keyboard.isKeyDown(KeyEvent.VK_0)) {
 			new EnemyBoss(400,400);
 		}
-		//Increase levelClock
-		this.levelClock++;
 		//Check whether the current interval is configured
 		int currentIntervalIndex = this.config.getIntervalIndexByCurrentTime(this.levelClock);
 		if(currentIntervalIndex == -1) return; //Nothing to do
@@ -105,6 +103,8 @@ public final class Level {
 				}
 			}
 		}
+		//Increase levelClock
+		this.levelClock++;
 	}
 	
 	/**

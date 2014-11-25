@@ -37,7 +37,6 @@ public class EnemyBossMinion extends Enemy{
 	/**
 	 * Custom MultiExplosion for this enemy.
 	 */
-	@Override
 	public void explode() {
 		new MultiExplosion(this.getX(), this.getY());
 	}
@@ -45,12 +44,12 @@ public class EnemyBossMinion extends Enemy{
 	@Override
 	public void update() {
 		super.update();
-		this.setPosition(this.getX()-1, this.getY());
+		this.transpose(-1, 0);
 		Player player = GameScreen.getPlayer();
 		if(this.getY() < player.getY()){
 			this.newY += ySpeed;
 			this.setPosition(this.getX(), (int) newY);
-		}else if(this.getY() > player.getY()){
+		} else if(this.getY() > player.getY()) {
 			this.newY -= ySpeed;
 			this.setPosition(this.getX(), (int) newY);
 		}
