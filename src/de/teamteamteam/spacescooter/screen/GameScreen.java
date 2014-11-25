@@ -16,6 +16,7 @@ import de.teamteamteam.spacescooter.gui.HealthBar;
 import de.teamteamteam.spacescooter.gui.InterfaceBar;
 import de.teamteamteam.spacescooter.gui.ScoreBar;
 import de.teamteamteam.spacescooter.gui.ShieldBar;
+import de.teamteamteam.spacescooter.level.Level;
 import de.teamteamteam.spacescooter.utility.CollisionHandler;
 
 /**
@@ -33,8 +34,21 @@ public class GameScreen extends Screen {
 	
 	private static Player player;
 	
-	public GameScreen(Screen parent) {
+	/**
+	 * Level instance to handle all the stuff based on its LevelConfig.
+	 */
+	private Level level;
+	
+	
+	/**
+	 * GameScreen Constructor.
+	 * Takes the level as its second parameter.
+	 */
+	public GameScreen(Screen parent, String levelConfigName) {
 		super(parent);
+		this.level = new Level(levelConfigName);
+		
+		//Old style adding stuff
 		new ItemChance();
 		points.add(new Point(300,300));
 		points.add(new Point(600,100));
@@ -50,6 +64,7 @@ public class GameScreen extends Screen {
 		new EnemyBoss(200, 300);
 	}
 
+	
 	@Override
 	protected void paint(Graphics2D g) {
 		this.entityPaintIterator.reset();
@@ -58,8 +73,18 @@ public class GameScreen extends Screen {
 		}
 	}
 
+	/**
+	 * Trigger level logic, trigger updates on all entities,
+	 * take care of user input such as pressing escape and
+	 * do a little(!) check on the gameover condition.
+	 * TODO: Let the level take care of that.
+	 */
 	@Override
 	protected void update() {
+		//The level will take care of whatever happens next.
+		this.level.handleUpdateTick();
+		
+		//Take care of the usual bussiness
 		this.entityUpdateIterator.reset();
 		while (this.entityUpdateIterator.hasNext()) {
 			this.entityUpdateIterator.next().update();
@@ -69,7 +94,7 @@ public class GameScreen extends Screen {
 		if (Keyboard.isKeyDown(KeyEvent.VK_ESCAPE)) {
 			this.setOverlay(new GamePausedScreen(this));
 		}
-		if (!GameScreen.player.isAlive()) {
+		if (!GameScreen.player.isAlive()) { //The level shall take this over.
 			this.parent.setOverlay(new GameOverScreen(this.parent));
 		}
 	}

@@ -4,7 +4,7 @@ background:FooBackground
 bossEnemy:TheBigOne
 -
 [0-2025]
-GegnerOne,2,6
+spawn:GegnerOne,2,6
 [2026-2168]
-GegnerOne,2,4
-GegnerTwo,5,6
+spawn:GegnerOne,2,4
+spawn:GegnerTwo,5,6

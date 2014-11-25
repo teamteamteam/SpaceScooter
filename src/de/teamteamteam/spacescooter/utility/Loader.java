@@ -3,6 +3,7 @@ package de.teamteamteam.spacescooter.utility;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
 import java.util.Hashtable;
 
@@ -10,6 +11,8 @@ import javax.imageio.ImageIO;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
+import de.teamteamteam.spacescooter.level.LevelConfig;
+import de.teamteamteam.spacescooter.level.LevelConfigParser;
 import de.teamteamteam.spacescooter.screen.LoadingScreen;
 import de.teamteamteam.spacescooter.sound.SoundSystem;
 
@@ -19,6 +22,12 @@ import de.teamteamteam.spacescooter.sound.SoundSystem;
  */
 public class Loader {
 
+	/**
+	 * Private instance of the LevelConfigParser to parse LevelConfigs.
+	 * Sorry, i know this is kind of bad, but it is a TODO to clean that up. :-/
+	 */
+	private static LevelConfigParser levelConfigParser;
+	
 	/**
 	 * HashTable containing loaded BufferedImages
 	 */
@@ -30,11 +39,19 @@ public class Loader {
 	private static Hashtable<String, URL> sounds;
 
 	/**
+	 * HashTable containing the parsed LevelConfigs.
+	 */
+	private static Hashtable<String, LevelConfig> levelConfigs;
+	
+	
+	/**
 	 * Initialize the HashTables on load.
 	 */
 	static {
 		Loader.images = new Hashtable<String, BufferedImage>();
 		Loader.sounds = new Hashtable<String, URL>();
+		Loader.levelConfigs = new Hashtable<String, LevelConfig>();
+		Loader.levelConfigParser = new LevelConfigParser();
 	}
 
 	
@@ -71,7 +88,19 @@ public class Loader {
 			return Loader.sounds.get(filename.replace("/", File.separator));
 		}
 	}
-
+	
+	/**
+	 * Return the LevelConfig by its relative filename.
+	 */
+	public static LevelConfig getLevelConfigByFilename(String filename) {
+		if(CodeEnvironment.isJar()) {
+			return Loader.levelConfigs.get(filename);
+		} else {
+			return Loader.levelConfigs.get(filename.replace("/", File.separator));
+		}
+	}
+	
+	
 	/**
 	 * Perform the initial loading of everything and show the progress on the
 	 * given LoadingScreen.
@@ -98,8 +127,23 @@ public class Loader {
 					System.out.println("Creating AudioInputStream for: " + e);
 				Loader.addSoundURLByFilename(e);
 			}
+			if(e.endsWith(".level")) {
+				if(GameConfig.DEBUG) {
+					System.out.println("Creating LevelConfig for: " + e);
+				}
+				Loader.addLevelByFilename(e);
+			}
 			loadingScreen.increaseCurrentProcessed();
 		}
+	}
+
+	/**
+	 * Preload a LevelConfig by simply parsing it into a LevelConfig object.
+	 */
+	private static void addLevelByFilename(String levelFilename) {
+		InputStream foo = Loader.class.getClassLoader().getResourceAsStream(levelFilename);
+		LevelConfig levelConfig = Loader.levelConfigParser.parse(foo);
+		Loader.levelConfigs.put(levelFilename, levelConfig);
 	}
 
 	/**

@@ -1,16 +1,9 @@
 package de.teamteamteam.spacescooter.level;
 
-import java.io.File;
+import java.io.InputStream;
 import java.util.Scanner;
 
 public class LevelConfigParser {
-
-	/* DEBUG */
-	public static void main(String[] args) {
-		LevelConfigParser lcp = new LevelConfigParser();
-		LevelConfig lc = lcp.parse("/home/stud/timmeja/Programmierprojekt/SpaceScooter/src/de/teamteamteam/spacescooter/level/temp.properties");
-		System.out.println(lc);
-	}
 
 	
 	/**
@@ -50,7 +43,7 @@ public class LevelConfigParser {
 	/**
 	 * Takes a given configFile and turns it into a LevelConfig object.
 	 */
-	public LevelConfig parse(String configFile) {
+	public LevelConfig parse(InputStream configFile) {
 		this.reset();
 		this.prepareScanner(configFile);
 		while (this.scanner.hasNextLine()) {
@@ -103,9 +96,9 @@ public class LevelConfigParser {
 	/**
 	 * Prepares a Scanner for the file to parse.
 	 */
-	private void prepareScanner(String filename) {
+	private void prepareScanner(InputStream configStream) {
 		try {
-			this.scanner = new Scanner(new File(filename));
+			this.scanner = new Scanner(configStream);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
