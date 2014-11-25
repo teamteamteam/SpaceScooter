@@ -12,6 +12,7 @@ public class EnemyFour extends Enemy{
 	private double y;
 	private double vektorX;
 	private double vektorY;
+	private int speed = 2;
 
 	public EnemyFour(int x, int y, ArrayList<Point> points) {
 		super(x, y);
@@ -35,11 +36,12 @@ public class EnemyFour extends Enemy{
 	public void update() {
 		super.update();
 		
-		this.x -= vektorX;
-		this.y -= vektorY;
+		this.x -= vektorX*speed;
+		this.y -= vektorY*speed;
 		this.setPosition((int)x, (int)y);
 		
-		if(this.getX() == (int)nextPoint.getX() && this.getY() == (int)nextPoint.getY()){
+		if(this.getX()+2 >= (int)nextPoint.getX() && this.getX()-2 <= (int)nextPoint.getX()
+				&& this.getY()+2 >= (int)nextPoint.getY() && this.getY()+1 <= (int)nextPoint.getY()){
 			getNextPoint();
 		}
 	}
