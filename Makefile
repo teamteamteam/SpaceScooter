@@ -2,7 +2,7 @@
 
 game.jar: compile
 	echo 'Main-Class: de.teamteamteam.spacescooter.Main' >compiled/manifest.txt
-	jar cvfe game.jar 'de.teamteamteam.spacescooter.Main' -C compiled de -C compiled images -C compiled sounds -C compiled music
+	jar cvfe game.jar 'de.teamteamteam.spacescooter.Main' -C compiled de -C compiled images -C compiled sounds -C compiled music -C compiled levels
 
 compile: clean
 	mkdir -p compiled
