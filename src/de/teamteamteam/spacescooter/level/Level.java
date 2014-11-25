@@ -1,5 +1,18 @@
 package de.teamteamteam.spacescooter.level;
 
+import java.awt.Point;
+import java.util.ArrayList;
+
+import de.teamteamteam.spacescooter.background.StarBackground;
+import de.teamteamteam.spacescooter.entity.Player;
+import de.teamteamteam.spacescooter.entity.enemy.EnemyBoss;
+import de.teamteamteam.spacescooter.entity.enemy.EnemyFour;
+import de.teamteamteam.spacescooter.entity.enemy.EnemyThree;
+import de.teamteamteam.spacescooter.entity.item.ItemChance;
+import de.teamteamteam.spacescooter.gui.HealthBar;
+import de.teamteamteam.spacescooter.gui.InterfaceBar;
+import de.teamteamteam.spacescooter.gui.ScoreBar;
+import de.teamteamteam.spacescooter.gui.ShieldBar;
 import de.teamteamteam.spacescooter.screen.GameScreen;
 import de.teamteamteam.spacescooter.utility.Loader;
 
@@ -26,6 +39,27 @@ public final class Level {
 		System.out.println(this.config);
 	}
 	
+	
+	/**
+	 * Initialize the level based on the LevelConfig attributes.
+	 */
+	public void doBuildUp() {
+		GameScreen.setPlayer(new Player(200, 300));
+		
+		
+		new ItemChance();
+		ArrayList<Point> points = new ArrayList<Point>();
+		points.add(new Point(300,300));
+		points.add(new Point(600,100));
+		points.add(new Point(0,500));
+		new EnemyFour(800, 400, points);
+		
+		new StarBackground(0, 50);
+
+
+		new EnemyThree(450, 100);
+		new EnemyBoss(200, 300);
+	}
 	
 	/**
 	 * The magic will happen in here.

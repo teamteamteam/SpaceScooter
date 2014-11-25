@@ -1,17 +1,10 @@
 package de.teamteamteam.spacescooter.screen;
 
 import java.awt.Graphics2D;
-import java.awt.Point;
 import java.awt.event.KeyEvent;
-import java.util.ArrayList;
 
-import de.teamteamteam.spacescooter.background.StarBackground;
 import de.teamteamteam.spacescooter.control.Keyboard;
 import de.teamteamteam.spacescooter.entity.Player;
-import de.teamteamteam.spacescooter.entity.enemy.EnemyBoss;
-import de.teamteamteam.spacescooter.entity.enemy.EnemyFour;
-import de.teamteamteam.spacescooter.entity.enemy.EnemyThree;
-import de.teamteamteam.spacescooter.entity.item.ItemChance;
 import de.teamteamteam.spacescooter.gui.HealthBar;
 import de.teamteamteam.spacescooter.gui.InterfaceBar;
 import de.teamteamteam.spacescooter.gui.ScoreBar;
@@ -27,11 +20,6 @@ import de.teamteamteam.spacescooter.utility.CollisionHandler;
  */
 public class GameScreen extends Screen {
 
-	/**
-	 * Road points for EnemyFour
-	 */
-	private ArrayList<Point> points = new ArrayList<Point>();
-	
 	private static Player player;
 	
 	/**
@@ -47,24 +35,19 @@ public class GameScreen extends Screen {
 	public GameScreen(Screen parent, String levelConfigName) {
 		super(parent);
 		this.level = new Level(levelConfigName);
+		this.level.doBuildUp(); //Have the level build up the whole setting.
 		
-		//Old style adding stuff
-		new ItemChance();
-		points.add(new Point(300,300));
-		points.add(new Point(600,100));
-		points.add(new Point(0,500));
-		new StarBackground(0, 50);
-		GameScreen.player = new Player(200, 300);
+		//Basic UI buildup - it's the same across all levels.
 		new InterfaceBar(0, 0);
 		new HealthBar(10, 5);
 		new ShieldBar(10, 27);
 		new ScoreBar(575, 33);
-		new EnemyFour(800, 400, points);
-		new EnemyThree(450, 100);
-		new EnemyBoss(200, 300);
 	}
 
 	
+	/**
+	 * This part is simple: Paint all the Entities!
+	 */
 	@Override
 	protected void paint(Graphics2D g) {
 		this.entityPaintIterator.reset();
@@ -101,6 +84,10 @@ public class GameScreen extends Screen {
 	
 	public static Player getPlayer() {
 		return GameScreen.player;
+	}
+	
+	public static void setPlayer(Player player) {
+		GameScreen.player = player;
 	}
 	
 }
