@@ -158,6 +158,13 @@ public class Player extends ShootingEntity implements KeyboardListener {
 		if(e.getKeyCode() == KeyEvent.VK_SPACE) {
 			this.shoot();
 		}
+		
+		//DEBUG: Get X and Y
+		if(e.getKeyCode() == KeyEvent.VK_F6) {
+			System.out.println("X: " + this.getX());
+			System.out.println("Y: " + this.getY());
+			System.out.println();
+		}
 	}
 
 	/**

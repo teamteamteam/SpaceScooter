@@ -1,8 +1,15 @@
 package de.teamteamteam.spacescooter.control;
 
+import java.awt.Point;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
+
+import de.teamteamteam.spacescooter.entity.enemy.EnemyBoss;
+import de.teamteamteam.spacescooter.entity.enemy.EnemyFour;
+import de.teamteamteam.spacescooter.entity.enemy.EnemyOne;
+import de.teamteamteam.spacescooter.entity.enemy.EnemyThree;
+import de.teamteamteam.spacescooter.entity.enemy.EnemyTwo;
 
 /**
  * This is our main control input source.
@@ -47,6 +54,13 @@ public class Keyboard implements KeyListener {
 	public static boolean isKeyDown(int keyCode) {
 		return Keyboard.activeKeys.contains((Integer) keyCode);
 	}
+	
+	/**
+	 * Returns true if the given keyCodes key is down.
+	 */
+	public static boolean isKeyPress(int keyCode) {
+		return Keyboard.activeKeys.contains((Integer) keyCode);
+	}
 
 	/**
 	 * Returns true if the given keyCodes key is up.
@@ -87,6 +101,26 @@ public class Keyboard implements KeyListener {
 		}
 		Keyboard.activeKeys.add((Integer) e.getKeyCode());
 		for(KeyboardListener kl : Keyboard.listener) kl.keyPressed(e);
+		
+		//Debug Spawn Enemy on Press
+		if(e.getKeyCode() == KeyEvent.VK_1) {
+			new EnemyOne(400,400);
+		}
+		if(e.getKeyCode() == KeyEvent.VK_2) {
+			new EnemyTwo(400,400);
+		}
+		if(e.getKeyCode() == KeyEvent.VK_3) {
+			new EnemyThree(400,400);
+		}
+		if(e.getKeyCode() == KeyEvent.VK_4) {
+			ArrayList<Point> points = new ArrayList<Point>();
+			points.add(new Point(398,306));;
+			points.add(new Point(10,300));
+			new EnemyFour(700,51,points);
+		}
+		if(e.getKeyCode() == KeyEvent.VK_0) {
+			new EnemyBoss(400,400);
+		}
 	}
 
 	/**
