@@ -1,5 +1,7 @@
 package de.teamteamteam.spacescooter.entity.enemy;
 
+import de.teamteamteam.spacescooter.entity.explosion.ExplosionOne;
+
 public class EnemyOne extends Enemy {
 
 	public EnemyOne(int x, int y) {
@@ -19,6 +21,11 @@ public class EnemyOne extends Enemy {
 	@Override
 	public void update() {
 		super.update();
+	}
+
+	@Override
+	public void explode() {
+		new ExplosionOne(this.getX(), this.getY());
 	}
 	
 }

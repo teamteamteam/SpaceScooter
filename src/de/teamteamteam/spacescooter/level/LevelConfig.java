@@ -93,7 +93,7 @@ public class LevelConfig {
 	 */
 	public int getIntervalIndexByCurrentTime(int time) {
 		for(int[] interval : this.intervalList) {
-			if(interval[0] <= time && interval[1] >= time) {
+			if(time >= interval[0] && time < interval[1]) {
 				return this.intervalList.indexOf(interval);
 			}
 		}
@@ -104,7 +104,6 @@ public class LevelConfig {
 	 * Add a given EntitySpawnRule to the ruleList.
 	 */
 	public void addEntitySpawnRule(int intervalStart, int intervalEnd, String entityName, int amount, int spawnRate) {
-		System.out.println("Adding rule for " + intervalStart + " to " + intervalEnd + ": " + entityName + ", " + amount + ", " + spawnRate);
 		int intervalIndex = this.getIntervalIndexByBorders(intervalStart, intervalEnd);
 		if(intervalIndex == -1) {
 			System.err.println("No Interval for rule found!");

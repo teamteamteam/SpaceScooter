@@ -3,6 +3,8 @@ package de.teamteamteam.spacescooter.entity.enemy;
 import java.awt.Point;
 import java.util.ArrayList;
 
+import de.teamteamteam.spacescooter.entity.explosion.ExplosionOne;
+
 public class EnemyFour extends Enemy{
 	
 	private ArrayList<Point> points;
@@ -62,6 +64,11 @@ public class EnemyFour extends Enemy{
 		}catch(IndexOutOfBoundsException e){
 			this.remove();
 		}
+	}
+
+	@Override
+	public void explode() {
+		new ExplosionOne(this.getX(), this.getY());
 	}
 	
 }
