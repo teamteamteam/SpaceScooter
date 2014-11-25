@@ -10,13 +10,35 @@ import de.teamteamteam.spacescooter.entity.spi.Collidable;
 import de.teamteamteam.spacescooter.sound.SoundSystem;
 import de.teamteamteam.spacescooter.utility.GameConfig;
 
+/**
+ * Class that represents the Player, and handle all the KeyboardActions
+ */
 public class Player extends ShootingEntity implements KeyboardListener {
-	
+
+	/**
+	 * the Player's Keyboard
+	 */
 	private Keyboard keyboard = null;
-	private double healthPercent = 0;
-	private double shieldPercent = 0;
-	private int rocketAmount = 1;
 	
+	/**
+	 * the Players Health Points in percent
+	 */
+	private double healthPercent = 0;
+	
+	/**
+	 * the Players ShieldPoints in percent
+	 */
+	private double shieldPercent = 0;
+	
+	/**
+	 * the Players Rocket Ammunition
+	 */
+	private int rocketAmount = 1;
+
+	
+	/**
+	 * Constructor for initializing the Player on the GameScreen
+	 */
 	public Player(int x, int y) {
 		super(x, y);
 		this.setImage("images/ship.png");
@@ -32,11 +54,17 @@ public class Player extends ShootingEntity implements KeyboardListener {
 		this.registerOnKeyboard(Keyboard.getInstance());
 	}
 
+	/**
+	 * Method for register the Player on the Keyboard 
+	 */
 	private void registerOnKeyboard(Keyboard keyboard) {
 		this.keyboard = keyboard;
 		this.keyboard.addListener(this);
 	}
 
+	/**
+	 * Standard update method
+	 */
 	public void update() {
 		if (StaticValue.HealthPoints != 0) {
 			this.healthPercent = ((double) this.getHealthPoints() / (double) StaticValue.HealthPoints) * 100;
@@ -83,12 +111,18 @@ public class Player extends ShootingEntity implements KeyboardListener {
 		}
 	}
 	
+	/**
+	 * Explode method that trigger the ShootingEntity.explode() method and play a nice sound
+	 */
 	@Override
 	public void explode() {
 		super.explode();
 		SoundSystem.playSound("sounds/abgang.wav");
 	}
 	
+	/**
+	 * createShot method that trigger the ShootingEntity.createShot() method and play a nice sound
+	 */
 	@Override
 	public void createShot() {
 		super.createShot();
@@ -107,6 +141,9 @@ public class Player extends ShootingEntity implements KeyboardListener {
 		super.remove();
 	}
 
+	/**
+	 * keyPressed method, comes in handy when a key on the keyboard is pressed
+	 */
 	public void keyPressed(KeyEvent e) {
 		//spontaneous fire happens here
 		if(e.getKeyCode() == KeyEvent.VK_SPACE) {
@@ -114,6 +151,9 @@ public class Player extends ShootingEntity implements KeyboardListener {
 		}
 	}
 
+	/**
+	 * keyReleased method, reacts if a key on the keyboard is released
+	 */
 	public void keyReleased(KeyEvent e) {
 		//space up -> reset shot cooldown
 		if(e.getKeyCode() == KeyEvent.VK_SPACE) {
@@ -121,16 +161,28 @@ public class Player extends ShootingEntity implements KeyboardListener {
 		}
 	}
 
+	/**
+	 * empty keyTyped method, maybe useful for cheatcodes later
+	 */
 	public void keyTyped(KeyEvent e) {}
 	
+	/**
+	 * return the Healthpercentage of the Player
+	 */
 	public int getHealthPercent() {
 		return (int) this.healthPercent;
 	}
 	
+	/**
+	 * return the Shieldpercentage of the Player
+	 */
 	public int getShieldPercent() {
 		return (int) this.shieldPercent;
 	}
-	
+
+	/**
+	 * method for increasing the HealthPoints with the Heal-Item
+	 */
 	public void increaseHealthPoints(int inc) {
 		if (this.getHealthPoints() <= 85) {
 			this.setHealthPoints(getHealthPercent() + inc);

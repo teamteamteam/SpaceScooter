@@ -1,18 +1,39 @@
 package de.teamteamteam.spacescooter.entity;
 
+/**
+ * Static Values for the Player and the Shop
+ *
+ */
 public class StaticValue {
-	
+	//Player
 	/**
-	 * Values for the player
+	 * the ShootDamage of the Player
 	 */
 	public static int ShootDamage = 5;
-	public static int HealthPoints = 100;
-	public static int ShieldPoints = 100;
 	
 	/**
-	 * Values for the shop
+	 * the HealthPoints of the Player may be changed by the 1Up-Item
+	 */
+	public static int HealthPoints = 100;
+	
+	/**
+	 * the ShieldPoints of the Player
+	 */
+	public static int ShieldPoints = 100;
+	
+	//Shop
+	/**
+	 * The Damage Value of the Shop
 	 */
 	public static int schaden = 0;
+	
+	/**
+	 * the Shield value of the Shop
+	 */
 	public static int schild = 0;
+	
+	/**
+	 * the Health value of the Shop
+	 */
 	public static int leben = 0;
 }
