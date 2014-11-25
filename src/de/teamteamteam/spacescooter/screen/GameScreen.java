@@ -27,6 +27,10 @@ public class GameScreen extends Screen {
 	 */
 	private Level level;
 	
+	/**
+	 * Internal counter that has to match a certain modulo to trigger the Level class within update().
+	 */
+	private long gameClockTrigger;
 	
 	/**
 	 * GameScreen Constructor.
@@ -36,6 +40,8 @@ public class GameScreen extends Screen {
 		super(parent);
 		this.level = new Level(levelConfigName);
 		this.level.doBuildUp(); //Have the level build up the whole setting.
+		
+		this.gameClockTrigger = 0;
 		
 		//Basic UI buildup - it's the same across all levels.
 		new InterfaceBar(0, 0);
@@ -63,8 +69,12 @@ public class GameScreen extends Screen {
 	 */
 	@Override
 	protected void update() {
-		//The level will take care of whatever happens next.
-		this.level.handleUpdateTick();
+		this.gameClockTrigger++;
+		//The level will take care of whatever happens next every second.
+		if(this.gameClockTrigger % 100 == 0) {
+			this.gameClockTrigger = 0;
+			this.level.handleUpdateTick();
+		}
 		
 		//Take care of the usual bussiness
 		this.entityUpdateIterator.reset();

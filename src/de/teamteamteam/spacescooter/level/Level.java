@@ -9,9 +9,10 @@ import de.teamteamteam.spacescooter.entity.enemy.EnemyOne;
 import de.teamteamteam.spacescooter.entity.enemy.EnemyThree;
 import de.teamteamteam.spacescooter.entity.enemy.EnemyTwo;
 import de.teamteamteam.spacescooter.entity.Entity;
-import de.teamteamteam.spacescooter.entity.Entity.availableNames;
 import de.teamteamteam.spacescooter.screen.GameScreen;
+import de.teamteamteam.spacescooter.utility.GameConfig;
 import de.teamteamteam.spacescooter.utility.Loader;
+import de.teamteamteam.spacescooter.utility.Random;
 
 /**
  * Implementation of the actual level based gameplay logic.
@@ -31,13 +32,14 @@ public final class Level {
 	 * Internal levelClock counter thing.
 	 * This is the "level time, we will use in our configs and such.
 	 */
-	private long levelClock;
+	private int levelClock;
 	
 	
 	/**
 	 * Constructor creating a LevelConfig based on a given config file.
 	 */
 	public Level(String levelConfig) {
+		this.levelClock = 0;
 		this.config = Loader.getLevelConfigByFilename(levelConfig);
 		System.out.println(this.config);
 	}
@@ -49,7 +51,6 @@ public final class Level {
 	public void doBuildUp() {
 		new StarBackground(0, 50);
 		GameScreen.setPlayer(new Player(200, 300));
-		
 	}
 	
 	/**
@@ -73,7 +74,37 @@ public final class Level {
 		if (Keyboard.isKeyDown(KeyEvent.VK_0)) {
 			new EnemyBoss(400,400);
 		}
+		//Increase levelClock
 		this.levelClock++;
+		//Check whether the current interval is configured
+		int currentIntervalIndex = this.config.getIntervalIndexByCurrentTime(this.levelClock);
+		if(currentIntervalIndex == -1) return; //Nothing to do
+		//Fetch the current interval
+		int[] currentInterval = this.config.intervalList.get(currentIntervalIndex);
+		int relativeTimeWithinCurrentInterval = this.levelClock - currentInterval[0];
+		int intervalLength = currentInterval[1] - currentInterval[0];
+		/*
+		 * @see <LevelConfig>
+		 * Get all the spawnrules for the current interval.
+		 * - 0: Interval this rule belongs to
+		 * - 1: EntityNumber - This helps to find out what Entity to actually spawn.
+		 * - 2: Amount - The amount of Entities to spawn at a time.
+		 * - 3: SpawnRate - The rate at which the Entities are supposed to be spawned.
+		 */
+		for(int[] spawnrule : this.config.spawnRuleList) {
+			//Skip spawn rules that are not in the current spawn interval.
+			if(spawnrule[0] != currentIntervalIndex) continue;
+			//Divide the current interval by spawnrate
+			int intervalModulus = intervalLength / spawnrule[3];
+			//Check whether the spawn rate strikes right now.
+			if(relativeTimeWithinCurrentInterval % Math.max(1,intervalModulus) == 0) {
+				//If the rule matches the current time, spawn the configured Entity in the configured amount:
+				for(int i=0; i<spawnrule[2]; i++) {
+					//TODO: More beautiful positions!
+					this.spawnEntityByAvailableName(Entity.availableNames.values()[spawnrule[1]], GameConfig.windowWidth - 75, Random.nextInt(GameConfig.windowHeight));
+				}
+			}
+		}
 	}
 	
 	/**
@@ -89,8 +120,7 @@ public final class Level {
 	 * Spawn an Entity by name on the given position.
 	 * Uses Entity.availableNames to determine the actual Entity to spawn.
 	 */
-	private void spawnEntityByName(String entityName, int x, int y) {
-		availableNames entity = Entity.availableNames.valueOf(entityName);
+	private void spawnEntityByAvailableName(Entity.availableNames entity, int x, int y) {
 		switch(entity) {
 			case EnemyOne:
 				new EnemyOne(x, y);
@@ -108,7 +138,7 @@ public final class Level {
 				new EnemyBoss(x, y);
 				break;
 			default:
-				System.err.println("Fuck you, i don't know what you mean with this!");
+				System.err.println("Fuck you, i don't know what you mean with this: " + entity);
 				break;
 		}
 	}
