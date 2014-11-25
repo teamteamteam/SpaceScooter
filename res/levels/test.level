@@ -4,10 +4,10 @@ background:StarBackground
 -
 [0-4]
 spawn:EnemyOne,1,1
-[5-10]
+[4-10]
 spawn:EnemyTwo,2,10
-[11-25]
+[10-25]
 spawn:EnemyThree,2,4
 spawn:EnemyTwo,5,6
-[26-30]
+[25-30]
 spawn:EnemyBoss,1,1
