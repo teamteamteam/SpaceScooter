@@ -76,6 +76,7 @@ public class GameScreen extends Screen {
 		if (Keyboard.isKeyDown(KeyEvent.VK_ESCAPE)) {
 			this.setOverlay(new GamePausedScreen(this));
 		}
+		
 		//Go to GameOverScreen if the game is actually over.
 		if (this.level.isGameOver()) {
 			this.parent.setOverlay(new GameOverScreen(this.parent));

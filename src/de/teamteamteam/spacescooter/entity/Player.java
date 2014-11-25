@@ -184,10 +184,21 @@ public class Player extends ShootingEntity implements KeyboardListener {
 	 * method for increasing the HealthPoints with the Heal-Item
 	 */
 	public void increaseHealthPoints(int inc) {
-		if (this.getHealthPoints() <= 85) {
-			this.setHealthPoints(getHealthPercent() + inc);
+		if (this.getHealthPoints() <= (StaticValue.HealthPoints - 15)) {
+			this.setHealthPoints(getHealthPoints() + inc);
 		} else {
-			this.setHealthPoints(100);
+			this.setHealthPoints(StaticValue.HealthPoints);
+		}
+	}
+	
+	/**
+	 * method for increasing the ShieldPoints with the Shield-Item
+	 */
+	public void increaseShieldPoints(int inc) {
+		if (this.getShieldPoints() <= (StaticValue.ShieldPoints - 5)) {
+			this.setShieldPoints(getShieldPoints() + inc);
+		} else {
+			this.setShieldPoints(StaticValue.ShieldPoints);
 		}
 	}
 	

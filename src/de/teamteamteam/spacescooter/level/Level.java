@@ -1,13 +1,17 @@
 package de.teamteamteam.spacescooter.level;
 
 import java.awt.Point;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
 import de.teamteamteam.spacescooter.background.StarBackground;
+import de.teamteamteam.spacescooter.control.Keyboard;
 import de.teamteamteam.spacescooter.entity.Player;
 import de.teamteamteam.spacescooter.entity.enemy.EnemyBoss;
 import de.teamteamteam.spacescooter.entity.enemy.EnemyFour;
+import de.teamteamteam.spacescooter.entity.enemy.EnemyOne;
 import de.teamteamteam.spacescooter.entity.enemy.EnemyThree;
+import de.teamteamteam.spacescooter.entity.enemy.EnemyTwo;
 import de.teamteamteam.spacescooter.entity.item.ItemChance;
 import de.teamteamteam.spacescooter.screen.GameScreen;
 import de.teamteamteam.spacescooter.utility.Loader;
@@ -25,6 +29,8 @@ public final class Level {
 	 * Internal LevelConfig containing all the details about how this Level will manage GamePlay.
 	 */
 	private LevelConfig config;
+	
+	ArrayList<Point> points = new ArrayList<Point>();
 
 
 	/**
@@ -45,14 +51,14 @@ public final class Level {
 		
 		
 		new ItemChance();
-		ArrayList<Point> points = new ArrayList<Point>();
+		/*ArrayList<Point> points = new ArrayList<Point>();
 		points.add(new Point(300,300));
 		points.add(new Point(600,100));
 		points.add(new Point(0,500));
-		new EnemyFour(800, 400, points);
+		new EnemyFour(800, 400, points);*/
 
-		new EnemyThree(450, 100);
-		new EnemyBoss(200, 300);
+		//new EnemyThree(450, 100);
+		//new EnemyBoss(200, 300);
 	}
 	
 	/**
@@ -63,7 +69,25 @@ public final class Level {
 	 * is neccessary to torture the player.
 	 */
 	public void handleUpdateTick() {
-		
+		//Debug Spawn Enemy on Press
+		if (Keyboard.isKeyDown(KeyEvent.VK_1)) {
+			new EnemyOne(400,400);
+		}
+		if (Keyboard.isKeyDown(KeyEvent.VK_2)) {
+			new EnemyTwo(400,400);
+		}
+		if (Keyboard.isKeyDown(KeyEvent.VK_3)) {
+			new EnemyThree(400,400);
+		}
+		if (Keyboard.isKeyDown(KeyEvent.VK_4)) {
+			points.add(new Point(300,300));
+			points.add(new Point(600,100));
+			points.add(new Point(0,500));
+			new EnemyFour(400,400,points);
+		}
+		if (Keyboard.isKeyDown(KeyEvent.VK_0)) {
+			new EnemyBoss(400,400);
+		}
 	}
 	
 	/**
