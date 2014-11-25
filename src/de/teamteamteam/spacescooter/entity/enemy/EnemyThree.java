@@ -49,10 +49,6 @@ public class EnemyThree extends Enemy{
 	public void update() {
 		super.update();
 		this.setPosition(this.getX()-1, this.getY());
-		if(this.getX() < 0-getWidth()){
-			this.remove();
-			new EnemyThree(0, 0);
-		}
 		Player player = GameScreen.getPlayer();
 		if(this.getY() < player.getY()){
 			this.newY += ySpeed;

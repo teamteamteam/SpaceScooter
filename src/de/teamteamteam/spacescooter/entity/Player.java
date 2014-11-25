@@ -33,7 +33,12 @@ public class Player extends ShootingEntity implements KeyboardListener {
 	/**
 	 * the Players Rocket Ammunition
 	 */
-	private int rocketAmount = 1;
+	private int rocketAmount = 10;
+	
+	/**
+	 * the Players Beam Ammunition
+	 */
+	private int beamAmount = 10;
 
 	
 	/**
@@ -94,6 +99,11 @@ public class Player extends ShootingEntity implements KeyboardListener {
 			if(Keyboard.isKeyDown(KeyEvent.VK_Y)) {
 				if(rocketAmount > 0){
 					this.shootRocket();
+				}
+			}
+			if(Keyboard.isKeyDown(KeyEvent.VK_X)) {
+				if(this.beamAmount > 0){
+					this.shootBeam();
 				}
 			}
 		}
@@ -209,6 +219,10 @@ public class Player extends ShootingEntity implements KeyboardListener {
 		return rocketAmount;
 	}
 	
+	public int getBeamAmount(){
+		return beamAmount;
+	}
+	
 	/**
 	 *  Add one rocket.
 	 */
@@ -216,11 +230,19 @@ public class Player extends ShootingEntity implements KeyboardListener {
 		rocketAmount++;
 	}
 	
+	public void addBeamAmount(){
+		beamAmount++;
+	}
+	
 	/**
 	 *  Remove one rocket.
 	 */
 	public void removeRocketAmount(){
 		rocketAmount--;
+	}
+	
+	public void removeBeamAmount(){
+		beamAmount--;
 	}
 	
 }

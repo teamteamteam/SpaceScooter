@@ -37,8 +37,12 @@ public abstract class Enemy extends ShootingEntity {
 	 */
 	public void update() {
 		super.update();
-		if(willShoot == true)
+		if(willShoot == true){
 			this.shoot();
+		}
+		if(this.getX() < 0-getWidth()){
+			this.remove();
+		}
 	}
 	
 	@Override

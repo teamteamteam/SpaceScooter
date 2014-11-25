@@ -1,5 +1,6 @@
 package de.teamteamteam.spacescooter.entity;
 
+import de.teamteamteam.spacescooter.entity.shot.Beam;
 import de.teamteamteam.spacescooter.entity.shot.Rocket;
 import de.teamteamteam.spacescooter.entity.shot.Shot;
 import de.teamteamteam.spacescooter.screen.GameScreen;
@@ -33,6 +34,8 @@ public abstract class ShootingEntity extends LivingEntity {
 	 * This value is used to enforce the actual delay defined in shootDelay.
 	 */
 	private int currentRocketDelay;
+	
+	private int currentBeamDelay;
 	
 	/**
 	 * The X delta to pass to the Shot, so it spawns at the 
@@ -83,6 +86,7 @@ public abstract class ShootingEntity extends LivingEntity {
 	public void update() {
 		if(this.currentShootDelay > 0) this.currentShootDelay--;
 		if(this.currentRocketDelay > 0) this.currentRocketDelay--;
+		if(this.currentBeamDelay > 0) this.currentBeamDelay--;
 	}
 	
 	/**
@@ -108,6 +112,15 @@ public abstract class ShootingEntity extends LivingEntity {
 		}
 	}
 
+	public void shootBeam() {
+		if(this.canShoot == true) {
+			if(this.currentBeamDelay == 0) {
+				this.createBeam();
+				GameScreen.getPlayer().removeBeamAmount();
+				this.currentBeamDelay = this.shootDelay;
+			}
+		}
+	}
 	/**
 	 * Enable or disable the ShootingEntitys fire ability.
 	 */
@@ -219,6 +232,16 @@ public abstract class ShootingEntity extends LivingEntity {
 				dmg,
 				filename
 			);
+	}
+	public void createBeam() {
+		new Beam(
+				this.getX() + this.shootSpawnX,
+				this.getY() + this.shootSpawnY,
+				this.shootDirection,
+				this.shootSpeed,
+				this.shootDamage,
+				this.primaryShotImage
+				);
 	}
 
 }
