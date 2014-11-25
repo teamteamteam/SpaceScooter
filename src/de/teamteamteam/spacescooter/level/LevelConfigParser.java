@@ -78,6 +78,7 @@ public class LevelConfigParser {
 					}
 					break;
 				case 1:
+					// Handle interval based rules
 					if (line.startsWith("[") && line.endsWith("]")) { //Handle interval definition
 						String interval = line.substring(1, line.length() - 1);
 						String[] intervalBorder = interval.split("-", 2);

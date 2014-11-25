@@ -3,6 +3,8 @@ package de.teamteamteam.spacescooter.level;
 import java.util.ArrayList;
 import java.util.List;
 
+import de.teamteamteam.spacescooter.entity.Entity;
+
 /**
  * The actual LevelConfig.
  * It contains all the important details that are required to build the level up
@@ -31,12 +33,12 @@ public class LevelConfig {
 	 * - 2: Amount - The amount of Entities to spawn at a time.
 	 * - 3: SpawnRate - The rate at which the Entities are supposed to be spawned.
 	 */
-	public List<int[]> ruleList;
+	public List<int[]> spawnRuleList;
 	
 	
 	public LevelConfig() {
 		this.intervalList = new ArrayList<int[]>();
-		this.ruleList = new ArrayList<int[]>();
+		this.spawnRuleList = new ArrayList<int[]>();
 	}
 	
 	public String toString() {
@@ -51,7 +53,7 @@ public class LevelConfig {
 		sb.append(" bossEnemy=");
 		sb.append(this.bossEnemy);
 		sb.append("\\\n\tRules:\n");
-		for(int[] rule : this.ruleList) {
+		for(int[] rule : this.spawnRuleList) {
 			sb.append("\t");
 			sb.append(rule);
 			sb.append("\n");
@@ -65,7 +67,7 @@ public class LevelConfig {
 	 * TODO: Catch overlapping intervals and more!
 	 */
 	public void addIntervalToList(int intervalStart, int intervalEnd) {
-		if(this.getIntervalByBorders(intervalStart, intervalEnd) != -1) {
+		if(this.getIntervalIndexByBorders(intervalStart, intervalEnd) != -1) {
 			System.err.println("Duplicate interval - not added!");
 		} else {
 			int[] newInterval= {intervalStart, intervalEnd};
@@ -77,7 +79,7 @@ public class LevelConfig {
 	 * Return index of given interval.
 	 * Returns -1 in case the interval is not in the list.
 	 */
-	public int getIntervalByBorders(int intervalStart, int intervalEnd) {
+	public int getIntervalIndexByBorders(int intervalStart, int intervalEnd) {
 		for(int[] interval : this.intervalList) {
 			if(interval[0] == intervalStart && interval[1] == intervalEnd) {
 				return this.intervalList.indexOf(interval);
@@ -87,17 +89,30 @@ public class LevelConfig {
 	}
 	
 	/**
+	 * Returns the index of the current interval the given time fits into.
+	 */
+	public int getIntervalIndexByCurrentTime(int time) {
+		for(int[] interval : this.intervalList) {
+			if(interval[0] <= time && interval[1] >= time) {
+				return this.intervalList.indexOf(interval);
+			}
+		}
+		return -1;
+	}
+	
+	/**
 	 * Add a given EntitySpawnRule to the ruleList.
 	 */
-	public void addEntitySpawnRule(int intervalStart, int intervalEnd, String enemyName, int amount, int spawnRate) {
-		System.out.println("Adding rule for " + intervalStart + " to " + intervalEnd + ": " + enemyName + ", " + amount + ", " + spawnRate);
-		if(this.getIntervalByBorders(intervalStart, intervalEnd) == -1) {
+	public void addEntitySpawnRule(int intervalStart, int intervalEnd, String entityName, int amount, int spawnRate) {
+		System.out.println("Adding rule for " + intervalStart + " to " + intervalEnd + ": " + entityName + ", " + amount + ", " + spawnRate);
+		int intervalIndex = this.getIntervalIndexByBorders(intervalStart, intervalEnd);
+		if(intervalIndex == -1) {
 			System.err.println("No Interval for rule found!");
-			System.err.println("Rule: " + intervalStart + " to " + intervalEnd + ": " + enemyName + ", " + amount + ", " + spawnRate);
+			System.err.println("Rule: " + intervalStart + " to " + intervalEnd + ": " + entityName + ", " + amount + ", " + spawnRate);
 		} else {
-			int enemyNumber = -1; //TODO: implement this!
-			int[] newRule = {enemyNumber, amount, spawnRate};
-			this.ruleList.add(newRule);
+			int enemyNumber = Entity.availableNames.valueOf(entityName).ordinal();
+			int[] newRule = {intervalIndex, enemyNumber, amount, spawnRate};
+			this.spawnRuleList.add(newRule);
 		}
 	}
 	
