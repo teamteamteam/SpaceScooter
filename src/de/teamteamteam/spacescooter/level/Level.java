@@ -1,14 +1,12 @@
 package de.teamteamteam.spacescooter.level;
 
-import java.awt.event.KeyEvent;
 import de.teamteamteam.spacescooter.background.StarBackground;
-import de.teamteamteam.spacescooter.control.Keyboard;
+import de.teamteamteam.spacescooter.entity.Entity;
 import de.teamteamteam.spacescooter.entity.Player;
 import de.teamteamteam.spacescooter.entity.enemy.EnemyBoss;
 import de.teamteamteam.spacescooter.entity.enemy.EnemyOne;
 import de.teamteamteam.spacescooter.entity.enemy.EnemyThree;
 import de.teamteamteam.spacescooter.entity.enemy.EnemyTwo;
-import de.teamteamteam.spacescooter.entity.Entity;
 import de.teamteamteam.spacescooter.screen.GameScreen;
 import de.teamteamteam.spacescooter.utility.GameConfig;
 import de.teamteamteam.spacescooter.utility.Loader;
@@ -60,19 +58,6 @@ public final class Level {
 	 * is necessary to torture the player.
 	 */
 	public void handleUpdateTick() {
-		//Debug Spawn Enemy on Press
-		if (Keyboard.isKeyDown(KeyEvent.VK_1)) {
-			new EnemyOne(400,400);
-		}
-		if (Keyboard.isKeyDown(KeyEvent.VK_2)) {
-			new EnemyTwo(400,400);
-		}
-		if (Keyboard.isKeyDown(KeyEvent.VK_3)) {
-			new EnemyThree(400,400);
-		}
-		if (Keyboard.isKeyDown(KeyEvent.VK_0)) {
-			new EnemyBoss(400,400);
-		}
 		//Check whether the current interval is configured
 		int currentIntervalIndex = this.config.getIntervalIndexByCurrentTime(this.levelClock);
 		if(currentIntervalIndex == -1) return; //Nothing to do
