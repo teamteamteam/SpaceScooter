@@ -6,6 +6,11 @@ import de.teamteamteam.spacescooter.entity.spi.Collidable;
 import de.teamteamteam.spacescooter.sound.SoundSystem;
 import de.teamteamteam.spacescooter.utility.Random;
 
+/**
+ * Abstract representation of an item.
+ * Contains logic to spawn a random item at a location and passes
+ * the collision with a player up to the itemCollected() method.
+ */
 public abstract class Item extends CollidableEntity {
 	
 	/**
@@ -21,7 +26,7 @@ public abstract class Item extends CollidableEntity {
 	public void collideWith(Collidable entity) {
 		if(entity instanceof Player) {
 			SoundSystem.playSound("sounds/powerup_pickup.wav");
-			itemCollected((Player) entity);
+			this.itemCollected((Player) entity);
 			this.remove();
 		}
 	}
@@ -74,7 +79,7 @@ public abstract class Item extends CollidableEntity {
 				break;
 			}
 		}
-		//Actually spawn the item now
+		//Actually spawn the random item now
 		switch (choice) {
 			case 0:
 				new ItemNuke(x, y);

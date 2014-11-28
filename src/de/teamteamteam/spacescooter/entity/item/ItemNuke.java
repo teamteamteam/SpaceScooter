@@ -9,7 +9,6 @@ import de.teamteamteam.spacescooter.screen.Screen;
 
 public class ItemNuke extends Item {
 
-	
 	private ConcurrentIterator<Entity> entityIterator;
 	
 	public ItemNuke(int x, int y) {
@@ -17,11 +16,13 @@ public class ItemNuke extends Item {
 		this.setImage("images/items/itemNuke.png");
 	}
 
+	/**
+	 * Gives every enemy 20 damage. Most enemies do not survive this.
+	 */
 	@Override
 	public void itemCollected(Player player) {
-		System.out.println("Gotta Nuke 'em All!");
 		this.entityIterator = Screen.currentScreen.createEntityIterator();
-		entityIterator.reset();
+		this.entityIterator.reset();
 		while (entityIterator.hasNext()) {
 			Entity entity = entityIterator.next();
 			if(entity instanceof Enemy) {

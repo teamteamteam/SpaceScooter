@@ -44,6 +44,7 @@ public class Player extends ShootingEntity implements KeyboardListener {
 		this.setShootDirection(Shot.RIGHT);
 		this.setShootSpeed(10);
 		this.setCollisionDamage(10);
+		this.setScore(0);
 		this.setHealthPoints(PlayerSession.getShipHealthPoints());
 		this.setMaximumHealthPoints(PlayerSession.getShipHealthPoints());
 		this.setShieldPoints(PlayerSession.getShipShieldPoints());
@@ -164,6 +165,18 @@ public class Player extends ShootingEntity implements KeyboardListener {
 	 */
 	public void keyTyped(KeyEvent e) {}
 
+	
+	@Override
+	public void createRocket() {
+		super.createRocket();
+		this.removeRocketAmount();
+	}
+	
+	@Override
+	public void createBeam() {
+		super.createBeam();
+		this.removeBeamAmount();
+	}
 	
 	/**
 	 *  Get the current rocket amount.

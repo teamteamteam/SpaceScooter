@@ -39,15 +39,23 @@ public abstract class Entity implements Updateable, Paintable {
 	}
 	
 	/**
-	 * Entity position.
+	 * Entity position x coordinate.
 	 */
 	private int x;
+
+	/**
+	 * Entity position y coordinate.
+	 */
 	private int y;
 	
 	/**
-	 * Entity width and height.
+	 * Entity width.
 	 */
 	private int width;
+	
+	/**
+	 * Entity height.
+	 */
 	private int height;
 	
 	/**
@@ -58,8 +66,6 @@ public abstract class Entity implements Updateable, Paintable {
 	 * Internal reference to the entities image.
 	 */
 	private BufferedImage img;
-	
-	private boolean removed = false;
 	
 	
 	/**
@@ -171,20 +177,10 @@ public abstract class Entity implements Updateable, Paintable {
 	}
 	
 	/**
-	 * Returns Boolean If the Entity got Removed.
-	 * @return removed
-	 */
-	
-	public boolean isRemoved() {
-		return removed;
-	}
-	
-	/**
 	 * Removes entity from the game by telling the current Screen
 	 * to remove it from its list.
 	 */
 	public void remove() {
-		this.removed = true;
 		Screen.currentScreen.removeEntity(this);
 	}
 }

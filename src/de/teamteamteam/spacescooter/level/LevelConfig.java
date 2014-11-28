@@ -73,7 +73,6 @@ public class LevelConfig {
 
 	/**
 	 * Add a given interval to the list in case it is not a duplicate.
-	 * TODO: Catch overlapping intervals and more!
 	 */
 	public void addIntervalToList(int intervalStart, int intervalEnd) {
 		if(intervalStart >= intervalEnd) {

@@ -3,7 +3,6 @@ package de.teamteamteam.spacescooter.entity;
 import de.teamteamteam.spacescooter.entity.shot.Beam;
 import de.teamteamteam.spacescooter.entity.shot.Rocket;
 import de.teamteamteam.spacescooter.entity.shot.Shot;
-import de.teamteamteam.spacescooter.screen.GameScreen;
 
 /**
  * The ShootingEntity is a LivingEntity that is able to fire Shots.
@@ -35,6 +34,10 @@ public abstract class ShootingEntity extends LivingEntity {
 	 */
 	private int currentRocketDelay;
 	
+	/**
+	 * The current tick delay to wait until the next Beam can be fired.
+	 * This value is used to enforce the actual delay defined in shootDelay.
+	 */
 	private int currentBeamDelay;
 	
 	/**
@@ -106,7 +109,6 @@ public abstract class ShootingEntity extends LivingEntity {
 		if(this.canShoot == true) {
 			if(this.currentRocketDelay == 0) {
 				this.createRocket();
-				GameScreen.getPlayer().removeRocketAmount();
 				this.currentRocketDelay = this.shootDelay*2;
 			}
 		}
@@ -116,7 +118,6 @@ public abstract class ShootingEntity extends LivingEntity {
 		if(this.canShoot == true) {
 			if(this.currentBeamDelay == 0) {
 				this.createBeam();
-				GameScreen.getPlayer().removeBeamAmount();
 				this.currentBeamDelay = this.shootDelay*2;
 			}
 		}
@@ -209,40 +210,46 @@ public abstract class ShootingEntity extends LivingEntity {
 		);
 	}
 	
+	/**
+	 * Internal method to actually spawn a fired rocket.
+	 */
 	public void createRocket() {
 		new Rocket(
-				this.getX() + this.shootSpawnX,
-				this.getY() + this.shootSpawnY,
-				this.shootDirection,
-				this.shootSpeed,
-				(int)(this.shootDamage*1.2),
-				this.primaryShotImage
-				);
+			this.getX() + this.shootSpawnX,
+			this.getY() + this.shootSpawnY,
+			this.shootDirection,
+			this.shootSpeed,
+			(int) (this.shootDamage*1.2),
+			this. primaryShotImage
+		);
 	}
-	
+
+	/**
+	 * Internal method to actually spawn a fired beam.
+	 */
 	public void createBeam() {
 		new Beam(
-				this.getX() + this.shootSpawnX,
-				this.getY() + this.shootSpawnY,
-				this.shootDirection,
-				this.shootSpeed,
-				this.shootDamage,
-				this.primaryShotImage
-				);
+			this.getX() + this.shootSpawnX,
+			this.getY() + this.shootSpawnY,
+			this.shootDirection,
+			this.shootSpeed,
+			this.shootDamage,
+			this.primaryShotImage
+		);
 	}
 		
 	/**
-	 * Custom Shoot for Custom Action!!!
+	 * Custom Shot for special purposes.
 	 */
-	public void createCustomShot(int x, int y, int speed, int dmg, String filename) {
+	public void createCustomShot(int x_offset, int y_offset, int speed, int dmg, String filename) {
 		new Shot(
-				this.getX() + x,
-				this.getY() + y,
-				Shot.LEFT,
-				speed,
-				dmg,
-				filename
-			);
+			this.getX() + x_offset,
+			this.getY() + y_offset,
+			this.shootDirection,
+			speed,
+			dmg,
+			filename
+		);
 	}
 
 }

@@ -1,5 +1,6 @@
 package de.teamteamteam.spacescooter.entity.enemy;
 
+import de.teamteamteam.spacescooter.brain.PlayerSession;
 import de.teamteamteam.spacescooter.entity.ShootingEntity;
 import de.teamteamteam.spacescooter.entity.shot.Shot;
 import de.teamteamteam.spacescooter.sound.SoundSystem;
@@ -43,6 +44,14 @@ public abstract class Enemy extends ShootingEntity {
 		if(this.getX() < 0-this.getWidth()) {
 			this.remove();
 		}
+	}
+	
+	/**
+	 * Every enemy that dies awards the Player one credit and points.
+	 */
+	@Override
+	public void die() {
+		PlayerSession.addCredits(1);
 	}
 	
 	@Override

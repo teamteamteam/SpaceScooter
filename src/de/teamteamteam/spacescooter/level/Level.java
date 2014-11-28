@@ -125,7 +125,7 @@ public final class Level {
 				new EnemyBoss(x, y);
 				break;
 			default:
-				System.err.println("Fuck you, i don't know what you mean with this: " + entity);
+				System.err.println("I don't know how to spawn this: " + entity);
 				break;
 		}
 	}

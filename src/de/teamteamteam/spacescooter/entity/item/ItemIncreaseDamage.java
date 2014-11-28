@@ -6,7 +6,7 @@ public class ItemIncreaseDamage extends Item {
 		
 	public ItemIncreaseDamage(int x, int y) {
 		super(x, y);
-		//TODO: Chane Image
+		//TODO: Change Image
 		this.setImage("images/items/item.png");
 	}
 

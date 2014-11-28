@@ -9,6 +9,10 @@ public class ItemShield extends Item {
 		this.setImage("images/items/itemShield.png");
 	}
 
+	/**
+	 * Adds 5 shield points to the player in case he upgraded
+	 * his ship to have a shield.
+	 */
 	@Override
 	public void itemCollected(Player player) {
 		player.addShieldPoints(5);

@@ -2,7 +2,7 @@ package de.teamteamteam.spacescooter.entity.enemy;
 
 import de.teamteamteam.spacescooter.brain.GameConfig;
 import de.teamteamteam.spacescooter.entity.explosion.MultiExplosion;
-import de.teamteamteam.spacescooter.gui.BossBar;
+import de.teamteamteam.spacescooter.gui.BossHealthBar;
 import de.teamteamteam.spacescooter.utility.Random;
 
 public class EnemyBoss extends Enemy{
@@ -22,7 +22,7 @@ public class EnemyBoss extends Enemy{
 		this.setScore(5000);
 		this.willShoot = true;
 		this.setPosition(GameConfig.windowWidth, Random.nextInt(GameConfig.windowHeight - this.getHeight() - 50) +50);
-		new BossBar(10, 44, this);
+		new BossHealthBar(10, 44, this);
 	}
 	
 	/**

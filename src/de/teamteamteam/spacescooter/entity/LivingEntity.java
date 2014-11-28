@@ -82,13 +82,12 @@ public abstract class LivingEntity extends CollidableEntity implements Hittable 
 
 	/**
 	 * Process incoming damage by calculating remaining health points and shield
-	 * points. Also check for the need of triggering an explosion if dead.
+	 * points. Triggers die() method on death.
 	 */
 	public void takeDamage(int damage) {
 		// Skip everything if already dead.
 		if (this.isAlive() == false)
 			return;
-		// TODO: shield and health logic
 		if (this.shieldPoints > 0) {
 			if (this.shieldPoints < damage) {
 				this.healthPoints = (damage - this.shieldPoints);
@@ -103,12 +102,6 @@ public abstract class LivingEntity extends CollidableEntity implements Hittable 
 			// Set the correct values for gui indicators
 			this.healthPoints = 0;
 			this.shieldPoints = 0;
-			PlayerSession.addScore(scorePoints);
-			if(this instanceof Enemy){ // Add 1 credit for the shop        
-				PlayerSession.addCredits(1);
-			}
-			if (GameConfig.DEBUG)
-				System.out.println(this + " ist gestorben. RIP");
 			this.die();
 		}
 	}
@@ -124,6 +117,10 @@ public abstract class LivingEntity extends CollidableEntity implements Hittable 
 	 * different death behaviour.
 	 */
 	public void die() {
+		if (GameConfig.DEBUG) {
+			System.out.println(this + " ist gestorben. RIP");
+		}
+		PlayerSession.addScore(scorePoints);
 		this.explode();
 		this.remove();
 	}

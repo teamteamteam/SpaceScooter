@@ -7,18 +7,18 @@ import java.awt.Graphics2D;
 import de.teamteamteam.spacescooter.entity.Entity;
 import de.teamteamteam.spacescooter.entity.enemy.Enemy;
 
-public class BossBar extends Entity {
+public class BossHealthBar extends Entity {
 
 	private int width = 150;
 	private int height = 14;
 	private int health = 0;
 	private int fullhealth = 0;
 	private int healthwidth = 0;
-	private static Enemy boss;
+	private Enemy boss;
 	
-	public BossBar(int x, int y, Enemy ent) {
+	public BossHealthBar(int x, int y, Enemy boss) {
 		super(x, y);
-		BossBar.boss = ent;
+		this.boss = boss;
 		this.fullhealth = boss.getHealthPoints();
 	}
 
@@ -39,10 +39,10 @@ public class BossBar extends Entity {
 	}
 	
 	public void update() {
-		if (boss.isAlive() == false || boss.isRemoved() == true) {
+		if (this.boss != null && this.boss.isAlive() == false) {
+			this.boss = null; //Dereference the boss, so it actually can be removed.
 			this.remove();
 		}
-		
 	}
 	
 }
