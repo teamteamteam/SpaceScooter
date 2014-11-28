@@ -52,6 +52,7 @@ public abstract class Enemy extends ShootingEntity {
 	@Override
 	public void die() {
 		PlayerSession.addCredits(1);
+		super.die();
 	}
 	
 	@Override
