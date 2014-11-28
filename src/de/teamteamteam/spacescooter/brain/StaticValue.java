@@ -10,31 +10,31 @@ public class StaticValue {
 	/**
 	 * the ShootDamage of the Player
 	 */
-	public static int ShootDamage = 5;
+	public static int shotDamage = 5;
 	
 	/**
 	 * the HealthPoints of the Player may be changed by the 1Up-Item
 	 */
-	public static int HealthPoints = 100;
+	public static int healthPoints = 100;
 	
 	/**
 	 * the ShieldPoints of the Player
 	 */
-	public static int ShieldPoints = 100;
+	public static int shieldPoints = 100;
 	
 	//Shop
 	/**
 	 * The Damage Value of the Shop
 	 */
-	public static int schaden = 0;
+	public static int damage = 0;
 	
 	/**
 	 * the Shield value of the Shop
 	 */
-	public static int schild = 0;
+	public static int shield = 0;
 	
 	/**
 	 * the Health value of the Shop
 	 */
-	public static int leben = 0;
+	public static int life = 0;
 }

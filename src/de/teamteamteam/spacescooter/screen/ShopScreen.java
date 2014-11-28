@@ -23,17 +23,17 @@ public class ShopScreen extends Screen {
 	private boolean keyPressed = false;
 	private Player player;
 	private int animationStatus = 0; //0 = Animation noch nicht gestartet, 1 = Animation laeuft, 2 = Animation beendet
-	private ShopOffer schaden;
-	private ShopOffer schild;
-	private ShopOffer leben;
+	private ShopOffer damage;
+	private ShopOffer shield;
+	private ShopOffer life;
 	
 	public ShopScreen(Screen parent) {
 		super(parent);
 		this.img = Loader.getBufferedImageByFilename("images/testbackground.png");
 		new Button(GameConfig.windowWidth/2-125, 450);
-		schaden = new ShopOffer(100, 160, 15, StaticValue.schaden, "Schaden");
-		schild = new ShopOffer(100, 260, 15, StaticValue.schild, "Schild");
-		leben = new ShopOffer(100, 360, 15, StaticValue.leben, "Leben");
+		damage = new ShopOffer(100, 160, 15, StaticValue.damage, "Schaden");
+		shield = new ShopOffer(100, 260, 15, StaticValue.shield, "Schild");
+		life = new ShopOffer(100, 360, 15, StaticValue.life, "Leben");
 		player = new Player(50, 159);
 		player.setCanMove(false);
 		player.setCanShoot(false);
@@ -76,26 +76,26 @@ public class ShopScreen extends Screen {
 			///////////////////////////////////////////////////////////////
 			switch (this.menuPoint) {
 			case 0:
-				if(Credits.getCredits() >= 5 && schaden.getGekauft() < schaden.getMax()){
-					schaden.buy();
-					StaticValue.ShootDamage += 5;
-					StaticValue.schaden++;
+				if(Credits.getCredits() >= 5 && damage.getBought() < damage.getMax()){
+					damage.buy();
+					StaticValue.shotDamage += 5;
+					StaticValue.damage++;
 					Credits.setCredits(Credits.getCredits() - 5);
 				}
 				break;
 			case 1:
-				if(Credits.getCredits() >= 10 && schild.getGekauft() < schild.getMax()){
-					schild.buy();
-					StaticValue.ShieldPoints += 10;
-					StaticValue.schild++;
+				if(Credits.getCredits() >= 10 && shield.getBought() < shield.getMax()){
+					shield.buy();
+					StaticValue.shieldPoints += 10;
+					StaticValue.shield++;
 					Credits.setCredits(Credits.getCredits() - 10);
 				}
 				break;
 			case 2:
-				if(Credits.getCredits() >= 10 && leben.getGekauft() < leben.getMax()){
-					leben.buy();
-					StaticValue.HealthPoints += 10;
-					StaticValue.leben++;
+				if(Credits.getCredits() >= 10 && life.getBought() < life.getMax()){
+					life.buy();
+					StaticValue.healthPoints += 10;
+					StaticValue.life++;
 					Credits.setCredits(Credits.getCredits() - 10);
 				}
 				break;

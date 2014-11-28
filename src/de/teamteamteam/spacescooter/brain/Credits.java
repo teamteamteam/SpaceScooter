@@ -44,5 +44,8 @@ public class Credits {
 	 */
 	public static void remove(int credits) {
 		Credits.credits -= credits;
+		if(Credits.credits < 0) {
+			Credits.credits = 0;
+		}
 	}
 }

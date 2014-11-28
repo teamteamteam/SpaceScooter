@@ -49,14 +49,14 @@ public class Player extends ShootingEntity implements KeyboardListener {
 		super(x, y);
 		this.setImage("images/ship.png");
 		this.setPrimaryShotImage("images/shots/laser_blue.png");
-		this.setShootDamage(StaticValue.ShootDamage);
+		this.setShootDamage(StaticValue.shotDamage);
 		this.setShootDelay(20);
 		this.setShootSpawn(50, 16);
 		this.setShootDirection(Shot.RIGHT);
 		this.setShootSpeed(10);
 		this.setCollisionDamage(10);
-		this.setShieldPoints(StaticValue.ShieldPoints);
-		this.setHealthPoints(StaticValue.HealthPoints);
+		this.setShieldPoints(StaticValue.shieldPoints);
+		this.setHealthPoints(StaticValue.healthPoints);
 		this.registerOnKeyboard(Keyboard.getInstance());
 	}
 
@@ -72,11 +72,11 @@ public class Player extends ShootingEntity implements KeyboardListener {
 	 * Standard update method
 	 */
 	public void update() {
-		if (StaticValue.HealthPoints != 0) {
-			this.healthPercent = ((double) this.getHealthPoints() / (double) StaticValue.HealthPoints) * 100;
+		if (StaticValue.healthPoints != 0) {
+			this.healthPercent = ((double) this.getHealthPoints() / (double) StaticValue.healthPoints) * 100;
 		}
-		if (StaticValue.ShieldPoints != 0) {
-			this.shieldPercent = ((double) this.getShieldPoints() / (double) StaticValue.ShieldPoints) * 100;
+		if (StaticValue.shieldPoints != 0) {
+			this.shieldPercent = ((double) this.getShieldPoints() / (double) StaticValue.shieldPoints) * 100;
 		}
 		if(this.canMove()) {
 			super.update();
@@ -201,10 +201,10 @@ public class Player extends ShootingEntity implements KeyboardListener {
 	 * method for increasing the HealthPoints with the Heal-Item
 	 */
 	public void increaseHealthPoints(int inc) {
-		if (this.getHealthPoints() <= (StaticValue.HealthPoints - 15)) {
+		if (this.getHealthPoints() <= (StaticValue.healthPoints - 15)) {
 			this.setHealthPoints(getHealthPoints() + inc);
 		} else {
-			this.setHealthPoints(StaticValue.HealthPoints);
+			this.setHealthPoints(StaticValue.healthPoints);
 		}
 	}
 	
@@ -212,10 +212,10 @@ public class Player extends ShootingEntity implements KeyboardListener {
 	 * method for increasing the ShieldPoints with the Shield-Item
 	 */
 	public void increaseShieldPoints(int inc) {
-		if (this.getShieldPoints() <= (StaticValue.ShieldPoints - 5)) {
+		if (this.getShieldPoints() <= (StaticValue.shieldPoints - 5)) {
 			this.setShieldPoints(getShieldPoints() + inc);
 		} else {
-			this.setShieldPoints(StaticValue.ShieldPoints);
+			this.setShieldPoints(StaticValue.shieldPoints);
 		}
 	}
 	

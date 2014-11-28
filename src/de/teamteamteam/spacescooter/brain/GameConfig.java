@@ -13,12 +13,12 @@ public class GameConfig {
 	/**
 	 * Width of GameWindow.
 	 */
-	public static int windowWidth;
+	public static int windowWidth = 800;
 	
 	/**
 	 * Height of GameWindow.
 	 */
-	public static int windowHeight;
+	public static int windowHeight = 650;
 
 	/**
 	 * Title of the game window.

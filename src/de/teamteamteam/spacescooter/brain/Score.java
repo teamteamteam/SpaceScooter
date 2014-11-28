@@ -1,43 +1,49 @@
 package de.teamteamteam.spacescooter.brain;
 
 /**
- * Score Class to represent the Player's Score
+ * Score Class to represent the Players Score
  */
 public class Score {
-
+	
 	/**
-	 * Score can be between 0 and 99999999
+	 * Score upper and lower boundaries.
 	 */
 	private static int score = 0;
 	private static int maxScore = 99999999;
-
+	
+	
 	/**
-	 * Getter for the Score
+	 * Private constructor, this class will never be instantiated.
+	 */
+	private Score() {}
+	
+	
+	/**
+	 * Getter for the Score.
 	 */
 	public static int getScore() {
 		return score;
 	}
 
 	/**
-	 * Setter for the Score
+	 * Setter for the Score.
 	 */
 	public static void setScore(int score) {
 		Score.score = score;
 	}
 
 	/**
-	 * Method for adding Score
+	 * Method for adding Score, capping it at the maximum value.
 	 */
 	public static void addScore(int score) {
-		if (Score.score + score >= Score.maxScore) {
+		Score.score += score;
+		if (Score.score >= Score.maxScore) {
 			Score.setScore(Score.maxScore);
-		} else if (Score.score != Score.maxScore) {
-			Score.score += score;
 		}
 	}
 
 	/**
-	 * Method for removing Score
+	 * Method for removing Score, capping it at zero.
 	 */
 	public static void removeScore(int score) {
 		if (Score.score - score <= 0) {

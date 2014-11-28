@@ -6,19 +6,19 @@ import java.awt.Graphics2D;
 
 import de.teamteamteam.spacescooter.entity.Entity;
 
-public class ShopOffer extends Entity{
+public class ShopOffer extends Entity {
 
 	private String offer;
-	private int gekauft;
+	private int bought;
 	private int max;
 	
-	public ShopOffer(int x, int y, int max, int gekauft, String offer) {
+	public ShopOffer(int x, int y, int max, int bought, String offer) {
 		super(x, y);
 		this.offer = offer;
-		this.gekauft = gekauft;
+		this.bought = bought;
 		this.max = max;
 		for (int i = 0; i<max; i++){
-			if(i<gekauft){
+			if(i<bought){
 				new ShopOfferValue(x + 100 + i*35, y, "images/shopTest02.png");
 			}else{
 				new ShopOfferValue(x + 100 + i*35, y, "images/shopTest01.png");
@@ -36,12 +36,12 @@ public class ShopOffer extends Entity{
 	public void update() {}
 	
 	public void buy(){
-		new ShopOfferValue(this.getX() + 100 + gekauft*35, this.getY(), "images/shopTest02.png");
-		gekauft++;
+		new ShopOfferValue(this.getX() + 100 + bought*35, this.getY(), "images/shopTest02.png");
+		bought++;
 	}
 
-	public int getGekauft() {
-		return gekauft;
+	public int getBought() {
+		return bought;
 	}
 
 	public int getMax() {

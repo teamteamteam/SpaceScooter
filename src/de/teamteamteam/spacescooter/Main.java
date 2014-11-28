@@ -3,9 +3,7 @@ package de.teamteamteam.spacescooter;
 import java.awt.EventQueue;
 import java.lang.reflect.InvocationTargetException;
 
-import de.teamteamteam.spacescooter.brain.GameConfig;
 import de.teamteamteam.spacescooter.screen.LoadingScreen;
-import de.teamteamteam.spacescooter.screen.Screen;
 import de.teamteamteam.spacescooter.screen.SuperScreen;
 import de.teamteamteam.spacescooter.thread.PaintThread;
 import de.teamteamteam.spacescooter.thread.UpdateThread;
@@ -30,9 +28,6 @@ public class Main {
 				public void run() {
 					GraphicsSettings gs = new GraphicsSettings(); //Get settings
 					
-					GameConfig.windowWidth = 800;
-					GameConfig.windowHeight = 650;
-					
 					//Instantiate the GameFrame
 					final GameFrame gameFrame = new GameFrame();
 					
@@ -56,10 +51,11 @@ public class Main {
 					updateThread.start();
 			
 					//Set up the LoadingScreen
-					superScreen.setOverlay(new LoadingScreen(superScreen));
+					LoadingScreen loadingScreen = new LoadingScreen(superScreen);
+					superScreen.setOverlay(loadingScreen);
 			
 					//Start loading and everything will follow up.
-					Loader.load((LoadingScreen) Screen.currentScreen);
+					Loader.load(loadingScreen);
 				}
 			});
 		} catch (InvocationTargetException e) {
