@@ -42,7 +42,7 @@ public class LoadingScreen extends Screen {
 	protected void paint(Graphics2D g) {
 		g.setColor(new Color(0,0,120));
 		g.fillRect(0, 0, GameConfig.windowWidth, GameConfig.windowHeight);
-		g.setColor(new Color(255,255,255));
+		g.setColor(Color.WHITE);
 		g.setFont(new Font("Monospace", 0, 50));
 		g.drawString("Loading ...", 100, 100);
 		g.drawString("Progress: " + this.getProgress() + "%", 200, 500);

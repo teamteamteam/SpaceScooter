@@ -9,13 +9,24 @@ import de.teamteamteam.spacescooter.entity.Entity;
  * The actual LevelConfig.
  * It contains all the important details that are required to build the level up
  * and fill it with hot living action.
+ * Its attributes are read by the LevelConfigParser from the files in res/levels/*.level .
  */
 public class LevelConfig {
 
+	/**
+	 * The levels name.
+	 */
 	public String name;
+	
+	/**
+	 * The background the level will be using.
+	 */
 	public String background;
+	
+	/**
+	 * The background music this level will use.
+	 */
 	public String backgroundMusic;
-	public String bossEnemy;
 	
 	/**
 	 * Intervals have a start and an end.
@@ -50,8 +61,6 @@ public class LevelConfig {
 		sb.append(this.background);
 		sb.append(" backgroundMusic=");
 		sb.append(this.backgroundMusic);
-		sb.append(" bossEnemy=");
-		sb.append(this.bossEnemy);
 		sb.append("\\\n\tRules:\n");
 		for(int[] rule : this.spawnRuleList) {
 			sb.append("\t");
@@ -67,9 +76,17 @@ public class LevelConfig {
 	 * TODO: Catch overlapping intervals and more!
 	 */
 	public void addIntervalToList(int intervalStart, int intervalEnd) {
-		if(this.getIntervalIndexByBorders(intervalStart, intervalEnd) != -1) {
-			System.err.println("Duplicate interval - not added!");
+		if(intervalStart >= intervalEnd) {
+			throw new LevelConfigException("Interval borders are invalid! intervalStart must be < intervalEnd!");
+		} else if(this.getIntervalIndexByBorders(intervalStart, intervalEnd) != -1) {
+			throw new LevelConfigException("Duplicate interval - not added!");
 		} else {
+			if(this.intervalList.size() > 0) {
+				int[] lastIntervalInList = this.intervalList.get(this.intervalList.size() - 1);
+				if(intervalStart < lastIntervalInList[1]) {
+					throw new LevelConfigException("Intervals must be added in order!");
+				}
+			}
 			int[] newInterval= {intervalStart, intervalEnd};
 			this.intervalList.add(newInterval);
 		}
@@ -106,8 +123,7 @@ public class LevelConfig {
 	public void addEntitySpawnRule(int intervalStart, int intervalEnd, String entityName, int amount, int spawnRate) {
 		int intervalIndex = this.getIntervalIndexByBorders(intervalStart, intervalEnd);
 		if(intervalIndex == -1) {
-			System.err.println("No Interval for rule found!");
-			System.err.println("Rule: " + intervalStart + " to " + intervalEnd + ": " + entityName + ", " + amount + ", " + spawnRate);
+			throw new LevelConfigException("No Interval for rule found!\nRule: " + intervalStart + " to " + intervalEnd + ": " + entityName + ", " + amount + ", " + spawnRate);
 		} else {
 			int enemyNumber = Entity.availableNames.valueOf(entityName).ordinal();
 			int[] newRule = {intervalIndex, enemyNumber, amount, spawnRate};

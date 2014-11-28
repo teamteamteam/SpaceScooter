@@ -70,10 +70,8 @@ public class LevelConfigParser {
 							this.levelConfig.background = linePieces[1];
 						} else if (linePieces[0].equals("backgroundMusic")) {
 							this.levelConfig.backgroundMusic = linePieces[1];
-						} else if (linePieces[0].equals("bossEnemy")) {
-							this.levelConfig.bossEnemy = linePieces[1];
 						} else {
-							System.err.println("[LevelConfigParser] Unknown attribute in line: '" + line + "'");
+							throw new LevelConfigException("[LevelConfigParser] Unknown attribute in line: '" + line + "'");
 						}
 					}
 					break;
@@ -91,14 +89,12 @@ public class LevelConfigParser {
 							String[] entitySpawnRule = rule[1].split(",", 3);
 							this.levelConfig.addEntitySpawnRule(this.currentIntervalStart, this.currentIntervalEnd, entitySpawnRule[0], Integer.parseInt(entitySpawnRule[1]), Integer.parseInt(entitySpawnRule[2]));
 						} else {
-							System.err.println("Unknown rule type: '"+rule[0]+"' : '"+line+"'");
+							throw new LevelConfigException("Unknown rule type: '"+rule[0]+"' : '"+line+"'");
 						}
 					}
 					break;
 				default:
-					System.err.println("[LevelConfigParser] Where am i?!");
-					this.printUnknownLine(line);
-					break;
+					throw new LevelConfigException("[LevelConfigParser] Where am i?!");
 			}
 		}
 		return this.levelConfig;
@@ -129,13 +125,4 @@ public class LevelConfigParser {
 		}
 	}
 
-	/**
-	 * Debugging method - print an unknown line read.
-	 */
-	private void printUnknownLine(String line) {
-		System.err.println("[LevelConfigParser] Unknown line?");
-		System.err.println(line);
-		System.err.println();
-	}
-	
 }
