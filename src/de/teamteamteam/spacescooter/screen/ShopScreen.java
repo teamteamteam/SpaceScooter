@@ -6,8 +6,8 @@ import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 
-import de.teamteamteam.spacescooter.brain.Credits;
 import de.teamteamteam.spacescooter.brain.GameConfig;
+import de.teamteamteam.spacescooter.brain.PlayerSession;
 import de.teamteamteam.spacescooter.brain.StaticValue;
 import de.teamteamteam.spacescooter.control.Keyboard;
 import de.teamteamteam.spacescooter.entity.Player;
@@ -48,7 +48,7 @@ public class ShopScreen extends Screen {
 		}
 		g.setFont(new Font("Monospace", 0, 20));
 		g.setColor(new Color(255, 255, 255));
-		g.drawString("Credits: " + String.valueOf(Credits.getCredits()), GameConfig.windowWidth/2-30, 100);
+		g.drawString("Credits: " + String.valueOf(PlayerSession.getCredits()), GameConfig.windowWidth/2-30, 100);
 		g.setColor(new Color(0, 0, 0));
 		g.drawString("Hauptmen\u00fc", GameConfig.windowWidth/2-55, 482);
 	}
@@ -76,27 +76,27 @@ public class ShopScreen extends Screen {
 			///////////////////////////////////////////////////////////////
 			switch (this.menuPoint) {
 			case 0:
-				if(Credits.getCredits() >= 5 && damage.getBought() < damage.getMax()){
+				if(PlayerSession.getCredits() >= 5 && damage.getBought() < damage.getMax()){
 					damage.buy();
 					StaticValue.shotDamage += 5;
 					StaticValue.damage++;
-					Credits.setCredits(Credits.getCredits() - 5);
+					PlayerSession.removeCredits(5);
 				}
 				break;
 			case 1:
-				if(Credits.getCredits() >= 10 && shield.getBought() < shield.getMax()){
+				if(PlayerSession.getCredits() >= 10 && shield.getBought() < shield.getMax()){
 					shield.buy();
 					StaticValue.shieldPoints += 10;
 					StaticValue.shield++;
-					Credits.setCredits(Credits.getCredits() - 10);
+					PlayerSession.removeCredits(10);
 				}
 				break;
 			case 2:
-				if(Credits.getCredits() >= 10 && life.getBought() < life.getMax()){
+				if(PlayerSession.getCredits() >= 10 && life.getBought() < life.getMax()){
 					life.buy();
 					StaticValue.healthPoints += 10;
 					StaticValue.life++;
-					Credits.setCredits(Credits.getCredits() - 10);
+					PlayerSession.removeCredits(10);
 				}
 				break;
 			case 3:

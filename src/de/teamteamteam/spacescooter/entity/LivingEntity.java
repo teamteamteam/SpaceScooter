@@ -1,8 +1,7 @@
 package de.teamteamteam.spacescooter.entity;
 
-import de.teamteamteam.spacescooter.brain.Credits;
 import de.teamteamteam.spacescooter.brain.GameConfig;
-import de.teamteamteam.spacescooter.brain.Score;
+import de.teamteamteam.spacescooter.brain.PlayerSession;
 import de.teamteamteam.spacescooter.entity.enemy.Enemy;
 import de.teamteamteam.spacescooter.entity.shot.Shot;
 import de.teamteamteam.spacescooter.entity.spi.Collidable;
@@ -30,7 +29,7 @@ public abstract class LivingEntity extends CollidableEntity implements Hittable 
 	/**
 	 * The score points awarded if the LivingEntity dies.
 	 */
-	private int ScorePoints;
+	private int scorePoints;
 	
 	
 	/**
@@ -94,9 +93,9 @@ public abstract class LivingEntity extends CollidableEntity implements Hittable 
 			// Set the correct values for gui indicators
 			this.healthPoints = 0;
 			this.shieldPoints = 0;
-			Score.addScore(ScorePoints);
+			PlayerSession.addScore(scorePoints);
 			if(this instanceof Enemy){ // Add 1 credit for the shop        
-				Credits.setCredits(Credits.getCredits() + 1);
+				PlayerSession.addCredits(1);
 			}
 			if (GameConfig.DEBUG)
 				System.out.println(this + " ist gestorben. RIP");
@@ -151,7 +150,7 @@ public abstract class LivingEntity extends CollidableEntity implements Hittable 
 	 * Set the current score points.
 	 */
 	public void setScore(int s) {
-		this.ScorePoints = s;
+		this.scorePoints = s;
 	}
 
 }

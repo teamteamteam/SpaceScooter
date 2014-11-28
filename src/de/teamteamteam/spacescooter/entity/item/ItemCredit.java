@@ -1,6 +1,6 @@
 package de.teamteamteam.spacescooter.entity.item;
 
-import de.teamteamteam.spacescooter.brain.Credits;
+import de.teamteamteam.spacescooter.brain.PlayerSession;
 import de.teamteamteam.spacescooter.entity.Player;
 
 public class ItemCredit extends Item {
@@ -12,6 +12,6 @@ public class ItemCredit extends Item {
 
 	@Override
 	public void itemCollected(Player player) {
-		Credits.add(10);
+		PlayerSession.addCredits(10);
 	}
 }

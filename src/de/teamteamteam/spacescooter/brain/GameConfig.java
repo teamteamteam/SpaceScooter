@@ -28,13 +28,17 @@ public class GameConfig {
 	/**
 	 * Whether or not anti aliasing will be used for shapes.
 	 */
-	public static boolean key_antialiasing = false;
+	public static boolean keyAntialiasing = false;
 
 	/**
 	 * Whether or not to apply anti aliasing on text.
 	 */
-	public static boolean text_antialiasing = false;
+	public static boolean textAntialiasing = false;
 	
+	/**
+	 * The maximum number of points a player can reach.
+	 */
+	public static int maximumPlayerScore = 99999999;
 	
 	/**
 	 * Private constructor, this class will never be instantiated.

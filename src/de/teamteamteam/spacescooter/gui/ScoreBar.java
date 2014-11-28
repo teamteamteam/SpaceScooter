@@ -4,8 +4,8 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
 
+import de.teamteamteam.spacescooter.brain.PlayerSession;
 import de.teamteamteam.spacescooter.entity.Entity;
-import de.teamteamteam.spacescooter.brain.Score;
 
 public class ScoreBar extends Entity {
 	
@@ -17,7 +17,7 @@ public class ScoreBar extends Entity {
 		g.setColor(Color.WHITE);
 		g.setFont(new Font("Monospace", 0, 24));
 		g.drawString("Score:", this.getX(), this.getY());
-		g.drawString(String.format("%08d", Integer.parseInt("" + Score.getScore())), this.getX()+77, this.getY());
+		g.drawString(String.format("%08d", Integer.parseInt("" + PlayerSession.getScore())), this.getX()+77, this.getY());
 	}
 	
 	public void update() {}
