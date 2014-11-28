@@ -11,6 +11,6 @@ public class ItemShield extends Item {
 
 	@Override
 	public void itemCollected(Player player) {
-		player.increaseShieldPoints(5);
+		player.addShieldPoints(5);
 	}
 }

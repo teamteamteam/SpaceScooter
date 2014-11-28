@@ -17,7 +17,7 @@ import de.teamteamteam.spacescooter.sound.SoundSystem;
 public class Player extends ShootingEntity implements KeyboardListener {
 
 	/**
-	 * the Player's Keyboard
+	 * the Players Keyboard
 	 */
 	private Keyboard keyboard = null;
 	
@@ -164,27 +164,6 @@ public class Player extends ShootingEntity implements KeyboardListener {
 	 */
 	public void keyTyped(KeyEvent e) {}
 
-	/**
-	 * method for increasing the HealthPoints with the Heal-Item
-	 */
-	public void increaseHealthPoints(int inc) {
-		if (this.getHealthPoints() <= (PlayerSession.getShipHealthPoints() - 15)) {
-			this.setHealthPoints(getHealthPoints() + inc);
-		} else {
-			this.setHealthPoints(PlayerSession.getShipHealthPoints());
-		}
-	}
-	
-	/**
-	 * method for increasing the ShieldPoints with the Shield-Item
-	 */
-	public void increaseShieldPoints(int inc) {
-		if (this.getShieldPoints() <= (PlayerSession.getShipShieldPoints() - 5)) {
-			this.setShieldPoints(getShieldPoints() + inc);
-		} else {
-			this.setShieldPoints(PlayerSession.getShipShieldPoints());
-		}
-	}
 	
 	/**
 	 *  Get the current rocket amount.

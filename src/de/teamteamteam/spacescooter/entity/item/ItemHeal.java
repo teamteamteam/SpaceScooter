@@ -11,6 +11,6 @@ public class ItemHeal extends Item {
 
 	@Override
 	public void itemCollected(Player player) {
-		player.increaseHealthPoints(15);
+		player.addHealthPoints(15);
 	}
 }

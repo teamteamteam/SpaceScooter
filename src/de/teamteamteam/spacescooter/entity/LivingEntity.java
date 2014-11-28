@@ -134,6 +134,17 @@ public abstract class LivingEntity extends CollidableEntity implements Hittable 
 	public void setHealthPoints(int hp) {
 		this.healthPoints = hp;
 	}
+	
+	/**
+	 * Add the given number of points to the current health points.
+	 * Capped at maximum health points.
+	 */
+	public void addHealthPoints(int hp) {
+		this.healthPoints += hp;
+		if(this.healthPoints > this.maximumHealthPoints) {
+			this.healthPoints = this.maximumHealthPoints;
+		}
+	}
 
 	/**
 	 * Get the current health points.
@@ -155,6 +166,17 @@ public abstract class LivingEntity extends CollidableEntity implements Hittable 
 	 */
 	public void setShieldPoints(int sp) {
 		this.shieldPoints = sp;
+	}
+	
+	/**
+	 * Add the given number of points to the current shield points.
+	 * Capped at maximum shield points.
+	 */
+	public void addShieldPoints(int sp) {
+		this.shieldPoints += sp;
+		if(this.shieldPoints > this.maximumShieldPoints) {
+			this.shieldPoints = this.maximumShieldPoints;
+		}
 	}
 
 	/**
