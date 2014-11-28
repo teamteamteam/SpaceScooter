@@ -26,9 +26,14 @@ public class GameConfig {
 	public static String windowTitle = "SpaceScooter!";
 	
 	/**
-	 * Whether or not anti aliasing rendering hints will be used.
+	 * Whether or not anti aliasing will be used for shapes.
 	 */
-	public static boolean antialiasing = false;
+	public static boolean key_antialiasing = false;
+
+	/**
+	 * Whether or not to apply anti aliasing on text.
+	 */
+	public static boolean text_antialiasing = false;
 	
 	
 	/**
