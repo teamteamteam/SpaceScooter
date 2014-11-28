@@ -68,7 +68,7 @@ public class EnemyFour extends Enemy{
 
 	@Override
 	public void explode() {
-		new ExplosionOne(this.getX(), this.getY());
+		new ExplosionOne(this.getCenteredX(), this.getCenteredY());
 	}
 	
 }

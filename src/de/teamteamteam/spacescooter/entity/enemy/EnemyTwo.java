@@ -32,7 +32,7 @@ public class EnemyTwo extends Enemy{
 
 	@Override
 	public void explode() {
-		new ExplosionTwo(this.getX(), this.getY());
+		new ExplosionTwo(this.getCenteredX(), this.getCenteredY());
 	}
 	
 }

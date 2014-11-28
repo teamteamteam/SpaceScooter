@@ -80,17 +80,31 @@ public abstract class Entity implements Updateable, Paintable {
 	
 	
 	/**
-	 * Get the X-Position of the Entity.
+	 * Get the X-Position of the Entity. (top left corner)
 	 */
 	public int getX() {
 		return this.x;
 	}
 
 	/**
-	 * Get the Y-Position of the Entity.
+	 * Get the Y-Position of the Entity. (top left corner)
 	 */
 	public int getY() {
 		return this.y;
+	}
+	
+	/**
+	 * Get the centered X-Position of the Entity.
+	 */
+	public int getCenteredX() {
+		return this.x + (this.width / 2);
+	}
+
+	/**
+	 * Get the centered Y-Position of the Entity.
+	 */
+	public int getCenteredY() {
+		return this.y + (this.height / 2);
 	}
 	
 	/**

@@ -38,7 +38,7 @@ public class EnemyBossMinion extends Enemy{
 	 * Custom MultiExplosion for this enemy.
 	 */
 	public void explode() {
-		new MultiExplosion(this.getX(), this.getY());
+		new MultiExplosion(this.getCenteredX(), this.getCenteredY());
 	}
 	
 	@Override

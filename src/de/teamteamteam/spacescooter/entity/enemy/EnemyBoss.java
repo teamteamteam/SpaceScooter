@@ -38,7 +38,7 @@ public class EnemyBoss extends Enemy{
 	 */
 	@Override
 	public void explode() {
-		new MultiExplosion(this.getX(), this.getY());
+		new MultiExplosion(this.getCenteredX(), this.getCenteredY());
 	}
 	
 	@Override
