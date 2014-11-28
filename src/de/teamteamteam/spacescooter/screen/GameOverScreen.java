@@ -7,6 +7,7 @@ import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 
 import de.teamteamteam.spacescooter.brain.GameConfig;
+import de.teamteamteam.spacescooter.brain.PlayerSession;
 import de.teamteamteam.spacescooter.control.Keyboard;
 import de.teamteamteam.spacescooter.entity.Player;
 import de.teamteamteam.spacescooter.gui.Button;
@@ -35,6 +36,10 @@ public class GameOverScreen extends Screen {
 		player = new Player(GameConfig.windowWidth/2-170, 309);
 		player.setCanMove(false);
 		player.setCanShoot(false);
+		
+		//Reset the player session for the next player.
+		//TODO: Make sure highscore "enter name" stuff happened before!
+		PlayerSession.reset();
 	}
 
 	@Override

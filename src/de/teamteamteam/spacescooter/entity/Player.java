@@ -3,7 +3,7 @@ package de.teamteamteam.spacescooter.entity;
 import java.awt.event.KeyEvent;
 
 import de.teamteamteam.spacescooter.brain.GameConfig;
-import de.teamteamteam.spacescooter.brain.StaticValue;
+import de.teamteamteam.spacescooter.brain.PlayerSession;
 import de.teamteamteam.spacescooter.control.Keyboard;
 import de.teamteamteam.spacescooter.control.KeyboardListener;
 import de.teamteamteam.spacescooter.entity.item.Item;
@@ -20,16 +20,6 @@ public class Player extends ShootingEntity implements KeyboardListener {
 	 * the Player's Keyboard
 	 */
 	private Keyboard keyboard = null;
-	
-	/**
-	 * the Players Health Points in percent
-	 */
-	private double healthPercent = 0;
-	
-	/**
-	 * the Players ShieldPoints in percent
-	 */
-	private double shieldPercent = 0;
 	
 	/**
 	 * the Players Rocket Ammunition
@@ -49,14 +39,16 @@ public class Player extends ShootingEntity implements KeyboardListener {
 		super(x, y);
 		this.setImage("images/ship.png");
 		this.setPrimaryShotImage("images/shots/laser_blue.png");
-		this.setShootDamage(StaticValue.shotDamage);
 		this.setShootDelay(20);
 		this.setShootSpawn(50, 16);
 		this.setShootDirection(Shot.RIGHT);
 		this.setShootSpeed(10);
 		this.setCollisionDamage(10);
-		this.setShieldPoints(StaticValue.shieldPoints);
-		this.setHealthPoints(StaticValue.healthPoints);
+		this.setHealthPoints(PlayerSession.getShipHealthPoints());
+		this.setMaximumHealthPoints(PlayerSession.getShipHealthPoints());
+		this.setShieldPoints(PlayerSession.getShipShieldPoints());
+		this.setMaximumShieldPoints(PlayerSession.getShipShieldPoints());
+		this.setShootDamage(PlayerSession.getShipShotDamage());
 		this.registerOnKeyboard(Keyboard.getInstance());
 	}
 
@@ -72,41 +64,30 @@ public class Player extends ShootingEntity implements KeyboardListener {
 	 * Standard update method
 	 */
 	public void update() {
-		if (StaticValue.healthPoints != 0) {
-			this.healthPercent = ((double) this.getHealthPoints() / (double) StaticValue.healthPoints) * 100;
+		if(this.canMove() == false) return;
+		super.update();
+		int offset = 3;
+		if(Keyboard.isKeyDown(KeyEvent.VK_UP) && this.getY() > 51) {
+			this.transpose(0, -1 * offset);
 		}
-		if (StaticValue.shieldPoints != 0) {
-			this.shieldPercent = ((double) this.getShieldPoints() / (double) StaticValue.shieldPoints) * 100;
+		if(Keyboard.isKeyDown(KeyEvent.VK_DOWN) && this.getY() < (GameConfig.windowHeight - this.getImage().getHeight())) {
+			this.transpose(0, offset);
 		}
-		if(this.canMove()) {
-			super.update();
-			int offset = 3;
-			if(Keyboard.isKeyDown(KeyEvent.VK_UP) && this.getY() > 51) {
-				this.transpose(0, -1 * offset);
-			}
-			if(Keyboard.isKeyDown(KeyEvent.VK_DOWN) && this.getY() < (GameConfig.windowHeight - this.getImage().getHeight())) {
-				this.transpose(0, offset);
-			}
-			if(Keyboard.isKeyDown(KeyEvent.VK_LEFT) && this.getX() > 0) {
-				this.transpose(-1 * offset, 0);
-			}
-			if(Keyboard.isKeyDown(KeyEvent.VK_RIGHT) && this.getX() < (GameConfig.windowWidth - this.getImage().getWidth())) {
-				this.transpose(offset, 0);
-			}
-			//continuous fire takes place here
-			if(Keyboard.isKeyDown(KeyEvent.VK_SPACE)) {
-				this.shoot();
-			}
-			if(Keyboard.isKeyDown(KeyEvent.VK_Y)) {
-				if(rocketAmount > 0){
-					this.shootRocket();
-				}
-			}
-			if(Keyboard.isKeyDown(KeyEvent.VK_X)) {
-				if(this.beamAmount > 0){
-					this.shootBeam();
-				}
-			}
+		if(Keyboard.isKeyDown(KeyEvent.VK_LEFT) && this.getX() > 0) {
+			this.transpose(-1 * offset, 0);
+		}
+		if(Keyboard.isKeyDown(KeyEvent.VK_RIGHT) && this.getX() < (GameConfig.windowWidth - this.getImage().getWidth())) {
+			this.transpose(offset, 0);
+		}
+		//continuous fire takes place here
+		if(Keyboard.isKeyDown(KeyEvent.VK_SPACE)) {
+			this.shoot();
+		}
+		if(Keyboard.isKeyDown(KeyEvent.VK_Y) && this.rocketAmount > 0) {
+			this.shootRocket();
+		}
+		if(Keyboard.isKeyDown(KeyEvent.VK_X) && this.beamAmount > 0) {
+			this.shootBeam();
 		}
 	}
 
@@ -182,29 +163,15 @@ public class Player extends ShootingEntity implements KeyboardListener {
 	 * empty keyTyped method, maybe useful for cheatcodes later
 	 */
 	public void keyTyped(KeyEvent e) {}
-	
-	/**
-	 * return the Healthpercentage of the Player
-	 */
-	public int getHealthPercent() {
-		return (int) this.healthPercent;
-	}
-	
-	/**
-	 * return the Shieldpercentage of the Player
-	 */
-	public int getShieldPercent() {
-		return (int) this.shieldPercent;
-	}
 
 	/**
 	 * method for increasing the HealthPoints with the Heal-Item
 	 */
 	public void increaseHealthPoints(int inc) {
-		if (this.getHealthPoints() <= (StaticValue.healthPoints - 15)) {
+		if (this.getHealthPoints() <= (PlayerSession.getShipHealthPoints() - 15)) {
 			this.setHealthPoints(getHealthPoints() + inc);
 		} else {
-			this.setHealthPoints(StaticValue.healthPoints);
+			this.setHealthPoints(PlayerSession.getShipHealthPoints());
 		}
 	}
 	
@@ -212,10 +179,10 @@ public class Player extends ShootingEntity implements KeyboardListener {
 	 * method for increasing the ShieldPoints with the Shield-Item
 	 */
 	public void increaseShieldPoints(int inc) {
-		if (this.getShieldPoints() <= (StaticValue.shieldPoints - 5)) {
+		if (this.getShieldPoints() <= (PlayerSession.getShipShieldPoints() - 5)) {
 			this.setShieldPoints(getShieldPoints() + inc);
 		} else {
-			this.setShieldPoints(StaticValue.shieldPoints);
+			this.setShieldPoints(PlayerSession.getShipShieldPoints());
 		}
 	}
 	

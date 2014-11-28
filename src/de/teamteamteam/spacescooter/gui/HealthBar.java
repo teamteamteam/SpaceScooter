@@ -22,7 +22,7 @@ public class HealthBar extends Entity {
 	public void paint(Graphics2D g) {
 		Player player = GameScreen.getPlayer();
 		try {
-			this.health = player.getHealthPercent();
+			this.health = player.getHealthPercentage();
 			this.healthwidth = ((this.width) * this.health) / 100;
 		} catch(Exception e) {
 			this.healthwidth = 0;

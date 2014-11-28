@@ -41,6 +41,21 @@ public class GameConfig {
 	public static int maximumPlayerScore = 99999999;
 	
 	/**
+	 * Initial health points the player will have.
+	 */
+	public static int initialPlayerHealthPoints = 100;
+	
+	/**
+	 * Initial shield points the player ship will have.
+	 */
+	public static int initialPlayerShieldPoints = 0;
+	
+	/**
+	 * Damage the player ships shots will cause initially.
+	 */
+	public static int initialPlayerShotDamage = 10;
+	
+	/**
 	 * Private constructor, this class will never be instantiated.
 	 */
 	private GameConfig() {}

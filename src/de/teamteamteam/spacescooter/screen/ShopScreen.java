@@ -8,7 +8,6 @@ import java.awt.image.BufferedImage;
 
 import de.teamteamteam.spacescooter.brain.GameConfig;
 import de.teamteamteam.spacescooter.brain.PlayerSession;
-import de.teamteamteam.spacescooter.brain.StaticValue;
 import de.teamteamteam.spacescooter.control.Keyboard;
 import de.teamteamteam.spacescooter.entity.Player;
 import de.teamteamteam.spacescooter.gui.Button;
@@ -31,9 +30,9 @@ public class ShopScreen extends Screen {
 		super(parent);
 		this.img = Loader.getBufferedImageByFilename("images/testbackground.png");
 		new Button(GameConfig.windowWidth/2-125, 450);
-		damage = new ShopOffer(100, 160, 15, StaticValue.damage, "Schaden");
-		shield = new ShopOffer(100, 260, 15, StaticValue.shield, "Schild");
-		life = new ShopOffer(100, 360, 15, StaticValue.life, "Leben");
+		damage = new ShopOffer(100, 160, 15, PlayerSession.getShipShotUpgradesBought(), "Schaden");
+		shield = new ShopOffer(100, 260, 15, PlayerSession.getShipShieldUpgradesBought(), "Schild");
+		life = new ShopOffer(100, 360, 15, PlayerSession.getShipHealthUpgradesBought(), "Leben");
 		player = new Player(50, 159);
 		player.setCanMove(false);
 		player.setCanShoot(false);
@@ -78,24 +77,24 @@ public class ShopScreen extends Screen {
 			case 0:
 				if(PlayerSession.getCredits() >= 5 && damage.getBought() < damage.getMax()){
 					damage.buy();
-					StaticValue.shotDamage += 5;
-					StaticValue.damage++;
+					PlayerSession.addShipShotDamage(5);
+					PlayerSession.incrementShipShotUpgradesBought();
 					PlayerSession.removeCredits(5);
 				}
 				break;
 			case 1:
 				if(PlayerSession.getCredits() >= 10 && shield.getBought() < shield.getMax()){
 					shield.buy();
-					StaticValue.shieldPoints += 10;
-					StaticValue.shield++;
+					PlayerSession.addShipShieldPoints(10);
+					PlayerSession.incrementShipShieldUpgradesBought();
 					PlayerSession.removeCredits(10);
 				}
 				break;
 			case 2:
 				if(PlayerSession.getCredits() >= 10 && life.getBought() < life.getMax()){
 					life.buy();
-					StaticValue.healthPoints += 10;
-					StaticValue.life++;
+					PlayerSession.addShipHealthPoints(10);
+					PlayerSession.incrementShipHealthUpgradesBought();
 					PlayerSession.removeCredits(10);
 				}
 				break;

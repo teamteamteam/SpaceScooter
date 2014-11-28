@@ -16,6 +16,39 @@ public class PlayerSession {
 	 * The players current amount of credits.
 	 */
 	private static int credits;
+
+	/**
+	 * Damage value of the normal Shots the ship fires.
+	 * This can be changed by upgrades in the shop.
+	 */
+	private static int shipShotDamage;
+
+	/**
+	 * The ships default maximum shield points.
+	 * This can be changed by upgrades in the shop.
+	 */
+	private static int shipShieldPoints;
+
+	/**
+	 * The ships default maximum health points.
+	 * This can be changed by upgrades in the shop.
+	 */
+	private static int shipHealthPoints;
+	
+	/**
+	 * The number of health upgrades the player bought for the ship.
+	 */
+	private static int shipHealthUpgadesBought;
+
+	/**
+	 * The number of shield upgrades the player bought for the ship.
+	 */
+	private static int shipShieldUpgadesBought;
+	
+	/**
+	 * The number of shot damage upgrades the player bought for the ship.
+	 */
+	private static int shipShotUpgadesBought;
 	
 	
 	/**
@@ -79,13 +112,125 @@ public class PlayerSession {
 	}
 	
 	/**
+	 * Get the ships maximum health points.
+	 */
+	public static int getShipHealthPoints() {
+		return PlayerSession.shipHealthPoints;
+	}
+	
+	/**
+	 * Set the ships maximum health points.
+	 */
+	public static void setShipHealthPoints(int shipHealthPoints) {
+		PlayerSession.shipHealthPoints = shipHealthPoints;
+	}
+	
+	/**
+	 * Add to the ships maximum health points.
+	 */
+	public static void addShipHealthPoints(int shipHealthPoints) {
+		PlayerSession.shipHealthPoints += shipHealthPoints;
+	}
+	
+	/**
+	 * Get the ships maximum shield points.
+	 */
+	public static int getShipShieldPoints() {
+		return PlayerSession.shipShieldPoints;
+	}
+	
+	/**
+	 * Set the ships maximum shield points.
+	 */
+	public static void setShipShieldPoints(int shipShieldPoints) {
+		PlayerSession.shipShieldPoints = shipShieldPoints;
+	}
+	
+	/**
+	 * Add to the ships maximum shield points.
+	 */
+	public static void addShipShieldPoints(int shipShieldPoints) {
+		PlayerSession.shipShieldPoints += shipShieldPoints;
+	}
+	
+	/**
+	 * Get the ships shot damage value.
+	 */
+	public static int getShipShotDamage() {
+		return PlayerSession.shipShotDamage;
+	}
+	
+	/**
+	 * Set the ships shot damage value.
+	 */
+	public static void setShipShotDamage(int shipShotDamage) {
+		PlayerSession.shipShotDamage = shipShotDamage;
+	}
+	
+	/**
+	 * Add to the ships shot damage value.
+	 */
+	public static void addShipShotDamage(int shipShotDamage) {
+		PlayerSession.shipShotDamage += shipShotDamage;
+	}
+
+	/**
+	 * Get the number of ship health upgrades the player bought in the shop.
+	 */
+	public static int getShipHealthUpgradesBought() {
+		return PlayerSession.shipHealthUpgadesBought;
+	}
+	
+	/**
+	 * Increment the number of ship health upgrades the player bought.
+	 */
+	public static void incrementShipHealthUpgradesBought() {
+		PlayerSession.shipHealthUpgadesBought++;
+	}
+
+	/**
+	 * Get the number of ship shield upgrades the player bought in the shop.
+	 */
+	public static int getShipShieldUpgradesBought() {
+		return PlayerSession.shipShieldUpgadesBought;
+	}
+
+	/**
+	 * Increment the number of ship shield upgrades the player bought.
+	 */
+	public static void incrementShipShieldUpgradesBought() {
+		PlayerSession.shipShieldUpgadesBought++;
+	}
+	
+	/**
+	 * Get the number of ship shot upgrades the player bought in the shop.
+	 */
+	public static int getShipShotUpgradesBought() {
+		return PlayerSession.shipShotUpgadesBought;
+	}
+
+	/**
+	 * Increment the number of ship shot upgrades the player bought.
+	 */
+	public static void incrementShipShotUpgradesBought() {
+		PlayerSession.shipShotUpgadesBought++;
+	}
+
+	
+	/**
 	 * This will reset all data from the players session.
 	 * Used to initialize the session at the beginning of the game or
 	 * after the player went game over and entered his name for the highscore.
+	 * (So the next player can start a fresh session.)
 	 */
 	public static void reset() {
 		PlayerSession.score = 0;
 		PlayerSession.credits = 0;
+		PlayerSession.shipHealthPoints = GameConfig.initialPlayerHealthPoints;
+		PlayerSession.shipShieldPoints = GameConfig.initialPlayerShieldPoints;
+		PlayerSession.shipShotDamage = GameConfig.initialPlayerShotDamage;
+		PlayerSession.shipHealthUpgadesBought = 0;
+		PlayerSession.shipShieldUpgadesBought = 0;
+		PlayerSession.shipShotUpgadesBought = 0;
 	}
-	
 }

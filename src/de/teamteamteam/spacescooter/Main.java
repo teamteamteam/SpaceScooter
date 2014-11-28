@@ -3,6 +3,7 @@ package de.teamteamteam.spacescooter;
 import java.awt.EventQueue;
 import java.lang.reflect.InvocationTargetException;
 
+import de.teamteamteam.spacescooter.brain.PlayerSession;
 import de.teamteamteam.spacescooter.screen.LoadingScreen;
 import de.teamteamteam.spacescooter.screen.SuperScreen;
 import de.teamteamteam.spacescooter.thread.PaintThread;
@@ -69,5 +70,8 @@ public class Main {
 		// Finally start loading and everything will follow up.
 		// This has to happen after the AWT-Eventqueue is done initializing everything.
 		Loader.load(loadingScreen);
+		
+		//Initialize the player session the first time.
+		PlayerSession.reset();
 	}
 }

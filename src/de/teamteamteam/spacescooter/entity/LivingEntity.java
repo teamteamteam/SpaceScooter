@@ -17,15 +17,25 @@ import de.teamteamteam.spacescooter.entity.spi.Hittable;
 public abstract class LivingEntity extends CollidableEntity implements Hittable {
 
 	/**
-	 * The LivingEntities health points.
+	 * The LivingEntities current health points.
 	 */
 	private int healthPoints;
 
 	/**
-	 * The LivingEntities shield points.
+	 * The LivingEntities current shield points.
 	 */
 	private int shieldPoints;
-	
+
+	/**
+	 * The LivingEntities maximum health points.
+	 */
+	private int maximumHealthPoints;
+
+	/**
+	 * The LivingEntities maximum shield points.
+	 */
+	private int maximumShieldPoints;
+
 	/**
 	 * The score points awarded if the LivingEntity dies.
 	 */
@@ -131,6 +141,14 @@ public abstract class LivingEntity extends CollidableEntity implements Hittable 
 	public int getHealthPoints() {
 		return this.healthPoints;
 	}
+	
+	/**
+	 * Get the current health percentage.
+	 * Returns an int in [0,100], divide by 100 for double percentage.
+	 */
+	public int getHealthPercentage() {
+		return (this.healthPoints * 100) / this.maximumHealthPoints;
+	}
 
 	/**
 	 * Set the current shield points.
@@ -144,6 +162,42 @@ public abstract class LivingEntity extends CollidableEntity implements Hittable 
 	 */
 	public int getShieldPoints() {
 		return this.shieldPoints;
+	}
+	
+	/**
+	 * Get the current shield percentage.
+	 * Returns an int in [0,100], divide by 100 for double percentage.
+	 */
+	public int getShieldPercentage() {
+		return (this.shieldPoints * 100) / this.maximumShieldPoints;
+	}
+	
+	/**
+	 * Set the maximum health points.
+	 */
+	public void setMaximumHealthPoints(int maxhp) {
+		this.maximumHealthPoints = maxhp;
+	}
+
+	/**
+	 * Get the maximum health points.
+	 */
+	public int getMaximumHealthPoints() {
+		return this.maximumHealthPoints;
+	}
+
+	/**
+	 * Set the maximum shield points.
+	 */
+	public void setMaximumShieldPoints(int maxsp) {
+		this.maximumShieldPoints = maxsp;
+	}
+
+	/**
+	 * Get the maximum shield points.
+	 */
+	public int getMaximumShieldPoints() {
+		return this.maximumShieldPoints;
 	}
 	
 	/**
