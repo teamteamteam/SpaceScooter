@@ -13,31 +13,61 @@ import de.teamteamteam.spacescooter.brain.GameConfig;
  */
 public class LoadingScreen extends Screen {
 
-	private int currentProcessed;
-	private int totalProcessable;
+	/**
+	 * Number of by the Loader processed (loaded) elements.
+	 */
+	private int currentProcessedElements;
+
+	/**
+	 * Total number of elements to be processed by the Loader.
+	 */
+	private int totalProcessableElements;
+	
+	/**
+	 * Whether or not the LoadingScreen has been initialized - 
+	 * aka. it knows the totalProcessableElements.
+	 */
 	private boolean initialized;
 	
+	
+	/**
+	 * Constructor initializing sane defaults for both the element count attributes
+	 * so the Screen can safely be painted and updated.
+	 */
 	public LoadingScreen(Screen parent) {
 		super(parent);
 		this.initialized = false;
-		this.currentProcessed = 0;
-		this.totalProcessable = 1; //sane default
+		this.currentProcessedElements = 0;
+		this.totalProcessableElements = 1; //sane default
 	}
 	
+	/**
+	 * Initialize the LoadingScreen with these two element counters.
+	 * This way, the LoadingScreen is able to indicate a progress.
+	 */
 	public void initialize(int currentProcessed, int totalProcessable) {
-		this.currentProcessed = currentProcessed;
-		this.totalProcessable = totalProcessable;
+		this.currentProcessedElements = currentProcessed;
+		this.totalProcessableElements = totalProcessable;
 		this.initialized = true;
 	}
 	
+	/**
+	 * Tell the LoadingScreen that an element has been processed.
+	 */
 	public void increaseCurrentProcessed() {
-		this.currentProcessed++;
+		this.currentProcessedElements++;
 	}
 	
+	/**
+	 * Calculate the percentage of the loading progress.
+	 */
 	public int getProgress() {
-		return (int) Math.floor((100.0 * this.currentProcessed) / this.totalProcessable);
+		return (int) Math.floor((100.0 * this.currentProcessedElements) / this.totalProcessableElements);
 	}
 	
+	/**
+	 * Draw the LoadingScreen. :-)
+	 */
 	@Override
 	protected void paint(Graphics2D g) {
 		g.setColor(new Color(0,0,120));
@@ -48,6 +78,9 @@ public class LoadingScreen extends Screen {
 		g.drawString("Progress: " + this.getProgress() + "%", 200, 500);
 	}
 
+	/**
+	 * In case the Loader is done, immediately fire up the MainMenuScreen.
+	 */
 	@Override
 	protected void update() {
 		if(this.initialized == true && this.getProgress() == 100) {
