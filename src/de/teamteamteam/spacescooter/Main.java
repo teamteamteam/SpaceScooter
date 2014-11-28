@@ -17,45 +17,47 @@ public class Main {
 
 	/**
 	 * Main entry point of the game.
-	 * "... for i am the Alpha and the Omega." - God
+	 * 
+	 * "... for i am the Alpha and the Omega."
+	 * - God, a long time ago.
 	 * 
 	 * @param args Command line arguments.
 	 */
 	public static void main(String[] args) {
-		//Initialize the GameFrame properly within the AWT EventQueue
+		final GraphicsSettings gs = new GraphicsSettings(); // Get settings
+
+		// Initialize SuperScreen and add to GameFrame, so we can call doPaint()
+		// on it.
+		final SuperScreen superScreen = new SuperScreen(null);
+
+		// Set up the LoadingScreen
+		final LoadingScreen loadingScreen = new LoadingScreen(superScreen);
+		superScreen.setOverlay(loadingScreen);
+
+		// Initialize the GameFrame properly within the AWT EventQueue
 		try {
 			EventQueue.invokeAndWait(new Runnable() {
 				public void run() {
-					GraphicsSettings gs = new GraphicsSettings(); //Get settings
-					
-					//Instantiate the GameFrame
+					// Instantiate the GameFrame
 					final GameFrame gameFrame = new GameFrame();
-					
-					//Initialize SuperScreen and add to GameFrame, so we can call doPaint() on it.
-					final SuperScreen superScreen = new SuperScreen(null);
+
+					// Set the SuperScreen
 					gameFrame.setSuperScreen(superScreen);
 
-					//Initialize the gameFrame and trigger a first draw.
+					// Initialize the gameFrame and trigger a first draw.
 					gameFrame.init();
-					gameFrame.draw(); //Draw nothing for the first time.
-				
-					//Initialize GameThread
+					gameFrame.draw(); // Draw nothing for the first time.
+
+					// Initialize GameThread
 					PaintThread paintThread = new PaintThread(gameFrame);
-					paintThread.setHz(gs.getRefreshRate()); //This may be set depending on the system graphic settings.
+					paintThread.setHz(gs.getRefreshRate()); // Use refresh rate from system graphics configuration.
 					paintThread.start();
-					
-					//Initialize UpdateThread
+
+					// Initialize UpdateThread
 					UpdateThread updateThread = new UpdateThread();
 					updateThread.setSuperScreen(superScreen);
-					updateThread.setHz(100); //This shall remain constant across all systems.
+					updateThread.setHz(100); // This is constant across all systems.
 					updateThread.start();
-			
-					//Set up the LoadingScreen
-					LoadingScreen loadingScreen = new LoadingScreen(superScreen);
-					superScreen.setOverlay(loadingScreen);
-			
-					//Start loading and everything will follow up.
-					Loader.load(loadingScreen);
 				}
 			});
 		} catch (InvocationTargetException e) {
@@ -63,5 +65,9 @@ public class Main {
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
+
+		// Finally start loading and everything will follow up.
+		// This has to happen after the AWT-Eventqueue is done initializing everything.
+		Loader.load(loadingScreen);
 	}
 }

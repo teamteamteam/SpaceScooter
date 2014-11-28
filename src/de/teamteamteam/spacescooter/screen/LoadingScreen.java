@@ -15,9 +15,11 @@ public class LoadingScreen extends Screen {
 
 	private int currentProcessed;
 	private int totalProcessable;
+	private boolean initialized;
 	
 	public LoadingScreen(Screen parent) {
 		super(parent);
+		this.initialized = false;
 		this.currentProcessed = 0;
 		this.totalProcessable = 1; //sane default
 	}
@@ -25,6 +27,7 @@ public class LoadingScreen extends Screen {
 	public void initialize(int currentProcessed, int totalProcessable) {
 		this.currentProcessed = currentProcessed;
 		this.totalProcessable = totalProcessable;
+		this.initialized = true;
 	}
 	
 	public void increaseCurrentProcessed() {
@@ -32,7 +35,7 @@ public class LoadingScreen extends Screen {
 	}
 	
 	public int getProgress() {
-		return (int) Math.round((100.0 * this.currentProcessed) / this.totalProcessable);
+		return (int) Math.floor((100.0 * this.currentProcessed) / this.totalProcessable);
 	}
 	
 	@Override
@@ -47,7 +50,7 @@ public class LoadingScreen extends Screen {
 
 	@Override
 	protected void update() {
-		if(this.getProgress() == 100) {
+		if(this.initialized == true && this.getProgress() == 100) {
 			this.parent.setOverlay(new MainMenuScreen(this.parent));
 		}
 	}
