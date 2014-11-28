@@ -4,6 +4,7 @@ package de.teamteamteam.spacescooter.entity;
  * A very simple image slideshow animation.
  * Given a list of images and an interval, it does a (fast) slideshow
  * through all the images, changing them after <interval> ticks.
+ * TODO: Implement an AnimationType that allows looping! Maybe separate Entities into Drawable and Updateable?
  */
 public class Animation extends Entity {
 

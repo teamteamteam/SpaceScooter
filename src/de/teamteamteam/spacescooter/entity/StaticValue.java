@@ -1,6 +1,7 @@
 package de.teamteamteam.spacescooter.entity;
 
 /**
+ * TODO: Rename and merge with other classes containing single static information.
  * Static Values for the Player and the Shop
  *
  */

@@ -7,6 +7,7 @@ import de.teamteamteam.spacescooter.entity.Entity;;
 
 public class InterfaceBar extends Entity {
 
+	//TODO: Use GameConfig constants for this!
 	private int width = 800;
 	private int height = 50;
 	

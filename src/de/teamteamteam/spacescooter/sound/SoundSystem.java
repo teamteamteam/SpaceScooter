@@ -151,6 +151,7 @@ public class SoundSystem {
 
 	/**
 	 * Play a sound by passing a relative path to this method.
+	 * TODO: Provide a method to stop existing sounds (aka BackgroundMusic!)
 	 */
 	public static void playSound(String filename) {
 		SoundSystem.playFromAudioInputStream(Loader.getSoundURLByFilename(filename));

@@ -10,6 +10,7 @@ import de.teamteamteam.spacescooter.screen.GameScreen;
 
 public class ShieldBar extends Entity {
 
+	//TODO: Make this depends on GameConfig constants
 	private int width = 150;
 	private int height = 14;
 	private int shield = 0;

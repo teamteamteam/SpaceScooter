@@ -1,6 +1,7 @@
 package de.teamteamteam.spacescooter.gui;
 
 /**
+ * TODO: Intelligently merge this with Score class.
  * Static class accounting the credits a player earned during the game.
  */
 public class Credits {
