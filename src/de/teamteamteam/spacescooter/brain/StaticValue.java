@@ -1,4 +1,4 @@
-package de.teamteamteam.spacescooter.entity;
+package de.teamteamteam.spacescooter.brain;
 
 /**
  * TODO: Rename and merge with other classes containing single static information.

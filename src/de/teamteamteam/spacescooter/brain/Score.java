@@ -1,4 +1,4 @@
-package de.teamteamteam.spacescooter.datastructure;
+package de.teamteamteam.spacescooter.brain;
 
 /**
  * Score Class to represent the Player's Score

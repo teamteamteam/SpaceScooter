@@ -3,12 +3,12 @@ package de.teamteamteam.spacescooter;
 import java.awt.EventQueue;
 import java.lang.reflect.InvocationTargetException;
 
+import de.teamteamteam.spacescooter.brain.GameConfig;
 import de.teamteamteam.spacescooter.screen.LoadingScreen;
 import de.teamteamteam.spacescooter.screen.Screen;
 import de.teamteamteam.spacescooter.screen.SuperScreen;
 import de.teamteamteam.spacescooter.thread.PaintThread;
 import de.teamteamteam.spacescooter.thread.UpdateThread;
-import de.teamteamteam.spacescooter.utility.GameConfig;
 import de.teamteamteam.spacescooter.utility.GraphicsSettings;
 import de.teamteamteam.spacescooter.utility.Loader;
 

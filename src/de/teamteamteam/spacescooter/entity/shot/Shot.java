@@ -1,11 +1,11 @@
 package de.teamteamteam.spacescooter.entity.shot;
 
+import de.teamteamteam.spacescooter.brain.GameConfig;
 import de.teamteamteam.spacescooter.entity.CollidableEntity;
 import de.teamteamteam.spacescooter.entity.Player;
 import de.teamteamteam.spacescooter.entity.enemy.Enemy;
 import de.teamteamteam.spacescooter.entity.spi.Collidable;
 import de.teamteamteam.spacescooter.sound.SoundSystem;
-import de.teamteamteam.spacescooter.utility.GameConfig;
 import de.teamteamteam.spacescooter.utility.Random;
 
 /**

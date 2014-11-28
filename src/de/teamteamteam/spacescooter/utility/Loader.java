@@ -11,6 +11,7 @@ import javax.imageio.ImageIO;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
+import de.teamteamteam.spacescooter.brain.GameConfig;
 import de.teamteamteam.spacescooter.level.LevelConfig;
 import de.teamteamteam.spacescooter.level.LevelConfigParser;
 import de.teamteamteam.spacescooter.screen.LoadingScreen;

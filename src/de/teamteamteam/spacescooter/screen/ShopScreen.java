@@ -6,13 +6,13 @@ import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 
+import de.teamteamteam.spacescooter.brain.Credits;
+import de.teamteamteam.spacescooter.brain.GameConfig;
+import de.teamteamteam.spacescooter.brain.StaticValue;
 import de.teamteamteam.spacescooter.control.Keyboard;
 import de.teamteamteam.spacescooter.entity.Player;
-import de.teamteamteam.spacescooter.entity.StaticValue;
 import de.teamteamteam.spacescooter.gui.Button;
-import de.teamteamteam.spacescooter.gui.Credits;
 import de.teamteamteam.spacescooter.gui.ShopOffer;
-import de.teamteamteam.spacescooter.utility.GameConfig;
 import de.teamteamteam.spacescooter.utility.Loader;
 
 public class ShopScreen extends Screen {

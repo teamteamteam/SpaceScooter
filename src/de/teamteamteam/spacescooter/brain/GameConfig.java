@@ -1,4 +1,4 @@
-package de.teamteamteam.spacescooter.utility;
+package de.teamteamteam.spacescooter.brain;
 
 /**
  * This static class contains important game configuration.

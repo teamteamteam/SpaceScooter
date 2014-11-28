@@ -1,7 +1,7 @@
 package de.teamteamteam.spacescooter.entity.enemy;
 
+import de.teamteamteam.spacescooter.brain.GameConfig;
 import de.teamteamteam.spacescooter.entity.explosion.ExplosionTwo;
-import de.teamteamteam.spacescooter.utility.GameConfig;
 import de.teamteamteam.spacescooter.utility.Random;
 
 public class EnemyTwo extends Enemy{

@@ -2,7 +2,7 @@ package de.teamteamteam.spacescooter.background;
 
 import java.awt.Graphics2D;
 
-import de.teamteamteam.spacescooter.utility.GameConfig;
+import de.teamteamteam.spacescooter.brain.GameConfig;
 
 public class ScrollingBackground extends Background {
 

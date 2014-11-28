@@ -9,9 +9,9 @@ import java.awt.image.BufferStrategy;
 
 import javax.swing.JFrame;
 
+import de.teamteamteam.spacescooter.brain.GameConfig;
 import de.teamteamteam.spacescooter.control.Keyboard;
 import de.teamteamteam.spacescooter.screen.Screen;
-import de.teamteamteam.spacescooter.utility.GameConfig;
 
 /**
  * The game will take place in this beautiful window.

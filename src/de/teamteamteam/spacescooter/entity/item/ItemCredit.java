@@ -1,7 +1,7 @@
 package de.teamteamteam.spacescooter.entity.item;
 
+import de.teamteamteam.spacescooter.brain.Credits;
 import de.teamteamteam.spacescooter.entity.Player;
-import de.teamteamteam.spacescooter.gui.Credits;
 
 public class ItemCredit extends Item {
 	

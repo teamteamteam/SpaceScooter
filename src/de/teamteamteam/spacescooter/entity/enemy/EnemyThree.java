@@ -1,10 +1,10 @@
 package de.teamteamteam.spacescooter.entity.enemy;
 
+import de.teamteamteam.spacescooter.brain.GameConfig;
 import de.teamteamteam.spacescooter.entity.Player;
 import de.teamteamteam.spacescooter.entity.explosion.MultiExplosion;
 import de.teamteamteam.spacescooter.entity.item.Item;
 import de.teamteamteam.spacescooter.screen.GameScreen;
-import de.teamteamteam.spacescooter.utility.GameConfig;
 import de.teamteamteam.spacescooter.utility.Random;
 
 public class EnemyThree extends Enemy{

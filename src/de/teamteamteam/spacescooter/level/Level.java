@@ -1,6 +1,7 @@
 package de.teamteamteam.spacescooter.level;
 
 import de.teamteamteam.spacescooter.background.StarBackground;
+import de.teamteamteam.spacescooter.brain.GameConfig;
 import de.teamteamteam.spacescooter.entity.Entity;
 import de.teamteamteam.spacescooter.entity.Player;
 import de.teamteamteam.spacescooter.entity.enemy.EnemyBoss;
@@ -8,7 +9,6 @@ import de.teamteamteam.spacescooter.entity.enemy.EnemyOne;
 import de.teamteamteam.spacescooter.entity.enemy.EnemyThree;
 import de.teamteamteam.spacescooter.entity.enemy.EnemyTwo;
 import de.teamteamteam.spacescooter.screen.GameScreen;
-import de.teamteamteam.spacescooter.utility.GameConfig;
 import de.teamteamteam.spacescooter.utility.Loader;
 import de.teamteamteam.spacescooter.utility.Random;
 

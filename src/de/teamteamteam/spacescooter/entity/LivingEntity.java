@@ -1,13 +1,12 @@
 package de.teamteamteam.spacescooter.entity;
 
-import de.teamteamteam.spacescooter.datastructure.Score;
-
+import de.teamteamteam.spacescooter.brain.Credits;
+import de.teamteamteam.spacescooter.brain.GameConfig;
+import de.teamteamteam.spacescooter.brain.Score;
 import de.teamteamteam.spacescooter.entity.enemy.Enemy;
 import de.teamteamteam.spacescooter.entity.shot.Shot;
 import de.teamteamteam.spacescooter.entity.spi.Collidable;
 import de.teamteamteam.spacescooter.entity.spi.Hittable;
-import de.teamteamteam.spacescooter.gui.Credits;
-import de.teamteamteam.spacescooter.utility.GameConfig;
 
 /**
  * A LivingEntity is an Entity that is able to take damage and to collide with

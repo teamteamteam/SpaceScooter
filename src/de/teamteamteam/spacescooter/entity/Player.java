@@ -2,13 +2,14 @@ package de.teamteamteam.spacescooter.entity;
 
 import java.awt.event.KeyEvent;
 
+import de.teamteamteam.spacescooter.brain.GameConfig;
+import de.teamteamteam.spacescooter.brain.StaticValue;
 import de.teamteamteam.spacescooter.control.Keyboard;
 import de.teamteamteam.spacescooter.control.KeyboardListener;
 import de.teamteamteam.spacescooter.entity.item.Item;
 import de.teamteamteam.spacescooter.entity.shot.Shot;
 import de.teamteamteam.spacescooter.entity.spi.Collidable;
 import de.teamteamteam.spacescooter.sound.SoundSystem;
-import de.teamteamteam.spacescooter.utility.GameConfig;
 
 /**
  * Class that represents the Player, and handle all the KeyboardActions

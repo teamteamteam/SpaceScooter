@@ -5,7 +5,7 @@ import java.awt.Font;
 import java.awt.Graphics2D;
 
 import de.teamteamteam.spacescooter.entity.Entity;
-import de.teamteamteam.spacescooter.datastructure.Score;
+import de.teamteamteam.spacescooter.brain.Score;
 
 public class ScoreBar extends Entity {
 	

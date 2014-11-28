@@ -1,4 +1,4 @@
-package de.teamteamteam.spacescooter.gui;
+package de.teamteamteam.spacescooter.brain;
 
 /**
  * TODO: Intelligently merge this with Score class.

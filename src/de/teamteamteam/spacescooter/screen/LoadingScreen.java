@@ -3,7 +3,8 @@ package de.teamteamteam.spacescooter.screen;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
-import de.teamteamteam.spacescooter.utility.GameConfig;
+
+import de.teamteamteam.spacescooter.brain.GameConfig;
 
 /**
  * This is the LoadingScreen, which is displayed when the game is started.

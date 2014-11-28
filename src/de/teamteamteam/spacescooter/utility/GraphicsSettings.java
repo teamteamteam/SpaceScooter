@@ -4,6 +4,8 @@ import java.awt.DisplayMode;
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
 
+import de.teamteamteam.spacescooter.brain.GameConfig;
+
 /**
  * GraphicsSettings allows to fetch the current graphical settings in order
  * to determine a sane refresh rate and the current screen resolution.
