@@ -25,6 +25,11 @@ public class GameConfig {
 	 */
 	public static String windowTitle = "SpaceScooter!";
 	
+	/**
+	 * Whether or not anti aliasing rendering hints will be used.
+	 */
+	public static boolean antialiasing = false;
+	
 	
 	/**
 	 * Private constructor, this class will never be instantiated.
