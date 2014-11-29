@@ -33,7 +33,7 @@ public class Main {
 
 		// Set up the LoadingScreen
 		final LoadingScreen loadingScreen = new LoadingScreen(superScreen);
-		superScreen.setOverlay(loadingScreen);
+		superScreen.setOverlay(loadingScreen, false);
 
 		// Initialize the GameFrame properly within the AWT EventQueue
 		try {
