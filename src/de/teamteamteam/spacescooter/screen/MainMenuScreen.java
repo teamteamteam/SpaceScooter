@@ -88,7 +88,8 @@ public class MainMenuScreen extends Screen {
 			keyPressed = false;
 		}
 		
-		if(Keyboard.isKeyDown(KeyEvent.VK_ENTER)) {
+		// make a selection
+		if(Keyboard.isKeyDown(KeyEvent.VK_ENTER) || Keyboard.isKeyDown(KeyEvent.VK_SPACE)) {
 			animationStatus = 1;
 		}
 		

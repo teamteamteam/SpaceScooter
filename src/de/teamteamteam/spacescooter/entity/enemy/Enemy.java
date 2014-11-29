@@ -6,9 +6,9 @@ import de.teamteamteam.spacescooter.entity.shot.Shot;
 import de.teamteamteam.spacescooter.sound.SoundSystem;
 import de.teamteamteam.spacescooter.utility.Random;
 /**
- * The Enemy class that handle all the Enemies out there.
+ * The Enemy class that handles all the Enemies out there.
  * Including bosses and minibosses.
- * This class inherit all the properties of the enemies to every subclass
+ * This class inherits all the properties of the enemies to every subclass
  */
 public abstract class Enemy extends ShootingEntity {
 
@@ -41,6 +41,7 @@ public abstract class Enemy extends ShootingEntity {
 		if(willShoot == true){
 			this.shoot();
 		}
+		// ToDo: ???
 		if(this.getX() < 0-this.getWidth()) {
 			this.remove();
 		}
