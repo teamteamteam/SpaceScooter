@@ -92,7 +92,7 @@ public class GameScreen extends Screen {
 		// Pass the collision handler a copy of the entity list
 		CollisionHandler.handleCollisions();
 		if (Keyboard.isKeyDown(KeyEvent.VK_ESCAPE)) {
-			this.setOverlay(new GamePausedScreen(this));
+			this.setOverlay(new GamePausedScreen(this), false);
 		}
 		
 		//Go to GameOverScreen if the game is actually over.

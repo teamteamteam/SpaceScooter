@@ -91,7 +91,7 @@ public class GamePausedScreen extends Screen {
 			switch (this.menuPoint) {
 			case 0:
 				//Removes itself from the GameScreen, so the player can continue playing.
-				this.parent.setOverlay(null);
+				this.parent.setOverlay(null, false);
 				break;
 			case 1:
 				//Replaces its parents (the GameScreen) parent (the SuperScreen) overlay.
