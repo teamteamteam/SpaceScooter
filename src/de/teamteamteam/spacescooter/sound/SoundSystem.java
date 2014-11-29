@@ -97,35 +97,56 @@ public class SoundSystem {
 	 * Create a SourceDataLine and play the BufferedInputStream into it.
 	 * Uses the internal audioPlayerRunnable since this operation is blocking.
 	 */
-	public static void playFromAudioInputStream(URL soundURL) {
+	public static Thread playFromAudioInputStream(URL soundURL) {
 		final URL fSoundURL = soundURL;
 		Thread soundThread = new Thread(new Runnable() {
 			public void run() {
+				AudioInputStream sound = null;
+				SourceDataLine sourceDataLine = null;
 				try {
-					AudioInputStream sound = SoundSystem.getAudioInputStreamByURL(fSoundURL);
+					sound = SoundSystem.getAudioInputStreamByURL(fSoundURL);
 					sound.reset();
-					SourceDataLine sourceDataLine = AudioSystem.getSourceDataLine(sound.getFormat());
+					sourceDataLine = AudioSystem.getSourceDataLine(sound.getFormat());
 					sourceDataLine.open(sound.getFormat());
 					sourceDataLine.start();
 					sound.reset();
-					int chunksize = 16384*4;
-					byte[] b = new byte[chunksize];
-					while (sound.available() > 0) {
-						sound.read(b, 0, chunksize);
-						sourceDataLine.write(b, 0, chunksize);
+					int maxChunkSize = 4*4096;
+					byte[] b = new byte[maxChunkSize];
+					int soundCapacity;
+					while ((soundCapacity = sound.available()) > 0) {
+						if(Thread.interrupted()) throw new InterruptedException();
+						//Make sure we're only writing that many bytes, so we do NOT cause blocking!
+						//Otherwise, we are unable to interrupt this Thread properly and stop long sounds from playing!
+						int writeCapacity = sourceDataLine.available();
+						if(writeCapacity > soundCapacity) writeCapacity = soundCapacity;
+						if(writeCapacity > maxChunkSize) writeCapacity = maxChunkSize;
+						sound.read(b, 0, writeCapacity);
+						sourceDataLine.write(b, 0, writeCapacity);
 					}
 					sourceDataLine.drain();
-					sourceDataLine.close();
-					sound.close();
 				} catch (javax.sound.sampled.LineUnavailableException lue) {
 					System.err.println("Could not play sound: " + fSoundURL);
+				} catch (InterruptedException ie) {
+					//Nothing to do here, just falling into finally block, so we can
+					//close the sourceDataLine without draining it.
 				} catch (Exception e) {
 					e.printStackTrace();
+				} finally {
+					//Clean everything up properly.
+					if(sourceDataLine != null) sourceDataLine.close();
+					if(sound != null) {
+						try {
+							sound.close();
+						} catch (IOException e) {
+							e.printStackTrace();
+						}
+					}
 				}
 			}
 		});
 		soundThread.setName("Sound: " + soundURL.toString());
 		soundThread.start();
+		return soundThread;
 	}
 	
 	/**
@@ -151,10 +172,9 @@ public class SoundSystem {
 
 	/**
 	 * Play a sound by passing a relative path to this method.
-	 * TODO: Provide a method to stop existing sounds (aka BackgroundMusic!)
 	 */
-	public static void playSound(String filename) {
-		SoundSystem.playFromAudioInputStream(Loader.getSoundURLByFilename(filename));
+	public static Thread playSound(String filename) {
+		return SoundSystem.playFromAudioInputStream(Loader.getSoundURLByFilename(filename));
 	}
 
 	/**

@@ -262,7 +262,7 @@ public abstract class Screen {
 	 * When a Screens life ends, this method will take care of existing overlays
 	 * and remove all references to existing entities.
 	 */
-	private void cleanup() {
+	protected void cleanup() {
 		if(this.overlay != null) {
 			this.overlay.cleanup();
 		}

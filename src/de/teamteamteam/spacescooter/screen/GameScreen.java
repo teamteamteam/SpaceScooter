@@ -10,6 +10,7 @@ import de.teamteamteam.spacescooter.gui.InterfaceBar;
 import de.teamteamteam.spacescooter.gui.ScoreBar;
 import de.teamteamteam.spacescooter.gui.ShieldBar;
 import de.teamteamteam.spacescooter.level.Level;
+import de.teamteamteam.spacescooter.sound.SoundSystem;
 import de.teamteamteam.spacescooter.utility.CollisionHandler;
 
 /**
@@ -33,6 +34,11 @@ public class GameScreen extends Screen {
 	private long gameClockTrigger;
 	
 	/**
+	 * Internal Thread handle for the background music.
+	 */
+	private Thread backgroundMusic;
+	
+	/**
 	 * GameScreen Constructor.
 	 * Takes the level as its second parameter.
 	 */
@@ -48,6 +54,8 @@ public class GameScreen extends Screen {
 		new HealthBar(10, 5);
 		new ShieldBar(10, 27);
 		new ScoreBar(575, 33);
+		
+		this.backgroundMusic = SoundSystem.playSound("music/ScooterFriendsTurbo8Bit.wav");
 	}
 
 	
@@ -92,6 +100,17 @@ public class GameScreen extends Screen {
 			this.parent.setOverlay(new GameOverScreen(this.parent));
 		}
 	}
+	
+	/**
+	 * Cleanup method for the background music.
+	 */
+	@Override
+	public void cleanup() {
+		System.out.println("Interrupting Music");
+		this.backgroundMusic.interrupt();
+		super.cleanup();
+	}
+	
 	
 	public static Player getPlayer() {
 		return GameScreen.player;
