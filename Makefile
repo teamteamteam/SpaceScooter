@@ -13,7 +13,7 @@ run: game.jar
 	java -jar game.jar
 
 debug: compile
-	java -cp bin/ de.teamteamteam.spacescooter.Main
+	java -cp compiled/ de.teamteamteam.spacescooter.Main
 
 clean:
 	rm -rf compiled
