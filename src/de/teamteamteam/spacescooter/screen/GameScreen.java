@@ -102,11 +102,10 @@ public class GameScreen extends Screen {
 	}
 	
 	/**
-	 * Cleanup method for the background music.
+	 * Cleanup method to stop the background music.
 	 */
 	@Override
 	public void cleanup() {
-		System.out.println("Interrupting Music");
 		this.backgroundMusic.interrupt();
 		super.cleanup();
 	}
