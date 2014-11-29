@@ -155,6 +155,7 @@ public abstract class LivingEntity extends CollidableEntity implements Hittable 
 	 * Returns an int in [0,100], divide by 100 for double percentage.
 	 */
 	public int getHealthPercentage() {
+		if(this.maximumHealthPoints == 0) return 0;
 		return (this.healthPoints * 100) / this.maximumHealthPoints;
 	}
 
@@ -188,6 +189,7 @@ public abstract class LivingEntity extends CollidableEntity implements Hittable 
 	 * Returns an int in [0,100], divide by 100 for double percentage.
 	 */
 	public int getShieldPercentage() {
+		if(this.maximumShieldPoints == 0) return 0;
 		return (this.shieldPoints * 100) / this.maximumShieldPoints;
 	}
 	
