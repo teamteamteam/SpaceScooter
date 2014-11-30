@@ -21,7 +21,7 @@ public class EnemyBoss extends Enemy{
 		this.setCollisionDamage(50);
 		this.setScore(5000);
 		this.willShoot = true;
-		new BossHealthBar(10, 44, this);
+		new BossHealthBar(240, 10, this);
 	}
 	
 	/**
