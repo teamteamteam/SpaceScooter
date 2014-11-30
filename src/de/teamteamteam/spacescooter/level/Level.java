@@ -9,6 +9,7 @@ import de.teamteamteam.spacescooter.entity.enemy.EnemyOne;
 import de.teamteamteam.spacescooter.entity.enemy.EnemyThree;
 import de.teamteamteam.spacescooter.entity.enemy.EnemyTwo;
 import de.teamteamteam.spacescooter.screen.GameScreen;
+import de.teamteamteam.spacescooter.sound.SoundSystem;
 import de.teamteamteam.spacescooter.utility.Loader;
 import de.teamteamteam.spacescooter.utility.Random;
 
@@ -32,6 +33,11 @@ public final class Level {
 	 */
 	private int levelClock;
 	
+	/**
+	 * Thread handle for the backgroundMusic being played.
+	 */
+	private Thread backgroundMusic;
+	
 	
 	/**
 	 * Constructor creating a LevelConfig based on a given config file.
@@ -48,6 +54,7 @@ public final class Level {
 	public void doBuildUp() {
 		this.spawnEntityByAvailableName(Entity.availableNames.valueOf(this.config.background), 0, 50);
 		GameScreen.setPlayer(new Player(200, 300));
+		this.backgroundMusic = SoundSystem.playSound(this.config.backgroundMusic);
 	}
 	
 	/**
@@ -127,6 +134,17 @@ public final class Level {
 			default:
 				System.err.println("I don't know how to spawn this: " + entity);
 				break;
+		}
+	}
+
+	/**
+	 * Clean up before the Level is torn down.
+	 * Stop the music, ...
+	 */
+	public void tearDown() {
+		if(this.backgroundMusic != null) {
+			this.backgroundMusic.interrupt();
+			this.backgroundMusic = null;
 		}
 	}
 }
