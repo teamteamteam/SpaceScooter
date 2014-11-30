@@ -4,6 +4,7 @@ import de.teamteamteam.spacescooter.datastructure.ConcurrentIterator;
 import de.teamteamteam.spacescooter.entity.Entity;
 import de.teamteamteam.spacescooter.entity.Player;
 import de.teamteamteam.spacescooter.entity.enemy.Enemy;
+import de.teamteamteam.spacescooter.entity.shot.Shot;
 import de.teamteamteam.spacescooter.entity.spi.Collidable;
 import de.teamteamteam.spacescooter.screen.Screen;
 
@@ -28,20 +29,22 @@ public class CollisionHandler {
 		iteratorOne.reset();
 		while(iteratorOne.hasNext()) {
 			Entity entityOne = iteratorOne.next();
-			//Only check Player and Enemy for the active side of a collision.
-			if(!((entityOne instanceof Player) || (entityOne instanceof Enemy))) continue;
+			if(!(entityOne instanceof Collidable)) continue;
 			Collidable collidableOne = (Collidable) entityOne;
+			if(!collidableOne.canCollide()) continue;
 			//Loop to check collisions against entityOne.
 			iteratorTwo.reset();
 			while(iteratorTwo.hasNext()) {
 				Entity entityTwo = iteratorTwo.next();
-				//We want all Collidables on the passive side of the collision.
 				if(!(entityTwo instanceof Collidable)) continue;
+				//Ignore certain combinations at all:
+				if(entityOne instanceof Enemy && entityTwo instanceof Enemy) continue;
+				if(entityOne instanceof Player && entityTwo instanceof Player) continue;
+				if(entityOne instanceof Shot && entityTwo instanceof Shot) continue;
 				Collidable collidableTwo = (Collidable) entityTwo;
+				if(!collidableTwo.canCollide()) continue;
 				//skip checks against itself
 				if(entityTwo.equals(entityOne)) continue;
-				//Weed out Player and Enemy from the passive side
-				if(entityTwo instanceof Player || entityTwo instanceof Enemy) continue;
 				//check for the actual collision
 				if(CollisionHandler.doCollide(collidableOne, collidableTwo)) {
 					CollisionHandler.handleCollision(collidableOne, collidableTwo);

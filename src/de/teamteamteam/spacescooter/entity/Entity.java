@@ -62,10 +62,16 @@ public abstract class Entity implements Updateable, Paintable {
 	 * Whether or not the Entity is able to move using transpose.
 	 */
 	private boolean canMove;
+	
 	/**
 	 * Internal reference to the entities image.
 	 */
 	private BufferedImage img;
+	
+	/**
+	 * Until the Entity is disposed through remove(), this is false.
+	 */
+	private boolean disposed;
 	
 	
 	/**
@@ -73,6 +79,7 @@ public abstract class Entity implements Updateable, Paintable {
 	 * All entities are within a static array list for our convenience.
 	 */
 	public Entity(int x, int y) {
+		this.disposed = false;
 		this.setPosition(x, y);
 		this.setCanMove(true);
 		Screen.currentScreen.addEntity(this);
@@ -195,6 +202,12 @@ public abstract class Entity implements Updateable, Paintable {
 	 * to remove it from its list.
 	 */
 	public void remove() {
-		Screen.currentScreen.removeEntity(this);
+		if(this.disposed) {
+			return;
+		}
+		else{
+			Screen.currentScreen.removeEntity(this);
+			this.disposed = true;
+		}
 	}
 }

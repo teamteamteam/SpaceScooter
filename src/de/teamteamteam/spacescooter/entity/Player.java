@@ -1,12 +1,13 @@
 package de.teamteamteam.spacescooter.entity;
 
+import java.awt.Color;
+import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 
 import de.teamteamteam.spacescooter.brain.GameConfig;
 import de.teamteamteam.spacescooter.brain.PlayerSession;
 import de.teamteamteam.spacescooter.control.Keyboard;
 import de.teamteamteam.spacescooter.control.KeyboardListener;
-import de.teamteamteam.spacescooter.entity.item.Item;
 import de.teamteamteam.spacescooter.entity.shot.Shot;
 import de.teamteamteam.spacescooter.entity.spi.Collidable;
 import de.teamteamteam.spacescooter.sound.SoundSystem;
@@ -17,33 +18,50 @@ import de.teamteamteam.spacescooter.sound.SoundSystem;
 public class Player extends ShootingEntity implements KeyboardListener {
 
 	/**
-	 * the Players Keyboard
+	 * Keyboard instance used to register on for KeyboardEvents.
 	 */
-	private Keyboard keyboard = null;
+	private Keyboard keyboard;
 	
 	/**
-	 * the Players Rocket Ammunition
+	 * Rocket Ammunition
 	 */
-	private int rocketAmount = 10;
+	private int rocketAmount;
 	
 	/**
-	 * the Players Beam Ammunition
+	 * Beam Ammunition
 	 */
-	private int beamAmount = 10;
+	private int beamAmount;
 
+	/**
+	 * Cooldown countdown value to use in case
+	 * the Player got hit.
+	 */
+	private int collisionCooldown;
+	
+	/**
+	 * The actual countdown variable used to enforce the
+	 * collision "timeout".
+	 * (Player gets hit, blinks a while, gets solid again)
+	 */
+	private int currentCollisionCooldown;
+	
 	
 	/**
 	 * Constructor for initializing the Player on the GameScreen
 	 */
 	public Player(int x, int y) {
 		super(x, y);
+		this.rocketAmount = 10;
+		this.beamAmount = 10;
+		this.collisionCooldown = 150;
+		this.currentCollisionCooldown = 0;
 		this.setImage("images/ship.png");
 		this.setPrimaryShotImage("images/shots/laser_blue.png");
 		this.setShootDelay(20);
 		this.setShootSpawn(50, 16);
 		this.setShootDirection(Shot.RIGHT);
 		this.setShootSpeed(10);
-		this.setCollisionDamage(10);
+		this.setCollisionDamage(5);
 		this.setScore(0);
 		this.setHealthPoints(PlayerSession.getShipHealthPoints());
 		this.setMaximumHealthPoints(PlayerSession.getShipHealthPoints());
@@ -67,6 +85,13 @@ public class Player extends ShootingEntity implements KeyboardListener {
 	public void update() {
 		if(this.canMove() == false) return;
 		super.update();
+		//Collision cooldown handling
+		if(this.currentCollisionCooldown > 0) {
+			this.currentCollisionCooldown--;
+			if(this.currentCollisionCooldown == 0) {
+				this.setCollide(true);
+			}
+		}
 		int offset = 3;
 		if(Keyboard.isKeyDown(KeyEvent.VK_UP) && this.getY() > 51) {
 			this.transpose(0, -1 * offset);
@@ -91,6 +116,18 @@ public class Player extends ShootingEntity implements KeyboardListener {
 			this.shootBeam();
 		}
 	}
+	
+	/**
+	 * Override paint method for custom effects
+	 */
+	@Override
+	public void paint(Graphics2D g) {
+		if(this.currentCollisionCooldown > 0) {
+			g.setColor(Color.RED);
+			g.drawRect(this.getX(), this.getY(), this.getWidth(), this.getHeight());
+		}
+		super.paint(g);
+	}
 
 	/**
 	 * Determine what will happen if a Player collides with an Item.
@@ -98,10 +135,8 @@ public class Player extends ShootingEntity implements KeyboardListener {
 	@Override
 	public void collideWith(Collidable entity) {
 		super.collideWith(entity);
-		if(this instanceof Player && entity instanceof Item){
-			//Item item = (Item) entity;
-			//Apply cool item effects here ...
-		}
+		this.setCollide(false);
+		this.currentCollisionCooldown = this.collisionCooldown;
 	}
 	
 	/**

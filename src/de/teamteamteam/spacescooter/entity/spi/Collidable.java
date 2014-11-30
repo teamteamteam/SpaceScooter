@@ -29,4 +29,15 @@ public interface Collidable {
 	 * Notify the Collidable that a collision happened.
 	 */
 	public void collideWith(Collidable entity);
+	
+	/**
+	 * Tell whether the Collidable is currently
+	 * an active Collidable.
+	 */
+	public boolean canCollide();
+	
+	/**
+	 * Set whether the Collidable is currently active.
+	 */
+	public void setCollide(boolean canCollide);
 }

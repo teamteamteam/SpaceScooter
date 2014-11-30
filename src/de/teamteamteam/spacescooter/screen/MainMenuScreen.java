@@ -98,19 +98,19 @@ public class MainMenuScreen extends Screen {
 			} else animationStatus = 2;
 		} else if(animationStatus == 2) {
 			switch (menuPoint) {
-			case 0:
-				this.parent.setOverlay(new GameScreen(this.parent, "levels/test.level"));
-				break;
-			case 1:
-				this.parent.setOverlay(new ShopScreen(this.parent));
-				break;
-			case 2:
-				break;
-			case 3:
-				break;
-			case 4:
-				System.exit(0);
-				break;
+				case 0:
+					this.parent.setOverlay(new GameScreen(this.parent, "levels/test.level"));
+					break;
+				case 1:
+					this.parent.setOverlay(new ShopScreen(this.parent));
+					break;
+				case 2:
+					break;
+				case 3:
+					break;
+				case 4:
+					System.exit(0);
+					break;
 			}
 		}
 	}
