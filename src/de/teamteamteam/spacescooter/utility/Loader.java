@@ -164,11 +164,13 @@ public class Loader {
 	}
 
 	/**
-	 * Load a BufferedImage by relative filename.
+	 * Load a BufferedImage by relative filename, creating a compatible 
+	 * BufferedImage using the GraphicsSettings ColorModel.
 	 */
 	private static void addBufferedImageByFilename(String filename) {
 		try {
-			BufferedImage image = ImageIO.read(Loader.class.getClassLoader().getResourceAsStream(filename));
+			BufferedImage storedImage = ImageIO.read(Loader.class.getClassLoader().getResourceAsStream(filename));
+			BufferedImage image = Loader.createCompatibleImage(storedImage);
 			Loader.images.put(filename, image);
 		} catch (Exception e) {
 			System.err.println("Unable to load BufferedImage: " + filename);
@@ -176,6 +178,20 @@ public class Loader {
 		}
 
 	}
+
+	/**
+	 * Helper method creating a compatible BufferedImage from a 
+	 * given BufferedImage taking into account the current ColorModel of the
+	 * current ScreenDevice.
+	 */
+	private static BufferedImage createCompatibleImage(BufferedImage storedImage) {
+		if(GraphicsSettings.instance.getColorModel().equals(storedImage.getColorModel())) {
+			return storedImage;
+		} else {
+			return GraphicsSettings.instance.createCompatibleBufferedImage(storedImage);
+		}
+	}
+
 
 	/**
 	 * Load an AudioInputStream by relative filename.

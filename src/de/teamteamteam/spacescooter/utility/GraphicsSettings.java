@@ -1,8 +1,11 @@
 package de.teamteamteam.spacescooter.utility;
 
 import java.awt.DisplayMode;
+import java.awt.Graphics2D;
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
+import java.awt.image.BufferedImage;
+import java.awt.image.ColorModel;
 
 import de.teamteamteam.spacescooter.brain.GameConfig;
 
@@ -32,11 +35,30 @@ public class GraphicsSettings {
 	 */
 	private int bitDepth;
 	
+	/**
+	 * ScreenDevice this game is supposed to be run on.
+	 * Probably just the primary screen device.
+	 */
+	private GraphicsDevice screenDevice;
 	
 	/**
-	 * Constructor. Just retrieve the settings once.
+	 * Instance holder for GraphicsSettings.
 	 */
-	public GraphicsSettings() {
+	public static GraphicsSettings instance;
+	
+	
+	/**
+	 * Create the instance and store it in the instance holder.
+	 */
+	static {
+		GraphicsSettings.instance = new GraphicsSettings();
+	}
+	
+	/**
+	 * Private Constructor. Just retrieve the settings once and 
+	 * storing the instance in GraphicsSettings.instance.
+	 */
+	private GraphicsSettings() {
 		this.retrieveSettings();
 	}
 	
@@ -73,11 +95,33 @@ public class GraphicsSettings {
 				this.bitDepth = dm.getBitDepth();
 				this.height = dm.getHeight();
 				this.width = dm.getWidth();
+				this.screenDevice = gs[i]; 
 			}
 			if(GameConfig.DEBUG) {
 				System.out.println("Display Mode " + i + ": " + this.width + "x" + this.height+ "@" + this.refreshRate + "Hz, " + this.bitDepth + " bit");
 			}
 		}
+	}
+	
+	/**
+	 * Get the ColorModel of the screen device the game is supposed to be run on.
+	 */
+	public ColorModel getColorModel() {
+		return this.screenDevice.getDefaultConfiguration().getColorModel();
+	}
+	
+	/**
+	 * Creates a compatible BufferedImage from a given BufferedImage and returns it.
+	 */
+	public BufferedImage createCompatibleBufferedImage(BufferedImage originalImage) {
+		BufferedImage compatibleImage = this.screenDevice.getDefaultConfiguration()
+			.createCompatibleImage(originalImage.getWidth(), originalImage.getHeight(), originalImage.getTransparency());
+		//Transfer the actual image content by simply drawing.
+		Graphics2D g = (Graphics2D) compatibleImage.getGraphics();
+		g.drawImage(originalImage, 0, 0, null);
+		g.dispose();
+		//We're done.
+		return compatibleImage;
 	}
 	
 }
