@@ -185,10 +185,10 @@ public class Loader {
 	 * current ScreenDevice.
 	 */
 	private static BufferedImage createCompatibleImage(BufferedImage storedImage) {
-		if(GraphicsSettings.instance.getColorModel().equals(storedImage.getColorModel())) {
+		if(GraphicsSettings.getInstance().getColorModel().equals(storedImage.getColorModel())) {
 			return storedImage;
 		} else {
-			return GraphicsSettings.instance.createCompatibleBufferedImage(storedImage);
+			return GraphicsSettings.getInstance().createCompatibleBufferedImage(storedImage);
 		}
 	}
 

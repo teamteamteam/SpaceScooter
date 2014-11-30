@@ -44,7 +44,7 @@ public class GraphicsSettings {
 	/**
 	 * Instance holder for GraphicsSettings.
 	 */
-	public static GraphicsSettings instance;
+	private static GraphicsSettings instance;
 	
 	
 	/**
@@ -124,4 +124,10 @@ public class GraphicsSettings {
 		return compatibleImage;
 	}
 	
+	/**
+	 * Get the instance of GraphicsSettings
+	 */
+	public static GraphicsSettings getInstance() {
+		return GraphicsSettings.instance;
+	}
 }

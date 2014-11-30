@@ -25,7 +25,7 @@ public class Main {
 	 * @param args Command line arguments.
 	 */
 	public static void main(String[] args) {
-		final GraphicsSettings gs = GraphicsSettings.instance; // Get settings
+		final GraphicsSettings gs = GraphicsSettings.getInstance(); // Get settings
 
 		// Initialize SuperScreen and add to GameFrame, so we can call doPaint()
 		// on it.
