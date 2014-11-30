@@ -23,7 +23,6 @@ public class EnemyThree extends Enemy{
 		this.setHealthPoints(15);
 		this.setCollisionDamage(10);
 		this.setScore(30);
-		this.setPosition(GameConfig.windowWidth, Random.nextInt(GameConfig.windowHeight - this.getHeight() - 50) +50);
 		this.newY = this.getY();
 	}
 	

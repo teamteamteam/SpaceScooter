@@ -83,7 +83,7 @@ public final class Level {
 				//If the rule matches the current time, spawn the configured Entity in the configured amount:
 				for(int i=0; i<spawnrule[2]; i++) {
 					//TODO: More beautiful positions!
-					this.spawnEntityByAvailableName(Entity.availableNames.values()[spawnrule[1]], GameConfig.windowWidth - 75, Random.nextInt(GameConfig.windowHeight));
+					this.spawnEntityByAvailableName(Entity.availableNames.values()[spawnrule[1]], GameConfig.windowWidth - 25, Random.nextInt(GameConfig.windowHeight -50)+50);
 				}
 			}
 		}

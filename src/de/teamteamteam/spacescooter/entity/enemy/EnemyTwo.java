@@ -18,7 +18,6 @@ public class EnemyTwo extends Enemy{
 		this.setHealthPoints(5);
 		this.setScore(20);
 		this.setCollisionDamage(this.getHealthPoints());
-		this.setPosition(GameConfig.windowWidth, Random.nextInt(GameConfig.windowHeight - this.getHeight()));
 	}
 	
 	@Override

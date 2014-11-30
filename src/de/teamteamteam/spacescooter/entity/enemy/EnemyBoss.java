@@ -21,7 +21,6 @@ public class EnemyBoss extends Enemy{
 		this.setCollisionDamage(50);
 		this.setScore(5000);
 		this.willShoot = true;
-		this.setPosition(GameConfig.windowWidth, Random.nextInt(GameConfig.windowHeight - this.getHeight() - 50) +50);
 		new BossHealthBar(10, 44, this);
 	}
 	
@@ -40,7 +39,7 @@ public class EnemyBoss extends Enemy{
 	public void explode() {
 		new MultiExplosion(this.getCenteredX(), this.getCenteredY());
 	}
-	
+	// ToDo: fetch all position variables from gameconfig instead of hardcoded vars
 	@Override
 	public void update() {
 		super.update();
