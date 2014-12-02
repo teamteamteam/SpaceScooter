@@ -121,6 +121,7 @@ public class Keyboard implements KeyListener {
 		if(e.getKeyCode() == KeyEvent.VK_0) {
 			new EnemyBoss(400,400);
 		}
+		
 	}
 
 	/**

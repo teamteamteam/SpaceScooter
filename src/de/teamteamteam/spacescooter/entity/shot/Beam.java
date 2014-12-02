@@ -15,7 +15,7 @@ public class Beam extends Shot {
 	@Override
 	public void update() {
 		this.i++;
-		if(this.i>10){
+		if(this.i>1){
 			this.remove();
 		}
 	}

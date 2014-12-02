@@ -175,6 +175,27 @@ public abstract class ShootingEntity extends LivingEntity {
 	}
 	
 	/**
+	 * Get the shoot delay.
+	 */
+	public int getShootDelay() {
+		return this.shootDelay;
+	}
+	
+	/**
+	 * Get the current shoot delay.
+	 */
+	public int getCurrentShootDelay() {
+		return this.currentShootDelay;
+	}
+	
+	/**
+	 * Set the current shoot delay.
+	 */
+	public void setCurrentShootDelay(int delay) {
+		this.currentShootDelay = delay;
+	}
+	
+	/**
 	 * Set the damage value the fired shots will cause.
 	 */
 	public void setShootDamage(int shootDamage){
@@ -203,6 +224,17 @@ public abstract class ShootingEntity extends LivingEntity {
 		new Shot(
 			this.getX() + this.shootSpawnX,
 			this.getY() + this.shootSpawnY,
+			this.shootDirection,
+			this.shootSpeed,
+			this.shootDamage,
+			this.primaryShotImage
+		);
+	}
+	
+	public void createShot(int x_offset, int y_offset) {
+		new Shot(
+			this.getX() + x_offset,
+			this.getY() + y_offset,
 			this.shootDirection,
 			this.shootSpeed,
 			this.shootDamage,

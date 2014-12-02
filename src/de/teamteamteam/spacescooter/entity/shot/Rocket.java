@@ -15,6 +15,7 @@ public class Rocket extends Shot {
 	@Override
 	public void collideWith(Collidable entity) {
 		new RocketExplosionRange(this.getX(), this.getY(), this.getDirection(), this.getSpeed(), this.getDamageValue(), "images/shots/rocket_explosion.png");
+		this.setDamageValue(0);
 		super.collideWith(entity);
 	}
 }

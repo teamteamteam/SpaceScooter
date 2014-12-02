@@ -15,7 +15,7 @@ public class RocketExplosionRange extends Shot{
 	 */
 	public void update() {
 		i++;
-		if(i>10){
+		if(i>1){
 			this.remove();
 		}
 	}

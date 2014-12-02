@@ -70,7 +70,7 @@ public class ShopScreen extends Screen {
 				this.player.setPosition(50, this.player.getY());
 				this.player.setPosition(this.player.getX(), 159+(this.menuPoint*100));
 			}
-		}else if ( (Keyboard.isKeyDown(KeyEvent.VK_ENTER) || Keyboard.isKeyDown(KeyEvent.VK_SPACE)) && !this.keyPressed && this.animationStatus == 0) {
+		}else if ( (Keyboard.isKeyDown(KeyEvent.VK_SPACE) || Keyboard.isKeyDown(KeyEvent.VK_ENTER)) && !this.keyPressed && this.animationStatus == 0) {
 			this.keyPressed = true;
 			///////////////////////////////////////////////////////////////
 			switch (this.menuPoint) {
@@ -103,7 +103,7 @@ public class ShopScreen extends Screen {
 				break;
 			}
 		}
-		if(!Keyboard.isKeyDown(KeyEvent.VK_DOWN) && !Keyboard.isKeyDown(KeyEvent.VK_UP) && !Keyboard.isKeyDown(KeyEvent.VK_ENTER)) {
+		if(!Keyboard.isKeyDown(KeyEvent.VK_DOWN) && !Keyboard.isKeyDown(KeyEvent.VK_UP) && !Keyboard.isKeyDown(KeyEvent.VK_ENTER) && !Keyboard.isKeyDown(KeyEvent.VK_SPACE)) {
 			this.keyPressed = false;
 		}
 		

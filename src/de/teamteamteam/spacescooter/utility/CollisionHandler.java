@@ -4,6 +4,7 @@ import de.teamteamteam.spacescooter.datastructure.ConcurrentIterator;
 import de.teamteamteam.spacescooter.entity.Entity;
 import de.teamteamteam.spacescooter.entity.Player;
 import de.teamteamteam.spacescooter.entity.enemy.Enemy;
+import de.teamteamteam.spacescooter.entity.item.Item;
 import de.teamteamteam.spacescooter.entity.shot.Shot;
 import de.teamteamteam.spacescooter.entity.spi.Collidable;
 import de.teamteamteam.spacescooter.screen.Screen;
@@ -41,6 +42,8 @@ public class CollisionHandler {
 				if(entityOne instanceof Enemy && entityTwo instanceof Enemy) continue;
 				if(entityOne instanceof Player && entityTwo instanceof Player) continue;
 				if(entityOne instanceof Shot && entityTwo instanceof Shot) continue;
+				if(entityOne instanceof Item && entityTwo instanceof Shot) continue;
+				if(entityOne instanceof Shot && entityTwo instanceof Item) continue;
 				Collidable collidableTwo = (Collidable) entityTwo;
 				if(!collidableTwo.canCollide()) continue;
 				//skip checks against itself

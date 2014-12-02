@@ -70,7 +70,7 @@ public class Player extends ShootingEntity implements KeyboardListener {
 		this.setMaximumHealthPoints(PlayerSession.getShipHealthPoints());
 		this.setShieldPoints(PlayerSession.getShipShieldPoints());
 		this.setMaximumShieldPoints(PlayerSession.getShipShieldPoints());
-		this.setShootDamage(PlayerSession.getShipShotDamage());
+		this.setShootDamage((PlayerSession.getShipShotDamage())/2);
 		this.registerOnKeyboard(Keyboard.getInstance());
 	}
 
@@ -158,8 +158,8 @@ public class Player extends ShootingEntity implements KeyboardListener {
 	 * createShot method that trigger the ShootingEntity.createShot() method and play a nice sound
 	 */
 	@Override
-	public void createShot() {
-		super.createShot();
+	public void createShot(int x, int y) {
+		super.createShot(x,y);
 		SoundSystem.playSound("sounds/shot_fired1.wav");
 	}
 	
@@ -206,6 +206,17 @@ public class Player extends ShootingEntity implements KeyboardListener {
 	 * empty keyTyped method, maybe useful for cheatcodes later
 	 */
 	public void keyTyped(KeyEvent e) {}
+	
+	@Override
+	public void shoot() {
+		if(this.canShoot() == true) {
+			if(this.getCurrentShootDelay() == 0) {
+				this.createShot(30,8);
+				this.createShot(30,23);
+				setCurrentShootDelay(this.getShootDelay());
+			}
+		}
+	}
 
 	
 	@Override
