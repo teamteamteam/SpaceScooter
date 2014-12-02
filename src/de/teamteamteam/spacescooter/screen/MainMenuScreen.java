@@ -105,6 +105,7 @@ public class MainMenuScreen extends Screen {
 					this.parent.setOverlay(new ShopScreen(this.parent));
 					break;
 				case 2:
+					this.parent.setOverlay(new HighscoreScreen(this.parent));
 					break;
 				case 3:
 					break;
