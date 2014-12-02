@@ -1,6 +1,5 @@
 package de.teamteamteam.spacescooter.entity.enemy;
 
-import de.teamteamteam.spacescooter.brain.GameConfig;
 import de.teamteamteam.spacescooter.entity.explosion.MultiExplosion;
 import de.teamteamteam.spacescooter.gui.BossHealthBar;
 import de.teamteamteam.spacescooter.utility.Random;

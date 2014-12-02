@@ -16,14 +16,20 @@ public abstract class CollidableEntity extends Entity implements Collidable {
 	 * Whether or not this CollidableEntity can collide.
 	 */
 	private boolean canCollide;
+
+	/**
+	 * Whether this CollidableEntity will damage things it collides with.
+	 */
+	private boolean damaging;
 	
 	
 	/**
-	 * Default constructor.
+	 * Default constructor. Initializes sane defaults.
 	 */
 	public CollidableEntity(int x, int y) {
 		super(x, y);
 		this.setCollide(true);
+		this.setDamaging(true);
 	}
 	
 	
@@ -60,7 +66,24 @@ public abstract class CollidableEntity extends Entity implements Collidable {
 	 * Get the current collision damage of the Entity.
 	 */
 	public int getCollisionDamage() {
+		if(!this.getDamaging()) return 0;
 		return this.collisionDamage;
+	}
+	
+	/**
+	 * Set whether the Collidable will damage things it hits.
+	 * This defaults to true on construction and will only be changed manually.
+	 */
+	public void setDamaging(boolean damaging) {
+		this.damaging = damaging;
+	}
+	
+	/**
+	 * Tell whether the Collidable will damage things it hits.
+	 * This defaults to true on construction and will only be changed manually.
+	 */
+	public boolean getDamaging(){
+		return this.damaging;
 	}
 	
 }

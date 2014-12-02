@@ -41,12 +41,18 @@ public abstract class LivingEntity extends CollidableEntity implements Hittable 
 	 */
 	private int scorePoints;
 	
+	/**
+	 * Whether the LivingEntity will take damage.
+	 */
+	private boolean damagable;
+	
 	
 	/**
-	 * Default constructor.
+	 * Default constructor. Initializes sane defaults.
 	 */
 	public LivingEntity(int x, int y) {
 		super(x, y);
+		this.setDamagable(true);
 	}
 
 	/**
@@ -85,6 +91,9 @@ public abstract class LivingEntity extends CollidableEntity implements Hittable 
 	 * points. Triggers die() method on death.
 	 */
 	public void takeDamage(int damage) {
+		//Skip taking damage if not vulnerable.
+		if(!this.getVulnerable())
+			return;
 		// Skip everything if already dead.
 		if (this.isAlive() == false)
 			return;
@@ -226,6 +235,22 @@ public abstract class LivingEntity extends CollidableEntity implements Hittable 
 	 */
 	public void setScore(int s) {
 		this.scorePoints = s;
+	}
+	
+	/**
+	 * Set whether the LivingEntity is damagable.
+	 * This defaults to true on construction and will only be changed manually.
+	 */
+	public void setDamagable(boolean damagable) {
+		this.damagable = damagable;
+	}
+	
+	/**
+	 * Whether or not the LivingEntity is damagable.
+	 * This defaults to true on construction and will only be changed manually.
+	 */
+	public boolean getVulnerable() {
+		return this.damagable;
 	}
 
 }

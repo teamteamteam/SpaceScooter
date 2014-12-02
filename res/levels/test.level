@@ -1,11 +1,12 @@
+
 name:Testlevel \o/
 backgroundMusic:music/ScooterFriendsTurbo8Bit.wav
-background:StarBackground
+background:CloudBackground
 -
 [0-4]
-spawn:EnemyOne,1,1
+spawn:EnemyOne,1,5
 [4-10]
-spawn:EnemyTwo,2,10
+spawn:EnemyTwo,1,10
 [10-25]
 spawn:EnemyThree,2,4
 spawn:EnemyTwo,5,6

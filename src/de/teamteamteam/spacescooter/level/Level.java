@@ -1,5 +1,7 @@
 package de.teamteamteam.spacescooter.level;
 
+import de.teamteamteam.spacescooter.background.CloudBackground;
+import de.teamteamteam.spacescooter.background.EarthBackground;
 import de.teamteamteam.spacescooter.background.StarBackground;
 import de.teamteamteam.spacescooter.brain.GameConfig;
 import de.teamteamteam.spacescooter.entity.Entity;
@@ -116,6 +118,12 @@ public final class Level {
 		switch(entity) {
 			case StarBackground:
 				new StarBackground(x, y);
+				break;
+			case CloudBackground:
+				new CloudBackground(x, y);
+				break;
+			case EarthBackground:
+				new EarthBackground(x, y);
 				break;
 			case EnemyOne:
 				new EnemyOne(x, y);

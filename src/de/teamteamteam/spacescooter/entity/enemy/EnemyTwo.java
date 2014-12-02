@@ -1,8 +1,6 @@
 package de.teamteamteam.spacescooter.entity.enemy;
 
-import de.teamteamteam.spacescooter.brain.GameConfig;
 import de.teamteamteam.spacescooter.entity.explosion.ExplosionTwo;
-import de.teamteamteam.spacescooter.utility.Random;
 
 public class EnemyTwo extends Enemy{
 
@@ -17,7 +15,6 @@ public class EnemyTwo extends Enemy{
 		this.setCollisionDamage(5);
 		this.setHealthPoints(5);
 		this.setScore(20);
-		this.setCollisionDamage(this.getHealthPoints());
 	}
 	
 	@Override

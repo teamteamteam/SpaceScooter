@@ -40,4 +40,14 @@ public interface Collidable {
 	 * Set whether the Collidable is currently active.
 	 */
 	public void setCollide(boolean canCollide);
+	
+	/**
+	 * Set whether the Collidable will damage things it hits.
+	 */
+	public void setDamaging(boolean damaging);
+	
+	/**
+	 * Tell whether the Collidable will damage things it hits.
+	 */
+	public boolean getDamaging();
 }

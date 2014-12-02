@@ -30,7 +30,6 @@ public class EnemyFour extends Enemy{
 		this.points = points;
 		this.x = x;
 		this.y = y;
-		this.setCollisionDamage(this.getHealthPoints());
 		getNextPoint();
 	}
 	

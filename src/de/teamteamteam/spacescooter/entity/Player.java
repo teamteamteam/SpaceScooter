@@ -8,6 +8,7 @@ import de.teamteamteam.spacescooter.brain.GameConfig;
 import de.teamteamteam.spacescooter.brain.PlayerSession;
 import de.teamteamteam.spacescooter.control.Keyboard;
 import de.teamteamteam.spacescooter.control.KeyboardListener;
+import de.teamteamteam.spacescooter.entity.enemy.Enemy;
 import de.teamteamteam.spacescooter.entity.shot.Shot;
 import de.teamteamteam.spacescooter.entity.spi.Collidable;
 import de.teamteamteam.spacescooter.sound.SoundSystem;
@@ -88,9 +89,9 @@ public class Player extends ShootingEntity implements KeyboardListener {
 		//Collision cooldown handling
 		if(this.currentCollisionCooldown > 0) {
 			this.currentCollisionCooldown--;
-			if(this.currentCollisionCooldown == 0) {
-				this.setCollide(true);
-			}
+		} else {
+			this.setDamagable(true);
+			this.setDamaging(true);
 		}
 		int offset = 3;
 		if(Keyboard.isKeyDown(KeyEvent.VK_UP) && this.getY() > 51) {
@@ -128,15 +129,18 @@ public class Player extends ShootingEntity implements KeyboardListener {
 		}
 		super.paint(g);
 	}
-
+	
 	/**
-	 * Determine what will happen if a Player collides with an Item.
+	 * Implement damage immunity logic after collisions with Enemy or Obstacle Entities.
 	 */
 	@Override
 	public void collideWith(Collidable entity) {
 		super.collideWith(entity);
-		this.setCollide(false);
-		this.currentCollisionCooldown = this.collisionCooldown;
+		if(this.currentCollisionCooldown == 0 && (entity instanceof Enemy || entity instanceof Obstacle)) {
+			this.currentCollisionCooldown = this.collisionCooldown;
+			this.setDamagable(false);
+			this.setDamaging(false);
+		}
 	}
 	
 	/**
