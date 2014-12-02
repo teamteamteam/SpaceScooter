@@ -1,5 +1,6 @@
 package de.teamteamteam.spacescooter.entity.enemy;
 
+import de.teamteamteam.spacescooter.brain.GameConfig;
 import de.teamteamteam.spacescooter.entity.explosion.MultiExplosion;
 import de.teamteamteam.spacescooter.gui.BossHealthBar;
 import de.teamteamteam.spacescooter.utility.Random;
@@ -42,7 +43,7 @@ public class EnemyBoss extends Enemy{
 	@Override
 	public void update() {
 		super.update();
-		this.setPosition(750, this.getY()+move);
+		this.setPosition(GameConfig.windowWidth-65, this.getY()+move);
 		if(this.getY() == 51){
 			move = 1;
 		}

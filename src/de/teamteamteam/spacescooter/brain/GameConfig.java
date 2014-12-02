@@ -2,8 +2,9 @@ package de.teamteamteam.spacescooter.brain;
 
 /**
  * This static class contains important game configuration.
+ * Contains initial constant values only.
  */
-public class GameConfig {
+public final class GameConfig {
 
 	/**
 	 * Whether debug output (and more) is enabled or disabled.
@@ -13,47 +14,69 @@ public class GameConfig {
 	/**
 	 * Width of GameWindow.
 	 */
-	public static int windowWidth = 800;
+	public static final int windowWidth = 800;
 	
 	/**
 	 * Height of GameWindow.
 	 */
-	public static int windowHeight = 650;
+	public static final int windowHeight = 650;
+	
+	/**
+	 * Offset where the X=0 coordinate of the actual game screen starts.
+	 */
+	public static final int gameScreenXOffset = 0;
+
+	/**
+	 * Offset where the Y=0 coordinate of the actual game screen starts.
+	 * This is currently influenced by the 50px interface bar at the top.
+	 */
+	public static final int gameScreenYOffset = 50;
+	
+	/**
+	 * Actual width of the game screen.
+	 */
+	public static final int gameScreenWidth = GameConfig.windowWidth;
+	
+	/**
+	 * Actual height of the game screen.
+	 * This is currently influenced by the 50px interface bar at the top.
+	 */
+	public static final int gameScreenHeight = GameConfig.windowHeight - 50;
 
 	/**
 	 * Title of the game window.
 	 */
-	public static String windowTitle = "SpaceScooter!";
+	public static final String windowTitle = "SpaceScooter!";
 	
 	/**
 	 * Whether or not anti aliasing will be used for shapes.
 	 */
-	public static boolean keyAntialiasing = false;
+	public static final boolean keyAntialiasing = false;
 
 	/**
 	 * Whether or not to apply anti aliasing on text.
 	 */
-	public static boolean textAntialiasing = false;
+	public static final boolean textAntialiasing = false;
 	
 	/**
 	 * The maximum number of points a player can reach.
 	 */
-	public static int maximumPlayerScore = 99999999;
+	public static final int maximumPlayerScore = 99999999;
 	
 	/**
 	 * Initial health points the player will have.
 	 */
-	public static int initialPlayerHealthPoints = 100;
+	public static final int initialPlayerHealthPoints = 100;
 	
 	/**
 	 * Initial shield points the player ship will have.
 	 */
-	public static int initialPlayerShieldPoints = 0;
+	public static final int initialPlayerShieldPoints = 0;
 	
 	/**
 	 * Damage the player ships shots will cause initially.
 	 */
-	public static int initialPlayerShotDamage = 10;
+	public static final int initialPlayerShotDamage = 10;
 	
 	/**
 	 * Private constructor, this class will never be instantiated.

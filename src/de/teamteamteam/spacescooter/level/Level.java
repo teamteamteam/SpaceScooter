@@ -53,26 +53,6 @@ public final class Level {
 	private int gameOverDelay;
 
 	/**
-	 * Offset for game screen 0 coordinate on X axis.
-	 */
-	private int gameScreenXOffset;
-
-	/**
-	 * Offset for game screen 0 coordinate on Y axis.
-	 */
-	private int gameScreenYOffset;
-
-	/**
-	 * Actual width of game screen.
-	 */
-	private int gameScreenWidth;
-
-	/**
-	 * Actual height of game screen.
-	 */
-	private int gameScreenHeight;
-	
-	/**
 	 * Constructor creating a LevelConfig based on a given config file.
 	 */
 	public Level(String levelConfig) {
@@ -80,12 +60,6 @@ public final class Level {
 		this.isGameOver = false;
 		this.gameOverDelay = 3;
 		this.config = Loader.getLevelConfigByFilename(levelConfig);
-		
-		//TODO: Put this into the GameConfig!
-		this.gameScreenXOffset = 0;
-		this.gameScreenYOffset = 50;
-		this.gameScreenWidth = GameConfig.windowWidth - 1; //This is fine.
-		this.gameScreenHeight = GameConfig.windowHeight - 51; //TODO: NOT HARDCODE THIS :/
 	}
 	
 	
@@ -131,8 +105,10 @@ public final class Level {
 			if(relativeTimeWithinCurrentInterval % Math.max(1,intervalModulus) == 0) {
 				//If the rule matches the current time, spawn the configured Entity in the configured amount:
 				for(int i=0; i<spawnRule[2]; i++) {
-					int x = this.gameScreenWidth + this.gameScreenXOffset - 1;
-					int y = Math.round((this.gameScreenHeight * spawnRule[4]) / 100) + this.gameScreenYOffset - 1;
+					//Minus one because the upper border is _excluded_ from the range!
+					int x = GameConfig.gameScreenWidth + GameConfig.gameScreenXOffset - 1;
+					//Minus one because the upper border is _excluded_ from the range!
+					int y = Math.round((GameConfig.gameScreenHeight * spawnRule[4]) / 100) + GameConfig.gameScreenYOffset - 1;
 					this.spawnEntityByAvailableName(Entity.availableNames.values()[spawnRule[1]], x, y);
 				}
 			}
