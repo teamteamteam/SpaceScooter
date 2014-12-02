@@ -41,12 +41,25 @@ public final class Level {
 	 */
 	private Thread backgroundMusic;
 	
+	/**
+	 * Indicator whether the game is over.
+	 * This will be updated within handleUpdateTick() and helper methods.
+	 */
+	private boolean isGameOver;
+	
+	/**
+	 * A counter determining the amount of time to wait before revealing
+	 * that the game is over (meaning isGameOver() returning true).
+	 */
+	private int gameOverDelay;
 	
 	/**
 	 * Constructor creating a LevelConfig based on a given config file.
 	 */
 	public Level(String levelConfig) {
 		this.levelClock = 0;
+		this.isGameOver = false;
+		this.gameOverDelay = 3;
 		this.config = Loader.getLevelConfigByFilename(levelConfig);
 	}
 	
@@ -98,17 +111,47 @@ public final class Level {
 				}
 			}
 		}
+		
+		//Check for GameOver things.
+		this.checkGameOverCondition();
+		
+		//Apply the gameOverDelay if game is already over.
+		if(this.isGameOver && this.gameOverDelay > 0) {
+			this.gameOverDelay--;
+		}
+		
 		//Increase levelClock
 		this.levelClock++;
 	}
 	
 	/**
-	 * Tell whether the Game is over or not.
 	 * Evaluates things like whether the Player is alive or
 	 * - if there is a bossfight - if the boss is dead.
 	 */
+	private void checkGameOverCondition() {
+		if(!GameScreen.getPlayer().isAlive()) {
+			this.isGameOver = true;
+		}
+	}
+
+	/**
+	 * Tell whether the Game is over or not.
+	 * Takes into account the delay, so a player can properly explode.
+	 */
 	public boolean isGameOver() {
-		return !GameScreen.getPlayer().isAlive();
+		return (this.gameOverDelay == 0);
+	}
+	
+
+	/**
+	 * Clean up before the Level is torn down.
+	 * Stop the music, ...
+	 */
+	public void tearDown() {
+		if(this.backgroundMusic != null) {
+			this.backgroundMusic.interrupt();
+			this.backgroundMusic = null;
+		}
 	}
 	
 	/**
@@ -150,14 +193,4 @@ public final class Level {
 		}
 	}
 
-	/**
-	 * Clean up before the Level is torn down.
-	 * Stop the music, ...
-	 */
-	public void tearDown() {
-		if(this.backgroundMusic != null) {
-			this.backgroundMusic.interrupt();
-			this.backgroundMusic = null;
-		}
-	}
 }

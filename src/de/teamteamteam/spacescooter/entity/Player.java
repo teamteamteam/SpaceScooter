@@ -9,6 +9,7 @@ import de.teamteamteam.spacescooter.brain.PlayerSession;
 import de.teamteamteam.spacescooter.control.Keyboard;
 import de.teamteamteam.spacescooter.control.KeyboardListener;
 import de.teamteamteam.spacescooter.entity.enemy.Enemy;
+import de.teamteamteam.spacescooter.entity.explosion.MultiExplosion;
 import de.teamteamteam.spacescooter.entity.obstacle.Obstacle;
 import de.teamteamteam.spacescooter.entity.shot.Shot;
 import de.teamteamteam.spacescooter.entity.spi.Collidable;
@@ -150,6 +151,7 @@ public class Player extends ShootingEntity implements KeyboardListener {
 	@Override
 	public void explode() {
 		SoundSystem.playSound("sounds/abgang.wav");
+		new MultiExplosion(this.getCenteredX(), this.getCenteredY());
 	}
 	
 	/**
