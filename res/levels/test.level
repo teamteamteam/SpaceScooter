@@ -5,6 +5,7 @@ background:CloudBackground
 -
 [0-4]
 spawn:EnemyOne,1,5
+spawn:StoneOne,4,5
 [4-10]
 spawn:EnemyTwo,1,10
 [10-25]

@@ -3,6 +3,7 @@ package de.teamteamteam.spacescooter.entity;
 import de.teamteamteam.spacescooter.brain.GameConfig;
 import de.teamteamteam.spacescooter.brain.PlayerSession;
 import de.teamteamteam.spacescooter.entity.enemy.Enemy;
+import de.teamteamteam.spacescooter.entity.obstacle.Obstacle;
 import de.teamteamteam.spacescooter.entity.shot.Shot;
 import de.teamteamteam.spacescooter.entity.spi.Collidable;
 import de.teamteamteam.spacescooter.entity.spi.Hittable;
@@ -68,6 +69,10 @@ public abstract class LivingEntity extends CollidableEntity implements Hittable 
 			if (this instanceof Player && s.getDirection() == Shot.RIGHT)
 				return;
 			this.takeDamage(s.getDamageValue());
+		}
+		if (entity instanceof Obstacle) {
+			Obstacle o = (Obstacle) entity;
+			this.takeDamage(o.getCollisionDamage());
 		}
 		if (entity instanceof Player && (!(this instanceof Player))) {
 			Player player = (Player) entity;

@@ -10,6 +10,7 @@ import de.teamteamteam.spacescooter.entity.enemy.EnemyBoss;
 import de.teamteamteam.spacescooter.entity.enemy.EnemyOne;
 import de.teamteamteam.spacescooter.entity.enemy.EnemyThree;
 import de.teamteamteam.spacescooter.entity.enemy.EnemyTwo;
+import de.teamteamteam.spacescooter.entity.obstacle.StoneOne;
 import de.teamteamteam.spacescooter.screen.GameScreen;
 import de.teamteamteam.spacescooter.sound.SoundSystem;
 import de.teamteamteam.spacescooter.utility.Loader;
@@ -139,6 +140,9 @@ public final class Level {
 				break;
 			case EnemyBoss:
 				new EnemyBoss(x, y);
+				break;
+			case StoneOne:
+				new StoneOne(x, y);
 				break;
 			default:
 				System.err.println("I don't know how to spawn this: " + entity);
