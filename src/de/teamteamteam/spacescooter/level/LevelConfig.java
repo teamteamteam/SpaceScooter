@@ -43,6 +43,7 @@ public class LevelConfig {
 	 * - 1: EntityNumber - This helps to find out what Entity to actually spawn.
 	 * - 2: Amount - The amount of Entities to spawn at a time.
 	 * - 3: SpawnRate - The rate at which the Entities are supposed to be spawned.
+	 * - 4: SpawnPosition - percentage of GameConfig.windowHeight - Where the Enemy shall spawn.
 	 */
 	public List<int[]> spawnRuleList;
 	
@@ -119,13 +120,16 @@ public class LevelConfig {
 	/**
 	 * Add a given EntitySpawnRule to the ruleList.
 	 */
-	public void addEntitySpawnRule(int intervalStart, int intervalEnd, String entityName, int amount, int spawnRate) {
+	public void addEntitySpawnRule(int intervalStart, int intervalEnd, String entityName, int amount, int spawnRate, int spawnPositionPercentage) {
 		int intervalIndex = this.getIntervalIndexByBorders(intervalStart, intervalEnd);
 		if(intervalIndex == -1) {
-			throw new LevelConfigException("No Interval for rule found!\nRule: " + intervalStart + " to " + intervalEnd + ": " + entityName + ", " + amount + ", " + spawnRate);
+			throw new LevelConfigException("No Interval for rule found!\nRule: " + intervalStart + " to " + intervalEnd + ": " + entityName + ", " + amount + ", " + spawnRate + ", " + spawnPositionPercentage);
 		} else {
 			int enemyNumber = Entity.availableNames.valueOf(entityName).ordinal();
-			int[] newRule = {intervalIndex, enemyNumber, amount, spawnRate};
+			if(spawnPositionPercentage < 0 || spawnPositionPercentage > 100) {
+				throw new LevelConfigException("Invalid spawnPosition percentage!\nRule: " + intervalStart + " to " + intervalEnd + ": " + entityName + ", " + amount + ", " + spawnRate + ", " + spawnPositionPercentage);
+			}
+			int[] newRule = {intervalIndex, enemyNumber, amount, spawnRate, spawnPositionPercentage};
 			this.spawnRuleList.add(newRule);
 		}
 	}

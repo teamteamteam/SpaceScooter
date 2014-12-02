@@ -20,6 +20,7 @@ public class EnemyOne extends Enemy {
 	@Override
 	public void update() {
 		super.update();
+		this.transpose(-1, 0);
 	}
 
 	@Override

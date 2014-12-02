@@ -8,7 +8,7 @@ public class GameConfig {
 	/**
 	 * Whether debug output (and more) is enabled or disabled.
 	 */
-	public static boolean DEBUG = false;
+	public static final boolean DEBUG = false;
 	
 	/**
 	 * Width of GameWindow.

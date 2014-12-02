@@ -14,7 +14,6 @@ import de.teamteamteam.spacescooter.entity.obstacle.StoneOne;
 import de.teamteamteam.spacescooter.screen.GameScreen;
 import de.teamteamteam.spacescooter.sound.SoundSystem;
 import de.teamteamteam.spacescooter.utility.Loader;
-import de.teamteamteam.spacescooter.utility.Random;
 
 /**
  * Implementation of the actual level based gameplay logic.
@@ -52,6 +51,26 @@ public final class Level {
 	 * that the game is over (meaning isGameOver() returning true).
 	 */
 	private int gameOverDelay;
+
+	/**
+	 * Offset for game screen 0 coordinate on X axis.
+	 */
+	private int gameScreenXOffset;
+
+	/**
+	 * Offset for game screen 0 coordinate on Y axis.
+	 */
+	private int gameScreenYOffset;
+
+	/**
+	 * Actual width of game screen.
+	 */
+	private int gameScreenWidth;
+
+	/**
+	 * Actual height of game screen.
+	 */
+	private int gameScreenHeight;
 	
 	/**
 	 * Constructor creating a LevelConfig based on a given config file.
@@ -61,6 +80,12 @@ public final class Level {
 		this.isGameOver = false;
 		this.gameOverDelay = 3;
 		this.config = Loader.getLevelConfigByFilename(levelConfig);
+		
+		//TODO: Put this into the GameConfig!
+		this.gameScreenXOffset = 0;
+		this.gameScreenYOffset = 50;
+		this.gameScreenWidth = GameConfig.windowWidth - 1; //This is fine.
+		this.gameScreenHeight = GameConfig.windowHeight - 51; //TODO: NOT HARDCODE THIS :/
 	}
 	
 	
@@ -95,19 +120,20 @@ public final class Level {
 		 * - 1: EntityNumber - This helps to find out what Entity to actually spawn.
 		 * - 2: Amount - The amount of Entities to spawn at a time.
 		 * - 3: SpawnRate - The rate at which the Entities are supposed to be spawned.
+		 * - 4: SpawnPosition - percentage of GameConfig.windowHeight - Where the Enemy shall spawn.
 		 */
-		for(int[] spawnrule : this.config.spawnRuleList) {
+		for(int[] spawnRule : this.config.spawnRuleList) {
 			//Skip spawn rules that are not in the current spawn interval.
-			if(spawnrule[0] != currentIntervalIndex) continue;
+			if(spawnRule[0] != currentIntervalIndex) continue;
 			//Divide the current interval by spawnrate
-			int intervalModulus = intervalLength / spawnrule[3];
+			int intervalModulus = intervalLength / spawnRule[3];
 			//Check whether the spawn rate strikes right now.
 			if(relativeTimeWithinCurrentInterval % Math.max(1,intervalModulus) == 0) {
 				//If the rule matches the current time, spawn the configured Entity in the configured amount:
-				for(int i=0; i<spawnrule[2]; i++) {
-					//TODO: More beautiful positions!
-					//ToDo: X is GameConfig.windowWidth - somePixels, should be the whole width (for enemies coming into the screen from the right).
-					this.spawnEntityByAvailableName(Entity.availableNames.values()[spawnrule[1]], GameConfig.windowWidth - 50, Random.nextInt(GameConfig.windowHeight -50)+50);
+				for(int i=0; i<spawnRule[2]; i++) {
+					int x = this.gameScreenWidth + this.gameScreenXOffset - 1;
+					int y = Math.round((this.gameScreenHeight * spawnRule[4]) / 100) + this.gameScreenYOffset - 1;
+					this.spawnEntityByAvailableName(Entity.availableNames.values()[spawnRule[1]], x, y);
 				}
 			}
 		}
