@@ -45,7 +45,7 @@ public abstract class LivingEntity extends CollidableEntity implements Hittable 
 	/**
 	 * Whether the LivingEntity will take damage.
 	 */
-	private boolean damagable;
+	private boolean vulnerable;
 	
 	
 	/**
@@ -53,7 +53,7 @@ public abstract class LivingEntity extends CollidableEntity implements Hittable 
 	 */
 	public LivingEntity(int x, int y) {
 		super(x, y);
-		this.setDamagable(true);
+		this.setVulnerable(true);
 	}
 
 	/**
@@ -243,19 +243,19 @@ public abstract class LivingEntity extends CollidableEntity implements Hittable 
 	}
 	
 	/**
-	 * Set whether the LivingEntity is damagable.
+	 * Set whether the LivingEntity is vulnerable.
 	 * This defaults to true on construction and will only be changed manually.
 	 */
-	public void setDamagable(boolean damagable) {
-		this.damagable = damagable;
+	public void setVulnerable(boolean vulnerable) {
+		this.vulnerable = vulnerable;
 	}
 	
 	/**
-	 * Whether or not the LivingEntity is damagable.
+	 * Whether or not the LivingEntity is vulnerable.
 	 * This defaults to true on construction and will only be changed manually.
 	 */
 	public boolean getVulnerable() {
-		return this.damagable;
+		return this.vulnerable;
 	}
 
 }

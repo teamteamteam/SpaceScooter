@@ -91,7 +91,7 @@ public class Player extends ShootingEntity implements KeyboardListener {
 		if(this.currentCollisionCooldown > 0) {
 			this.currentCollisionCooldown--;
 		} else {
-			this.setDamagable(true);
+			this.setVulnerable(true);
 			this.setDamaging(true);
 		}
 		int offset = 3;
@@ -139,7 +139,7 @@ public class Player extends ShootingEntity implements KeyboardListener {
 		super.collideWith(entity);
 		if(this.currentCollisionCooldown == 0 && (entity instanceof Enemy || entity instanceof Obstacle)) {
 			this.currentCollisionCooldown = this.collisionCooldown;
-			this.setDamagable(false);
+			this.setVulnerable(false);
 			this.setDamaging(false);
 		}
 	}
