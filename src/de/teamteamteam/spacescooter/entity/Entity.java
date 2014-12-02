@@ -35,7 +35,7 @@ public abstract class Entity implements Updateable, Paintable {
 		/* Explosions */
 		ExplosionOne, ExplosionTwo, MultiExplosion,
 		/* Stones */
-		StoneOne,
+		StoneOne, StoneTwo, StoneThree,
 		/* Items */
 		ItemCredit, ItemHeal, ItemIncreaseDamage, ItemNuke, ItemOneUp, ItemRocket, ItemShield,
 	}
