@@ -10,6 +10,7 @@ import de.teamteamteam.spacescooter.entity.enemy.EnemyFour;
 import de.teamteamteam.spacescooter.entity.enemy.EnemyOne;
 import de.teamteamteam.spacescooter.entity.enemy.EnemyThree;
 import de.teamteamteam.spacescooter.entity.enemy.EnemyTwo;
+import de.teamteamteam.spacescooter.entity.item.ItemNuke;
 
 /**
  * This is our main control input source.
@@ -102,7 +103,8 @@ public class Keyboard implements KeyListener {
 		Keyboard.activeKeys.add((Integer) e.getKeyCode());
 		for(KeyboardListener kl : Keyboard.listener) kl.keyPressed(e);
 		
-		//Debug Spawn Enemy on Press
+		//Debug Spawn Enemy on Press or Items
+		//TODO: Remove the Code when game is ready
 		if(e.getKeyCode() == KeyEvent.VK_1) {
 			new EnemyOne(400,400);
 		}
@@ -117,6 +119,9 @@ public class Keyboard implements KeyListener {
 			points.add(new Point(398,306));;
 			points.add(new Point(10,300));
 			new EnemyFour(700,51,points);
+		}
+		if(e.getKeyCode() == KeyEvent.VK_9) {
+			new ItemNuke(400,400);
 		}
 		if(e.getKeyCode() == KeyEvent.VK_0) {
 			new EnemyBoss(400,400);
