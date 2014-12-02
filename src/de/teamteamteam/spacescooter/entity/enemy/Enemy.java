@@ -2,7 +2,9 @@ package de.teamteamteam.spacescooter.entity.enemy;
 
 import de.teamteamteam.spacescooter.brain.PlayerSession;
 import de.teamteamteam.spacescooter.entity.ShootingEntity;
+import de.teamteamteam.spacescooter.entity.obstacle.Obstacle;
 import de.teamteamteam.spacescooter.entity.shot.Shot;
+import de.teamteamteam.spacescooter.entity.spi.Collidable;
 import de.teamteamteam.spacescooter.sound.SoundSystem;
 import de.teamteamteam.spacescooter.utility.Random;
 /**
@@ -48,6 +50,15 @@ public abstract class Enemy extends ShootingEntity {
 		if(willShoot == true){
 			this.shoot();
 		}
+	}
+	
+	/**
+	 * Enemies are smart enough to dodge Obstacles.
+	 */
+	@Override
+	public void collideWith(Collidable entity) {
+		if(entity instanceof Obstacle) return;
+		super.collideWith(entity);
 	}
 	
 	/**

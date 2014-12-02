@@ -2,7 +2,9 @@ name:Testlevel \o/
 backgroundMusic:music/ScooterFriendsTurbo8Bit.wav
 background:CloudBackground
 -
-[0-2]
+[0-1]
+spawn:EnemyBoss,1,1,50
+[1-2]
 spawn:StoneOne,2,1,0
 spawn:StoneOne,2,1,10
 spawn:StoneOne,2,1,20
