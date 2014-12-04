@@ -11,6 +11,7 @@ import de.teamteamteam.spacescooter.brain.PlayerSession;
 import de.teamteamteam.spacescooter.control.Keyboard;
 import de.teamteamteam.spacescooter.entity.Player;
 import de.teamteamteam.spacescooter.gui.Button;
+import de.teamteamteam.spacescooter.gui.ImageEntity;
 import de.teamteamteam.spacescooter.gui.ShopOffer;
 import de.teamteamteam.spacescooter.utility.Loader;
 
@@ -25,15 +26,28 @@ public class ShopScreen extends Screen {
 	private ShopOffer damage;
 	private ShopOffer shield;
 	private ShopOffer life;
+	private ImageEntity select;
 	
+	/**
+	 * Create the shop screen.
+	 */
 	public ShopScreen(Screen parent) {
 		super(parent);
-		this.img = Loader.getBufferedImageByFilename("images/testbackground.png");
-		new Button(GameConfig.windowWidth/2-125, 450);
-		damage = new ShopOffer(100, 160, 15, PlayerSession.getShipShotUpgradesBought(), "Schaden");
-		shield = new ShopOffer(100, 260, 15, PlayerSession.getShipShieldUpgradesBought(), "Schild");
-		life = new ShopOffer(100, 360, 15, PlayerSession.getShipHealthUpgradesBought(), "Leben");
-		player = new Player(50, 159);
+		this.img = Loader.getBufferedImageByFilename("images/shopbackground.png");
+		new Button(GameConfig.windowWidth/2-125, 500);
+		damage = new ShopOffer(100, 150, 15, PlayerSession.getShipShotUpgradesBought(), "Schaden  5C");
+		shield = new ShopOffer(100, 225, 15, PlayerSession.getShipShieldUpgradesBought(), "Schild     10C");
+		life = new ShopOffer(100, 300, 15, PlayerSession.getShipHealthUpgradesBought(), "Leben     10C");
+		new ImageEntity(GameConfig.windowWidth / 2 - 120, 365, "images/shop/shoprocket.png");
+		new ImageEntity(GameConfig.windowWidth / 2 + 30, 365, "images/shop/shopbeam.png");
+		if(PlayerSession.getSecondsecondaryWeapon() == 1){
+			System.out.println("1");
+			select = new ImageEntity(GameConfig.windowWidth / 2 - 130, 355, "images/shop/select.png");
+		}else{
+			System.out.println("2");
+			select = new ImageEntity(GameConfig.windowWidth / 2 + 20, 355, "images/shop/select.png");
+		}
+		player = new Player(50, 149);
 		player.setCanMove(false);
 		player.setCanShoot(false);
 	}
@@ -47,32 +61,47 @@ public class ShopScreen extends Screen {
 		}
 		g.setFont(new Font("Monospace", 0, 20));
 		g.setColor(new Color(255, 255, 255));
-		g.drawString("Credits: " + String.valueOf(PlayerSession.getCredits()), GameConfig.windowWidth/2-30, 100);
+		g.drawString("Credits: " + String.valueOf(PlayerSession.getCredits()), GameConfig.windowWidth/2-45, 100);
+		g.drawString("Rocket", GameConfig.windowWidth / 2 - 110, 390);
+		g.drawString("Beam", GameConfig.windowWidth / 2 + 45, 390);
 		g.setColor(new Color(0, 0, 0));
-		g.drawString("Hauptmen\u00fc", GameConfig.windowWidth/2-55, 482);
+		g.drawString("Hauptmen\u00fc", GameConfig.windowWidth/2-55, 533);
 	}
 
 	@Override
 	protected void update() {
+		
+		/**
+		 * Control in the menu.
+		 */
 		if(Keyboard.isKeyDown(KeyEvent.VK_DOWN) && !this.keyPressed && this.animationStatus == 0) {
 			this.keyPressed = true;
-			if(this.menuPoint<3){
+			if(this.menuPoint<4){
 				this.menuPoint++;
 				if(menuPoint == 3){
-					this.player.setPosition(GameConfig.windowWidth/2-170, this.player.getY());
+					this.player.setPosition(GameConfig.windowWidth/2-180, 390);
+				}else if(menuPoint == 4){
+					this.player.setPosition(GameConfig.windowWidth/2-170, 508);
+				}else{
+					this.player.setPosition(this.player.getX(), 149+(this.menuPoint*75));
 				}
-				this.player.setPosition(this.player.getX(), 159+(this.menuPoint*100));
 			}
 		}else if(Keyboard.isKeyDown(KeyEvent.VK_UP) && !this.keyPressed && this.animationStatus == 0) {
 			this.keyPressed = true;
 			if(this.menuPoint>0) {
 				this.menuPoint--;
-				this.player.setPosition(50, this.player.getY());
-				this.player.setPosition(this.player.getX(), 159+(this.menuPoint*100));
+				if(menuPoint == 3){
+					this.player.setPosition(GameConfig.windowWidth/2-180, 390);
+				}else{
+					this.player.setPosition(50, 149+(this.menuPoint*75));
+				}
 			}
+			
+			/**
+			 * Selection.
+			 */
 		}else if ( (Keyboard.isKeyDown(KeyEvent.VK_SPACE) || Keyboard.isKeyDown(KeyEvent.VK_ENTER)) && !this.keyPressed && this.animationStatus == 0) {
 			this.keyPressed = true;
-			///////////////////////////////////////////////////////////////
 			switch (this.menuPoint) {
 			case 0:
 				if(PlayerSession.getCredits() >= 5 && damage.getBought() < damage.getMax()){
@@ -99,6 +128,15 @@ public class ShopScreen extends Screen {
 				}
 				break;
 			case 3:
+				if(PlayerSession.getSecondsecondaryWeapon() == 1){
+					select.setPosition(GameConfig.windowWidth / 2 + 20, 355);
+					PlayerSession.setSecondsecondaryWeapon(2);
+				}else{
+					select.setPosition(GameConfig.windowWidth / 2 - 130, 355);
+					PlayerSession.setSecondsecondaryWeapon(1);
+				}
+				break;
+			case 4:
 				this.animationStatus = 1;
 				break;
 			}
@@ -107,6 +145,9 @@ public class ShopScreen extends Screen {
 			this.keyPressed = false;
 		}
 		
+		/**
+		 * Animation.
+		 */
 		if(this.animationStatus == 1) {
 			if(this.player.getX() <= GameConfig.windowWidth) {
 				this.player.setPosition(this.player.getX() + (int) playerMoveSpeed, this.player.getY());

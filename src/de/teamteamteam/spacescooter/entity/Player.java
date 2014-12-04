@@ -54,8 +54,8 @@ public class Player extends ShootingEntity implements KeyboardListener {
 	 */
 	public Player(int x, int y) {
 		super(x, y);
-		this.rocketAmount = 10;
-		this.beamAmount = 10;
+		this.rocketAmount = 1;
+		this.beamAmount = 1;
 		this.collisionCooldown = 150;
 		this.currentCollisionCooldown = 0;
 		this.setImage("images/ship.png");
@@ -112,11 +112,12 @@ public class Player extends ShootingEntity implements KeyboardListener {
 		if(Keyboard.isKeyDown(KeyEvent.VK_SPACE)) {
 			this.shoot();
 		}
-		if(Keyboard.isKeyDown(KeyEvent.VK_Y) && this.rocketAmount > 0) {
-			this.shootRocket();
-		}
-		if(Keyboard.isKeyDown(KeyEvent.VK_X) && this.beamAmount > 0) {
-			this.shootBeam();
+		if(Keyboard.isKeyDown(KeyEvent.VK_Y)) {
+			if(PlayerSession.getSecondsecondaryWeapon() == 1 && this.rocketAmount > 0) {
+				this.shootRocket();
+			}else if(PlayerSession.getSecondsecondaryWeapon() == 2 && this.beamAmount > 0) {
+				this.shootBeam();
+			}
 		}
 	}
 	

@@ -1,5 +1,6 @@
 package de.teamteamteam.spacescooter.entity.item;
 
+import de.teamteamteam.spacescooter.brain.PlayerSession;
 import de.teamteamteam.spacescooter.entity.CollidableEntity;
 import de.teamteamteam.spacescooter.entity.Player;
 import de.teamteamteam.spacescooter.entity.spi.Collidable;
@@ -61,7 +62,7 @@ public abstract class Item extends CollidableEntity {
 		items[1] = 4;	//ItemCredit
 		items[2] = 2;	//ItemHeal
 		items[3] = 2;	//ItemShield
-		items[4] = 2;	//ItemRocket
+		items[4] = 2;	//ItemRocket or ItemBeam
 		items[5] = 3;	//ItemIncreaseDamage
 		//Add them all up
 		for(i=0; i<items.length; i++) {
@@ -94,7 +95,11 @@ public abstract class Item extends CollidableEntity {
 				new ItemShield(x, y);
 				break;
 			case 4:
-				new ItemRocket(x, y);
+				if(PlayerSession.getSecondsecondaryWeapon() == 1){
+					new ItemRocket(x, y);
+				}else{
+					new ItemBeam(x, y);
+				}
 				break;
 			case 5:
 				new ItemIncreaseDamage(x, y);

@@ -50,6 +50,13 @@ public class PlayerSession {
 	 */
 	private static int shipShotUpgadesBought;
 	
+	/**
+	 * The secondary weapon of the ship.
+	 * 1 = Rocket.
+	 * 2 = Beam.
+	 */
+	private static int secondaryWeapon;
+	
 	
 	/**
 	 * Private constructor, this class will never be instantiated.
@@ -216,6 +223,20 @@ public class PlayerSession {
 		PlayerSession.shipShotUpgadesBought++;
 	}
 
+	/**
+	 * Get the secondary weapon.
+	 */
+	public static int getSecondsecondaryWeapon(){
+		return PlayerSession.secondaryWeapon;
+	}
+	
+	/**
+	 * Set the secondary weapon.
+	 */
+	public static void setSecondsecondaryWeapon(int secondaryWeapon){
+		PlayerSession.secondaryWeapon = secondaryWeapon;
+	}
+	
 	
 	/**
 	 * This will reset all data from the players session.
@@ -225,6 +246,7 @@ public class PlayerSession {
 	 */
 	public static void reset() {
 		PlayerSession.score = 0;
+		PlayerSession.secondaryWeapon = 1;
 		PlayerSession.credits = 0;
 		PlayerSession.shipHealthPoints = GameConfig.initialPlayerHealthPoints;
 		PlayerSession.shipShieldPoints = GameConfig.initialPlayerShieldPoints;

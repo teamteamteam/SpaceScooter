@@ -4,7 +4,7 @@ import de.teamteamteam.spacescooter.entity.spi.Collidable;
 
 public class RocketExplosionRange extends Shot{
 
-	int i = 0;
+	int lifetime = 0;
 	
 	public RocketExplosionRange(int x, int y, int shootDirection, int shootSpeed, int damageValue, String filename) {
 		super(x, y, shootDirection, shootSpeed, damageValue, filename);
@@ -14,8 +14,8 @@ public class RocketExplosionRange extends Shot{
 	 * Lifetime of the rocket explosion range.
 	 */
 	public void update() {
-		i++;
-		if(i>1){
+		lifetime++;
+		if(lifetime>1){
 			this.remove();
 		}
 	}

@@ -27,7 +27,7 @@ public class HighscoreScreen extends Screen{
 	
 	public HighscoreScreen(Screen parent) {
 		super(parent);
-		this.img = Loader.getBufferedImageByFilename("images/earthbackground.png");
+		this.img = Loader.getBufferedImageByFilename("images/shopbackground.png");
 		new Button(GameConfig.windowWidth/2-125, GameConfig.windowHeight-75);
 		player = new Player(GameConfig.windowWidth/2-170, GameConfig.windowHeight-63);
 		player.setCanMove(false);

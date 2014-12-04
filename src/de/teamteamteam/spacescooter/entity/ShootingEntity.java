@@ -261,8 +261,8 @@ public abstract class ShootingEntity extends LivingEntity {
 	 */
 	public void createBeam() {
 		new Beam(
-			this.getX() + this.shootSpawnX,
-			this.getY() + this.shootSpawnY,
+			this.getX() + this.shootSpawnX - 7,
+			this.getY() + this.shootSpawnY - 3,
 			this.shootDirection,
 			this.shootSpeed,
 			this.shootDamage,

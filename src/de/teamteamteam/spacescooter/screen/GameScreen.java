@@ -8,6 +8,7 @@ import de.teamteamteam.spacescooter.entity.Player;
 import de.teamteamteam.spacescooter.gui.HealthBar;
 import de.teamteamteam.spacescooter.gui.InterfaceBar;
 import de.teamteamteam.spacescooter.gui.ScoreBar;
+import de.teamteamteam.spacescooter.gui.SecondaryWeaponAmount;
 import de.teamteamteam.spacescooter.gui.ShieldBar;
 import de.teamteamteam.spacescooter.level.Level;
 import de.teamteamteam.spacescooter.utility.CollisionHandler;
@@ -48,6 +49,7 @@ public class GameScreen extends Screen {
 		new HealthBar(10, 5);
 		new ShieldBar(10, 27);
 		new ScoreBar(575, 33);
+		new SecondaryWeaponAmount(250, 27);
 	}
 
 	

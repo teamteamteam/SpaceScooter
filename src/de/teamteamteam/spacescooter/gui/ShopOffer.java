@@ -19,9 +19,9 @@ public class ShopOffer extends Entity {
 		this.max = max;
 		for (int i = 0; i<max; i++){
 			if(i<bought){
-				new ShopOfferValue(x + 100 + i*35, y, "images/shopTest02.png");
+				new ImageEntity(x + 140 + i*35, y - 3, "images/shop/shopbought.png");
 			}else{
-				new ShopOfferValue(x + 100 + i*35, y, "images/shopTest01.png");
+				new ImageEntity(x + 140 + i*35, y - 3, "images/shop/shopnotbought.png");
 			}
 		}
 	}
@@ -36,7 +36,7 @@ public class ShopOffer extends Entity {
 	public void update() {}
 	
 	public void buy(){
-		new ShopOfferValue(this.getX() + 100 + bought*35, this.getY(), "images/shopTest02.png");
+		new ImageEntity(this.getX() + 140 + bought*35, this.getY() - 3, "images/shop/shopbought.png");
 		bought++;
 	}
 
