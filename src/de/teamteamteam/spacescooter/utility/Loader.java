@@ -67,7 +67,7 @@ public class Loader {
 	 */
 	public static BufferedImage getBufferedImageByFilename(String filename) {
 		BufferedImage image = null;
-		if(CodeEnvironment.isJar()) {
+		if(CodeEnvironment.isJar) {
 			image = Loader.images.get(filename);
 		} else {
 			image = Loader.images.get(filename.replace("/", File.separator));
@@ -83,7 +83,7 @@ public class Loader {
 	 * Return the loaded sound URL by its relative filename.
 	 */
 	public static URL getSoundURLByFilename(String filename) {
-		if(CodeEnvironment.isJar()) {
+		if(CodeEnvironment.isJar) {
 			return Loader.sounds.get(filename);
 		} else {
 			return Loader.sounds.get(filename.replace("/", File.separator));
@@ -94,7 +94,7 @@ public class Loader {
 	 * Return the LevelConfig by its relative filename.
 	 */
 	public static LevelConfig getLevelConfigByFilename(String filename) {
-		if(CodeEnvironment.isJar()) {
+		if(CodeEnvironment.isJar) {
 			return Loader.levelConfigs.get(filename);
 		} else {
 			return Loader.levelConfigs.get(filename.replace("/", File.separator));
