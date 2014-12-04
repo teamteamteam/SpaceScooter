@@ -11,67 +11,71 @@ import java.util.zip.ZipInputStream;
 
 /**
  * This helper is used by the Loader to get a list of files of the whole Code
- * and determine specific runtime configurations.
- * Since there are some differences between OS and jar/non-jar environments,
- * this helper makes sure, everything still works.
+ * and determine specific runtime configurations. Since there are some
+ * differences between OS and jar/non-jar environments, this helper makes sure,
+ * everything still works.
  */
 public class CodeEnvironment {
 
 	/**
+	 * Constant telling whether the Code is run from a jar or not.
+	 */
+	public static final boolean isJar = CodeEnvironment.class
+			.getProtectionDomain().getCodeSource().getLocation().toString()
+			.endsWith("jar");
+
+	/**
 	 * Private constructor, this class will never be instantiated.
 	 */
-	private CodeEnvironment() {}
-	
-	
-	/**
-	 * Returns true if the program is run out of a jar.
-	 */
-	public static boolean isJar() {
-		return (CodeEnvironment.class.getProtectionDomain().getCodeSource().getLocation().toString().endsWith("jar"));
+	private CodeEnvironment() {
 	}
-	
+
 	/**
 	 * Returns a String[] containing relative paths to files within the code.
 	 */
 	public static String[] getFileList() {
-		URL codeLocation = CodeEnvironment.class.getProtectionDomain().getCodeSource().getLocation();
-		if(CodeEnvironment.isJar()) {
+		URL codeLocation = CodeEnvironment.class.getProtectionDomain()
+				.getCodeSource().getLocation();
+		if (CodeEnvironment.isJar) {
 			return CodeEnvironment.getFileListFromJar(codeLocation);
 		} else {
 			File codeFolder = null;
 			try {
 				codeFolder = new File(codeLocation.toURI());
 			} catch (URISyntaxException e) {
-				System.err.println("Could not convert codeLocation URL to File!");
+				System.err
+						.println("Could not convert codeLocation URL to File!");
 				e.printStackTrace();
 			}
 			return CodeEnvironment.getFileListFromFolder(codeFolder);
 		}
 	}
-	
+
 	/**
 	 * Return a relative path list of files based on a given folder.
 	 */
 	private static String[] getFileListFromFolder(File folder) {
 		ArrayList<String> fileList = new ArrayList<String>();
 		String rootPath = folder.getAbsolutePath() + File.separator;
-		String[] folderContents = CodeEnvironment.getAbsoluteFileListFromFolder(folder);
-		for(String element : folderContents) {
+		String[] folderContents = CodeEnvironment
+				.getAbsoluteFileListFromFolder(folder);
+		for (String element : folderContents) {
 			fileList.add(element.replace(rootPath, ""));
 		}
 		return fileList.toArray(new String[fileList.size()]);
 	}
-	
+
 	/**
 	 * Recursively generate an absolute path list of elements within a folder.
 	 */
 	private static String[] getAbsoluteFileListFromFolder(File folder) {
 		ArrayList<String> fileList = new ArrayList<String>();
 		File[] folderContents = folder.listFiles();
-		for(File f : folderContents) {
-			if(f.isDirectory()) {
-				String[] filesInDirectory = CodeEnvironment.getAbsoluteFileListFromFolder(f);
-				for(String entry : filesInDirectory) {
+		for (File f : folderContents) {
+			if (f.isDirectory()) {
+				String[] filesInDirectory = CodeEnvironment
+						.getAbsoluteFileListFromFolder(f);
+				for (String entry : filesInDirectory) {
 					fileList.add(entry);
 				}
 			} else {
@@ -80,9 +84,10 @@ public class CodeEnvironment {
 		}
 		return fileList.toArray(new String[fileList.size()]);
 	}
-	
+
 	/**
-	 * Returns a relative path list of files that are contained within the current jar.
+	 * Returns a relative path list of files that are contained within the
+	 * current jar.
 	 */
 	private static String[] getFileListFromJar(URL jar) {
 		List<String> list = new ArrayList<String>();
@@ -105,5 +110,5 @@ public class CodeEnvironment {
 		}
 		return list.toArray(new String[list.size()]);
 	}
-	
+
 }
