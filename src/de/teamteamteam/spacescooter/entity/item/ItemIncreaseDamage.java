@@ -6,8 +6,7 @@ public class ItemIncreaseDamage extends Item {
 		
 	public ItemIncreaseDamage(int x, int y) {
 		super(x, y);
-		//TODO: Change Image
-		this.setImage("images/items/item.png");
+		this.setImage("images/items/itemShotPowerUp.png");
 	}
 
 	/**
