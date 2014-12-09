@@ -65,7 +65,7 @@ public class ShopScreen extends Screen {
 		g.drawString("Rocket", GameConfig.windowWidth / 2 - 110, 390);
 		g.drawString("Beam", GameConfig.windowWidth / 2 + 45, 390);
 		g.setColor(new Color(0, 0, 0));
-		g.drawString("Hauptmen\u00fc", GameConfig.windowWidth/2-55, 533);
+		g.drawString("Weiter", GameConfig.windowWidth/2-55, 533);
 	}
 
 	@Override
@@ -154,7 +154,7 @@ public class ShopScreen extends Screen {
 				this.playerMoveSpeed += 0.1;
 			} else this.animationStatus = 2;
 		} else if(this.animationStatus == 2) {
-			this.parent.setOverlay(new MainMenuScreen(this.parent));
+			this.parent.setOverlay(new GameScreen(this.parent));
 		}
 	}
 

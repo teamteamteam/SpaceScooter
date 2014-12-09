@@ -94,10 +94,11 @@ public class GameScreen extends Screen {
 		if (this.level.isGameOver()) {
 			if(this.level.playerHasWon()) {
 				if(PlayerSession.getNextLevel() == null) {
-					System.out.println("You beat the game! TODO: Transition to HighscoreScreen now!");
+					this.parent.setOverlay(new HighscoreScreen(this.parent));
+				} else {
+					//Go to the I don't know yet Screen if the game is over and the player WON.
+					this.parent.setOverlay(new GameWonScreen(this.parent));
 				}
-				//Go to the I don't know yet Screen if the game is over and the player WON.
-				this.parent.setOverlay(new GameWonScreen(this.parent));
 			} else {
 				//Go to GameOverScreen if the game is over - the player died and lost the game.
 				this.parent.setOverlay(new GameOverScreen(this.parent));
