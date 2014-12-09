@@ -47,7 +47,7 @@ public class ConcurrentLinkedList<T> {
 		while(element.equals(currentNode.getValue()) == false && currentNode.hasNext()) {
 			currentNode = currentNode.next();
 		}
-		if(currentNode.getValue().equals(element)) {
+		if(currentNode.getValue() != null && currentNode.getValue().equals(element)) {
 			currentNode.setValue(null);
 			return;
 		}
