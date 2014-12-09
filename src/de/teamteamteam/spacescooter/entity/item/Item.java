@@ -60,7 +60,7 @@ public abstract class Item extends CollidableEntity {
 		int[] items = new int[6];
 		items[0] = 1;	//ItemNuke
 		items[1] = 4;	//ItemCredit
-		items[2] = 2;	//ItemHeal
+		items[2] = 3;	//ItemHeal
 		items[3] = 2;	//ItemShield
 		items[4] = 2;	//ItemRocket or ItemBeam
 		items[5] = 3;	//ItemIncreaseDamage

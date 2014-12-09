@@ -16,7 +16,7 @@ public class EnemyThree extends Enemy{
 		this.setImage("images/enemy03.png");
 		this.setPrimaryShotImage("images/shots/laser_red.png");
 		this.setShootSpeed(4);
-		this.setShootDelay(42);
+		this.setShootDelay(62);
 		this.setShootSpawn(-10, 10);
 		this.setShootDamage(5);
 		this.setHealthPoints(15);
