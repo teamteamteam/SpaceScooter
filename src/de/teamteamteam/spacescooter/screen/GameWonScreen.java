@@ -45,10 +45,10 @@ public class GameWonScreen extends Screen {
 		}
 		g.setFont(new Font("Monospace", 0, 100));
 		g.setColor(new Color(75 + colorValue, 175 + colorValue, 175 + colorValue));
-		g.drawString("You win!", GameConfig.windowWidth/2-290, 200);
+		g.drawString("You win!", GameConfig.windowWidth/2-210, 200);
 		g.setFont(new Font("Monospace", 0, 20));
 		g.setColor(new Color(0, 0, 0));
-		g.drawString("Weiter zum nächsten Abenteuer! :D", GameConfig.windowWidth/2-60, 332);
+		g.drawString("Forwards Ever!", GameConfig.windowWidth/2-70, 332);
 		g.drawString("Hauptmen\u00fc", GameConfig.windowWidth/2-60, 432);
 	}
 
