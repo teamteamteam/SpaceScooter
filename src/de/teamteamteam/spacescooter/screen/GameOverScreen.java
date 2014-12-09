@@ -230,7 +230,7 @@ public class GameOverScreen extends Screen {
 			}else{
 				switch (this.menuPoint) {
 				case 0:
-					this.parent.setOverlay(new GameScreen(this.parent, "levels/test.level"));
+					this.parent.setOverlay(new GameScreen(this.parent));
 					break;
 				case 1:
 					this.parent.setOverlay(new MainMenuScreen(this.parent));

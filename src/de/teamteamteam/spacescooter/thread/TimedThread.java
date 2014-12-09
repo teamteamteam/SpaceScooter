@@ -1,5 +1,7 @@
 package de.teamteamteam.spacescooter.thread;
 
+import de.teamteamteam.spacescooter.brain.GameConfig;
+
 /**
  * Since things like drawing the next image or triggering the next game tick
  * need to happen in time, this TimedThread allows more precise timing
@@ -19,11 +21,6 @@ public abstract class TimedThread extends Thread {
 	private long workTime;
 	
 	/**
-	 * This is a quick hack :)
-	 */
-	private long runloops; 
-	
-	/**
 	 * This method sets the actual working interval based on hz.
 	 * 
 	 * @param hz
@@ -37,7 +34,6 @@ public abstract class TimedThread extends Thread {
 	 */
 	public final void run() {
 		while (true) {
-			this.runloops++;
 			long workStart = System.nanoTime();
 			// do the actual work
 			this.work();
@@ -47,9 +43,8 @@ public abstract class TimedThread extends Thread {
 
 			long timeToWait = this.workInterval - workTime;
 			//in case we are already running late, just print a warning and carry on!
-			if(timeToWait < 0 && this.runloops > 50) { // runloops for filtering out game start delays
-				System.err.println("[" + this.getName() + "] workTime exceeds workInterval!:" + this.workTime + " > " + this.workInterval);
-				runloops = 100; // overflow protect 
+			if(timeToWait < 0) {
+				if(GameConfig.DEBUG) System.err.println("[" + this.getName() + "] workTime exceeds workInterval!:" + this.workTime + " > " + this.workInterval);
 				continue;
 			}
 			long msToWait = timeToWait / 1000000;

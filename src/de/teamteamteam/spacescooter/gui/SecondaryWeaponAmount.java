@@ -30,7 +30,6 @@ public class SecondaryWeaponAmount extends Entity{
 		
 	}
 	
-	@Override
 	public void update() {}
 
 }

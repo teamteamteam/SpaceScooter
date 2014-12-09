@@ -104,7 +104,7 @@ public abstract class LivingEntity extends CollidableEntity implements Hittable 
 			return;
 		if (this.shieldPoints > 0) {
 			if (this.shieldPoints < damage) {
-				this.healthPoints = (damage - this.shieldPoints);
+				this.healthPoints -= (damage - this.shieldPoints);
 				this.shieldPoints = 0;
 			} else {
 				this.shieldPoints -= damage;

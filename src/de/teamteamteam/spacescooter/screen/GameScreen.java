@@ -3,6 +3,7 @@ package de.teamteamteam.spacescooter.screen;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 
+import de.teamteamteam.spacescooter.brain.PlayerSession;
 import de.teamteamteam.spacescooter.control.Keyboard;
 import de.teamteamteam.spacescooter.entity.Player;
 import de.teamteamteam.spacescooter.gui.HealthBar;
@@ -37,9 +38,9 @@ public class GameScreen extends Screen {
 	 * GameScreen Constructor.
 	 * Takes the level as its second parameter.
 	 */
-	public GameScreen(Screen parent, String levelConfigName) {
+	public GameScreen(Screen parent) {
 		super(parent);
-		this.level = new Level(levelConfigName);
+		this.level = new Level(PlayerSession.getNextLevel());
 		this.level.doBuildUp(); //Have the level build up the whole setting.
 		
 		this.gameClockTrigger = 0;
@@ -89,9 +90,19 @@ public class GameScreen extends Screen {
 			this.setOverlay(new GamePausedScreen(this), false);
 		}
 		
-		//Go to GameOverScreen if the game is actually over.
+		//React if the game is actually over.
 		if (this.level.isGameOver()) {
-			this.parent.setOverlay(new GameOverScreen(this.parent));
+			if(this.level.playerHasWon()) {
+				if(PlayerSession.getNextLevel() == null) {
+					this.parent.setOverlay(new HighscoreScreen(this.parent));
+				} else {
+					//Go to the I don't know yet Screen if the game is over and the player WON.
+					this.parent.setOverlay(new GameWonScreen(this.parent));
+				}
+			} else {
+				//Go to GameOverScreen if the game is over - the player died and lost the game.
+				this.parent.setOverlay(new GameOverScreen(this.parent));
+			}
 		}
 	}
 	

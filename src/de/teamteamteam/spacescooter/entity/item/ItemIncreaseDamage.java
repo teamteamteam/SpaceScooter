@@ -6,13 +6,19 @@ public class ItemIncreaseDamage extends Item {
 		
 	public ItemIncreaseDamage(int x, int y) {
 		super(x, y);
-		//TODO: Change Image
-		this.setImage("images/items/item.png");
+		this.setImage("images/items/itemShotPowerUp.png");
 	}
 
+	/**
+	 * Increase shoot damage of Player if not above 25.
+	 */
 	@Override
 	public void itemCollected(Player player) {
-		player.setShootDamage(player.getShootDamage()+5);
+		if(player.getShootDamage() > 25) {
+			return;
+		} else {
+			player.setShootDamage(player.getShootDamage()+5);
+		}
 	}
 
 }

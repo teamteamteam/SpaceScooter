@@ -30,9 +30,9 @@ public class ShopScreen extends Screen {
 		super(parent);
 		new ImageEntity(0, 0, "images/shopbackground.png");
 		new Button(GameConfig.windowWidth/2-125, 500);
-		this.damage = new ShopOffer(100, 150, 15, PlayerSession.getShipShotUpgradesBought(), "Schaden  5C");
-		this.shield = new ShopOffer(100, 225, 15, PlayerSession.getShipShieldUpgradesBought(), "Schild     10C");
-		this.life = new ShopOffer(100, 300, 15, PlayerSession.getShipHealthUpgradesBought(), "Leben     10C");
+		damage = new ShopOffer(100, 150, 15, PlayerSession.getBaseShotUpgradesBought(), "Schaden  5C");
+		shield = new ShopOffer(100, 225, 15, PlayerSession.getBaseShieldUpgradesBought(), "Schild     10C");
+		life = new ShopOffer(100, 300, 15, PlayerSession.getBaseHealthUpgradesBought(), "Leben     10C");
 		new ImageEntity(GameConfig.windowWidth / 2 - 120, 365, "images/shop/shoprocket.png");
 		new ImageEntity(GameConfig.windowWidth / 2 + 30, 365, "images/shop/shopbeam.png");
 		if(PlayerSession.getSecondsecondaryWeapon() == 1){
@@ -57,7 +57,7 @@ public class ShopScreen extends Screen {
 		g.drawString("Rocket", GameConfig.windowWidth / 2 - 110, 390);
 		g.drawString("Beam", GameConfig.windowWidth / 2 + 45, 390);
 		g.setColor(new Color(0, 0, 0));
-		g.drawString("Hauptmen\u00fc", GameConfig.windowWidth/2-55, 533);
+		g.drawString("Weiter", GameConfig.windowWidth/2-55, 533);
 	}
 
 	@Override
@@ -98,24 +98,24 @@ public class ShopScreen extends Screen {
 			case 0:
 				if(PlayerSession.getCredits() >= 5 && damage.getBought() < damage.getMax()){
 					damage.buy();
-					PlayerSession.addShipShotDamage(5);
-					PlayerSession.incrementShipShotUpgradesBought();
+					PlayerSession.addBaseShotDamage(5);
+					PlayerSession.incrementBaseShotUpgradesBought();
 					PlayerSession.removeCredits(5);
 				}
 				break;
 			case 1:
 				if(PlayerSession.getCredits() >= 10 && shield.getBought() < shield.getMax()){
 					shield.buy();
-					PlayerSession.addShipShieldPoints(10);
-					PlayerSession.incrementShipShieldUpgradesBought();
+					PlayerSession.addBaseShieldPoints(10);
+					PlayerSession.incrementBaseShieldUpgradesBought();
 					PlayerSession.removeCredits(10);
 				}
 				break;
 			case 2:
 				if(PlayerSession.getCredits() >= 10 && life.getBought() < life.getMax()){
 					life.buy();
-					PlayerSession.addShipHealthPoints(10);
-					PlayerSession.incrementShipHealthUpgradesBought();
+					PlayerSession.addBaseHealthPoints(10);
+					PlayerSession.incrementBaseHealthUpgradesBought();
 					PlayerSession.removeCredits(10);
 				}
 				break;
@@ -146,7 +146,7 @@ public class ShopScreen extends Screen {
 				this.cursorMoveSpeed += 0.1;
 			} else this.animationStatus = 2;
 		} else if(this.animationStatus == 2) {
-			this.parent.setOverlay(new MainMenuScreen(this.parent));
+			this.parent.setOverlay(new GameScreen(this.parent));
 		}
 	}
 

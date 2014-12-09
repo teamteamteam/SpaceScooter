@@ -241,6 +241,8 @@ public abstract class Screen {
 		if(this.processSetOverlayCall) {
 			if(this.overlay != null) {
 				this.overlay.cleanup();
+			} else {
+				this.cleanup();
 			}
 			if(this.newOverlay == null) {
 				Screen.currentScreen = this;

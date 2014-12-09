@@ -87,6 +87,7 @@ public abstract class ShootingEntity extends LivingEntity {
 	 * Update logic making sure that the currentShootDelay is updated.
 	 */
 	public void update() {
+		super.update();
 		if(this.currentShootDelay > 0) this.currentShootDelay--;
 		if(this.currentRocketDelay > 0) this.currentRocketDelay--;
 		if(this.currentBeamDelay > 0) this.currentBeamDelay--;
@@ -251,7 +252,7 @@ public abstract class ShootingEntity extends LivingEntity {
 			this.getY() + this.shootSpawnY,
 			this.shootDirection,
 			this.shootSpeed,
-			(int) (this.shootDamage*1.2),
+			(int) (this.shootDamage*5),
 			this. primaryShotImage
 		);
 	}

@@ -79,6 +79,11 @@ public final class GameConfig {
 	public static final int initialPlayerShotDamage = 10;
 	
 	/**
+	 * The first level the game will start with.
+	 */
+	public static final String firstLevel = "levels/test.level";
+	
+	/**
 	 * Private constructor, this class will never be instantiated.
 	 */
 	private GameConfig() {}

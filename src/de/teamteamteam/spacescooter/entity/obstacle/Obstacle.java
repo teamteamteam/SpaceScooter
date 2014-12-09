@@ -20,5 +20,13 @@ public abstract class Obstacle extends CollidableEntity {
 	public void collideWith(Collidable entity) {
 
 	}
+	
+	/**
+	 * Patch through the update() call.
+	 */
+	@Override
+	public void update() {
+		super.update();
+	}
 
 }

@@ -53,12 +53,12 @@ public abstract class Entity implements Updateable, Paintable {
 	/**
 	 * Entity width.
 	 */
-	private int width;
+	private int imageWidth;
 	
 	/**
 	 * Entity height.
 	 */
-	private int height;
+	private int imageHeight;
 	
 	/**
 	 * Whether or not the Entity is able to move using transpose.
@@ -106,14 +106,14 @@ public abstract class Entity implements Updateable, Paintable {
 	 * Get the centered X-Position of the Entity.
 	 */
 	public int getCenteredX() {
-		return this.x + (this.width / 2);
+		return this.x + (this.imageWidth / 2);
 	}
 
 	/**
 	 * Get the centered Y-Position of the Entity.
 	 */
 	public int getCenteredY() {
-		return this.y + (this.height / 2);
+		return this.y + (this.imageHeight / 2);
 	}
 	
 	/**
@@ -138,23 +138,23 @@ public abstract class Entity implements Updateable, Paintable {
 	/**
 	 * Get the Entities width.
 	 */
-	public int getWidth() {
-		return this.width;
+	public int getImageWidth() {
+		return this.imageWidth;
 	}
 	
 	/**
 	 * Get the Entities height.
 	 */
-	public int getHeight() {
-		return this.height;
+	public int getImageHeight() {
+		return this.imageHeight;
 	}
 
 	/**
 	 * Set the entities width and height.
 	 */
-	public void setDimensions(int width, int height) {
-		this.width = width;
-		this.height = height;
+	public void setImageDimensions(int width, int height) {
+		this.imageWidth = width;
+		this.imageHeight = height;
 	}
 	
 	/**
@@ -170,7 +170,7 @@ public abstract class Entity implements Updateable, Paintable {
 	public void setImage(String filename) {
 		this.img = Loader.getBufferedImageByFilename(filename);
 		//set the entities dimensions using the dimensions of the image.
-		this.setDimensions(this.img.getWidth(), this.img.getHeight());
+		this.setImageDimensions(this.img.getWidth(), this.img.getHeight());
 	}
 	
 	/**
@@ -190,13 +190,23 @@ public abstract class Entity implements Updateable, Paintable {
 	/**
 	 * The default way to paint the Entity.
 	 * Simply draw the Entities image on its current position.
+	 * Debugging option: draw the image border in green.
 	 */
 	public void paint(Graphics2D g) {
 		if(GameConfig.DEBUG) {
-			g.setColor(new Color(255,0,0));
-			g.drawRect(this.x, this.y, this.width, this.height);
+			g.setColor(new Color(0,255,0));
+			g.drawRect(this.x, this.y, this.imageWidth, this.imageHeight);
 		}
 		g.drawImage(this.img, this.x, this.y, null);
+	}
+	
+	/**
+	 * Make sure an Entity removes itself when off-screen.
+	 */
+	public void update() {
+		if(this.getX() + this.getImageWidth() < 0) {
+			this.remove();
+		}
 	}
 	
 	/**

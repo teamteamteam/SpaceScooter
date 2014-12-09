@@ -16,7 +16,7 @@ public class EnemyBossMinion extends Enemy{
 		this.setImage("images/enemybossminion.png");
 		this.setPrimaryShotImage("images/shots/laser_green.png");
 		this.setShootSpeed(4);
-		this.setShootDelay(42);
+		this.setShootDelay(30);
 		this.setShootSpawn(-10, 10);
 		this.setShootDamage(5);
 		this.setHealthPoints(15);

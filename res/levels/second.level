@@ -1,0 +1,22 @@
+name:Level Zwai! :D
+backgroundMusic:music/ScooterFriendsTurbo8Bit.wav
+background:EarthBackground
+nextLevel:
+-
+[0-1]
+spawn:EnemyBoss,1,1,50
+[1-2]
+spawn:StoneOne,2,1,0
+spawn:StoneOne,2,1,80
+spawn:StoneThree,2,1,90
+spawn:StoneThree,2,1,100
+[2-4]
+spawn:EnemyOne,1,5,20
+spawn:StoneOne,4,5,50
+[4-10]
+spawn:EnemyTwo,1,10,60
+[10-25]
+spawn:EnemyThree,2,4,33
+spawn:EnemyTwo,5,6,10
+[25-30]
+spawn:EnemyBoss,1,1,50

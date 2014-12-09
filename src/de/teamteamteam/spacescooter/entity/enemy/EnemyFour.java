@@ -4,6 +4,8 @@ import java.awt.Point;
 import java.util.ArrayList;
 
 import de.teamteamteam.spacescooter.entity.explosion.ExplosionOne;
+import de.teamteamteam.spacescooter.entity.item.Item;
+import de.teamteamteam.spacescooter.utility.Random;
 
 public class EnemyFour extends Enemy{
 	
@@ -21,7 +23,8 @@ public class EnemyFour extends Enemy{
 		this.setImage("images/enemy01.png");
 		this.setPrimaryShotImage("images/shots/laser_yellow.png");
 		this.setShootSpeed(4);
-		this.setShootDelay(42);
+		this.setShootDelay(60);
+		this.setCanShoot(false);
 		this.setShootSpawn(-10, 10);
 		this.setShootDamage(5);
 		this.setCollisionDamage(5);
@@ -68,6 +71,15 @@ public class EnemyFour extends Enemy{
 	@Override
 	public void explode() {
 		new ExplosionOne(this.getCenteredX(), this.getCenteredY());
+	}
+	
+	/**
+	 * This enemy spawns an Item on its death and causes another enemy to appear.
+	 */
+	@Override
+	public void die() {
+		if(Random.nextInt(100) < 5) Item.create(getX(), getY());
+		super.die();
 	}
 	
 }

@@ -11,6 +11,7 @@ import de.teamteamteam.spacescooter.entity.enemy.EnemyOne;
 import de.teamteamteam.spacescooter.entity.enemy.EnemyThree;
 import de.teamteamteam.spacescooter.entity.enemy.EnemyTwo;
 import de.teamteamteam.spacescooter.entity.item.ItemNuke;
+import de.teamteamteam.spacescooter.screen.GameScreen;
 
 /**
  * This is our main control input source.
@@ -116,7 +117,7 @@ public class Keyboard implements KeyListener {
 		}
 		if(e.getKeyCode() == KeyEvent.VK_4) {
 			ArrayList<Point> points = new ArrayList<Point>();
-			points.add(new Point(398,306));;
+			points.add(new Point(398,306));
 			points.add(new Point(10,300));
 			new EnemyFour(700,51,points);
 		}
@@ -125,6 +126,9 @@ public class Keyboard implements KeyListener {
 		}
 		if(e.getKeyCode() == KeyEvent.VK_0) {
 			new EnemyBoss(400,400);
+		}
+		if(e.getKeyCode() == KeyEvent.VK_5) {
+			GameScreen.getPlayer().setCollide(!GameScreen.getPlayer().canCollide());
 		}
 		
 	}

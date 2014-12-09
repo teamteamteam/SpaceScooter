@@ -9,7 +9,7 @@ public class EnemyTwo extends Enemy{
 		this.setImage("images/enemy02.png");
 		this.setPrimaryShotImage("images/shots/laser_green.png");
 		this.setShootSpeed(4);
-		this.setShootDelay(42);
+		this.setShootDelay(120);
 		this.setShootSpawn(-10, 10);
 		this.setShootDamage(5);
 		this.setCollisionDamage(5);

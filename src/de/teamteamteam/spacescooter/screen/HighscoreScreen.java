@@ -5,6 +5,7 @@ import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import de.teamteamteam.spacescooter.brain.GameConfig;
+import de.teamteamteam.spacescooter.brain.PlayerSession;
 import de.teamteamteam.spacescooter.control.Keyboard;
 import de.teamteamteam.spacescooter.gui.Button;
 import de.teamteamteam.spacescooter.gui.ImageEntity;
@@ -55,6 +56,7 @@ public class HighscoreScreen extends Screen{
 				this.cursorMoveSpeed += 0.1;
 			} else this.animationStatus = 2;
 		} else if(this.animationStatus == 2) {
+			PlayerSession.reset(); //The player now entered his highscore, reset the PlayerSession now.
 			this.parent.setOverlay(new MainMenuScreen(this.parent));
 		}
 	}

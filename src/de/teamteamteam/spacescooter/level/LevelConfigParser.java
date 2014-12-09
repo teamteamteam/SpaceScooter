@@ -32,6 +32,11 @@ public class LevelConfigParser {
 	private int currentIntervalStart;
 
 	/**
+	 * The start of the last read interval.
+	 */
+	private String wayPoints;
+	
+	/**
 	 * The end of the last read interval.
 	 */
 	private int currentIntervalEnd;
@@ -70,6 +75,8 @@ public class LevelConfigParser {
 							this.levelConfig.background = linePieces[1];
 						} else if (linePieces[0].equals("backgroundMusic")) {
 							this.levelConfig.backgroundMusic = linePieces[1];
+						} else if (linePieces[0].equals("nextLevel")) {
+							this.levelConfig.nextLevel = linePieces[1];
 						} else {
 							throw new LevelConfigException("[LevelConfigParser] Unknown attribute in line: '" + line + "'");
 						}
@@ -86,14 +93,20 @@ public class LevelConfigParser {
 					} else {
 						String[] rule = line.split(":", 2);
 						if(rule[0].equals("spawn")) {
-							String[] entitySpawnRule = rule[1].split(",", 4);
+							String[] entitySpawnRule = rule[1].split(",", 5);
+							if (entitySpawnRule.length <= 4) {
+								wayPoints = "";
+							} else {
+								wayPoints = entitySpawnRule[4];
+							}
 							this.levelConfig.addEntitySpawnRule(
 								this.currentIntervalStart, 
 								this.currentIntervalEnd, 
 								entitySpawnRule[0], 
-								Integer.parseInt(entitySpawnRule[1]), 
-								Integer.parseInt(entitySpawnRule[2]), 
-								Integer.parseInt(entitySpawnRule[3])
+								entitySpawnRule[1], 
+								entitySpawnRule[2], 
+								entitySpawnRule[3],
+								wayPoints
 							);
 						} else {
 							throw new LevelConfigException("Unknown rule type: '"+rule[0]+"' : '"+line+"'");
@@ -104,6 +117,12 @@ public class LevelConfigParser {
 					throw new LevelConfigException("[LevelConfigParser] Where am i?!");
 			}
 		}
+		
+		//Set the nextLevel to null explicitly, so it is easy to detect.
+		if(this.levelConfig.nextLevel.equals("")) {
+			this.levelConfig.nextLevel = null;
+		}
+		
 		return this.levelConfig;
 	}
 	

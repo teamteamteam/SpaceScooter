@@ -70,18 +70,18 @@ public class CollisionHandler {
 	 * Check if two Collidables actually collided.
 	 */
 	private static boolean doCollide(Collidable cOne, Collidable cTwo) {
-		int x1 = cOne.getX();
-		int x2 = cOne.getX() + cOne.getWidth();
-		int x3 = cTwo.getX();
-		int x4 = cTwo.getX() + cTwo.getWidth();
-		int total_width = cOne.getWidth() + cTwo.getWidth();
+		int x1 = cOne.getHitboxX();
+		int x2 = cOne.getHitboxX() + cOne.getHitboxWidth();
+		int x3 = cTwo.getHitboxX();
+		int x4 = cTwo.getHitboxX() + cTwo.getHitboxWidth();
+		int total_width = cOne.getHitboxWidth() + cTwo.getHitboxWidth();
 		boolean x_overlap = total_width > Math.abs(Math.max(x2, x4) - Math.min(x1, x3));
 		
-		int y1 = cOne.getY();
-		int y2 = cOne.getY() + cOne.getHeight();
-		int y3 = cTwo.getY();
-		int y4 = cTwo.getY() + cTwo.getHeight();
-		int total_height = cOne.getHeight() + cTwo.getHeight();
+		int y1 = cOne.getHitboxY();
+		int y2 = cOne.getHitboxY() + cOne.getHitboxHeight();
+		int y3 = cTwo.getHitboxY();
+		int y4 = cTwo.getHitboxY() + cTwo.getHitboxHeight();
+		int total_height = cOne.getHitboxHeight() + cTwo.getHitboxHeight();
 		boolean y_overlap = total_height > Math.abs(Math.max(y2, y4) - Math.min(y1, y3));
 		
 		return x_overlap && y_overlap;
