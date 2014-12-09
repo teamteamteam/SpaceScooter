@@ -135,6 +135,12 @@ public class Loader {
 				Loader.addLevelByFilename(e);
 			}
 			loadingScreen.increaseCurrentProcessed();
+			//For the retro :D
+			try {
+				Thread.sleep(Random.nextInt(15));
+			} catch (InterruptedException e1) {
+				e1.printStackTrace();
+			}
 		}
 	}
 

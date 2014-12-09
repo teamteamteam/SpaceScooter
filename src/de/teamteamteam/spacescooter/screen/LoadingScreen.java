@@ -74,7 +74,18 @@ public class LoadingScreen extends Screen {
 		g.fillRect(0, 0, GameConfig.windowWidth, GameConfig.windowHeight);
 		g.setColor(Color.WHITE);
 		g.setFont(new Font("Monospace", 0, 50));
-		g.drawString("Progress: " + this.getProgress() + "%", 200, 500);
+		String text = "Loading ...";
+		g.drawString(text, (GameConfig.windowWidth - g.getFontMetrics().stringWidth(text))/2, 150);
+		text = this.getProgress() + "%";
+		g.drawString(text, (GameConfig.windowWidth - g.getFontMetrics().stringWidth(text))/2, GameConfig.windowHeight - 175);
+		int height = 75;
+		int width = GameConfig.windowWidth - 100;
+		int x = (GameConfig.windowWidth - width) / 2;
+		int y = GameConfig.windowHeight - 150;
+		int padding = 5;
+		g.drawRect(x - padding , y - padding, width + 2*padding, height + 2*padding);
+		g.setColor(Color.YELLOW);
+		g.fillRect(x, y, (int) (width * (this.getProgress() / 100.0)), height);
 	}
 
 	/**
