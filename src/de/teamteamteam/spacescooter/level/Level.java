@@ -84,37 +84,40 @@ public final class Level {
 	public void handleUpdateTick() {
 		//Check whether the current interval is configured
 		int currentIntervalIndex = this.config.getIntervalIndexByCurrentTime(this.levelClock);
-		if(currentIntervalIndex == -1) return; //Nothing to do
-		//Fetch the current interval
-		int[] currentInterval = this.config.intervalList.get(currentIntervalIndex);
-		int relativeTimeWithinCurrentInterval = this.levelClock - currentInterval[0];
-		int intervalLength = currentInterval[1] - currentInterval[0];
-		/*
-		 * @see <LevelConfig>
-		 * Get all the spawnrules for the current interval.
-		 * - 0: Interval this rule belongs to
-		 * - 1: EntityNumber - This helps to find out what Entity to actually spawn.
-		 * - 2: Amount - The amount of Entities to spawn at a time.
-		 * - 3: SpawnRate - The rate at which the Entities are supposed to be spawned.
-		 * - 4: SpawnPosition - percentage of GameConfig.windowHeight - Where the Enemy shall spawn.
-		 */
-		for(int[] spawnRule : this.config.spawnRuleList) {
-			//Skip spawn rules that are not in the current spawn interval.
-			if(spawnRule[0] != currentIntervalIndex) continue;
-			//Divide the current interval by spawnrate
-			int intervalModulus = intervalLength / spawnRule[3];
-			//Check whether the spawn rate strikes right now.
-			if(relativeTimeWithinCurrentInterval % Math.max(1,intervalModulus) == 0) {
-				//If the rule matches the current time, spawn the configured Entity in the configured amount:
-				for(int i=0; i<spawnRule[2]; i++) {
-					//Minus one because the upper border is _excluded_ from the range!
-					int x = GameConfig.gameScreenWidth + GameConfig.gameScreenXOffset - 1;
-					//Minus one because the upper border is _excluded_ from the range!
-					int y = Math.round((GameConfig.gameScreenHeight * spawnRule[4]) / 100) + GameConfig.gameScreenYOffset - 1;
-					this.spawnEntityByAvailableName(Entity.availableNames.values()[spawnRule[1]], x, y);
+		
+		//If there are still configured intervals, take care of the rules
+		if(currentIntervalIndex != -1) {
+			//Fetch the current interval
+			int[] currentInterval = this.config.intervalList.get(currentIntervalIndex);
+			int relativeTimeWithinCurrentInterval = this.levelClock - currentInterval[0];
+			int intervalLength = currentInterval[1] - currentInterval[0];
+			/*
+			 * @see <LevelConfig>
+			 * Get all the spawnrules for the current interval.
+			 * - 0: Interval this rule belongs to
+			 * - 1: EntityNumber - This helps to find out what Entity to actually spawn.
+			 * - 2: Amount - The amount of Entities to spawn at a time.
+			 * - 3: SpawnRate - The rate at which the Entities are supposed to be spawned.
+			 * - 4: SpawnPosition - percentage of GameConfig.windowHeight - Where the Enemy shall spawn.
+			 */
+			for(int[] spawnRule : this.config.spawnRuleList) {
+				//Skip spawn rules that are not in the current spawn interval.
+				if(spawnRule[0] != currentIntervalIndex) continue;
+				//Divide the current interval by spawnrate
+				int intervalModulus = intervalLength / spawnRule[3];
+				//Check whether the spawn rate strikes right now.
+				if(relativeTimeWithinCurrentInterval % Math.max(1,intervalModulus) == 0) {
+					//If the rule matches the current time, spawn the configured Entity in the configured amount:
+					for(int i=0; i<spawnRule[2]; i++) {
+						//Minus one because the upper border is _excluded_ from the range!
+						int x = GameConfig.gameScreenWidth + GameConfig.gameScreenXOffset - 1;
+						//Minus one because the upper border is _excluded_ from the range!
+						int y = Math.round((GameConfig.gameScreenHeight * spawnRule[4]) / 100) + GameConfig.gameScreenYOffset - 1;
+						this.spawnEntityByAvailableName(Entity.availableNames.values()[spawnRule[1]], x, y);
+					}
 				}
 			}
-		}
+		} //end if still intervals configured
 		
 		//Check for GameOver things.
 		this.checkGameOverCondition();
