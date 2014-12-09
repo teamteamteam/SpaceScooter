@@ -17,6 +17,7 @@ import de.teamteamteam.spacescooter.entity.obstacle.Obstacle;
 import de.teamteamteam.spacescooter.entity.obstacle.StoneOne;
 import de.teamteamteam.spacescooter.entity.obstacle.StoneThree;
 import de.teamteamteam.spacescooter.entity.obstacle.StoneTwo;
+import de.teamteamteam.spacescooter.gui.LevelHeadline;
 import de.teamteamteam.spacescooter.screen.GameScreen;
 import de.teamteamteam.spacescooter.screen.Screen;
 import de.teamteamteam.spacescooter.sound.SoundSystem;
@@ -83,12 +84,14 @@ public final class Level {
 	}
 	
 	/**
-	 * Initialize the level based on the LevelConfig attributes.
+	 * Initialize the level based on the LevelConfig attributes,
+	 * show the level name in a LevelHeadline.
 	 */
 	public void doBuildUp() {
 		this.spawnEntityByAvailableName(Entity.availableNames.valueOf(this.config.background), 0, 50);
 		GameScreen.setPlayer(new Player(200, 300));
 		this.backgroundMusic = SoundSystem.playSound(this.config.backgroundMusic);
+		new LevelHeadline(100,100, this.config.name);
 	}
 	
 	/**
