@@ -9,6 +9,7 @@ public class StoneOne extends MovingObstacle {
 		super(x, y);
 		this.setImage("images/stones/stone01.png");
 		this.setCollisionDamage(9001);
+		this.setHitboxDimenstions(this.getImageWidth() - 5, this.getImageHeight() - 5);
 	}
 
 }

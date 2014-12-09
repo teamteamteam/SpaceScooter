@@ -128,7 +128,7 @@ public class Player extends ShootingEntity implements KeyboardListener {
 	public void paint(Graphics2D g) {
 		if(this.currentCollisionCooldown > 0) {
 			g.setColor(Color.RED);
-			g.drawRect(this.getX(), this.getY(), this.getWidth(), this.getHeight());
+			g.drawRect(this.getX(), this.getY(), this.getImageWidth(), this.getImageHeight());
 		}
 		super.paint(g);
 	}

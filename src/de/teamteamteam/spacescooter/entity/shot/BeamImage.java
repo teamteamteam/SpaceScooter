@@ -15,7 +15,6 @@ public class BeamImage extends Entity {
 		this.setImage("images/shots/beam.png");
 	}
 
-	@Override
 	public void update() {
 		this.lifetime++;
 		if(this.lifetime>30){
