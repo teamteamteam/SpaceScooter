@@ -8,22 +8,32 @@ public interface Collidable {
 	/**
 	 * Get X-Position of the Collidable.
 	 */
-	public int getX();
-
+	public int getHitboxX();
+	
 	/**
 	 * Get Y-Position of the Collidable.
 	 */
-	public int getY();
+	public int getHitboxY();
 	
 	/**
 	 * Get the width of the Collidable.
 	 */
-	public int getWidth();
-
+	public int getHitboxWidth();
+	
+	/**
+	 * Set the width of the Collidable.
+	 */
+	public void setHitboxWidth(int hitboxWidth);
+	
 	/**
 	 * Get the height of the Collidable.
 	 */
-	public int getHeight();
+	public int getHitboxHeight();
+
+	/**
+	 * Set the height of the Collidable.
+	 */
+	public void setHitboxHeight(int hitboxHeight);
 	
 	/**
 	 * Notify the Collidable that a collision happened.

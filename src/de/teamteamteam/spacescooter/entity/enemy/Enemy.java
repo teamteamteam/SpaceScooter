@@ -42,7 +42,7 @@ public abstract class Enemy extends ShootingEntity {
 		super.update();
 		
 		// enemy has fully left the screen ..to the left!
-		if(this.getX() + this.getWidth() < 0){
+		if(this.getX() + this.getImageWidth() < 0){
 			this.remove();
 			return;
 		}

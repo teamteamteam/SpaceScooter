@@ -90,8 +90,8 @@ public class Shot extends CollidableEntity {
 	public void update() {
 		this.transpose(this.direction * this.speed, 0);
 		//remove the shot in case it is out of the game window.
-		if ((this.getX() + this.getWidth()) < 0 || this.getX() > GameConfig.windowWidth
-				|| (this.getY() + this.getHeight()) < 0
+		if ((this.getX() + this.getImageWidth()) < 0 || this.getX() > GameConfig.windowWidth
+				|| (this.getY() + this.getImageHeight()) < 0
 				|| this.getY() > GameConfig.windowHeight) {
 			this.remove();
 		}

@@ -44,7 +44,7 @@ public class EnemyBoss extends Enemy{
 	public void update() {
 		super.update();
 		//Move into the Screen until it fits on X-Axis
-		if(this.getX() > GameConfig.gameScreenWidth+GameConfig.gameScreenXOffset-this.getWidth()) {
+		if(this.getX() > GameConfig.gameScreenWidth+GameConfig.gameScreenXOffset-this.getImageWidth()) {
 			this.transpose(-1, 0);
 		}
 		//Move up or down within the GameScreen.
@@ -52,12 +52,12 @@ public class EnemyBoss extends Enemy{
 		if(this.getY() == GameConfig.gameScreenYOffset){
 			move = 1;
 		}
-		if(this.getY() == GameConfig.gameScreenHeight + GameConfig.gameScreenYOffset - this.getHeight()){
+		if(this.getY() == GameConfig.gameScreenHeight + GameConfig.gameScreenYOffset - this.getImageHeight()){
 			move = -1;
 		}
 		//Randomly spawn minions.
 		if(Random.nextInt(1000) < 5) {
-			new EnemyBossMinion(GameConfig.gameScreenWidth  +GameConfig.gameScreenXOffset - this.getWidth(), this.getY());
+			new EnemyBossMinion(GameConfig.gameScreenWidth  +GameConfig.gameScreenXOffset - this.getImageWidth(), this.getY());
 		}
 		//Randomly fire doubleshots.
 		if(Random.nextInt(1000) < 50) {
