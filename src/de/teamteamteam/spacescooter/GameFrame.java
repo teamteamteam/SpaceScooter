@@ -148,8 +148,8 @@ public class GameFrame extends JFrame {
 						bufferedGraphics.dispose();
 				}
 			} while (this.bufferStrategy.contentsRestored()); //Redraw in case the VolatileImage was restored
-			this.bufferStrategy.show(); //Show the drawn image
 		} while (this.bufferStrategy.contentsLost()); //Redraw in case the VolatileImage got lost
+		this.bufferStrategy.show(); //Show the drawn image
 		Toolkit.getDefaultToolkit().sync(); //Tell the OS to update its graphics of the window.
 		this.frameTime = System.nanoTime() - frameStart; //Update frameTime
 	}
