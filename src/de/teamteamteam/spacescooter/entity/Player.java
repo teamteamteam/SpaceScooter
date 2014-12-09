@@ -66,11 +66,11 @@ public class Player extends ShootingEntity implements KeyboardListener {
 		this.setShootSpeed(10);
 		this.setCollisionDamage(5);
 		this.setScore(0);
-		this.setHealthPoints(PlayerSession.getShipHealthPoints());
-		this.setMaximumHealthPoints(PlayerSession.getShipHealthPoints());
-		this.setShieldPoints(PlayerSession.getShipShieldPoints());
-		this.setMaximumShieldPoints(PlayerSession.getShipShieldPoints());
-		this.setShootDamage((PlayerSession.getShipShotDamage())/2);
+		this.setHealthPoints(PlayerSession.getBaseHealthPoints());
+		this.setMaximumHealthPoints(PlayerSession.getBaseHealthPoints());
+		this.setShieldPoints(PlayerSession.getBaseShieldPoints());
+		this.setMaximumShieldPoints(PlayerSession.getBaseShieldPoints());
+		this.setShootDamage(PlayerSession.getBaseShotDamage());
 		this.registerOnKeyboard(Keyboard.getInstance());
 	}
 
@@ -175,7 +175,7 @@ public class Player extends ShootingEntity implements KeyboardListener {
 		}
 		super.remove();
 	}
-
+	
 	/**
 	 * keyPressed method, comes in handy when a key on the keyboard is pressed
 	 */

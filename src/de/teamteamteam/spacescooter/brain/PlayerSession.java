@@ -21,34 +21,34 @@ public class PlayerSession {
 	 * Damage value of the normal Shots the ship fires.
 	 * This can be changed by upgrades in the shop.
 	 */
-	private static int shipShotDamage;
+	private static int baseShotDamage;
 
 	/**
 	 * The ships default maximum shield points.
 	 * This can be changed by upgrades in the shop.
 	 */
-	private static int shipShieldPoints;
+	private static int baseShieldPoints;
 
 	/**
 	 * The ships default maximum health points.
 	 * This can be changed by upgrades in the shop.
 	 */
-	private static int shipHealthPoints;
+	private static int baseHealthPoints;
 	
 	/**
 	 * The number of health upgrades the player bought for the ship.
 	 */
-	private static int shipHealthUpgadesBought;
+	private static int baseHealthUpgadesBought;
 
 	/**
 	 * The number of shield upgrades the player bought for the ship.
 	 */
-	private static int shipShieldUpgadesBought;
+	private static int baseShieldUpgadesBought;
 	
 	/**
 	 * The number of shot damage upgrades the player bought for the ship.
 	 */
-	private static int shipShotUpgadesBought;
+	private static int baseShotUpgadesBought;
 	
 	/**
 	 * The secondary weapon of the ship.
@@ -126,106 +126,106 @@ public class PlayerSession {
 	/**
 	 * Get the ships maximum health points.
 	 */
-	public static int getShipHealthPoints() {
-		return PlayerSession.shipHealthPoints;
+	public static int getBaseHealthPoints() {
+		return PlayerSession.baseHealthPoints;
 	}
 	
 	/**
 	 * Set the ships maximum health points.
 	 */
-	public static void setShipHealthPoints(int shipHealthPoints) {
-		PlayerSession.shipHealthPoints = shipHealthPoints;
+	public static void setBaseHealthPoints(int baseHealthPoints) {
+		PlayerSession.baseHealthPoints = baseHealthPoints;
 	}
 	
 	/**
 	 * Add to the ships maximum health points.
 	 */
-	public static void addShipHealthPoints(int shipHealthPoints) {
-		PlayerSession.shipHealthPoints += shipHealthPoints;
+	public static void addBaseHealthPoints(int baseHealthPoints) {
+		PlayerSession.baseHealthPoints += baseHealthPoints;
 	}
 	
 	/**
 	 * Get the ships maximum shield points.
 	 */
-	public static int getShipShieldPoints() {
-		return PlayerSession.shipShieldPoints;
+	public static int getBaseShieldPoints() {
+		return PlayerSession.baseShieldPoints;
 	}
 	
 	/**
 	 * Set the ships maximum shield points.
 	 */
-	public static void setShipShieldPoints(int shipShieldPoints) {
-		PlayerSession.shipShieldPoints = shipShieldPoints;
+	public static void setBaseShieldPoints(int baseShieldPoints) {
+		PlayerSession.baseShieldPoints = baseShieldPoints;
 	}
 	
 	/**
 	 * Add to the ships maximum shield points.
 	 */
-	public static void addShipShieldPoints(int shipShieldPoints) {
-		PlayerSession.shipShieldPoints += shipShieldPoints;
+	public static void addBaseShieldPoints(int baseShieldPoints) {
+		PlayerSession.baseShieldPoints += baseShieldPoints;
 	}
 	
 	/**
 	 * Get the ships shot damage value.
 	 */
-	public static int getShipShotDamage() {
-		return PlayerSession.shipShotDamage;
+	public static int getBaseShotDamage() {
+		return PlayerSession.baseShotDamage;
 	}
 	
 	/**
 	 * Set the ships shot damage value.
 	 */
-	public static void setShipShotDamage(int shipShotDamage) {
-		PlayerSession.shipShotDamage = shipShotDamage;
+	public static void setBaseShotDamage(int baseShotDamage) {
+		PlayerSession.baseShotDamage = baseShotDamage;
 	}
 	
 	/**
 	 * Add to the ships shot damage value.
 	 */
-	public static void addShipShotDamage(int shipShotDamage) {
-		PlayerSession.shipShotDamage += shipShotDamage;
+	public static void addBaseShotDamage(int shipShotDamage) {
+		PlayerSession.baseShotDamage += shipShotDamage;
 	}
 
 	/**
 	 * Get the number of ship health upgrades the player bought in the shop.
 	 */
-	public static int getShipHealthUpgradesBought() {
-		return PlayerSession.shipHealthUpgadesBought;
+	public static int getBaseHealthUpgradesBought() {
+		return PlayerSession.baseHealthUpgadesBought;
 	}
 	
 	/**
 	 * Increment the number of ship health upgrades the player bought.
 	 */
-	public static void incrementShipHealthUpgradesBought() {
-		PlayerSession.shipHealthUpgadesBought++;
+	public static void incrementBaseHealthUpgradesBought() {
+		PlayerSession.baseHealthUpgadesBought++;
 	}
 
 	/**
 	 * Get the number of ship shield upgrades the player bought in the shop.
 	 */
-	public static int getShipShieldUpgradesBought() {
-		return PlayerSession.shipShieldUpgadesBought;
+	public static int getBaseShieldUpgradesBought() {
+		return PlayerSession.baseShieldUpgadesBought;
 	}
 
 	/**
 	 * Increment the number of ship shield upgrades the player bought.
 	 */
-	public static void incrementShipShieldUpgradesBought() {
-		PlayerSession.shipShieldUpgadesBought++;
+	public static void incrementBaseShieldUpgradesBought() {
+		PlayerSession.baseShieldUpgadesBought++;
 	}
 	
 	/**
 	 * Get the number of ship shot upgrades the player bought in the shop.
 	 */
-	public static int getShipShotUpgradesBought() {
-		return PlayerSession.shipShotUpgadesBought;
+	public static int getBaseShotUpgradesBought() {
+		return PlayerSession.baseShotUpgadesBought;
 	}
 
 	/**
 	 * Increment the number of ship shot upgrades the player bought.
 	 */
-	public static void incrementShipShotUpgradesBought() {
-		PlayerSession.shipShotUpgadesBought++;
+	public static void incrementBaseShotUpgradesBought() {
+		PlayerSession.baseShotUpgadesBought++;
 	}
 
 	/**
@@ -267,12 +267,12 @@ public class PlayerSession {
 		PlayerSession.score = 0;
 		PlayerSession.secondaryWeapon = 1;
 		PlayerSession.credits = 0;
-		PlayerSession.shipHealthPoints = GameConfig.initialPlayerHealthPoints;
-		PlayerSession.shipShieldPoints = GameConfig.initialPlayerShieldPoints;
-		PlayerSession.shipShotDamage = GameConfig.initialPlayerShotDamage;
-		PlayerSession.shipHealthUpgadesBought = 0;
-		PlayerSession.shipShieldUpgadesBought = 0;
-		PlayerSession.shipShotUpgadesBought = 0;
+		PlayerSession.baseHealthPoints = GameConfig.initialPlayerHealthPoints;
+		PlayerSession.baseShieldPoints = GameConfig.initialPlayerShieldPoints;
+		PlayerSession.baseShotDamage = GameConfig.initialPlayerShotDamage;
+		PlayerSession.baseHealthUpgadesBought = 0;
+		PlayerSession.baseShieldUpgadesBought = 0;
+		PlayerSession.baseShotUpgadesBought = 0;
 	}
 
 }

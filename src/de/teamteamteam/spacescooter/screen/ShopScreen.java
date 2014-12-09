@@ -35,9 +35,9 @@ public class ShopScreen extends Screen {
 		super(parent);
 		this.img = Loader.getBufferedImageByFilename("images/shopbackground.png");
 		new Button(GameConfig.windowWidth/2-125, 500);
-		damage = new ShopOffer(100, 150, 15, PlayerSession.getShipShotUpgradesBought(), "Schaden  5C");
-		shield = new ShopOffer(100, 225, 15, PlayerSession.getShipShieldUpgradesBought(), "Schild     10C");
-		life = new ShopOffer(100, 300, 15, PlayerSession.getShipHealthUpgradesBought(), "Leben     10C");
+		damage = new ShopOffer(100, 150, 15, PlayerSession.getBaseShotUpgradesBought(), "Schaden  5C");
+		shield = new ShopOffer(100, 225, 15, PlayerSession.getBaseShieldUpgradesBought(), "Schild     10C");
+		life = new ShopOffer(100, 300, 15, PlayerSession.getBaseHealthUpgradesBought(), "Leben     10C");
 		new ImageEntity(GameConfig.windowWidth / 2 - 120, 365, "images/shop/shoprocket.png");
 		new ImageEntity(GameConfig.windowWidth / 2 + 30, 365, "images/shop/shopbeam.png");
 		if(PlayerSession.getSecondsecondaryWeapon() == 1){
@@ -106,24 +106,24 @@ public class ShopScreen extends Screen {
 			case 0:
 				if(PlayerSession.getCredits() >= 5 && damage.getBought() < damage.getMax()){
 					damage.buy();
-					PlayerSession.addShipShotDamage(5);
-					PlayerSession.incrementShipShotUpgradesBought();
+					PlayerSession.addBaseShotDamage(5);
+					PlayerSession.incrementBaseShotUpgradesBought();
 					PlayerSession.removeCredits(5);
 				}
 				break;
 			case 1:
 				if(PlayerSession.getCredits() >= 10 && shield.getBought() < shield.getMax()){
 					shield.buy();
-					PlayerSession.addShipShieldPoints(10);
-					PlayerSession.incrementShipShieldUpgradesBought();
+					PlayerSession.addBaseShieldPoints(10);
+					PlayerSession.incrementBaseShieldUpgradesBought();
 					PlayerSession.removeCredits(10);
 				}
 				break;
 			case 2:
 				if(PlayerSession.getCredits() >= 10 && life.getBought() < life.getMax()){
 					life.buy();
-					PlayerSession.addShipHealthPoints(10);
-					PlayerSession.incrementShipHealthUpgradesBought();
+					PlayerSession.addBaseHealthPoints(10);
+					PlayerSession.incrementBaseHealthUpgradesBought();
 					PlayerSession.removeCredits(10);
 				}
 				break;
