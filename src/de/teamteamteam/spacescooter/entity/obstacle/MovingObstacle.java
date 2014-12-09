@@ -27,6 +27,7 @@ public abstract class MovingObstacle extends Obstacle {
 	 * Make the Obstacle move at its defined X- and Y-Delta.
 	 */
 	public void update() {
+		super.update();
 		this.transpose(this.xDelta, this.yDelta);
 	}
 

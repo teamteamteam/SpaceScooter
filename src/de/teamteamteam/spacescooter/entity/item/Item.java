@@ -38,9 +38,6 @@ public abstract class Item extends CollidableEntity {
 	 */
 	public void update(){
 		this.transpose(-1, 0);
-		if(this.getX() < this.getImageWidth()) {
-			this.remove();
-		}
 	}
 	
 	/**

@@ -4,16 +4,21 @@ import de.teamteamteam.spacescooter.background.CloudBackground;
 import de.teamteamteam.spacescooter.background.EarthBackground;
 import de.teamteamteam.spacescooter.background.StarBackground;
 import de.teamteamteam.spacescooter.brain.GameConfig;
+import de.teamteamteam.spacescooter.brain.PlayerSession;
+import de.teamteamteam.spacescooter.datastructure.ConcurrentIterator;
 import de.teamteamteam.spacescooter.entity.Entity;
 import de.teamteamteam.spacescooter.entity.Player;
+import de.teamteamteam.spacescooter.entity.enemy.Enemy;
 import de.teamteamteam.spacescooter.entity.enemy.EnemyBoss;
 import de.teamteamteam.spacescooter.entity.enemy.EnemyOne;
 import de.teamteamteam.spacescooter.entity.enemy.EnemyThree;
 import de.teamteamteam.spacescooter.entity.enemy.EnemyTwo;
+import de.teamteamteam.spacescooter.entity.obstacle.Obstacle;
 import de.teamteamteam.spacescooter.entity.obstacle.StoneOne;
 import de.teamteamteam.spacescooter.entity.obstacle.StoneThree;
 import de.teamteamteam.spacescooter.entity.obstacle.StoneTwo;
 import de.teamteamteam.spacescooter.screen.GameScreen;
+import de.teamteamteam.spacescooter.screen.Screen;
 import de.teamteamteam.spacescooter.sound.SoundSystem;
 import de.teamteamteam.spacescooter.utility.Loader;
 
@@ -55,15 +60,27 @@ public final class Level {
 	private int gameOverDelay;
 
 	/**
+	 * Tells how the game over has to be interpreted.
+	 * True - player won, False - player lost.
+	 */
+	private boolean playerWon;
+
+	/**
+	 * EntityIterator to evaluate the state of all the existing Entities.
+	 */
+	private ConcurrentIterator<Entity> entityIterator;
+	
+	/**
 	 * Constructor creating a LevelConfig based on a given config file.
 	 */
 	public Level(String levelConfig) {
 		this.levelClock = 0;
 		this.isGameOver = false;
+		this.playerWon = false;
 		this.gameOverDelay = 3;
 		this.config = Loader.getLevelConfigByFilename(levelConfig);
+		this.entityIterator = Screen.currentScreen.createEntityIterator();
 	}
-	
 	
 	/**
 	 * Initialize the level based on the LevelConfig attributes.
@@ -134,10 +151,29 @@ public final class Level {
 	/**
 	 * Evaluates things like whether the Player is alive or
 	 * - if there is a bossfight - if the boss is dead.
+	 * Also checks whether the player has survived everything (won)
 	 */
 	private void checkGameOverCondition() {
 		if(!GameScreen.getPlayer().isAlive()) {
 			this.isGameOver = true;
+			this.playerWon = false;
+		}
+		int enemyCounter = 0;
+		int obstacleCounter = 0;
+		this.entityIterator.reset();
+		while(this.entityIterator.hasNext()) {
+			Entity e = this.entityIterator.next();
+			if(e instanceof Enemy) enemyCounter++;
+			if(e instanceof Obstacle) obstacleCounter++;
+		}
+		
+		//use the currentIntervalIndex to determine whether there are things scheduled to spawn.
+		int currentIntervalIndex = this.config.getIntervalIndexByCurrentTime(this.levelClock);
+		if(enemyCounter == 0 && obstacleCounter == 0 && GameScreen.getPlayer().isAlive() && currentIntervalIndex == -1) {
+			this.isGameOver = true;
+			this.playerWon = true;
+			//Update the next Level
+			PlayerSession.setNextLevel(this.config.nextLevel);
 		}
 	}
 
@@ -149,6 +185,12 @@ public final class Level {
 		return (this.gameOverDelay == 0);
 	}
 	
+	/**
+	 * Tell whether the player won the game.
+	 */
+	public boolean playerHasWon() {
+		return this.playerWon;
+	}
 
 	/**
 	 * Clean up before the Level is torn down.

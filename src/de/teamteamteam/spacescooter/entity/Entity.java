@@ -201,6 +201,15 @@ public abstract class Entity implements Updateable, Paintable {
 	}
 	
 	/**
+	 * Make sure an Entity removes itself when off-screen.
+	 */
+	public void update() {
+		if(this.getX() + this.getImageWidth() < 0) {
+			this.remove();
+		}
+	}
+	
+	/**
 	 * Removes entity from the game by telling the current Screen
 	 * to remove it from its list.
 	 */

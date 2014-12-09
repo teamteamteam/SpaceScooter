@@ -57,6 +57,11 @@ public class PlayerSession {
 	 */
 	private static int secondaryWeapon;
 	
+	/**
+	 * The next level to load for the player.
+	 */
+	private static String nextLevel;
+	
 	
 	/**
 	 * Private constructor, this class will never be instantiated.
@@ -237,6 +242,19 @@ public class PlayerSession {
 		PlayerSession.secondaryWeapon = secondaryWeapon;
 	}
 	
+	/**
+	 * Get the next Level the player will play.
+	 */
+	public static String getNextLevel() {
+		return PlayerSession.nextLevel;
+	}
+
+	/**
+	 * Set the next Level the player will play.
+	 */
+	public static void setNextLevel(String nextLevel) {
+		PlayerSession.nextLevel = nextLevel;
+	}
 	
 	/**
 	 * This will reset all data from the players session.
@@ -245,6 +263,7 @@ public class PlayerSession {
 	 * (So the next player can start a fresh session.)
 	 */
 	public static void reset() {
+		PlayerSession.nextLevel = GameConfig.firstLevel;
 		PlayerSession.score = 0;
 		PlayerSession.secondaryWeapon = 1;
 		PlayerSession.credits = 0;
@@ -255,4 +274,5 @@ public class PlayerSession {
 		PlayerSession.shipShieldUpgadesBought = 0;
 		PlayerSession.shipShotUpgadesBought = 0;
 	}
+
 }
