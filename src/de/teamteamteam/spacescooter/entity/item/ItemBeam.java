@@ -11,7 +11,7 @@ public class ItemBeam extends Item {
 
 	@Override
 	public void itemCollected(Player player) {
-		player.addBeamAmount();;
+		player.addSecondaryWeaponAmount();
 	}
 
 }

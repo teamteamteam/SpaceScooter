@@ -26,14 +26,9 @@ public class Player extends ShootingEntity implements KeyboardListener {
 	private Keyboard keyboard;
 	
 	/**
-	 * Rocket Ammunition
+	 * Ammunition of the secondary weapon.
 	 */
-	private int rocketAmount;
-	
-	/**
-	 * Beam Ammunition
-	 */
-	private int beamAmount;
+	private int secondaryWeaponAmount;
 
 	/**
 	 * Cooldown countdown value to use in case
@@ -54,8 +49,7 @@ public class Player extends ShootingEntity implements KeyboardListener {
 	 */
 	public Player(int x, int y) {
 		super(x, y);
-		this.rocketAmount = 1;
-		this.beamAmount = 1;
+		this.secondaryWeaponAmount = 0;
 		this.collisionCooldown = 150;
 		this.currentCollisionCooldown = 0;
 		this.setImage("images/ship.png");
@@ -113,10 +107,12 @@ public class Player extends ShootingEntity implements KeyboardListener {
 			this.shoot();
 		}
 		if(Keyboard.isKeyDown(KeyEvent.VK_Y)) {
-			if(PlayerSession.getSecondsecondaryWeapon() == 1 && this.rocketAmount > 0) {
-				this.shootRocket();
-			}else if(PlayerSession.getSecondsecondaryWeapon() == 2 && this.beamAmount > 0) {
-				this.shootBeam();
+			if(this.secondaryWeaponAmount > 0){				
+				if(PlayerSession.getSecondsecondaryWeapon() == 1) {
+					this.shootRocket();
+				}else if(PlayerSession.getSecondsecondaryWeapon() == 2) {
+					this.shootBeam();
+				}
 			}
 		}
 	}
@@ -223,46 +219,34 @@ public class Player extends ShootingEntity implements KeyboardListener {
 	@Override
 	public void createRocket() {
 		super.createRocket();
-		this.removeRocketAmount();
+		this.removeSecondaryWeaponAmount();
 	}
 	
 	@Override
 	public void createBeam() {
 		super.createBeam();
-		this.removeBeamAmount();
+		this.removeSecondaryWeaponAmount();
 	}
 	
 	/**
-	 *  Get the current rocket amount.
+	 *  Get the current secondary weapon amount.
 	 */
-	public int getRocketAmount(){
-		return rocketAmount;
+	public int getSecondaryWeaponAmount(){
+		return secondaryWeaponAmount;
 	}
-	
-	public int getBeamAmount(){
-		return beamAmount;
+	/**
+	 *  Add one secondary weapon amount.
+	 */
+	public void addSecondaryWeaponAmount(){
+		secondaryWeaponAmount++;
 	}
 	
 	/**
-	 *  Add one rocket.
+	 *  Remove one secondary weapon amount.
 	 */
-	public void addRocketAmount(){
-		rocketAmount++;
+	public void removeSecondaryWeaponAmount(){
+		secondaryWeaponAmount--;
 	}
 	
-	public void addBeamAmount(){
-		beamAmount++;
-	}
-	
-	/**
-	 *  Remove one rocket.
-	 */
-	public void removeRocketAmount(){
-		rocketAmount--;
-	}
-	
-	public void removeBeamAmount(){
-		beamAmount--;
-	}
 	
 }

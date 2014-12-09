@@ -4,13 +4,10 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
-import java.awt.image.BufferedImage;
-
 import de.teamteamteam.spacescooter.brain.GameConfig;
 import de.teamteamteam.spacescooter.control.Keyboard;
-import de.teamteamteam.spacescooter.entity.Player;
 import de.teamteamteam.spacescooter.gui.Button;
-import de.teamteamteam.spacescooter.utility.Loader;
+import de.teamteamteam.spacescooter.gui.ImageEntity;
 
 /**
  * This GamePausedScreen shows up when the user pressed VK_ESCAPE ingame.
@@ -19,9 +16,8 @@ import de.teamteamteam.spacescooter.utility.Loader;
  */
 public class GamePausedScreen extends Screen {
 
-	private BufferedImage img;
-	private Player player;
-	private float playerMoveSpeed = 0;
+	private ImageEntity cursor;
+	private float cursorMoveSpeed = 0;
 	private int colorValue = 0;
 	private boolean colorValueIncrease = true;
 	private int menuPoint = 0;
@@ -29,17 +25,14 @@ public class GamePausedScreen extends Screen {
 	
 	public GamePausedScreen(Screen parent) {
 		super(parent);
-		this.img = Loader.getBufferedImageByFilename("images/pausebackground.png");
+		new ImageEntity(0, 0, "images/pausebackground.png");
 		new Button(GameConfig.windowWidth/2-125, 300);
 		new Button(GameConfig.windowWidth/2-125, 400);
-		player = new Player(GameConfig.windowWidth/2-170, 309);
-		player.setCanMove(false);
-		player.setCanShoot(false);
+		this.cursor = new ImageEntity(GameConfig.windowWidth/2-170, 309, "images/ship.png");
 	}
 
 	@Override
 	protected void paint(Graphics2D g) {
-		g.drawImage(this.img, 0, 0, null);
 		this.entityPaintIterator.reset();
 		while (this.entityPaintIterator.hasNext()) {
 			this.entityPaintIterator.next().paint(g);
@@ -70,11 +63,11 @@ public class GamePausedScreen extends Screen {
 				
 		if(Keyboard.isKeyDown(KeyEvent.VK_DOWN) && this.animationStatus == 0) {
 			this.menuPoint = 1;
-			player.setPosition(player.getX(), 409);
+			cursor.setPosition(cursor.getX(), 409);
 		}
 		if(Keyboard.isKeyDown(KeyEvent.VK_UP) && this.animationStatus == 0) {
 			this.menuPoint = 0;
-			player.setPosition(player.getX(), 309);
+			cursor.setPosition(cursor.getX(), 309);
 		}
 		
 		// make a selection
@@ -83,9 +76,9 @@ public class GamePausedScreen extends Screen {
 		}
 		
 		if(this.animationStatus == 1) {
-			if(player.getX() <= GameConfig.windowWidth) {
-				player.setPosition(player.getX() + (int)playerMoveSpeed, player.getY());
-				playerMoveSpeed += 0.1;
+			if(cursor.getX() <= GameConfig.windowWidth) {
+				cursor.setPosition(cursor.getX() + (int)cursorMoveSpeed, cursor.getY());
+				cursorMoveSpeed += 0.1;
 			} else this.animationStatus = 2;
 		} else if(this.animationStatus == 2) {
 			switch (this.menuPoint) {

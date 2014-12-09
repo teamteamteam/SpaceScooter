@@ -138,6 +138,7 @@ public class Loader {
 		}
 	}
 
+
 	/**
 	 * Preload a LevelConfig by simply parsing it into a LevelConfig object.
 	 */
@@ -211,5 +212,4 @@ public class Loader {
 			e.printStackTrace();
 		}
 	}
-
 }

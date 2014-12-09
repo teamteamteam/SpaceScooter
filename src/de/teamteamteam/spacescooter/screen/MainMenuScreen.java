@@ -7,17 +7,18 @@ import java.awt.event.KeyEvent;
 
 import de.teamteamteam.spacescooter.background.StarBackground;
 import de.teamteamteam.spacescooter.brain.GameConfig;
+import de.teamteamteam.spacescooter.brain.PlayerSession;
 import de.teamteamteam.spacescooter.control.Keyboard;
-import de.teamteamteam.spacescooter.entity.Player;
 import de.teamteamteam.spacescooter.gui.Button;
+import de.teamteamteam.spacescooter.gui.ImageEntity;
 
 /**
  * This Screen show the games main menu.
  */
 public class MainMenuScreen extends Screen {
 
-	private Player player;
-	private float playerMoveSpeed = 0;
+	private ImageEntity cursor;
+	private float cursorMoveSpeed = 0;
 	private int colorValue = 0;
 	private boolean colorValueIncrease = true;
 	private int menuPoint = 0;
@@ -32,9 +33,7 @@ public class MainMenuScreen extends Screen {
 		new Button(GameConfig.windowWidth/2-125, 350);
 		new Button(GameConfig.windowWidth/2-125, 425);
 		new Button(GameConfig.windowWidth/2-125, 500);
-		player = new Player(GameConfig.windowWidth/2-170, 209);
-		player.setCanMove(false);
-		player.setCanShoot(false);
+		this.cursor = new ImageEntity(GameConfig.windowWidth/2-170, 209, "images/ship.png");
 	}
 
 	@Override
@@ -74,13 +73,13 @@ public class MainMenuScreen extends Screen {
 			keyPressed = true;
 			if(menuPoint<4){
 				menuPoint++;
-				player.setPosition(player.getX(), 209+(menuPoint*75));
+				cursor.setPosition(cursor.getX(), 209+(menuPoint*75));
 			}
 		} else if(Keyboard.isKeyDown(KeyEvent.VK_UP) && !keyPressed && animationStatus == 0) {
 			keyPressed = true;
 			if(menuPoint>0) {
 				menuPoint--;
-				player.setPosition(player.getX(), 209+(menuPoint*75));
+				cursor.setPosition(cursor.getX(), 209+(menuPoint*75));
 			}
 		} else if(!Keyboard.isKeyDown(KeyEvent.VK_DOWN) && !Keyboard.isKeyDown(KeyEvent.VK_UP)) {
 			keyPressed = false;
@@ -92,9 +91,9 @@ public class MainMenuScreen extends Screen {
 		}
 		
 		if(animationStatus == 1) {
-			if(player.getX() <= GameConfig.windowWidth) {
-				player.setPosition(player.getX() + (int) playerMoveSpeed, player.getY());
-				playerMoveSpeed += 0.1;
+			if(cursor.getX() <= GameConfig.windowWidth) {
+				cursor.setPosition(cursor.getX() + (int) cursorMoveSpeed, cursor.getY());
+				cursorMoveSpeed += 0.1;
 			} else animationStatus = 2;
 		} else if(animationStatus == 2) {
 			switch (menuPoint) {

@@ -11,7 +11,7 @@ public class ItemRocket extends Item {
 
 	@Override
 	public void itemCollected(Player player) {
-		player.addRocketAmount();
+		player.addSecondaryWeaponAmount();
 	}
 
 }

@@ -10,6 +10,9 @@ import de.teamteamteam.spacescooter.screen.GameScreen;
 
 public class SecondaryWeaponAmount extends Entity{
 	
+	/**
+	 * Show the current secondary weapon amount in the interface bar.
+	 */
 	public SecondaryWeaponAmount(int x, int y) {
 		super(x, y);
 		if(PlayerSession.getSecondsecondaryWeapon() == 1){
@@ -23,11 +26,8 @@ public class SecondaryWeaponAmount extends Entity{
 	public void paint(Graphics2D g) {
 		g.setColor(Color.WHITE);
 		g.setFont(new Font("Monospace", 0, 16));
-		if(PlayerSession.getSecondsecondaryWeapon() == 1){
-			g.drawString("x " + GameScreen.getPlayer().getRocketAmount(), this.getX() + 30, this.getY() + 12);
-		}else{
-			g.drawString("x " + GameScreen.getPlayer().getBeamAmount(), this.getX() + 30, this.getY() + 12);
-		}
+		g.drawString("x " + GameScreen.getPlayer().getSecondaryWeaponAmount(), this.getX() + 30, this.getY() + 12);
+		
 	}
 	
 	@Override
