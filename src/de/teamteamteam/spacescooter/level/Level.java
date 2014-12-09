@@ -1,5 +1,8 @@
 package de.teamteamteam.spacescooter.level;
 
+import java.awt.Point;
+import java.util.ArrayList;
+
 import de.teamteamteam.spacescooter.background.CloudBackground;
 import de.teamteamteam.spacescooter.background.EarthBackground;
 import de.teamteamteam.spacescooter.background.StarBackground;
@@ -10,6 +13,7 @@ import de.teamteamteam.spacescooter.entity.Entity;
 import de.teamteamteam.spacescooter.entity.Player;
 import de.teamteamteam.spacescooter.entity.enemy.Enemy;
 import de.teamteamteam.spacescooter.entity.enemy.EnemyBoss;
+import de.teamteamteam.spacescooter.entity.enemy.EnemyFour;
 import de.teamteamteam.spacescooter.entity.enemy.EnemyOne;
 import de.teamteamteam.spacescooter.entity.enemy.EnemyThree;
 import de.teamteamteam.spacescooter.entity.enemy.EnemyTwo;
@@ -17,6 +21,7 @@ import de.teamteamteam.spacescooter.entity.obstacle.Obstacle;
 import de.teamteamteam.spacescooter.entity.obstacle.StoneOne;
 import de.teamteamteam.spacescooter.entity.obstacle.StoneThree;
 import de.teamteamteam.spacescooter.entity.obstacle.StoneTwo;
+import de.teamteamteam.spacescooter.gui.LevelHeadline;
 import de.teamteamteam.spacescooter.screen.GameScreen;
 import de.teamteamteam.spacescooter.screen.Screen;
 import de.teamteamteam.spacescooter.sound.SoundSystem;
@@ -83,12 +88,14 @@ public final class Level {
 	}
 	
 	/**
-	 * Initialize the level based on the LevelConfig attributes.
+	 * Initialize the level based on the LevelConfig attributes,
+	 * show the level name in a LevelHeadline.
 	 */
 	public void doBuildUp() {
-		this.spawnEntityByAvailableName(Entity.availableNames.valueOf(this.config.background), 0, 50);
+		this.spawnEntityByAvailableName(Entity.availableNames.valueOf(this.config.background), 0, 50, null);
 		GameScreen.setPlayer(new Player(200, 300));
 		this.backgroundMusic = SoundSystem.playSound(this.config.backgroundMusic);
+		new LevelHeadline(100,100, this.config.name);
 	}
 	
 	/**
@@ -116,21 +123,30 @@ public final class Level {
 			 * - 2: Amount - The amount of Entities to spawn at a time.
 			 * - 3: SpawnRate - The rate at which the Entities are supposed to be spawned.
 			 * - 4: SpawnPosition - percentage of GameConfig.windowHeight - Where the Enemy shall spawn.
+			 * - 5: Points - points for EnemyFour
 			 */
-			for(int[] spawnRule : this.config.spawnRuleList) {
+			for(String[] spawnRule : this.config.spawnRuleList) {
 				//Skip spawn rules that are not in the current spawn interval.
-				if(spawnRule[0] != currentIntervalIndex) continue;
+				if(Integer.parseInt(spawnRule[0]) != currentIntervalIndex) continue;
 				//Divide the current interval by spawnrate
-				int intervalModulus = intervalLength / spawnRule[3];
+				int intervalModulus = intervalLength / Integer.parseInt(spawnRule[3]);
 				//Check whether the spawn rate strikes right now.
 				if(relativeTimeWithinCurrentInterval % Math.max(1,intervalModulus) == 0) {
 					//If the rule matches the current time, spawn the configured Entity in the configured amount:
-					for(int i=0; i<spawnRule[2]; i++) {
+					for(int i=0; i<Integer.parseInt(spawnRule[2]); i++) {
+						ArrayList<Point> points = null;
 						//Minus one because the upper border is _excluded_ from the range!
 						int x = GameConfig.gameScreenWidth + GameConfig.gameScreenXOffset - 1;
+						if (!spawnRule[5].equals("")) {
+							points = new ArrayList<Point>();
+							String [] lol = spawnRule[5].split(";");
+							for(int run = 0; run < lol.length; run = run+2) {
+								points.add(new Point(Integer.parseInt(lol[run]),Integer.parseInt(lol[run+1])));
+							}
+						}
 						//Minus one because the upper border is _excluded_ from the range!
-						int y = Math.round((GameConfig.gameScreenHeight * spawnRule[4]) / 100) + GameConfig.gameScreenYOffset - 1;
-						this.spawnEntityByAvailableName(Entity.availableNames.values()[spawnRule[1]], x, y);
+						int y = Math.round((GameConfig.gameScreenHeight * Integer.parseInt(spawnRule[4])) / 100) + GameConfig.gameScreenYOffset - 1;
+						this.spawnEntityByAvailableName(Entity.availableNames.values()[Integer.parseInt(spawnRule[1])], x, y, points);
 					}
 				}
 			}
@@ -207,7 +223,7 @@ public final class Level {
 	 * Spawn an Entity by name on the given position.
 	 * Uses Entity.availableNames to determine the actual Entity to spawn.
 	 */
-	private void spawnEntityByAvailableName(Entity.availableNames entity, int x, int y) {
+	private void spawnEntityByAvailableName(Entity.availableNames entity, int x, int y, ArrayList<Point> points) {
 		switch(entity) {
 			case StarBackground:
 				new StarBackground(x, y);
@@ -228,7 +244,7 @@ public final class Level {
 				new EnemyThree(x, y);
 				break;
 			case EnemyFour:
-				//TODO: FIX CONSTRUCTOR new EnemyFour(x, y);
+				new EnemyFour(x, y, points);
 				break;
 			case EnemyBoss:
 				new EnemyBoss(x, y);
@@ -247,5 +263,4 @@ public final class Level {
 				break;
 		}
 	}
-
 }

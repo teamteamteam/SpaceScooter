@@ -117,7 +117,7 @@ public class Keyboard implements KeyListener {
 		}
 		if(e.getKeyCode() == KeyEvent.VK_4) {
 			ArrayList<Point> points = new ArrayList<Point>();
-			points.add(new Point(398,306));;
+			points.add(new Point(398,306));
 			points.add(new Point(10,300));
 			new EnemyFour(700,51,points);
 		}
