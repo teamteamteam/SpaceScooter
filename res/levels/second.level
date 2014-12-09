@@ -1,7 +1,7 @@
-name:Testlevel \o/
+name:Level Zwai! :D
 backgroundMusic:music/ScooterFriendsTurbo8Bit.wav
-background:CloudBackground
-nextLevel:levels/second.level
+background:EarthBackground
+nextLevel:
 -
 [0-1]
 spawn:EnemyBoss,1,1,50

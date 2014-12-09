@@ -29,6 +29,11 @@ public class LevelConfig {
 	public String backgroundMusic;
 	
 	/**
+	 * The name of the level that will come after this one.
+	 */
+	public String nextLevel;
+	
+	/**
 	 * Intervals have a start and an end.
 	 * They are put within this list in a sorted manner, ascending in values.
 	 * They are guaranteed to not overlap.
@@ -62,6 +67,8 @@ public class LevelConfig {
 		sb.append(this.background);
 		sb.append(" backgroundMusic=");
 		sb.append(this.backgroundMusic);
+		sb.append(" nextLevelName=");
+		sb.append(this.nextLevel);
 		sb.append("\\\n\tRules:\n");
 		for(int[] rule : this.spawnRuleList) {
 			sb.append("\t");

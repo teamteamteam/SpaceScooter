@@ -70,6 +70,8 @@ public class LevelConfigParser {
 							this.levelConfig.background = linePieces[1];
 						} else if (linePieces[0].equals("backgroundMusic")) {
 							this.levelConfig.backgroundMusic = linePieces[1];
+						} else if (linePieces[0].equals("nextLevel")) {
+							this.levelConfig.nextLevel = linePieces[1];
 						} else {
 							throw new LevelConfigException("[LevelConfigParser] Unknown attribute in line: '" + line + "'");
 						}
@@ -104,6 +106,12 @@ public class LevelConfigParser {
 					throw new LevelConfigException("[LevelConfigParser] Where am i?!");
 			}
 		}
+		
+		//Set the nextLevel to null explicitly, so it is easy to detect.
+		if(this.levelConfig.nextLevel.equals("")) {
+			this.levelConfig.nextLevel = null;
+		}
+		
 		return this.levelConfig;
 	}
 	

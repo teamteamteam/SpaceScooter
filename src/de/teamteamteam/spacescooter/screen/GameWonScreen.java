@@ -7,18 +7,16 @@ import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 
 import de.teamteamteam.spacescooter.brain.GameConfig;
-import de.teamteamteam.spacescooter.brain.PlayerSession;
 import de.teamteamteam.spacescooter.control.Keyboard;
 import de.teamteamteam.spacescooter.entity.Player;
 import de.teamteamteam.spacescooter.gui.Button;
 import de.teamteamteam.spacescooter.utility.Loader;
 
 /**
- * This is the GameOverScreen, which is displayed once the player
- * died and the game is over.
- * It allows to start a new game or going to the MainMenuScreen.
+ * This Screen is shown after the player has beaten a level, so he can enter the shop
+ * and do some various things before entering the next level.
  */
-public class GameOverScreen extends Screen {
+public class GameWonScreen extends Screen {
 
 	private BufferedImage img;
 	private Player player;
@@ -28,7 +26,7 @@ public class GameOverScreen extends Screen {
 	private int menuPoint = 0;
 	private int animationStatus = 0; //0 = Noch nicht gestartet, 1 = Animation läuft, 2 = Animation beendet
 	
-	public GameOverScreen(Screen parent) {
+	public GameWonScreen(Screen parent) {
 		super(parent);
 		this.img = Loader.getBufferedImageByFilename("images/pausebackground.png");
 		new Button(GameConfig.windowWidth/2-125, 300);
@@ -36,10 +34,6 @@ public class GameOverScreen extends Screen {
 		player = new Player(GameConfig.windowWidth/2-170, 309);
 		player.setCanMove(false);
 		player.setCanShoot(false);
-		
-		//Reset the player session for the next player.
-		//TODO: Make sure highscore "enter name" stuff happened before!
-		PlayerSession.reset();
 	}
 
 	@Override
@@ -51,10 +45,10 @@ public class GameOverScreen extends Screen {
 		}
 		g.setFont(new Font("Monospace", 0, 100));
 		g.setColor(new Color(75 + colorValue, 175 + colorValue, 175 + colorValue));
-		g.drawString("Game Over", GameConfig.windowWidth/2-290, 200);
+		g.drawString("You win!", GameConfig.windowWidth/2-290, 200);
 		g.setFont(new Font("Monospace", 0, 20));
 		g.setColor(new Color(0, 0, 0));
-		g.drawString("Wiederholen", GameConfig.windowWidth/2-60, 332);
+		g.drawString("Weiter zum nächsten Abenteuer! :D", GameConfig.windowWidth/2-60, 332);
 		g.drawString("Hauptmen\u00fc", GameConfig.windowWidth/2-60, 432);
 	}
 
