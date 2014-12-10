@@ -17,7 +17,7 @@ public class EnemyBoss extends Enemy{
 		this.setShootDelay(50);
 		this.setShootSpawn(-10, 30);
 		this.setShootDamage(20);
-		this.setHealthPoints(300);
+		this.setHealthPoints(500);
 		this.setCollisionDamage(50);
 		this.setScore(5000);
 		this.willShoot = true;

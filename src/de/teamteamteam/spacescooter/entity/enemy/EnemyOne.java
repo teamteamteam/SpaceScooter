@@ -13,7 +13,7 @@ public class EnemyOne extends Enemy {
 		this.setShootSpawn(-8, 10);
 		this.setShootDamage(5);
 		this.setCollisionDamage(5);
-		this.setHealthPoints(5);
+		this.setHealthPoints(100); // NyanCats are strong!
 		this.setScore(10);
 	}
 
