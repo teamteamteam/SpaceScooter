@@ -7,6 +7,7 @@ import de.teamteamteam.spacescooter.brain.Highscore;
 import de.teamteamteam.spacescooter.brain.PlayerSession;
 import de.teamteamteam.spacescooter.control.Keyboard;
 import de.teamteamteam.spacescooter.entity.Player;
+import de.teamteamteam.spacescooter.fx.EffectMaster;
 import de.teamteamteam.spacescooter.gui.HealthBar;
 import de.teamteamteam.spacescooter.gui.InterfaceBar;
 import de.teamteamteam.spacescooter.gui.ScoreBar;
@@ -60,6 +61,7 @@ public class GameScreen extends Screen {
 	 */
 	@Override
 	protected void paint(Graphics2D g) {
+		EffectMaster.applyEffects(g); //Apply optional effects.
 		this.entityPaintIterator.reset();
 		while (this.entityPaintIterator.hasNext()) {
 			this.entityPaintIterator.next().paint(g);
