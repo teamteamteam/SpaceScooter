@@ -23,14 +23,12 @@ public class GameWonScreen extends Screen {
 	private float playerMoveSpeed = 0;
 	private int colorValue = 0;
 	private boolean colorValueIncrease = true;
-	private int menuPoint = 0;
 	private int animationStatus = 0; //0 = Noch nicht gestartet, 1 = Animation läuft, 2 = Animation beendet
 	
 	public GameWonScreen(Screen parent) {
 		super(parent);
 		this.img = Loader.getBufferedImageByFilename("images/pausebackground.png");
 		new Button(GameConfig.windowWidth/2-125, 300);
-		new Button(GameConfig.windowWidth/2-125, 400);
 		player = new Player(GameConfig.windowWidth/2-170, 309);
 		player.setCanMove(false);
 		player.setCanShoot(false);
@@ -65,15 +63,6 @@ public class GameWonScreen extends Screen {
 			this.colorValue -= 2;
 			if(this.colorValue < -70) this.colorValueIncrease = true;
 		}
-				
-		if(Keyboard.isKeyDown(KeyEvent.VK_DOWN) && this.animationStatus == 0){
-			this.menuPoint = 1;
-			player.setPosition(player.getX(), 409);
-		}
-		if(Keyboard.isKeyDown(KeyEvent.VK_UP) && this.animationStatus == 0){
-			this.menuPoint = 0;
-			player.setPosition(player.getX(), 309);
-		}
 		
 		// make a selection
 		if(Keyboard.isKeyDown(KeyEvent.VK_ENTER) || Keyboard.isKeyDown(KeyEvent.VK_SPACE)) {
@@ -83,13 +72,11 @@ public class GameWonScreen extends Screen {
 			if(player.getX() <= GameConfig.windowWidth) {
 				player.setPosition(player.getX() + (int) playerMoveSpeed, player.getY());
 				playerMoveSpeed += 0.1;
-			} else this.animationStatus = 2;
-		} else if(this.animationStatus == 2) {
-			switch (this.menuPoint) {
-				case 0:
-					this.parent.setOverlay(new ShopScreen(this.parent));
-					break;
+			} else {
+				this.animationStatus = 2;
 			}
+		} else if(this.animationStatus == 2) {
+			this.parent.setOverlay(new ShopScreen(this.parent));
 		}
 	}
 
