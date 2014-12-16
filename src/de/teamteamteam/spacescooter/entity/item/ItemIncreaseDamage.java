@@ -17,7 +17,7 @@ public class ItemIncreaseDamage extends Item {
 		if(player.getShootDamage() > 25) {
 			return;
 		} else {
-			player.setShootDamage(player.getShootDamage()+5);
+			player.setShootDamage(player.getShootDamage()+1);
 		}
 	}
 

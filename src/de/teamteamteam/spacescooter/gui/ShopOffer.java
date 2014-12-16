@@ -10,18 +10,26 @@ public class ShopOffer extends Entity {
 
 	private String offer;
 	private int bought;
-	private int max;
+	private final int max = 15;
+	private final int price;
+	private int currentPrice;
+	private ImageEntity displayPrice;
 	
-	public ShopOffer(int x, int y, int max, int bought, String offer) {
+	public ShopOffer(int x, int y, int bought, String offer, int price) {
 		super(x, y);
 		this.offer = offer;
 		this.bought = bought;
-		this.max = max;
+		this.price = price;
+		if(bought == 0) this.currentPrice = price;
+		else this.currentPrice = (int) (price+(price*bought*1.36));
+		this.displayPrice = new ImageEntity(185, y+20, null);
+		if(this.bought<this.max) this.displayPrice.drawString(String.valueOf(this.currentPrice) + "C", 20, Color.WHITE);
+		else this.displayPrice.drawString("---", 20, Color.WHITE);
 		for (int i = 0; i<max; i++){
 			if(i<bought){
-				new ImageEntity(x + 140 + i*35, y - 3, "images/shop/shopbought.png");
+				new ImageEntity(x + 150 + i*35, y - 3, "images/shop/shopbought.png");
 			}else{
-				new ImageEntity(x + 140 + i*35, y - 3, "images/shop/shopnotbought.png");
+				new ImageEntity(x + 150 + i*35, y - 3, "images/shop/shopnotbought.png");
 			}
 		}
 	}
@@ -36,8 +44,11 @@ public class ShopOffer extends Entity {
 	public void update() {}
 	
 	public void buy(){
-		new ImageEntity(this.getX() + 140 + bought*35, this.getY() - 3, "images/shop/shopbought.png");
+		new ImageEntity(this.getX() + 150 + bought*35, this.getY() - 3, "images/shop/shopbought.png");
 		bought++;
+		this.currentPrice = (int) (price+(price*bought*1.36));
+		if(this.bought<this.max) this.displayPrice.drawString(String.valueOf(this.currentPrice) + "C", 20, Color.WHITE);
+		else this.displayPrice.drawString("----", 20, Color.WHITE);
 	}
 
 	public int getBought() {
@@ -46,6 +57,10 @@ public class ShopOffer extends Entity {
 
 	public int getMax() {
 		return max;
+	}
+	
+	public int getCurrentPrice(){
+		return this.currentPrice;
 	}
 }
 	

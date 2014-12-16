@@ -30,9 +30,9 @@ public class ShopScreen extends Screen {
 		super(parent);
 		new ImageEntity(0, 0, "images/shopbackground.png");
 		new Button(GameConfig.windowWidth/2-125, 500);
-		damage = new ShopOffer(100, 150, 15, PlayerSession.getBaseShotUpgradesBought(), "Schaden  5C");
-		shield = new ShopOffer(100, 225, 15, PlayerSession.getBaseShieldUpgradesBought(), "Schild     10C");
-		life = new ShopOffer(100, 300, 15, PlayerSession.getBaseHealthUpgradesBought(), "Leben     10C");
+		damage = new ShopOffer(90, 150, PlayerSession.getBaseShotUpgradesBought(), "Schaden", 5);
+		shield = new ShopOffer(90, 225, PlayerSession.getBaseShieldUpgradesBought(), "Schild", 10);
+		life = new ShopOffer(90, 300, PlayerSession.getBaseHealthUpgradesBought(), "Leben", 10);
 		new ImageEntity(GameConfig.windowWidth / 2 - 120, 365, "images/shop/shoprocket.png");
 		new ImageEntity(GameConfig.windowWidth / 2 + 30, 365, "images/shop/shopbeam.png");
 		if(PlayerSession.getSecondaryWeapon() == 1){
@@ -40,7 +40,7 @@ public class ShopScreen extends Screen {
 		}else{
 			select = new ImageEntity(GameConfig.windowWidth / 2 + 20, 355, "images/shop/select.png");
 		}
-		this.cursor = new ImageEntity(50, 149, "images/ship.png");
+		this.cursor = new ImageEntity(40, 149, "images/ship.png");
 	}
 
 	@Override
@@ -83,7 +83,7 @@ public class ShopScreen extends Screen {
 				if(menuPoint == 3){
 					this.cursor.setPosition(GameConfig.windowWidth/2-180, 390);
 				}else{
-					this.cursor.setPosition(50, 149+(this.menuPoint*75));
+					this.cursor.setPosition(40, 149+(this.menuPoint*75));
 				}
 			}
 			
@@ -94,27 +94,27 @@ public class ShopScreen extends Screen {
 			this.keyPressed = true;
 			switch (this.menuPoint) {
 			case 0:
-				if(PlayerSession.getCredits() >= 5 && damage.getBought() < damage.getMax()){
-					damage.buy();
-					PlayerSession.addBaseShotDamage(5);
+				if(PlayerSession.getCredits() >= damage.getCurrentPrice() && damage.getBought() < damage.getMax()){
+					PlayerSession.addBaseShotDamage(2);
 					PlayerSession.incrementBaseShotUpgradesBought();
-					PlayerSession.removeCredits(5);
+					PlayerSession.removeCredits(damage.getCurrentPrice());
+					damage.buy();
 				}
 				break;
 			case 1:
-				if(PlayerSession.getCredits() >= 10 && shield.getBought() < shield.getMax()){
-					shield.buy();
+				if(PlayerSession.getCredits() >= shield.getCurrentPrice() && shield.getBought() < shield.getMax()){
 					PlayerSession.addBaseShieldPoints(10);
 					PlayerSession.incrementBaseShieldUpgradesBought();
-					PlayerSession.removeCredits(10);
+					PlayerSession.removeCredits(shield.getCurrentPrice());
+					shield.buy();
 				}
 				break;
 			case 2:
-				if(PlayerSession.getCredits() >= 10 && life.getBought() < life.getMax()){
-					life.buy();
+				if(PlayerSession.getCredits() >= life.getCurrentPrice() && life.getBought() < life.getMax()){
 					PlayerSession.addBaseHealthPoints(10);
 					PlayerSession.incrementBaseHealthUpgradesBought();
-					PlayerSession.removeCredits(10);
+					PlayerSession.removeCredits(life.getCurrentPrice());
+					life.buy();
 				}
 				break;
 			case 3:
