@@ -167,8 +167,11 @@ public class EnterHighscoreScreen extends Screen {
 						eingabeName += letters[i].getText();
 					}
 				}
-				Highscore.newScore(this.score, eingabeName);
-				animationStatus = 1;
+				//Make sure the player entered a name.
+				if(eingabeName.equals("") == false) {
+					Highscore.newScore(this.score, eingabeName);
+					animationStatus = 1;
+				}
 			}else{
 				if(this.enteredLetter < 10)	this.searchForChar();
 			}
