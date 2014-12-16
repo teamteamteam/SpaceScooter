@@ -15,7 +15,7 @@ public class SecondaryWeaponAmount extends Entity{
 	 */
 	public SecondaryWeaponAmount(int x, int y) {
 		super(x, y);
-		if(PlayerSession.getSecondsecondaryWeapon() == 1){
+		if(PlayerSession.getSecondaryWeapon() == 1){
 			new ImageEntity(this.getX(), this.getY(), "images/shots/rocket.png");
 		}else{
 			new ImageEntity(this.getX(), this.getY(), "images/shots/beamamount.png");

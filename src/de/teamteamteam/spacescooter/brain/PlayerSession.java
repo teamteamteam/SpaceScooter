@@ -231,14 +231,14 @@ public class PlayerSession {
 	/**
 	 * Get the secondary weapon.
 	 */
-	public static int getSecondsecondaryWeapon(){
+	public static int getSecondaryWeapon(){
 		return PlayerSession.secondaryWeapon;
 	}
 	
 	/**
 	 * Set the secondary weapon.
 	 */
-	public static void setSecondsecondaryWeapon(int secondaryWeapon){
+	public static void setSecondaryWeapon(int secondaryWeapon){
 		PlayerSession.secondaryWeapon = secondaryWeapon;
 	}
 	

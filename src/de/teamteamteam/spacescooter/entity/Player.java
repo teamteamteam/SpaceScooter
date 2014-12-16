@@ -108,9 +108,9 @@ public class Player extends ShootingEntity implements KeyboardListener {
 		}
 		if(Keyboard.isKeyDown(KeyEvent.VK_Y)) {
 			if(this.secondaryWeaponAmount > 0){				
-				if(PlayerSession.getSecondsecondaryWeapon() == 1) {
+				if(PlayerSession.getSecondaryWeapon() == 1) {
 					this.shootRocket();
-				}else if(PlayerSession.getSecondsecondaryWeapon() == 2) {
+				}else if(PlayerSession.getSecondaryWeapon() == 2) {
 					this.shootBeam();
 				}
 			}

@@ -92,7 +92,7 @@ public abstract class Item extends CollidableEntity {
 				new ItemShield(x, y);
 				break;
 			case 4:
-				if(PlayerSession.getSecondsecondaryWeapon() == 1){
+				if(PlayerSession.getSecondaryWeapon() == 1){
 					new ItemRocket(x, y);
 				}else{
 					new ItemBeam(x, y);

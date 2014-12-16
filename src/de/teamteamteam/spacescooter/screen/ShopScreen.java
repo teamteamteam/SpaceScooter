@@ -35,7 +35,7 @@ public class ShopScreen extends Screen {
 		life = new ShopOffer(100, 300, 15, PlayerSession.getBaseHealthUpgradesBought(), "Leben     10C");
 		new ImageEntity(GameConfig.windowWidth / 2 - 120, 365, "images/shop/shoprocket.png");
 		new ImageEntity(GameConfig.windowWidth / 2 + 30, 365, "images/shop/shopbeam.png");
-		if(PlayerSession.getSecondsecondaryWeapon() == 1){
+		if(PlayerSession.getSecondaryWeapon() == 1){
 			select = new ImageEntity(GameConfig.windowWidth / 2 - 130, 355, "images/shop/select.png");
 		}else{
 			select = new ImageEntity(GameConfig.windowWidth / 2 + 20, 355, "images/shop/select.png");
@@ -118,12 +118,12 @@ public class ShopScreen extends Screen {
 				}
 				break;
 			case 3:
-				if(PlayerSession.getSecondsecondaryWeapon() == 1){
+				if(PlayerSession.getSecondaryWeapon() == 1){
 					select.setPosition(GameConfig.windowWidth / 2 + 20, 355);
-					PlayerSession.setSecondsecondaryWeapon(2);
+					PlayerSession.setSecondaryWeapon(2);
 				}else{
 					select.setPosition(GameConfig.windowWidth / 2 - 130, 355);
-					PlayerSession.setSecondsecondaryWeapon(1);
+					PlayerSession.setSecondaryWeapon(1);
 				}
 				break;
 			case 4:
