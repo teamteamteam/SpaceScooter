@@ -36,10 +36,8 @@ public class ShopScreen extends Screen {
 		new ImageEntity(GameConfig.windowWidth / 2 - 120, 365, "images/shop/shoprocket.png");
 		new ImageEntity(GameConfig.windowWidth / 2 + 30, 365, "images/shop/shopbeam.png");
 		if(PlayerSession.getSecondsecondaryWeapon() == 1){
-			System.out.println("1");
 			select = new ImageEntity(GameConfig.windowWidth / 2 - 130, 355, "images/shop/select.png");
 		}else{
-			System.out.println("2");
 			select = new ImageEntity(GameConfig.windowWidth / 2 + 20, 355, "images/shop/select.png");
 		}
 		this.cursor = new ImageEntity(50, 149, "images/ship.png");

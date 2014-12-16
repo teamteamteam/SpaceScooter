@@ -5,6 +5,7 @@ import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import de.teamteamteam.spacescooter.brain.GameConfig;
+import de.teamteamteam.spacescooter.brain.PlayerSession;
 import de.teamteamteam.spacescooter.control.Keyboard;
 import de.teamteamteam.spacescooter.gui.Button;
 import de.teamteamteam.spacescooter.gui.ImageEntity;
@@ -87,6 +88,8 @@ public class GamePausedScreen extends Screen {
 				this.parent.setOverlay(null, false);
 				break;
 			case 1:
+				//Clear the PlayerSession
+				PlayerSession.reset();
 				//Replaces its parents (the GameScreen) parent (the SuperScreen) overlay.
 				this.parent.parent.setOverlay(new MainMenuScreen(this.parent.parent));
 				break;

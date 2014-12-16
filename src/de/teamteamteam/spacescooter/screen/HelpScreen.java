@@ -9,14 +9,14 @@ import de.teamteamteam.spacescooter.brain.GameConfig;
 import de.teamteamteam.spacescooter.control.Keyboard;
 
 /**
- * This is the Screen where you can look at all those awesome guys who created this game. :D
+ * A Screen providing all the cool instructions about how to play.
  */
-public class CreditsScreen extends Screen {
+public class HelpScreen extends Screen {
 	
 	/**
 	 * Default Constructor
 	 */
-	public CreditsScreen(Screen parent) {
+	public HelpScreen(Screen parent) {
 		super(parent);
 	}
 	
@@ -29,7 +29,7 @@ public class CreditsScreen extends Screen {
 		g.fillRect(0, 0, GameConfig.windowWidth, GameConfig.windowHeight);
 		g.setColor(Color.WHITE);
 		g.setFont(new Font("Monospace", 0, 50));
-		String text = "#yolo";
+		String text = "Hilfe kommt";
 		g.drawString(text, (GameConfig.windowWidth - g.getFontMetrics().stringWidth(text))/2, 150);
 	}
 

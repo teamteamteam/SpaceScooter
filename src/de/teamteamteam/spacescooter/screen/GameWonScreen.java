@@ -49,7 +49,6 @@ public class GameWonScreen extends Screen {
 		g.setFont(new Font("Monospace", 0, 20));
 		g.setColor(new Color(0, 0, 0));
 		g.drawString("Weiter", GameConfig.windowWidth/2-70, 332);
-		g.drawString("Hauptmen\u00fc", GameConfig.windowWidth/2-60, 432);
 	}
 
 	@Override
@@ -87,12 +86,9 @@ public class GameWonScreen extends Screen {
 			} else this.animationStatus = 2;
 		} else if(this.animationStatus == 2) {
 			switch (this.menuPoint) {
-			case 0:
-				this.parent.setOverlay(new ShopScreen(this.parent));
-				break;
-			case 1:
-				this.parent.setOverlay(new MainMenuScreen(this.parent));
-				break;
+				case 0:
+					this.parent.setOverlay(new ShopScreen(this.parent));
+					break;
 			}
 		}
 	}

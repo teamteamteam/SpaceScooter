@@ -11,7 +11,10 @@ import de.teamteamteam.spacescooter.gui.Button;
 import de.teamteamteam.spacescooter.gui.ImageEntity;
 import de.teamteamteam.spacescooter.utility.Highscore;
 
-public class HighscoreScreen extends Screen{
+/**
+ * This one displays the whole HighScore and offers an option to go back to the MainMenu.
+ */
+public class ViewHighscoreScreen extends Screen{
 
 	private ImageEntity cursor;
 	private float cursorMoveSpeed = 0;
@@ -19,7 +22,7 @@ public class HighscoreScreen extends Screen{
 	private int[] points;
 	private String[] names;
 	
-	public HighscoreScreen(Screen parent) {
+	public ViewHighscoreScreen(Screen parent) {
 		super(parent);
 		new ImageEntity(0, 0, "images/shopbackground.png");
 		new Button(GameConfig.windowWidth/2-125, GameConfig.windowHeight-75);

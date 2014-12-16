@@ -7,7 +7,6 @@ import java.awt.event.KeyEvent;
 
 import de.teamteamteam.spacescooter.background.StarBackground;
 import de.teamteamteam.spacescooter.brain.GameConfig;
-import de.teamteamteam.spacescooter.brain.PlayerSession;
 import de.teamteamteam.spacescooter.control.Keyboard;
 import de.teamteamteam.spacescooter.gui.Button;
 import de.teamteamteam.spacescooter.gui.ImageEntity;
@@ -101,10 +100,10 @@ public class MainMenuScreen extends Screen {
 					this.parent.setOverlay(new GameScreen(this.parent));
 					break;
 				case 1:
-					this.parent.setOverlay(new ShopScreen(this.parent));
+					this.parent.setOverlay(new HelpScreen(this.parent));
 					break;
 				case 2:
-					this.parent.setOverlay(new HighscoreScreen(this.parent));
+					this.parent.setOverlay(new ViewHighscoreScreen(this.parent));
 					break;
 				case 3:
 					this.parent.setOverlay(new CreditsScreen(this.parent));

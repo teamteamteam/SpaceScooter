@@ -13,6 +13,7 @@ import de.teamteamteam.spacescooter.gui.SecondaryWeaponAmount;
 import de.teamteamteam.spacescooter.gui.ShieldBar;
 import de.teamteamteam.spacescooter.level.Level;
 import de.teamteamteam.spacescooter.utility.CollisionHandler;
+import de.teamteamteam.spacescooter.utility.Highscore;
 
 /**
  * In this GameScreen, the actual gameplay takes place.
@@ -92,16 +93,27 @@ public class GameScreen extends Screen {
 		
 		//React if the game is actually over.
 		if (this.level.isGameOver()) {
+			boolean playerGotNewHighscore = (Highscore.getPlacement(PlayerSession.getScore()) != -1);
 			if(this.level.playerHasWon()) {
 				if(PlayerSession.getNextLevel() == null) {
-					this.parent.setOverlay(new HighscoreScreen(this.parent));
+					//Allow entering a new highscore depending on whether it actually is a new highscore.
+					if(playerGotNewHighscore) {
+						this.parent.setOverlay(new EnterHighscoreScreen(this.parent));
+					} else {
+						this.parent.setOverlay(new ViewHighscoreScreen(this.parent));
+					}
 				} else {
 					//Go to the I don't know yet Screen if the game is over and the player WON.
 					this.parent.setOverlay(new GameWonScreen(this.parent));
 				}
 			} else {
 				//Go to GameOverScreen if the game is over - the player died and lost the game.
-				this.parent.setOverlay(new GameOverScreen(this.parent));
+				//Allow entering a new highscore depending on whether it actually is a new highscore.
+				if(playerGotNewHighscore) {
+					this.parent.setOverlay(new EnterHighscoreScreen(this.parent));
+				} else {
+					this.parent.setOverlay(new ViewHighscoreScreen(this.parent));
+				}
 			}
 		}
 	}
