@@ -16,7 +16,7 @@ public class EnemyFour extends Enemy{
 	private double y;
 	private double vektorX;
 	private double vektorY;
-	private int speed = 2;
+	private int speed = 4;
 
 	public EnemyFour(int x, int y, ArrayList<Point> points) {
 		super(x, y);
@@ -28,7 +28,7 @@ public class EnemyFour extends Enemy{
 		this.setShootSpawn(-10, 10);
 		this.setShootDamage(5);
 		this.setCollisionDamage(5);
-		this.setHealthPoints(5);
+		this.setHealthPoints(20);
 		this.setScore(40);
 		this.points = points;
 		this.x = x;

@@ -19,7 +19,7 @@ public class EnemyThree extends Enemy{
 		this.setShootDelay(62);
 		this.setShootSpawn(-10, 10);
 		this.setShootDamage(5);
-		this.setHealthPoints(15);
+		this.setHealthPoints(40);
 		this.setCollisionDamage(10);
 		this.setScore(30);
 		this.newY = this.getY();

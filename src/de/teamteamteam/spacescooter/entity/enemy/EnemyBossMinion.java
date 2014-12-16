@@ -19,7 +19,7 @@ public class EnemyBossMinion extends Enemy{
 		this.setShootDelay(30);
 		this.setShootSpawn(-10, 10);
 		this.setShootDamage(5);
-		this.setHealthPoints(15);
+		this.setHealthPoints(10);
 		this.setCollisionDamage(10);
 		this.setScore(10);
 		this.newY = this.getY();

@@ -13,7 +13,7 @@ public class EnemyTwo extends Enemy{
 		this.setShootSpawn(-10, 10);
 		this.setShootDamage(5);
 		this.setCollisionDamage(5);
-		this.setHealthPoints(5);
+		this.setHealthPoints(45);
 		this.setScore(20);
 	}
 	

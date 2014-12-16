@@ -27,7 +27,7 @@ public abstract class Entity implements Updateable, Paintable {
 	 */
 	public static enum availableNames {
 		/* Backgrounds */
-		StarBackground, CloudBackground, EarthBackground,
+		StarBackground, CloudBackground, EarthBackground, DogeBackground,
 		/* Enemies */
 		EnemyOne, EnemyTwo, EnemyThree, EnemyFour,
 		/* Boss Enemies and belongings */
@@ -37,7 +37,7 @@ public abstract class Entity implements Updateable, Paintable {
 		/* Stones */
 		StoneOne, StoneTwo, StoneThree,
 		/* Items */
-		ItemCredit, ItemHeal, ItemIncreaseDamage, ItemNuke, ItemOneUp, ItemRocket, ItemShield,
+		ItemCredit, ItemHeal, ItemIncreaseDamage, ItemNuke, ItemOneUp, ItemRocket, ItemShield, 
 	}
 	
 	/**

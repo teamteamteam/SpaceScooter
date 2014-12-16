@@ -7,9 +7,9 @@ import de.teamteamteam.spacescooter.brain.GameConfig;
 public class FuckedUpCloudBackground extends ScrollingBackground {
 
 	private double x;
-	private double x_delta;
+	/*private double x_delta;
 	private int percentage;
-	private int timer;
+	private int timer;*/
 	
 	public FuckedUpCloudBackground(int x, int y) {
 		super(x, y);

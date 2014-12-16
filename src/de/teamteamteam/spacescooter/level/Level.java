@@ -4,6 +4,7 @@ import java.awt.Point;
 import java.util.ArrayList;
 
 import de.teamteamteam.spacescooter.background.CloudBackground;
+import de.teamteamteam.spacescooter.background.DogeBackground;
 import de.teamteamteam.spacescooter.background.EarthBackground;
 import de.teamteamteam.spacescooter.background.StarBackground;
 import de.teamteamteam.spacescooter.brain.GameConfig;
@@ -230,6 +231,9 @@ public final class Level {
 				break;
 			case CloudBackground:
 				new CloudBackground(x, y);
+				break;
+			case DogeBackground:
+				new DogeBackground(x, y);
 				break;
 			case EarthBackground:
 				new EarthBackground(x, y);
