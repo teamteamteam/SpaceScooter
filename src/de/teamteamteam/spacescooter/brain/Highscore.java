@@ -1,4 +1,4 @@
-package de.teamteamteam.spacescooter.utility;
+package de.teamteamteam.spacescooter.brain;
 
 import java.io.File;
 import java.io.FileInputStream;

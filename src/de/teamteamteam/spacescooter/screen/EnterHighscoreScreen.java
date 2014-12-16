@@ -7,10 +7,10 @@ import java.awt.Point;
 import java.awt.event.KeyEvent;
 
 import de.teamteamteam.spacescooter.brain.GameConfig;
+import de.teamteamteam.spacescooter.brain.Highscore;
 import de.teamteamteam.spacescooter.brain.PlayerSession;
 import de.teamteamteam.spacescooter.control.Keyboard;
 import de.teamteamteam.spacescooter.gui.ImageEntity;
-import de.teamteamteam.spacescooter.utility.Highscore;
 
 /**
  * This is the EnterHighscoreScreen, which is displayed once the player ended

@@ -5,11 +5,11 @@ import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import de.teamteamteam.spacescooter.brain.GameConfig;
+import de.teamteamteam.spacescooter.brain.Highscore;
 import de.teamteamteam.spacescooter.brain.PlayerSession;
 import de.teamteamteam.spacescooter.control.Keyboard;
 import de.teamteamteam.spacescooter.gui.Button;
 import de.teamteamteam.spacescooter.gui.ImageEntity;
-import de.teamteamteam.spacescooter.utility.Highscore;
 
 /**
  * This one displays the whole HighScore and offers an option to go back to the MainMenu.

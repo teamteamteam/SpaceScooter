@@ -3,6 +3,7 @@ package de.teamteamteam.spacescooter.screen;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 
+import de.teamteamteam.spacescooter.brain.Highscore;
 import de.teamteamteam.spacescooter.brain.PlayerSession;
 import de.teamteamteam.spacescooter.control.Keyboard;
 import de.teamteamteam.spacescooter.entity.Player;
@@ -13,7 +14,6 @@ import de.teamteamteam.spacescooter.gui.SecondaryWeaponAmount;
 import de.teamteamteam.spacescooter.gui.ShieldBar;
 import de.teamteamteam.spacescooter.level.Level;
 import de.teamteamteam.spacescooter.utility.CollisionHandler;
-import de.teamteamteam.spacescooter.utility.Highscore;
 
 /**
  * In this GameScreen, the actual gameplay takes place.
