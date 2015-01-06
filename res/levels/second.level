@@ -1,7 +1,7 @@
 name:Level Zwai! :D
 backgroundMusic:music/ScooterFriendsTurbo8Bit.wav
 background:EarthBackground
-nextLevel:
+nextLevel:levels/doge.level
 -
 [0-1]
 spawn:EnemyBoss,1,1,50

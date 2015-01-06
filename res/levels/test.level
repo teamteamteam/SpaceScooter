@@ -1,7 +1,7 @@
-name:Testlevel \o/
+name:Level One
 backgroundMusic:music/ScooterFriendsTurbo8Bit.wav
 background:CloudBackground
-nextLevel:levels/doge.level
+nextLevel:levels/second.level
 -
 
 [0-3]

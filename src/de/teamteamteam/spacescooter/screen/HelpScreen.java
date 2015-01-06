@@ -37,7 +37,9 @@ public class HelpScreen extends Screen {
 		text = "Y = Extrawaffe";
 		g.drawString(text, (GameConfig.windowWidth - g.getFontMetrics().stringWidth(text))/2, 240);
 		text = "Escape = Pause";
-		g.drawString(text, (GameConfig.windowWidth - g.getFontMetrics().stringWidth(text))/2, 270);
+		g.drawString(text, (GameConfig.windowWidth - g.getFontMetrics().stringWidth(text))/2, 280);
+		text = "Nukes aktivieren beim Einsammeln";
+		g.drawString(text, (GameConfig.windowWidth - g.getFontMetrics().stringWidth(text))/2, 320);
 		text = "(Enter / Space für Hauptmenü)";
 		g.drawString(text, (GameConfig.windowWidth - g.getFontMetrics().stringWidth(text))/2, GameConfig.windowHeight-50);
 	}

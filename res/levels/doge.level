@@ -1,7 +1,7 @@
 name:Much Level
 backgroundMusic:music/ScooterFriendsTurbo8Bit.wav
 background:DogeBackground
-nextLevel:levels/second.level
+nextLevel:
 -
 
 [0-1]
