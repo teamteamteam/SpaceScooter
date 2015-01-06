@@ -29,8 +29,17 @@ public class HelpScreen extends Screen {
 		g.fillRect(0, 0, GameConfig.windowWidth, GameConfig.windowHeight);
 		g.setColor(Color.WHITE);
 		g.setFont(new Font("Monospace", 0, 50));
-		String text = "Hilfe kommt";
-		g.drawString(text, (GameConfig.windowWidth - g.getFontMetrics().stringWidth(text))/2, 150);
+		String text = "Steuerung";
+		g.drawString(text, (GameConfig.windowWidth - g.getFontMetrics().stringWidth(text))/2, 100);
+		
+		g.setFont(new Font("Monospace", 0, 25));
+		
+		text = "Y = Extrawaffe";
+		g.drawString(text, (GameConfig.windowWidth - g.getFontMetrics().stringWidth(text))/2, 240);
+		text = "Escape = Pause";
+		g.drawString(text, (GameConfig.windowWidth - g.getFontMetrics().stringWidth(text))/2, 270);
+		text = "(Enter / Space für Hauptmenü)";
+		g.drawString(text, (GameConfig.windowWidth - g.getFontMetrics().stringWidth(text))/2, GameConfig.windowHeight-50);
 	}
 
 	/**
