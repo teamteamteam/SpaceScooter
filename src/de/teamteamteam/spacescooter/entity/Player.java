@@ -225,6 +225,7 @@ public class Player extends ShootingEntity implements KeyboardListener {
 	@Override
 	public void createBeam() {
 		super.createBeam();
+		new FlashImage(this.getX(), this.getY(), "images/hpb_shout.png", 3);
 		this.removeSecondaryWeaponAmount();
 	}
 	
