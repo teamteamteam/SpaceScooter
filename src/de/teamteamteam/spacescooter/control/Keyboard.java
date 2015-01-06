@@ -1,17 +1,19 @@
 package de.teamteamteam.spacescooter.control;
 
-import java.awt.Point;
+// commented imports are for cheatcodes only. removed for release build
+
+/* import java.awt.Point; */ 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
 
-import de.teamteamteam.spacescooter.entity.enemy.EnemyBoss;
+/* import de.teamteamteam.spacescooter.entity.enemy.EnemyBoss;
 import de.teamteamteam.spacescooter.entity.enemy.EnemyFour;
 import de.teamteamteam.spacescooter.entity.enemy.EnemyOne;
 import de.teamteamteam.spacescooter.entity.enemy.EnemyThree;
 import de.teamteamteam.spacescooter.entity.enemy.EnemyTwo;
 import de.teamteamteam.spacescooter.entity.item.ItemNuke;
-import de.teamteamteam.spacescooter.screen.GameScreen;
+import de.teamteamteam.spacescooter.screen.GameScreen; */
 
 /**
  * This is our main control input source.
@@ -105,8 +107,9 @@ public class Keyboard implements KeyListener {
 		for(KeyboardListener kl : Keyboard.listener) kl.keyPressed(e);
 		
 		//Debug Spawn Enemy on Press or Items
-		//TODO: Remove the Code when game is ready
-		if(e.getKeyCode() == KeyEvent.VK_1) {
+		//Remove the Code when game is ready
+		
+		/*if(e.getKeyCode() == KeyEvent.VK_1) {
 			new EnemyOne(400,400);
 		}
 		if(e.getKeyCode() == KeyEvent.VK_2) {
@@ -129,7 +132,7 @@ public class Keyboard implements KeyListener {
 		}
 		if(e.getKeyCode() == KeyEvent.VK_5) {
 			GameScreen.getPlayer().setCollide(!GameScreen.getPlayer().canCollide());
-		}
+		}*/
 		
 	}
 

@@ -137,7 +137,7 @@ public class Loader {
 			loadingScreen.increaseCurrentProcessed();
 			//For the retro :D
 			try {
-				Thread.sleep(Random.nextInt(15));
+				Thread.sleep(Random.nextInt(10));
 			} catch (InterruptedException e1) {
 				e1.printStackTrace();
 			}

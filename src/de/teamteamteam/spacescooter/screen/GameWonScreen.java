@@ -46,7 +46,7 @@ public class GameWonScreen extends Screen {
 		g.drawString("You win!", GameConfig.windowWidth/2-210, 200);
 		g.setFont(new Font("Monospace", 0, 20));
 		g.setColor(new Color(0, 0, 0));
-		g.drawString("Weiter", GameConfig.windowWidth/2-70, 332);
+		g.drawString("Weiter", GameConfig.windowWidth/2-30, 332);
 	}
 
 	@Override

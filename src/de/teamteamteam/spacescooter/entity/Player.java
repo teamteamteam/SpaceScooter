@@ -122,9 +122,10 @@ public class Player extends ShootingEntity implements KeyboardListener {
 	 */
 	@Override
 	public void paint(Graphics2D g) {
+		// Todo: add blink effect
 		if(this.currentCollisionCooldown > 0) {
-			g.setColor(Color.RED);
-			g.drawRect(this.getX(), this.getY(), this.getImageWidth(), this.getImageHeight());
+			//g.setColor(Color.RED);
+			//g.drawRect(this.getX(), this.getY(), this.getImageWidth(), this.getImageHeight());
 		}
 		super.paint(g);
 	}
