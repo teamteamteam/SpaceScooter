@@ -23,10 +23,11 @@ public class MainMenuScreen extends Screen {
 	private int menuPoint = 0;
 	private boolean keyPressed = false;
 	private int animationStatus = 0; //0 = Animation noch nicht gestartet, 1 = Animation laeuft, 2 = Animation beendet
+	private StarBackground background;
 	
 	public MainMenuScreen(Screen parent) {
 		super(parent);
-		new StarBackground(0, 0);
+		this.background = new StarBackground(0, 0);
 		new Button(GameConfig.windowWidth/2-125, 200);
 		new Button(GameConfig.windowWidth/2-125, 275);
 		new Button(GameConfig.windowWidth/2-125, 350);
@@ -87,6 +88,7 @@ public class MainMenuScreen extends Screen {
 		// make a selection
 		if(Keyboard.isKeyDown(KeyEvent.VK_ENTER) || Keyboard.isKeyDown(KeyEvent.VK_SPACE)) {
 			animationStatus = 1;
+			this.background.startScrolling();
 		}
 		
 		if(animationStatus == 1) {
@@ -97,7 +99,7 @@ public class MainMenuScreen extends Screen {
 		} else if(animationStatus == 2) {
 			switch (menuPoint) {
 				case 0:
-					this.parent.setOverlay(new GameScreen(this.parent));
+					this.parent.setOverlay(new ShopScreen(this.parent));
 					break;
 				case 1:
 					this.parent.setOverlay(new HelpScreen(this.parent));

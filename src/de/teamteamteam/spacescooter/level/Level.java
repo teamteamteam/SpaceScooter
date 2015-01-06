@@ -3,6 +3,8 @@ package de.teamteamteam.spacescooter.level;
 import java.awt.Point;
 import java.util.ArrayList;
 
+import de.teamteamteam.spacescooter.background.Background;
+import de.teamteamteam.spacescooter.background.ScrollingBackground;
 import de.teamteamteam.spacescooter.background.CloudBackground;
 import de.teamteamteam.spacescooter.background.DogeBackground;
 import de.teamteamteam.spacescooter.background.EarthBackground;
@@ -70,6 +72,11 @@ public final class Level {
 	 * True - player won, False - player lost.
 	 */
 	private boolean playerWon;
+	
+	/**
+	 * Internal reference to the background. This is useful if the background needs to be influenced due to bossfights.
+	 */
+	private Background background;
 
 	/**
 	 * EntityIterator to evaluate the state of all the existing Entities.
@@ -93,10 +100,14 @@ public final class Level {
 	 * show the level name in a LevelHeadline.
 	 */
 	public void doBuildUp() {
-		this.spawnEntityByAvailableName(Entity.availableNames.valueOf(this.config.background), 0, 50, null);
+		this.background = (Background) this.spawnEntityByAvailableName(Entity.availableNames.valueOf(this.config.background), 0, 50, null);
 		GameScreen.setPlayer(new Player(200, 300));
 		this.backgroundMusic = SoundSystem.playSound(this.config.backgroundMusic);
 		new LevelHeadline(100,100, this.config.name);
+		//Have the background start scrolling in case it is supported.
+		if(this.background instanceof ScrollingBackground) {
+			((ScrollingBackground) this.background).startScrolling();
+		}
 	}
 	
 	/**
@@ -175,13 +186,28 @@ public final class Level {
 			this.isGameOver = true;
 			this.playerWon = false;
 		}
+		int bossEnemyCounter = 0;
 		int enemyCounter = 0;
 		int obstacleCounter = 0;
 		this.entityIterator.reset();
 		while(this.entityIterator.hasNext()) {
 			Entity e = this.entityIterator.next();
+			if(e instanceof EnemyBoss) bossEnemyCounter++;
 			if(e instanceof Enemy) enemyCounter++;
 			if(e instanceof Obstacle) obstacleCounter++;
+		}
+		
+		//If there is a boss, make sure the background is not scrolling in case it is supported.
+		//Also resume scrolling when there is no more boss.
+		if(this.background instanceof ScrollingBackground) {
+			ScrollingBackground scrollingBackground = (ScrollingBackground) this.background;
+			if(scrollingBackground.scrollingStateChanging() == false) {
+				if(scrollingBackground.isScrolling() && bossEnemyCounter > 0) {
+					scrollingBackground.stopScrolling();
+				} else if(!scrollingBackground.isScrolling() && bossEnemyCounter == 0) {
+					scrollingBackground.startScrolling();
+				}
+			}
 		}
 		
 		//use the currentIntervalIndex to determine whether there are things scheduled to spawn.
@@ -223,48 +249,51 @@ public final class Level {
 	/**
 	 * Spawn an Entity by name on the given position.
 	 * Uses Entity.availableNames to determine the actual Entity to spawn.
+	 * Returns the spawned instance.
 	 */
-	private void spawnEntityByAvailableName(Entity.availableNames entity, int x, int y, ArrayList<Point> points) {
+	private Entity spawnEntityByAvailableName(Entity.availableNames entity, int x, int y, ArrayList<Point> points) {
+		Entity spawnedEntity = null;
 		switch(entity) {
 			case StarBackground:
-				new StarBackground(x, y);
+				spawnedEntity = new StarBackground(x, y);
 				break;
 			case CloudBackground:
-				new CloudBackground(x, y);
+				spawnedEntity = new CloudBackground(x, y);
 				break;
 			case DogeBackground:
-				new DogeBackground(x, y);
+				spawnedEntity = new DogeBackground(x, y);
 				break;
 			case EarthBackground:
-				new EarthBackground(x, y);
+				spawnedEntity = new EarthBackground(x, y);
 				break;
 			case EnemyOne:
-				new EnemyOne(x, y);
+				spawnedEntity = new EnemyOne(x, y);
 				break;
 			case EnemyTwo:
-				new EnemyTwo(x, y);
+				spawnedEntity = new EnemyTwo(x, y);
 				break;
 			case EnemyThree:
-				new EnemyThree(x, y);
+				spawnedEntity = new EnemyThree(x, y);
 				break;
 			case EnemyFour:
-				new EnemyFour(x, y, points);
+				spawnedEntity = new EnemyFour(x, y, points);
 				break;
 			case EnemyBoss:
-				new EnemyBoss(x, y);
+				spawnedEntity = new EnemyBoss(x, y);
 				break;
 			case StoneOne:
-				new StoneOne(x, y);
+				spawnedEntity = new StoneOne(x, y);
 				break;
 			case StoneTwo:
-				new StoneTwo(x, y);
+				spawnedEntity = new StoneTwo(x, y);
 				break;
 			case StoneThree:
-				new StoneThree(x, y);
+				spawnedEntity = new StoneThree(x, y);
 				break;
 			default:
 				System.err.println("I don't know how to spawn this: " + entity);
 				break;
 		}
+		return spawnedEntity;
 	}
 }

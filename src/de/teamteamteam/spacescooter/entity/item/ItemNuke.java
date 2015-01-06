@@ -26,7 +26,7 @@ public class ItemNuke extends Item {
 		while (entityIterator.hasNext()) {
 			Entity entity = entityIterator.next();
 			if(entity instanceof Enemy) {
-				((LivingEntity) entity).takeDamage(20);
+				((LivingEntity) entity).takeDamage(9001);
 			}
 		}
 	}

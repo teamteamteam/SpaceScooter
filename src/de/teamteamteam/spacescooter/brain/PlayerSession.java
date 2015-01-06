@@ -266,7 +266,7 @@ public class PlayerSession {
 		PlayerSession.nextLevel = GameConfig.firstLevel;
 		PlayerSession.score = 0;
 		PlayerSession.secondaryWeapon = 1;
-		PlayerSession.credits = 0;
+		PlayerSession.credits = 10;
 		PlayerSession.baseHealthPoints = GameConfig.initialPlayerHealthPoints;
 		PlayerSession.baseShieldPoints = GameConfig.initialPlayerShieldPoints;
 		PlayerSession.baseShotDamage = GameConfig.initialPlayerShotDamage;
