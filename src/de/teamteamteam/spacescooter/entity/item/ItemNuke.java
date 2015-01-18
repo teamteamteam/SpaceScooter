@@ -17,7 +17,7 @@ public class ItemNuke extends Item {
 	}
 
 	/**
-	 * Gives every enemy 20 damage. Most enemies do not survive this.
+	 * Gives every enemy 250 damage. Most enemies do not survive this.
 	 */
 	@Override
 	public void itemCollected(Player player) {
@@ -26,7 +26,7 @@ public class ItemNuke extends Item {
 		while (entityIterator.hasNext()) {
 			Entity entity = entityIterator.next();
 			if(entity instanceof Enemy) {
-				((LivingEntity) entity).takeDamage(9001);
+				((LivingEntity) entity).takeDamage(250);
 			}
 		}
 	}

@@ -63,9 +63,7 @@ public class EnemyFour extends Enemy{
 			nextPoint = points.get(index);
 			index++;
 			neuerVektor();
-		}catch(IndexOutOfBoundsException e){
-			this.remove();
-		}
+		}catch(IndexOutOfBoundsException e){}
 	}
 
 	@Override

@@ -15,6 +15,7 @@ import de.teamteamteam.spacescooter.datastructure.ConcurrentIterator;
 import de.teamteamteam.spacescooter.entity.Entity;
 import de.teamteamteam.spacescooter.entity.Player;
 import de.teamteamteam.spacescooter.entity.enemy.Enemy;
+import de.teamteamteam.spacescooter.entity.enemy.EnemyBigBoss;
 import de.teamteamteam.spacescooter.entity.enemy.EnemyBoss;
 import de.teamteamteam.spacescooter.entity.enemy.EnemyFour;
 import de.teamteamteam.spacescooter.entity.enemy.EnemyOne;
@@ -280,6 +281,9 @@ public final class Level {
 				break;
 			case EnemyBoss:
 				spawnedEntity = new EnemyBoss(x, y);
+				break;
+			case EnemyBigBoss:
+				spawnedEntity = new EnemyBigBoss(x, y);
 				break;
 			case StoneOne:
 				spawnedEntity = new StoneOne(x, y);

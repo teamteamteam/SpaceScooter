@@ -19,4 +19,4 @@ spawn:EnemyTwo,1,10,60
 spawn:EnemyThree,2,4,33
 spawn:EnemyTwo,5,6,10
 [25-30]
-spawn:EnemyBoss,1,1,50
+spawn:EnemyBigBoss,1,1,1

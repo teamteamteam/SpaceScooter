@@ -31,7 +31,7 @@ public abstract class Entity implements Updateable, Paintable {
 		/* Enemies */
 		EnemyOne, EnemyTwo, EnemyThree, EnemyFour,
 		/* Boss Enemies and belongings */
-		EnemyBoss, EnemyBossMinion,
+		EnemyBoss, EnemyBossMinion, EnemyBigBoss,
 		/* Explosions */
 		ExplosionOne, ExplosionTwo, MultiExplosion,
 		/* Stones */
@@ -221,5 +221,9 @@ public abstract class Entity implements Updateable, Paintable {
 			Screen.currentScreen.removeEntity(this);
 			this.disposed = true;
 		}
+	}
+	
+	public boolean isAlive() {
+		return !disposed;
 	}
 }
