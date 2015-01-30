@@ -82,6 +82,11 @@ public final class GameConfig {
 	 * The first level the game will start with.
 	 */
 	public static final String firstLevel = "levels/test.level";
+
+	/**
+	 * Whether or not the window is resizable and scales dynamically.
+	 */
+	public static final boolean dynamicSize = false;
 	
 	/**
 	 * Private constructor, this class will never be instantiated.

@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.Toolkit;
+import java.awt.geom.AffineTransform;
 import java.awt.image.BufferStrategy;
 
 import javax.swing.JFrame;
@@ -62,7 +63,7 @@ public class GameFrame extends JFrame {
 	public void init() {
 		this.setTitle(GameConfig.windowTitle);
 		this.setSize(GameConfig.windowWidth, GameConfig.windowHeight);
-		this.setResizable(false);
+		this.setResizable(GameConfig.dynamicSize);
 		this.setUndecorated(false);
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 
@@ -138,6 +139,12 @@ public class GameFrame extends JFrame {
 					//Apply translation since different platforms use different window decorations that mess
 					//up our coordinates. The new origin shall be the first usable pixel in the top left corner.
 					bufferedGraphics.translate(this.insetLeft, this.insetTop);
+					//Optional code to perform upscaling.
+					if(GameConfig.dynamicSize) {
+						AffineTransform af = new AffineTransform();
+						af.scale((this.getWidth() - this.getInsets().left) / (GameConfig.windowWidth*1.0), (this.getHeight() - this.getInsets().top) / (GameConfig.windowHeight*1.0));
+						bufferedGraphics.setTransform(af);
+					}
 					this.superScreen.doPaint(bufferedGraphics); //Trigger the actual paint routines.
 				} catch (Exception e) {
 					System.err.println("Exception in GameFrame.draw() gefangen:");
