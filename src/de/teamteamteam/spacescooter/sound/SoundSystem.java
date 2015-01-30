@@ -16,6 +16,7 @@ import javax.sound.sampled.Mixer;
 import javax.sound.sampled.SourceDataLine;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
+import de.teamteamteam.spacescooter.brain.GameConfig;
 import de.teamteamteam.spacescooter.utility.Loader;
 
 /**
@@ -125,7 +126,7 @@ public class SoundSystem {
 					}
 					sourceDataLine.drain();
 				} catch (javax.sound.sampled.LineUnavailableException lue) {
-					System.err.println("Could not play sound: " + fSoundURL);
+					if(GameConfig.DEBUG) System.err.println("Could not play sound: " + fSoundURL);
 				} catch (InterruptedException ie) {
 					//Nothing to do here, just falling into finally block, so we can
 					//close the sourceDataLine without draining it.
